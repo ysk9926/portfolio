@@ -22,10 +22,21 @@ export default function ProjectCard({ project, onDetailClick }: ProjectCardProps
     onDetailClick(project);
   };
 
+  const handleKeyDown = (e: React.KeyboardEvent) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      onDetailClick(project);
+    }
+  };
+
   return (
     <div
+      role="button"
+      tabIndex={0}
+      aria-label={`${project.title} 상세 보기`}
       className="group/card relative aspect-[16/10] rounded-2xl overflow-hidden shadow-lg cursor-pointer"
       onClick={handleCardClick}
+      onKeyDown={handleKeyDown}
     >
       {/* Background image — zoom + dim on hover */}
       {project.thumbnail ? (

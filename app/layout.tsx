@@ -1,7 +1,8 @@
-import type { Metadata } from 'next';
+import type { Metadata, Viewport } from 'next';
 import localFont from 'next/font/local';
 import { GoogleAnalytics } from '@next/third-parties/google';
 import { SITE_CONFIG } from '@/lib/constants';
+import { PersonJsonLd, WebSiteJsonLd } from '@/components/seo/JsonLd';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import ScrollToTop from '@/components/layout/ScrollToTop';
@@ -39,11 +40,18 @@ const pretendard = localFont({
   display: 'swap',
 });
 
+export const viewport: Viewport = {
+  themeColor: '#1e293b',
+  width: 'device-width',
+  initialScale: 1,
+};
+
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.SITE_URL || 'https://portfolio.example.com'),
   title: SITE_CONFIG.title,
   description: SITE_CONFIG.description,
   keywords: ['프론트엔드', '개발자', '포트폴리오', 'React', 'Next.js', 'TypeScript'],
+  alternates: { canonical: '/' },
   openGraph: {
     title: SITE_CONFIG.title,
     description: SITE_CONFIG.description,
@@ -72,6 +80,8 @@ export default function RootLayout({
   return (
     <html lang="ko" className={pretendard.variable}>
       <body className="antialiased">
+        <PersonJsonLd />
+        <WebSiteJsonLd />
         <Header />
         <main>{children}</main>
         <Footer />

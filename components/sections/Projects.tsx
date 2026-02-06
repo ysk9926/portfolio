@@ -1,11 +1,13 @@
 'use client';
 
 import { useState, useCallback, useRef, useEffect } from 'react';
+import dynamic from 'next/dynamic';
 import { projectsData } from '../../data/projects';
 import { Project } from '@/lib/types';
 import SectionWrapper from '../ui/SectionWrapper';
 import ProjectCard from '../ui/ProjectCard';
-import ProjectModal from '../ui/ProjectModal';
+
+const ProjectModal = dynamic(() => import('../ui/ProjectModal'), { ssr: false });
 
 type FilterType = 'all' | 'main';
 

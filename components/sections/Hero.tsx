@@ -10,6 +10,7 @@ export default function Hero() {
           <span className="text-blue-400">
             홍길동
           </span>
+          <span className="sr-only"> - 프론트엔드 개발자 포트폴리오</span>
         </h1>
         <p className="text-2xl md:text-3xl text-gray-200 font-semibold">
           프론트엔드 개발자

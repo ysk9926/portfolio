@@ -1,5 +1,6 @@
 import { NavItem } from './types';
 
+// TODO: 배포 시 url을 실제 도메인으로 변경하세요 (예: 'https://your-domain.com')
 export const SITE_CONFIG = {
   name: '홍길동 포트폴리오',
   title: '홍길동 | 프론트엔드 개발자 포트폴리오',
