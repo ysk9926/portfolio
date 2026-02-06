@@ -14,10 +14,12 @@ export interface AboutItem {
 // Skills
 export interface Skill {
   name: string;
+  level: number;
 }
 
 export interface SkillCategory {
   category: string;
+  color: string;
   skills: Skill[];
 }
 
