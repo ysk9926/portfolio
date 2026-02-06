@@ -1,69 +1,107 @@
+import Image from 'next/image';
 import { Project } from '@/lib/types';
 
-export default function ProjectCard({
-  title,
-  period,
-  description,
-  features,
-  techStack,
-  deployUrl,
-  githubUrl,
-}: Project) {
+interface ProjectCardProps {
+  project: Project;
+  onDetailClick: (project: Project) => void;
+}
+
+export default function ProjectCard({ project, onDetailClick }: ProjectCardProps) {
+  const shortDesc =
+    project.shortDescription ||
+    project.description.slice(0, 80) + (project.description.length > 80 ? '...' : '');
+
+  const displayedTechs = project.techStack.slice(0, 5);
+
+  const handleCardClick = () => {
+    onDetailClick(project);
+  };
+
+  const handleButtonClick = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    onDetailClick(project);
+  };
+
   return (
-    <div className="rounded-2xl bg-white shadow-lg overflow-hidden hover:shadow-xl transition-shadow">
-      <div className="h-2 bg-gradient-to-r from-blue-500 to-purple-500"></div>
-      <div className="p-6 md:p-8">
-        <h3 className="text-2xl font-bold text-gray-900 mb-2">{title}</h3>
-        <p className="text-sm text-gray-500 mb-4">{period}</p>
-        <p className="text-gray-700 mb-6">{description}</p>
+    <div
+      className="group/card relative aspect-[16/10] rounded-2xl overflow-hidden shadow-lg cursor-pointer"
+      onClick={handleCardClick}
+    >
+      {/* Background image — zoom + dim on hover */}
+      {project.thumbnail ? (
+        <Image
+          src={project.thumbnail}
+          alt={project.title}
+          fill
+          className="object-cover transition duration-500 ease-out
+                     md:group-hover/card:scale-105 md:group-hover/card:brightness-75"
+          sizes="(max-width: 768px) 280px, 480px"
+        />
+      ) : (
+        <div className="absolute inset-0 bg-indigo-700
+                        transition duration-500 ease-out
+                        md:group-hover/card:brightness-75" />
+      )}
 
-        <div className="mb-6">
-          <h4 className="font-semibold text-gray-900 mb-3">주요 기능</h4>
-          <ul className="space-y-2">
-            {features.map((feature, index) => (
-              <li key={index} className="flex items-start gap-2 text-gray-600">
-                <span className="text-blue-500 mt-1">•</span>
-                <span>{feature}</span>
-              </li>
-            ))}
-          </ul>
-        </div>
+      {/* Bottom overlay — always-visible base info + hover reveal */}
+      <div className="absolute inset-x-0 bottom-0
+                      bg-black/70
+                      transition-all duration-500 ease-out
+                      md:group-hover/card:bg-black/80">
+        <div className="p-5">
+          <h3 className="text-lg md:text-xl font-bold text-white">{project.title}</h3>
+          <p className="text-sm text-white/60 mt-0.5">{project.period}</p>
 
-        <div className="mb-6">
-          <h4 className="font-semibold text-gray-900 mb-3">기술 스택</h4>
-          <div className="flex flex-wrap gap-2">
-            {techStack.map((tech, index) => (
+          {/* Tech tags — always visible, glassmorphism */}
+          <div className="flex flex-wrap gap-1.5 mt-2.5">
+            {displayedTechs.map((tech, i) => (
               <span
-                key={index}
-                className="bg-blue-50 text-blue-600 text-xs font-medium px-3 py-1 rounded-full"
+                key={i}
+                className="text-xs px-2.5 py-0.5 rounded-full
+                           bg-white/10 backdrop-blur-sm text-white/80
+                           border border-white/20"
               >
                 {tech}
               </span>
             ))}
+            {project.techStack.length > 5 && (
+              <span className="text-xs px-2.5 py-0.5 rounded-full bg-white/5 text-white/50">
+                +{project.techStack.length - 5}
+              </span>
+            )}
           </div>
-        </div>
 
-        <div className="flex gap-3">
-          {deployUrl && (
-            <a
-              href={deployUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex-1 bg-blue-500 hover:bg-blue-600 text-white font-medium py-2 px-4 rounded-lg text-center transition-colors"
-            >
-              배포 사이트
-            </a>
-          )}
-          {githubUrl && (
-            <a
-              href={githubUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex-1 bg-gray-800 hover:bg-gray-900 text-white font-medium py-2 px-4 rounded-lg text-center transition-colors"
-            >
-              GitHub
-            </a>
-          )}
+          {/* Expandable area — reveal on desktop hover (grid-rows transition) */}
+          <div className="grid transition-all duration-500 ease-out
+                          grid-rows-[0fr] md:group-hover/card:grid-rows-[1fr]
+                          opacity-0 md:group-hover/card:opacity-100">
+            <div className="overflow-hidden">
+              <p className="text-sm text-slate-300 mt-3 line-clamp-2">{shortDesc}</p>
+              <button
+                onClick={handleButtonClick}
+                className="mt-3 inline-flex items-center gap-1.5
+                           bg-white text-slate-900 font-medium text-sm
+                           px-5 py-2 rounded-full hover:bg-slate-100
+                           transition-colors cursor-pointer"
+              >
+                자세히 보기
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="14"
+                  height="14"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  <path d="M5 12h14" />
+                  <path d="m12 5 7 7-7 7" />
+                </svg>
+              </button>
+            </div>
+          </div>
         </div>
       </div>
     </div>

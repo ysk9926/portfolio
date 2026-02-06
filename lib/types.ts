@@ -42,6 +42,8 @@ export interface Project {
   deployUrl?: string;
   githubUrl?: string;
   isMain: boolean;
+  thumbnail: string;
+  shortDescription?: string;
 }
 
 // Career

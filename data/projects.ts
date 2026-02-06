@@ -16,7 +16,9 @@ export const projectsData: Project[] = [
     techStack: ['Next.js', 'TypeScript', 'Tailwind CSS', 'Vercel'],
     deployUrl: 'https://portfolio.example.com',
     githubUrl: 'https://github.com/example/portfolio',
-    isMain: true
+    isMain: true,
+    thumbnail: '',
+    shortDescription: 'Next.js와 TypeScript로 만든 반응형 포트폴리오 웹사이트',
   },
   {
     id: 2,
@@ -32,7 +34,9 @@ export const projectsData: Project[] = [
     ],
     techStack: ['React', 'Node.js', 'Express', 'MongoDB', 'JWT'],
     githubUrl: 'https://github.com/example/shopping-mall',
-    isMain: true
+    isMain: true,
+    thumbnail: '',
+    shortDescription: '상품 검색, 장바구니, 결제 기능을 갖춘 전자상거래 플랫폼',
   },
   {
     id: 3,
@@ -49,7 +53,9 @@ export const projectsData: Project[] = [
     techStack: ['React', 'OpenWeather API', 'CSS3', 'Axios'],
     deployUrl: 'https://weather-app.example.com',
     githubUrl: 'https://github.com/example/weather-app',
-    isMain: false
+    isMain: false,
+    thumbnail: '',
+    shortDescription: 'OpenWeather API를 활용한 실시간 날씨 정보 앱',
   },
   {
     id: 4,
@@ -66,6 +72,8 @@ export const projectsData: Project[] = [
     techStack: ['React', 'Firebase', 'Firestore', 'CSS Modules'],
     deployUrl: 'https://todo-app.example.com',
     githubUrl: 'https://github.com/example/todo-app',
-    isMain: false
+    isMain: false,
+    thumbnail: '',
+    shortDescription: 'Firebase 기반 실시간 할 일 관리 앱',
   }
 ];

@@ -2,12 +2,12 @@ export default function Hero() {
   return (
     <section
       id="hero"
-      className="relative min-h-screen bg-gradient-to-br from-gray-900 via-slate-800 to-gray-900 flex flex-col items-center justify-center text-white px-4"
+      className="relative min-h-screen bg-gray-900 flex flex-col items-center justify-center text-white px-4"
     >
       <div className="text-center space-y-6">
         <p className="text-lg md:text-xl text-gray-300">안녕하세요 👋</p>
         <h1 className="text-5xl md:text-7xl font-bold">
-          <span className="bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">
+          <span className="text-blue-400">
             홍길동
           </span>
         </h1>

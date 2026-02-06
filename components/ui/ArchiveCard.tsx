@@ -9,7 +9,7 @@ export default function ArchiveCard({
   const isGitHub = title.toLowerCase().includes('github');
   const cardClass = isGitHub
     ? 'bg-gray-900 text-white'
-    : 'bg-gradient-to-br from-blue-50 to-indigo-50 text-gray-900';
+    : 'bg-blue-50 text-gray-900';
 
   return (
     <a
