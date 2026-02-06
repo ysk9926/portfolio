@@ -18,6 +18,7 @@ export default function Projects() {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
   const [canScrollLeft, setCanScrollLeft] = useState(false);
   const [canScrollRight, setCanScrollRight] = useState(true);
+  const [activeIndex, setActiveIndex] = useState(0);
   const scrollRef = useRef<HTMLDivElement>(null);
 
   const filteredProjects =
@@ -30,7 +31,12 @@ export default function Projects() {
     if (!el) return;
     setCanScrollLeft(el.scrollLeft > 1);
     setCanScrollRight(el.scrollLeft < el.scrollWidth - el.clientWidth - 1);
-  }, []);
+    const cardEl = el.querySelector(':scope > div');
+    const cardWidth = cardEl?.clientWidth ?? 327;
+    const gap = 24;
+    const index = Math.round(el.scrollLeft / (cardWidth + gap));
+    setActiveIndex(Math.min(index, filteredProjects.length - 1));
+  }, [filteredProjects.length]);
 
   useEffect(() => {
     const el = scrollRef.current;
@@ -49,6 +55,7 @@ export default function Projects() {
     const el = scrollRef.current;
     if (!el) return;
     el.scrollTo({ left: 0, behavior: 'instant' as ScrollBehavior });
+    setActiveIndex(0);
     requestAnimationFrame(updateScrollButtons);
   }, [filter, updateScrollButtons]);
 
@@ -124,7 +131,7 @@ export default function Projects() {
           {filteredProjects.map((project) => (
             <div
               key={project.id}
-              className="shrink-0 w-[280px] md:w-[480px] snap-center"
+              className="shrink-0 w-[calc(100vw-3rem)] md:w-[480px] snap-center"
             >
               <ProjectCard project={project} onDetailClick={handleDetailClick} />
             </div>
@@ -142,6 +149,26 @@ export default function Projects() {
             <polyline points="9 6 15 12 9 18" />
           </svg>
         </button>
+
+        {/* 모바일 페이지네이션 도트 */}
+        <div className="flex md:hidden justify-center gap-2 mt-4">
+          {filteredProjects.map((_, i) => (
+            <button
+              key={i}
+              onClick={() => {
+                const el = scrollRef.current;
+                if (!el) return;
+                const cardEl = el.querySelector(':scope > div');
+                const cardWidth = cardEl?.clientWidth ?? 327;
+                el.scrollTo({ left: i * (cardWidth + 24), behavior: 'smooth' });
+              }}
+              className={`h-2 rounded-full transition-all ${
+                i === activeIndex ? 'bg-gray-800 w-6' : 'bg-gray-300 w-2'
+              }`}
+              aria-label={`프로젝트 ${i + 1}`}
+            />
+          ))}
+        </div>
       </div>
 
       <ProjectModal project={selectedProject} onClose={handleCloseModal} />

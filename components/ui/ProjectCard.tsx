@@ -11,8 +11,6 @@ export default function ProjectCard({ project, onDetailClick }: ProjectCardProps
     project.shortDescription ||
     project.description.slice(0, 80) + (project.description.length > 80 ? '...' : '');
 
-  const displayedTechs = project.techStack.slice(0, 5);
-
   const handleCardClick = () => {
     onDetailClick(project);
   };
@@ -46,7 +44,7 @@ export default function ProjectCard({ project, onDetailClick }: ProjectCardProps
           fill
           className="object-cover transition duration-500 ease-out
                      md:group-hover/card:scale-105 md:group-hover/card:brightness-75"
-          sizes="(max-width: 768px) 280px, 480px"
+          sizes="(max-width: 768px) calc(100vw - 3rem), 480px"
         />
       ) : (
         <div className="absolute inset-0 bg-indigo-700
@@ -56,27 +54,45 @@ export default function ProjectCard({ project, onDetailClick }: ProjectCardProps
 
       {/* Bottom overlay — always-visible base info + hover reveal */}
       <div className="absolute inset-x-0 bottom-0
-                      bg-black/70
-                      transition-all duration-500 ease-out
-                      md:group-hover/card:bg-black/80">
-        <div className="p-5">
+                      bg-gradient-to-t from-black/85 via-black/50 to-transparent
+                      transition-all duration-500 ease-out">
+        <div className="p-4 md:p-5">
           <h3 className="text-lg md:text-xl font-bold text-white">{project.title}</h3>
           <p className="text-sm text-white/60 mt-0.5">{project.period}</p>
 
           {/* Tech tags — always visible, glassmorphism */}
-          <div className="flex flex-wrap gap-1.5 mt-2.5">
-            {displayedTechs.map((tech, i) => (
+          <div className="flex flex-wrap gap-1.5 mt-2">
+            {/* 모바일+데스크톱 공통: 처음 3개 */}
+            {project.techStack.slice(0, 3).map((tech, i) => (
               <span
                 key={i}
-                className="text-xs px-2.5 py-0.5 rounded-full
+                className="text-xs px-2 py-0.5 rounded-full
                            bg-white/10 backdrop-blur-sm text-white/80
                            border border-white/20"
               >
                 {tech}
               </span>
             ))}
+            {/* 데스크톱 전용: 4~5번째 */}
+            {project.techStack.slice(3, 5).map((tech, i) => (
+              <span
+                key={i + 3}
+                className="hidden md:inline-flex text-xs px-2.5 py-0.5 rounded-full
+                           bg-white/10 backdrop-blur-sm text-white/80
+                           border border-white/20"
+              >
+                {tech}
+              </span>
+            ))}
+            {/* 모바일 "+N" 카운터 (3개 초과 시) */}
+            {project.techStack.length > 3 && (
+              <span className="md:hidden text-xs px-2 py-0.5 rounded-full bg-white/5 text-white/50">
+                +{project.techStack.length - 3}
+              </span>
+            )}
+            {/* 데스크톱 "+N" 카운터 (5개 초과 시) */}
             {project.techStack.length > 5 && (
-              <span className="text-xs px-2.5 py-0.5 rounded-full bg-white/5 text-white/50">
+              <span className="hidden md:inline-flex text-xs px-2.5 py-0.5 rounded-full bg-white/5 text-white/50">
                 +{project.techStack.length - 5}
               </span>
             )}
