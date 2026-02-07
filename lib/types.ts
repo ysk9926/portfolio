@@ -43,6 +43,7 @@ export interface Project {
   githubUrl?: string;
   isMain: boolean;
   thumbnail: string;
+  screenshots: string[];
   shortDescription?: string;
 }
 

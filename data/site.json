@@ -1,0 +1,28 @@
+{
+  "config": {
+    "name": "윤승규 포트폴리오",
+    "title": "윤승규 | 풀스택 개발자 포트폴리오",
+    "description": "열정적인 풀스택 개발자 윤승규의 포트폴리오입니다. React, Next.js, TypeScript를 활용한 프로젝트를 소개합니다.",
+    "url": "https://portfolio.example.com",
+    "ogImage": "/og-image.png"
+  },
+  "nav": [
+    { "label": "About", "href": "#about" },
+    { "label": "Skills", "href": "#skills" },
+    { "label": "Projects", "href": "#projects" },
+    { "label": "Career", "href": "#career" },
+    { "label": "Archiving", "href": "#archiving" }
+  ],
+  "hero": {
+    "greeting": "안녕하세요 👋",
+    "name": "윤승규",
+    "role": "풀스택 개발자",
+    "tagline": "사용자 경험을 최우선으로 생각하며, 클린 코드와 성능 최적화에 집중합니다.",
+    "cta": "더 알아보기"
+  },
+  "profileImage": "/images/profile/profile.webp",
+  "footer": {
+    "copyright": "© 2026 윤승규. All rights reserved.",
+    "builtWith": "Built with Next.js & Tailwind CSS"
+  }
+}

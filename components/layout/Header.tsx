@@ -1,7 +1,8 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { NAV_ITEMS } from '@/lib/constants';
+import { Menu, X } from 'lucide-react';
+import { NAV_ITEMS, HERO_DATA } from '@/lib/constants';
 
 export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -67,7 +68,7 @@ export default function Header() {
                 : 'text-white hover:text-blue-300'
             }`}
           >
-            홍길동
+            {HERO_DATA.name}
           </a>
 
           <nav className="hidden md:flex gap-8">
@@ -94,24 +95,10 @@ export default function Header() {
 
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="md:hidden w-10 h-10 flex flex-col items-center justify-center gap-1.5"
+            className="md:hidden w-10 h-10 flex items-center justify-center"
             aria-label="Toggle menu"
           >
-            <span
-              className={`w-6 h-0.5 transition-all ${
-                isScrolled ? 'bg-gray-900' : 'bg-white'
-              }`}
-            />
-            <span
-              className={`w-6 h-0.5 transition-all ${
-                isScrolled ? 'bg-gray-900' : 'bg-white'
-              }`}
-            />
-            <span
-              className={`w-6 h-0.5 transition-all ${
-                isScrolled ? 'bg-gray-900' : 'bg-white'
-              }`}
-            />
+            <Menu className={`w-6 h-6 transition-colors ${isScrolled ? 'text-gray-900' : 'text-white'}`} />
           </button>
         </div>
       </header>
@@ -128,10 +115,10 @@ export default function Header() {
             <nav className="flex flex-col p-8 gap-6">
               <button
                 onClick={() => setIsMobileMenuOpen(false)}
-                className="self-end text-gray-600 hover:text-gray-900 text-2xl"
+                className="self-end text-gray-600 hover:text-gray-900"
                 aria-label="Close menu"
               >
-                &times;
+                <X className="w-6 h-6" />
               </button>
               {NAV_ITEMS.map((item) => (
                 <a

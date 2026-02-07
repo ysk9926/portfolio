@@ -3,43 +3,65 @@
     "category": "Frontend",
     "color": "#3B82F6",
     "skills": [
-      { "name": "React", "level": 90 },
-      { "name": "Next.js", "level": 85 },
-      { "name": "TypeScript", "level": 85 },
-      { "name": "JavaScript", "level": 90 },
-      { "name": "HTML", "level": 95 },
-      { "name": "CSS", "level": 90 },
-      { "name": "Tailwind CSS", "level": 85 }
+      { "name": "React", "level": 60 },
+      { "name": "TypeScript", "level": 60 },
+      { "name": "Vite", "level": 60 },
+      { "name": "Ant Design", "level": 60 },
+      { "name": "Zustand", "level": 60 },
+      { "name": "Axios", "level": 60 },
+      { "name": "ESLint", "level": 60 },
+      { "name": "Tailwind CSS", "level": 60 },
+      { "name": "React Hook Form", "level": 60 },
+      { "name": "Zod", "level": 60 },
+      { "name": "Recharts", "level": 60 },
+      { "name": "ExcelJS", "level": 60 },
+      { "name": "jsPDF", "level": 60 },
+      { "name": "Prettier", "level": 60 },
+      { "name": "Next.js", "level": 60 },
+      { "name": "Material UI", "level": 60 },
+      { "name": "Framer Motion", "level": 60 }
     ]
   },
   {
     "category": "Backend",
     "color": "#10B981",
     "skills": [
-      { "name": "Node.js", "level": 80 },
-      { "name": "Express", "level": 75 },
-      { "name": "Java", "level": 70 },
-      { "name": "Spring Boot", "level": 65 }
+      { "name": "FastAPI", "level": 60 },
+      { "name": "Python", "level": 60 },
+      { "name": "LangChain", "level": 60 },
+      { "name": "PaddleOCR", "level": 60 },
+      { "name": "Kotlin", "level": 60 },
+      { "name": "Spring Boot", "level": 60 },
+      { "name": "Spring Security", "level": 60 }
     ]
   },
   {
     "category": "Database",
     "color": "#8B5CF6",
     "skills": [
-      { "name": "MySQL", "level": 75 },
-      { "name": "MongoDB", "level": 70 },
-      { "name": "PostgreSQL", "level": 70 }
+      { "name": "PostgreSQL", "level": 60 },
+      { "name": "SQLAlchemy", "level": 60 },
+      { "name": "Qdrant", "level": 60 },
+      { "name": "MySQL", "level": 60 },
+      { "name": "QueryDSL", "level": 60 }
     ]
   },
   {
     "category": "DevOps & Tools",
     "color": "#F59E0B",
     "skills": [
-      { "name": "Git", "level": 85 },
-      { "name": "GitHub", "level": 85 },
-      { "name": "Docker", "level": 65 },
-      { "name": "AWS", "level": 60 },
-      { "name": "Figma", "level": 60 }
+      { "name": "Docker", "level": 60 },
+      { "name": "Nginx", "level": 60 },
+      { "name": "Electron", "level": 60 },
+      { "name": "AWS", "level": 60 }
+    ]
+  },
+  {
+    "category": "Mobile",
+    "color": "#EC4899",
+    "skills": [
+      { "name": "Flutter", "level": 60 },
+      { "name": "Dart", "level": 60 }
     ]
   }
 ]

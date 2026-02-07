@@ -3,7 +3,9 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
 import { createPortal } from 'react-dom';
 import Image from 'next/image';
+import { X, ChevronRight } from 'lucide-react';
 import { Project } from '@/lib/types';
+import ImageSlider from './ImageSlider';
 
 interface ProjectModalProps {
   project: Project | null;
@@ -122,9 +124,7 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
           className="absolute top-4 right-4 z-10 w-9 h-9 flex items-center justify-center rounded-full bg-black/40 hover:bg-black/60 text-white transition-colors cursor-pointer"
           aria-label="닫기"
         >
-          <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-            <path d="M4 4L12 12M12 4L4 12" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
-          </svg>
+          <X size={16} strokeWidth={2} />
         </button>
 
         {/* Hero image */}
@@ -144,6 +144,14 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
           )}
         </div>
 
+        {/* Screenshots */}
+        {project.screenshots && project.screenshots.length > 0 && (
+          <div className="px-6 md:px-8 pt-6">
+            <h3 className="font-semibold text-gray-900 mb-3">스크린샷</h3>
+            <ImageSlider screenshots={project.screenshots} alt={project.title} />
+          </div>
+        )}
+
         {/* Content */}
         <div className="p-6 md:p-8">
           {/* Title + Period */}
@@ -159,7 +167,7 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
             <ul className="space-y-2">
               {project.features.map((feature, i) => (
                 <li key={i} className="flex items-start gap-2 text-gray-600">
-                  <span className="text-blue-500 mt-1 shrink-0">•</span>
+                  <ChevronRight className="text-blue-500 mt-1 shrink-0" size={16} strokeWidth={2.5} />
                   <span>{feature}</span>
                 </li>
               ))}

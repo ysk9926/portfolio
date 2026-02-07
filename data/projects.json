@@ -1,0 +1,129 @@
+[
+  {
+    "id": 1,
+    "title": "iamfine-mono-repo",
+    "period": "2026.01 - 2026.02",
+    "description": "Multi-language on-premise RAG chatbot system with admin management interface. Features a Qwen2.5-7B-based RAG engine, FastAPI backend, React admin dashboard, and Docker Compose deployment — all running 100% on-premise with no external API dependencies.",
+    "features": [
+      "Qwen2.5-7B 기반 RAG 챗봇 엔진 (100% 오픈소스)",
+      "관리자 웹 인터페이스 (Admin UI)",
+      "다국어 지원 (한국어, 영어, 일본어, 중국어)",
+      "Docker Compose 기반 온프레미스 배포",
+      "Qdrant 벡터 DB + BM25 하이브리드 검색",
+      "PaddleOCR 기반 문서 스캔 및 텍스트 추출",
+      "PDF, DOCX, Excel 문서 관리",
+      "JWT 기반 인증 시스템",
+      "WebSocket 실시간 스트리밍 채팅",
+      "마이크로서비스 아키텍처 (Hot Reload 지원)"
+    ],
+    "techStack": [
+      "React",
+      "TypeScript",
+      "Vite",
+      "Ant Design",
+      "Zustand",
+      "Axios",
+      "FastAPI",
+      "Python",
+      "SQLAlchemy",
+      "LangChain",
+      "PostgreSQL",
+      "Qdrant",
+      "PaddleOCR",
+      "Docker",
+      "Nginx",
+      "ESLint"
+    ],
+    "githubUrl": "",
+    "isMain": true,
+    "thumbnail": "/images/projects/iamfine-mono-repo/thumbnail.webp",
+    "screenshots": [
+      "/images/projects/iamfine-mono-repo/screenshot-1.webp",
+      "/images/projects/iamfine-mono-repo/screenshot-2.webp"
+    ],
+    "shortDescription": "On-premise RAG chatbot with multi-language support and admin dashboard"
+  },
+  {
+    "id": 2,
+    "title": "bridgeui",
+    "period": "2025.11 - 2025.12",
+    "description": "A desktop application for data processing and visualization built with Electron and React",
+    "features": [
+      "Excel/CSV 데이터 가져오기 및 내보내기",
+      "PDF 리포트 생성 및 출력",
+      "Recharts 기반 실시간 데이터 시각화",
+      "React Hook Form + Zod 폼 검증",
+      "Electron 기반 크로스플랫폼 데스크톱 앱"
+    ],
+    "techStack": [
+      "React",
+      "Vite",
+      "TypeScript",
+      "Tailwind CSS",
+      "Electron",
+      "Zustand",
+      "React Hook Form",
+      "Zod",
+      "Ant Design",
+      "Axios",
+      "ExcelJS",
+      "jsPDF",
+      "Recharts",
+      "ESLint",
+      "Prettier"
+    ],
+    "githubUrl": "",
+    "isMain": true,
+    "thumbnail": "/images/projects/bridgeui/thumbnail.webp",
+    "screenshots": [
+      "/images/projects/bridgeui/screenshot-1.webp",
+      "/images/projects/bridgeui/screenshot-2.webp"
+    ],
+    "shortDescription": "Electron 기반 데스크톱 데이터 처리 및 시각화 앱"
+  },
+  {
+    "id": 3,
+    "title": "vemontes",
+    "period": "2025.05 - 2026.01",
+    "description": "Full-stack subscription management e-commerce platform with web admin dashboard (Next.js), REST API server (Spring Boot/Kotlin), and cross-platform mobile app (Flutter). Features subscription lifecycle management, delivery tracking, admin analytics, and SMS notifications.",
+    "features": [
+      "구독 상태 관리 시스템 (ACTIVE, PAUSED, CANCELLED)",
+      "관리자 대시보드 (구독 통계, 유저 관리)",
+      "JWT 기반 인증 및 역할 기반 접근 제어",
+      "AWS S3 파일 스토리지 연동",
+      "Nurigo SMS 알림 발송",
+      "Flutter 기반 iOS/Android 크로스플랫폼 모바일 앱",
+      "WebView 하이브리드 앱 구현",
+      "Excel 데이터 import/export (Apache POI)"
+    ],
+    "techStack": [
+      "Next.js",
+      "React",
+      "TypeScript",
+      "Tailwind CSS",
+      "Material UI",
+      "Zustand",
+      "Axios",
+      "Framer Motion",
+      "Recharts",
+      "Kotlin",
+      "Spring Boot",
+      "Spring Security",
+      "MySQL",
+      "QueryDSL",
+      "AWS",
+      "Flutter",
+      "Dart",
+      "Docker"
+    ],
+    "deployUrl":"https://vemontesmanager.com",
+    "githubUrl": "",
+    "isMain": true,
+    "thumbnail": "/images/projects/vemontes/thumbnail.webp",
+    "screenshots": [
+      "/images/projects/vemontes/screenshot-1.webp",
+      "/images/projects/vemontes/screenshot-2.webp"
+    ],
+    "shortDescription": "Subscription management platform with web admin, REST API, and mobile app"
+  }
+]

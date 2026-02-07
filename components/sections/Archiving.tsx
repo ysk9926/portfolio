@@ -1,7 +1,10 @@
-import { archivingData } from '../../data/archiving';
+import archivingData from '../../data/archiving.json';
+import { ArchiveItem } from '../../lib/types';
 import SectionWrapper from '../ui/SectionWrapper';
 import ArchiveCard from '../ui/ArchiveCard';
 import AnimateOnScroll from '../ui/AnimateOnScroll';
+
+const data = archivingData as ArchiveItem[];
 
 export default function Archiving() {
   return (
@@ -12,7 +15,7 @@ export default function Archiving() {
       contentVisibility
     >
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
-        {archivingData.map((item, index) => (
+        {data.map((item, index) => (
           <AnimateOnScroll key={index}>
             <ArchiveCard
               title={item.title}

@@ -1,3 +1,4 @@
+import { ChevronRight } from 'lucide-react';
 import { CareerEntry } from '@/lib/types';
 
 export default function CareerItem({
@@ -21,7 +22,7 @@ export default function CareerItem({
         <ul className="space-y-2">
           {achievements.map((achievement, index) => (
             <li key={index} className="flex items-start gap-2 text-gray-600">
-              <span className="text-blue-500 mt-1">•</span>
+              <ChevronRight className="text-blue-500 mt-1 shrink-0" size={16} strokeWidth={2.5} />
               <span>{achievement}</span>
             </li>
           ))}

@@ -1,11 +1,11 @@
-import { SITE_CONFIG } from '@/lib/constants';
+import { SITE_CONFIG, HERO_DATA } from '@/lib/constants';
 
 export function PersonJsonLd() {
   const jsonLd = {
     '@context': 'https://schema.org',
     '@type': 'Person',
-    name: '홍길동',
-    jobTitle: '프론트엔드 개발자',
+    name: HERO_DATA.name,
+    jobTitle: HERO_DATA.role,
     url: SITE_CONFIG.url,
     knowsAbout: ['React', 'Next.js', 'TypeScript', 'JavaScript', 'Tailwind CSS'],
   };

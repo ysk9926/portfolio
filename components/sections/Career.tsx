@@ -1,7 +1,10 @@
-import { careerData } from '../../data/career';
+import careerData from '../../data/career.json';
+import { CareerEntry } from '../../lib/types';
 import SectionWrapper from '../ui/SectionWrapper';
 import CareerItem from '../ui/CareerItem';
 import AnimateOnScroll from '../ui/AnimateOnScroll';
+
+const data = careerData as CareerEntry[];
 
 export default function Career() {
   return (
@@ -12,7 +15,7 @@ export default function Career() {
       contentVisibility
     >
       <div className="space-y-8 max-w-3xl mx-auto">
-        {careerData.map((entry, index) => (
+        {data.map((entry, index) => (
           <AnimateOnScroll key={index}>
             <CareerItem {...entry} />
           </AnimateOnScroll>

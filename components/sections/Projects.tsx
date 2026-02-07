@@ -1,8 +1,9 @@
 'use client';
 
 import { useState, useCallback, useRef, useEffect } from 'react';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
 import dynamic from 'next/dynamic';
-import { projectsData } from '../../data/projects';
+import projectsData from '../../data/projects.json';
 import { Project } from '@/lib/types';
 import SectionWrapper from '../ui/SectionWrapper';
 import ProjectCard from '../ui/ProjectCard';
@@ -118,9 +119,7 @@ export default function Projects() {
           aria-label="이전 프로젝트"
           className="hidden md:flex absolute left-4 top-1/2 -translate-y-1/2 z-10 w-11 h-11 items-center justify-center rounded-full bg-white/90 shadow-lg backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-opacity disabled:opacity-0 cursor-pointer"
         >
-          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-            <polyline points="15 18 9 12 15 6" />
-          </svg>
+          <ChevronLeft size={20} strokeWidth={2.5} />
         </button>
 
         {/* Scroll container */}
@@ -145,9 +144,7 @@ export default function Projects() {
           aria-label="다음 프로젝트"
           className="hidden md:flex absolute right-4 top-1/2 -translate-y-1/2 z-10 w-11 h-11 items-center justify-center rounded-full bg-white/90 shadow-lg backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-opacity disabled:opacity-0 cursor-pointer"
         >
-          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-            <polyline points="9 6 15 12 9 18" />
-          </svg>
+          <ChevronRight size={20} strokeWidth={2.5} />
         </button>
 
         {/* 모바일 페이지네이션 도트 */}

@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import { ArrowRight } from 'lucide-react';
 import { Project } from '@/lib/types';
 
 interface ProjectCardProps {
@@ -112,20 +113,7 @@ export default function ProjectCard({ project, onDetailClick }: ProjectCardProps
                            transition-colors cursor-pointer"
               >
                 자세히 보기
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="14"
-                  height="14"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2.5"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                >
-                  <path d="M5 12h14" />
-                  <path d="m12 5 7 7-7 7" />
-                </svg>
+                <ArrowRight size={14} strokeWidth={2.5} />
               </button>
             </div>
           </div>

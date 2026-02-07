@@ -1,3 +1,4 @@
+import { Check } from 'lucide-react';
 import { ArchiveItem } from '@/lib/types';
 
 export default function ArchiveCard({
@@ -25,9 +26,7 @@ export default function ArchiveCard({
       <ul className="space-y-2">
         {details.map((detail, index) => (
           <li key={index} className="flex items-start gap-2">
-            <span className={`mt-1 ${isGitHub ? 'text-green-400' : 'text-blue-500'}`}>
-              ✓
-            </span>
+            <Check className={`mt-1 shrink-0 ${isGitHub ? 'text-green-400' : 'text-blue-500'}`} size={16} strokeWidth={2.5} />
             <span className={isGitHub ? 'text-gray-200' : 'text-gray-700'}>
               {detail}
             </span>
