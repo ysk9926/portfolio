@@ -31,6 +31,16 @@ export interface ArchiveItem {
   details: string[];
 }
 
+// Project STAR structure
+export interface ProjectStar {
+  summary: string;
+  role: string;
+  background: string;
+  solutions: string;
+  results: string;
+  troubleshooting?: string;
+}
+
 // Projects
 export interface Project {
   id: number;
@@ -45,6 +55,7 @@ export interface Project {
   thumbnail: string;
   screenshots: string[];
   shortDescription?: string;
+  star?: ProjectStar;
 }
 
 // Career

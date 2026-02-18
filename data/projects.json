@@ -3,7 +3,7 @@
     "id": 1,
     "title": "iamfine-mono-repo",
     "period": "2026.01 - 2026.02",
-    "description": "Multi-language on-premise RAG chatbot system with admin management interface. Features a Qwen2.5-7B-based RAG engine, FastAPI backend, React admin dashboard, and Docker Compose deployment — all running 100% on-premise with no external API dependencies.",
+    "description": "관리자 인터페이스를 갖춘 다국어 온프레미스 RAG 챗봇 시스템. Qwen2.5-7B 기반 RAG 엔진, FastAPI 백엔드, React 관리자 대시보드, Docker Compose 배포를 포함하며, 외부 API 의존 없이 100% 온프레미스로 운영됩니다.",
     "features": [
       "Qwen2.5-7B 기반 RAG 챗봇 엔진 (100% 오픈소스)",
       "관리자 웹 인터페이스 (Admin UI)",
@@ -41,13 +41,21 @@
       "/images/projects/iamfine-mono-repo/screenshot-1.webp",
       "/images/projects/iamfine-mono-repo/screenshot-2.webp"
     ],
-    "shortDescription": "On-premise RAG chatbot with multi-language support and admin dashboard"
+    "shortDescription": "다국어 지원 온프레미스 RAG 챗봇 및 관리자 대시보드",
+    "star": {
+      "summary": "온프레미스 환경에서 동작하는 다국어 RAG 챗봇 시스템",
+      "role": "풀스택 개발자 (기여도 100%)",
+      "background": "## 프로젝트 배경\n\n기존 고객 상담 시스템은 **외부 API(OpenAI)**에 의존하여 다음과 같은 문제가 있었습니다:\n\n- 월 **$2,000+** API 비용 발생\n- 민감 데이터의 외부 전송에 따른 **보안 리스크**\n- 네트워크 장애 시 서비스 중단\n- 다국어(한/영/일/중) 지원 부재\n\n> 핵심 요구사항: 인터넷 없이 사내 서버에서 100% 독립 운영 가능한 RAG 챗봇",
+      "solutions": "### 1. 온프레미스 RAG 파이프라인\n\n- `Qwen2.5-7B` 오픈소스 LLM 도입으로 **외부 API 의존성 제거**\n- `Qdrant` 벡터 DB + `BM25` 하이브리드 검색으로 정확도 향상\n- `LangChain` 기반 Retrieval → Generation 파이프라인 구축\n\n### 2. 다국어 문서 처리\n\n- `PaddleOCR`로 스캔 문서(한/영/일/중) 텍스트 추출\n- PDF, DOCX, Excel 포맷 자동 파싱 및 청킹\n- 언어별 임베딩 모델 분기 처리\n\n### 3. 마이크로서비스 아키텍처\n\n- **FastAPI** 백엔드: RAG 엔진 + 문서 관리 API\n- **React** 프론트엔드: 관리자 대시보드 + 실시간 채팅 UI\n- `Docker Compose`로 전체 서비스 원클릭 배포\n- `WebSocket` 기반 실시간 스트리밍 채팅",
+      "results": "## 성과\n\n- API 비용 **월 $2,000 → $0** (100% 절감)\n- 평균 응답 시간 **2.3초 이내** (7B 모델 기준)\n- 다국어 4개국어 동시 지원\n- Docker Compose **원클릭 배포** (설치 시간 10분 이내)\n- 문서 업로드 후 **즉시 검색 반영** (실시간 인덱싱)",
+      "troubleshooting": "## PaddleOCR 인식률 개선\n\n### 문제\n스캔 품질이 낮은 문서에서 OCR 인식률이 **60% 미만**으로 떨어지는 현상\n\n### 원인 분석\n- 기본 전처리 없이 원본 이미지를 직접 OCR 엔진에 전달\n- 저해상도 + 노이즈가 있는 스캔 문서에서 문자 경계 검출 실패\n\n### 해결\n1. 이미지 전처리 파이프라인 추가: **그레이스케일 → 이진화 → 노이즈 제거**\n2. `PaddleOCR`의 `det_db_thresh` 파라미터를 `0.3 → 0.5`로 조정\n3. 인식 결과 후처리: 정규식 기반 오탈자 보정\n\n### 결과\n인식률 **60% → 92%**로 개선 (32%p 향상)"
+    }
   },
   {
     "id": 2,
     "title": "bridgeui",
     "period": "2025.11 - 2025.12",
-    "description": "A desktop application for data processing and visualization built with Electron and React",
+    "description": "Electron과 React로 구축한 데이터 처리 및 시각화 데스크톱 애플리케이션",
     "features": [
       "Excel/CSV 데이터 가져오기 및 내보내기",
       "PDF 리포트 생성 및 출력",
@@ -73,7 +81,7 @@
       "Prettier"
     ],
     "githubUrl": "",
-    "isMain": true,
+    "isMain": false,
     "thumbnail": "/images/projects/bridgeui/thumbnail.webp",
     "screenshots": [
       "/images/projects/bridgeui/screenshot-1.webp",
@@ -85,7 +93,7 @@
     "id": 3,
     "title": "vemontes",
     "period": "2025.05 - 2026.01",
-    "description": "Full-stack subscription management e-commerce platform with web admin dashboard (Next.js), REST API server (Spring Boot/Kotlin), and cross-platform mobile app (Flutter). Features subscription lifecycle management, delivery tracking, admin analytics, and SMS notifications.",
+    "description": "웹 관리자 대시보드(Next.js), REST API 서버(Spring Boot/Kotlin), 크로스플랫폼 모바일 앱(Flutter)을 갖춘 풀스택 구독 관리 이커머스 플랫폼. 구독 생명주기 관리, 배송 추적, 관리자 분석, SMS 알림 기능을 포함합니다.",
     "features": [
       "구독 상태 관리 시스템 (ACTIVE, PAUSED, CANCELLED)",
       "관리자 대시보드 (구독 통계, 유저 관리)",
@@ -118,12 +126,57 @@
     ],
     "deployUrl":"https://vemontesmanager.com",
     "githubUrl": "",
-    "isMain": true,
+    "isMain": false,
     "thumbnail": "/images/projects/vemontes/thumbnail.webp",
     "screenshots": [
       "/images/projects/vemontes/screenshot-1.webp",
       "/images/projects/vemontes/screenshot-2.webp"
     ],
-    "shortDescription": "Subscription management platform with web admin, REST API, and mobile app"
+    "shortDescription": "웹 관리자, REST API, 모바일 앱을 갖춘 구독 관리 플랫폼"
+  },
+  {
+    "id": 4,
+    "title": "캘린더테이블",
+    "period": "2026.02 - 2026.02",
+    "description": "캐치테이블 스타일의 웨이팅/예약 시스템을 구현한 소셜 캘린더 앱 — 직관적인 캘린더 UX에 약속 요청 및 웨이팅 기능을 결합하여 Next.js 16, Flutter WebView, Prisma, PostgreSQL로 구축했습니다.",
+    "features": [
+      "소셜 로그인 (Kakao, Google, Apple OAuth)",
+      "월간/주간 캘린더 뷰 및 일정 CRUD",
+      "캐치테이블 스타일 약속 요청 시스템 (수락/거절/대안 제시)",
+      "웨이팅 시스템 (빈 시간 대기, 미루기 최대 2회)",
+      "친구 관리 시스템 (검색/추가/수락/거절/차단)",
+      "딥링크 & 카카오톡 공유",
+      "FCM 푸시 알림 및 인앱 알림 센터",
+      "Flutter WebView 하이브리드 앱 (네이티브 Glass BottomNav)",
+      "Liquid Glass 디자인 시스템 (52개 공통 컴포넌트)"
+    ],
+    "techStack": [
+      "React",
+      "Next.js",
+      "TypeScript",
+      "Tailwind CSS",
+      "Zustand",
+      "Zod",
+      "Prisma",
+      "PostgreSQL",
+      "Flutter",
+      "ESLint"
+    ],
+    "githubUrl": "https://github.com/ysk9926/calender-table-mono",
+    "isMain": true,
+    "thumbnail": "/images/projects/calender-table/calender-table-main-1.png",
+    "screenshots": [
+      "/images/projects/calender-table/calender-table-main-1.png",
+      "/images/projects/calender-table/calender-table-main-2.png",
+      "/images/projects/calender-table/calender-table-main-3.png"
+    ],
+    "shortDescription": "CatchTable 스타일 소셜 캘린더 & 약속 웨이팅 시스템",
+    "star": {
+      "summary": "캐치테이블 스타일의 웨이팅/예약 시스템을 소셜 캘린더 앱으로 구현한 풀스택 로젝트",
+      "role": "풀스택 개발자 (기여도 100%)",
+      "background": "## 프로젝트 배경\n\n20~30대 직장인과 대학생이 바쁜 친구들과 약속을 잡기 위해 반복적으로 연락하는 번거로움을 해소하고자 시작된 프로젝트입니다. 기존 캘린더 앱은 일정 관리에 초점을 맞추고 있어 친구와의 약속 조율이라는 소셜 기능이 부족했습니다. Planit의 직관적인 캘린더 UX에 캐치테이블의 예약/웨이팅 개념을 결합하여, \"약속을 잡는 행위\" 자체를 새로운 경험으로 만들고자 했습니다.\n\n> 핵심 요구사항: 서로의 일정을 존중하면서 쉽게 약속을 잡을 수 있는 소셜 캘린더 — 친구에게 약속 웨이팅을 걸고, 빈 시간이 생기면 자동으로 약속이 확정되는 시스템",
+      "solutions": "### 1. 디자인 시스템 (Liquid Glass 테마)\n\n- 52개 공통 UI 컴포넌트를 Atomic Design 패턴(Atoms 13개, Molecules 10개, Layouts 7개, Domain 22개)으로 구축\n- `CVA`(class-variance-authority) 패턴으로 variant 관리\n- Liquid Glass 테마를 oklch 색상 기반으로 구현\n\n### 2. 캘린더 + 약속/웨이팅 시스템\n\n- 월간/주간 캘린더 뷰와 일정 CRUD 구현\n- 캐치테이블 스타일의 약속 요청(수락/거절/대안 제시) 및 웨이팅 시스템(빈 시간 대기, 미루기 최대 2회)\n- 약속 수락 시 양쪽 캘린더에 Schedule 자동 등록\n\n### 3. 풀스택 API & 인증\n\n- `Next.js` API Routes로 서버리스 백엔드 구성\n- `Prisma 7` + `PostgreSQL`(Neon)로 9개 데이터 모델 관리\n- `NextAuth v5` 기반 소셜 로그인(Kakao, Google, Apple)과 JWT 인증\n\n### 4. Flutter WebView 하이브리드 앱\n\n- Flutter WebView로 Next.js 웹을 래핑\n- JavaScript Channel 기반 브릿지로 네이티브 기능(푸시 알림, 딥링크, 인증 동기화) 연동\n- Glass BottomNav를 BackdropFilter로 네이티브에서 재현\n\n### 5. 딥링크 & 카카오 공유\n\n- 친구 초대/약속 초대/프로필 공유 등 3종 딥링크 랜딩 페이지를 서버 컴포넌트로 구현\n- `generateMetadata`로 OG 태그 SEO 지원\n- 카카오 SDK 연동으로 커스텀 템플릿 메시지 공유",
+      "results": ""
+    }
   }
 ]

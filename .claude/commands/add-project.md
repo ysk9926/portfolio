@@ -28,10 +28,54 @@ Use the **Task tool with `subagent_type: "Explore"`** to analyze the target proj
 - If no `package.json`, read `pom.xml`, `setup.py`, `Cargo.toml`, or `go.mod` for project name
 - Fallback: use the directory name
 
-#### 2b. Description
+#### 2b. STAR Description Generation
+
+Generate a structured STAR description for the project. All generated content must be in **한국어 (Korean)**.
+
+**2b-1. summary** (한 줄 요약):
 - Read `package.json` → `description` field
 - If empty, read `README.md` → extract first paragraph after the title
+- Translate to Korean if in English
 - Fallback: empty string
+
+**2b-2. role** (역할):
+- Analyze project structure to infer role:
+  - If both `frontend/` and `backend/` (or `server/`, `api/`) directories exist → "풀스택 개발자"
+  - If only frontend frameworks detected → "프론트엔드 개발자"
+  - If only backend frameworks detected → "백엔드 개발자"
+- Check `package.json` → `contributors` or `author` for contributor count
+  - Solo project → append "(기여도 100%)"
+  - Multiple contributors → append "(기여도 ___%)" and ask user later
+- Fallback: "개발자"
+
+**2b-3. background** (프로젝트 배경 — 마크다운):
+- Search `README.md` for sections: Background, Motivation, Why, 배경, 동기, Problem
+- If found, extract and convert to Korean markdown
+- If not found, generate a draft from the project description:
+  - Format: `## 프로젝트 배경\n\n[problem context]\n\n> 핵심 요구사항: [key requirement]`
+- Use `\n` for line breaks in the JSON string
+
+**2b-4. solutions** (핵심 구현 — 마크다운):
+- Search `README.md` for sections: Architecture, Implementation, How, Features, 구현, 기술
+- Analyze source directory structure (e.g., `src/`, `lib/`, `components/`) to identify key modules
+- Generate markdown with numbered subsections:
+  - Format: `### 1. [feature name]\n\n- [implementation detail]\n- [technology used]`
+- Include inline code formatting for technology names (e.g., `` `React` ``, `` `FastAPI` ``)
+
+**2b-5. results** (성과 — 마크다운):
+- Search `README.md` for sections: Results, Performance, 성과, 결과
+- If found, extract quantitative metrics and format as bullet list
+- If NOT found, set to `null` and ask user during Step 5 confirmation
+- Format: `## 성과\n\n- [metric 1]\n- [metric 2]`
+
+**2b-6. troubleshooting** (트러블슈팅 — 마크다운, optional):
+- Search `README.md` for sections: Troubleshooting, Challenges, Issues, 트러블슈팅, 문제해결
+- If found, format with Problem → Cause → Solution → Result structure
+- If NOT found, set to `null` (this field is optional)
+
+**2b-7. Legacy description** (기존 호환):
+- Still generate a plain text `description` field for backward compatibility
+- Use the English description from `package.json` or README
 
 #### 2c. Tech Stack Detection
 Detect technologies from these sources:
@@ -183,6 +227,19 @@ Present the detected information to the user in this format:
 - **isMain**: [recommend true if 3+ technologies, otherwise false]
 - **shortDescription**: [auto-generated one-liner from description]
 
+## STAR Description Preview
+
+- **Summary**: [summary]
+- **Role**: [role]
+- **Background** (preview):
+  [first 2-3 lines of background markdown]
+- **Solutions** (preview):
+  [first 2-3 lines of solutions markdown]
+- **Results** (preview):
+  [first 2-3 lines of results markdown]
+- **Troubleshooting** (preview):
+  [first 2-3 lines or "없음"]
+
 ## Skills Update Preview
 
 ### New skills to add:
@@ -202,14 +259,18 @@ Use `AskUserQuestion` to ask:
 
 Options:
 1. "Looks good, proceed" — continue to Step 6
-2. "I want to make changes" — ask what to change, apply corrections, show again
-3. "Cancel" — abort the command
+2. "I want to edit STAR sections" — iterate through each STAR section (summary, role, background, solutions, results, troubleshooting) and let the user edit or approve each one individually
+3. "Skip STAR, use plain description" — omit the `star` field entirely and use only the legacy `description` format
+4. "I want to make other changes" — ask what to change, apply corrections, show again
+5. "Cancel" — abort the command
 
 If there are unmapped technologies, ask the user which category each belongs to (Frontend, Backend, Database, DevOps & Tools) before proceeding.
 
 If features are empty, ask the user to provide features as a comma-separated list.
 
 If the period is empty (no git), ask the user to provide the period in "YYYY.MM - YYYY.MM" format.
+
+If results is `null` (not found in README), ask the user to provide quantitative results.
 
 ### Step 6: Update Data Files
 
@@ -229,9 +290,20 @@ If the period is empty (no git), ask the user to provide the period in "YYYY.MM 
     "githubUrl": "<url or omit if empty>",
     "isMain": <true|false>,
     "thumbnail": "",
-    "shortDescription": "<one-liner>"
+    "screenshots": [],
+    "shortDescription": "<one-liner>",
+    "star": {
+      "summary": "<한 줄 요약>",
+      "role": "<역할>",
+      "background": "<마크다운 문자열>",
+      "solutions": "<마크다운 문자열>",
+      "results": "<마크다운 문자열>",
+      "troubleshooting": "<마크다운 문자열 or omit if null>"
+    }
   }
   ```
+  - If the user chose "Skip STAR, use plain description" in Step 5, **omit the `star` field entirely**
+  - The `star` field uses `\n` for line breaks within markdown strings
 - Append the new project to the end of the JSON array
 - Use `Read` then `Edit` to update the file (do NOT overwrite the whole file)
 

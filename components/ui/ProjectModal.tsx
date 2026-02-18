@@ -3,9 +3,10 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
 import { createPortal } from 'react-dom';
 import Image from 'next/image';
-import { X, ChevronRight } from 'lucide-react';
+import { X, ChevronRight, AlertCircle, Lightbulb, TrendingUp, Wrench } from 'lucide-react';
 import { Project } from '@/lib/types';
 import ImageSlider from './ImageSlider';
+import MarkdownRenderer from './MarkdownRenderer';
 
 interface ProjectModalProps {
   project: Project | null;
@@ -112,7 +113,7 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
       <div
         ref={modalRef}
         tabIndex={-1}
-        className={`relative w-full max-w-2xl max-h-[85vh] bg-white rounded-3xl overflow-y-auto shadow-2xl outline-none ${
+        className={`relative w-full ${project.star ? 'max-w-3xl' : 'max-w-2xl'} max-h-[85vh] bg-white rounded-3xl overflow-y-auto shadow-2xl outline-none ${
           isClosing ? 'modal-content-exit' : 'modal-content-enter'
         }`}
         onAnimationEnd={handleAnimationEnd}
@@ -135,7 +136,7 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
               alt={project.title}
               fill
               className="object-cover"
-              sizes="(max-width: 672px) 100vw, 672px"
+              sizes={project.star ? '(max-width: 768px) 100vw, 768px' : '(max-width: 672px) 100vw, 672px'}
             />
           ) : (
             <div className="absolute inset-0 flex items-center justify-center">
@@ -156,10 +157,60 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
         <div className="p-6 md:p-8">
           {/* Title + Period */}
           <h2 className="text-2xl font-bold text-gray-900">{project.title}</h2>
-          <p className="text-sm text-gray-500 mt-1 mb-5">{project.period}</p>
+          {project.star && (
+            <span className="inline-block mt-2 bg-blue-100 text-blue-700 text-xs font-medium px-2.5 py-1 rounded-full">
+              {project.star.role}
+            </span>
+          )}
+          <p className="text-sm text-gray-500 mt-1 mb-3">{project.period}</p>
 
-          {/* Description */}
-          <p className="text-gray-700 leading-relaxed mb-6">{project.description}</p>
+          {project.star ? (
+            <>
+              {/* STAR Layout */}
+              <p className="text-gray-700 leading-relaxed mb-6">{project.star.summary}</p>
+
+              {/* Background */}
+              <div className="bg-blue-50/70 rounded-2xl p-4 md:p-5 mb-4">
+                <div className="flex items-center gap-2 mb-3">
+                  <AlertCircle className="text-blue-500 shrink-0" size={18} />
+                  <h3 className="font-semibold text-gray-900">프로젝트 배경</h3>
+                </div>
+                <MarkdownRenderer content={project.star.background} />
+              </div>
+
+              {/* Solutions */}
+              <div className="border-l-3 border-blue-400 pl-4 md:pl-5 mb-4">
+                <div className="flex items-center gap-2 mb-3">
+                  <Lightbulb className="text-blue-500 shrink-0" size={18} />
+                  <h3 className="font-semibold text-gray-900">핵심 구현</h3>
+                </div>
+                <MarkdownRenderer content={project.star.solutions} />
+              </div>
+
+              {/* Results */}
+              <div className="bg-emerald-50/70 rounded-2xl p-4 md:p-5 mb-4">
+                <div className="flex items-center gap-2 mb-3">
+                  <TrendingUp className="text-emerald-500 shrink-0" size={18} />
+                  <h3 className="font-semibold text-gray-900">성과</h3>
+                </div>
+                <MarkdownRenderer content={project.star.results} />
+              </div>
+
+              {/* Troubleshooting (optional) */}
+              {project.star.troubleshooting && (
+                <div className="bg-amber-50/70 rounded-2xl p-4 md:p-5 mb-4">
+                  <div className="flex items-center gap-2 mb-3">
+                    <Wrench className="text-amber-500 shrink-0" size={18} />
+                    <h3 className="font-semibold text-gray-900">트러블슈팅</h3>
+                  </div>
+                  <MarkdownRenderer content={project.star.troubleshooting} />
+                </div>
+              )}
+            </>
+          ) : (
+            /* Legacy Layout */
+            <p className="text-gray-700 leading-relaxed mb-6">{project.description}</p>
+          )}
 
           {/* Features */}
           <div className="mb-6">
