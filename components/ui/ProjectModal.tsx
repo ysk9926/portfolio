@@ -3,7 +3,7 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
 import { createPortal } from 'react-dom';
 import Image from 'next/image';
-import { X, ChevronRight, AlertCircle, Lightbulb, TrendingUp, Wrench } from 'lucide-react';
+import { X, ChevronRight, AlertCircle, Lightbulb, TrendingUp, Wrench, FolderCode } from 'lucide-react';
 import { Project } from '@/lib/types';
 import ImageSlider from './ImageSlider';
 import MarkdownRenderer from './MarkdownRenderer';
@@ -129,7 +129,7 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
         </button>
 
         {/* Hero image */}
-        <div className="relative aspect-video w-full bg-indigo-700">
+        <div className="relative aspect-video w-full bg-gradient-to-br from-slate-700 via-slate-800 to-slate-900">
           {project.thumbnail ? (
             <Image
               src={project.thumbnail}
@@ -139,8 +139,9 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
               sizes={project.star ? '(max-width: 768px) 100vw, 768px' : '(max-width: 672px) 100vw, 672px'}
             />
           ) : (
-            <div className="absolute inset-0 flex items-center justify-center">
-              <span className="text-4xl font-bold text-white/30">{project.title}</span>
+            <div className="absolute inset-0 flex flex-col items-center justify-center gap-3">
+              <FolderCode size={56} className="text-white/15" strokeWidth={1.5} />
+              <span className="text-lg font-semibold text-white/20 tracking-wide">{project.title}</span>
             </div>
           )}
         </div>

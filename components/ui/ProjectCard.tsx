@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, FolderCode } from 'lucide-react';
 import { Project } from '@/lib/types';
 
 interface ProjectCardProps {
@@ -48,9 +48,16 @@ export default function ProjectCard({ project, onDetailClick }: ProjectCardProps
           sizes="(max-width: 768px) calc(100vw - 3rem), 480px"
         />
       ) : (
-        <div className="absolute inset-0 bg-indigo-700
+        <div className="absolute inset-0 bg-gradient-to-br from-slate-700 via-slate-800 to-slate-900
                         transition duration-500 ease-out
-                        md:group-hover/card:brightness-75" />
+                        md:group-hover/card:brightness-75">
+          <div className="absolute inset-0 flex flex-col items-center justify-center gap-3 -translate-y-4">
+            <FolderCode size={48} className="text-white/20" strokeWidth={1.5} />
+            <span className="text-sm font-medium text-white/25 tracking-wide">
+              {project.title}
+            </span>
+          </div>
+        </div>
       )}
 
       {/* Bottom overlay — always-visible base info + hover reveal */}

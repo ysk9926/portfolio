@@ -36,11 +36,8 @@
     ],
     "githubUrl": "",
     "isMain": true,
-    "thumbnail": "/images/projects/iamfine-mono-repo/thumbnail.webp",
-    "screenshots": [
-      "/images/projects/iamfine-mono-repo/screenshot-1.webp",
-      "/images/projects/iamfine-mono-repo/screenshot-2.webp"
-    ],
+    "thumbnail": "",
+    "screenshots": [],
     "shortDescription": "다국어 지원 온프레미스 RAG 챗봇 및 관리자 대시보드",
     "star": {
       "summary": "온프레미스 환경에서 동작하는 다국어 RAG 챗봇 시스템",
@@ -82,11 +79,8 @@
     ],
     "githubUrl": "",
     "isMain": false,
-    "thumbnail": "/images/projects/bridgeui/thumbnail.webp",
-    "screenshots": [
-      "/images/projects/bridgeui/screenshot-1.webp",
-      "/images/projects/bridgeui/screenshot-2.webp"
-    ],
+    "thumbnail": "",
+    "screenshots": [],
     "shortDescription": "Electron 기반 데스크톱 데이터 처리 및 시각화 앱"
   },
   {
@@ -127,11 +121,8 @@
     "deployUrl":"https://vemontesmanager.com",
     "githubUrl": "",
     "isMain": false,
-    "thumbnail": "/images/projects/vemontes/thumbnail.webp",
-    "screenshots": [
-      "/images/projects/vemontes/screenshot-1.webp",
-      "/images/projects/vemontes/screenshot-2.webp"
-    ],
+    "thumbnail": "",
+    "screenshots": [],
     "shortDescription": "웹 관리자, REST API, 모바일 앱을 갖춘 구독 관리 플랫폼"
   },
   {
