@@ -9,8 +9,8 @@ export default function ArchiveCard({
 }: ArchiveItem) {
   const isGitHub = title.toLowerCase().includes('github');
   const cardClass = isGitHub
-    ? 'bg-gray-900 text-white'
-    : 'bg-blue-50 text-gray-900';
+    ? 'bg-neutral-900 text-white'
+    : 'bg-neutral-100 text-gray-900';
 
   return (
     <a
@@ -26,7 +26,7 @@ export default function ArchiveCard({
       <ul className="space-y-2">
         {details.map((detail, index) => (
           <li key={index} className="flex items-start gap-2">
-            <Check className={`mt-1 shrink-0 ${isGitHub ? 'text-green-400' : 'text-blue-500'}`} size={16} strokeWidth={2.5} />
+            <Check className={`mt-1 shrink-0 ${isGitHub ? 'text-neutral-400' : 'text-neutral-600'}`} size={16} strokeWidth={2.5} />
             <span className={isGitHub ? 'text-gray-200' : 'text-gray-700'}>
               {detail}
             </span>

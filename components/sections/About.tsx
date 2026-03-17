@@ -25,7 +25,7 @@ export default function About() {
               priority
             />
           ) : (
-            <div className="w-full h-full bg-gray-200 flex items-center justify-center">
+            <div className="w-full h-full bg-neutral-100 flex items-center justify-center">
               <User size={64} className="text-gray-400" />
             </div>
           )}

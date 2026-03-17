@@ -5,20 +5,20 @@ export default function Hero() {
   return (
     <section
       id="hero"
-      className="relative min-h-screen bg-gray-900 flex flex-col items-center justify-center text-white px-4"
+      className="relative min-h-screen bg-neutral-950 flex flex-col items-center justify-center text-white px-4"
     >
       <div className="text-center space-y-6">
-        <p className="text-lg md:text-xl text-gray-300">{HERO_DATA.greeting}</p>
+        <p className="text-lg md:text-xl text-neutral-400">{HERO_DATA.greeting}</p>
         <h1 className="text-5xl md:text-7xl font-bold">
-          <span className="text-blue-400">
+          <span className="text-white">
             {HERO_DATA.name}
           </span>
           <span className="sr-only"> - {HERO_DATA.role} 포트폴리오</span>
         </h1>
-        <p className="text-2xl md:text-3xl text-gray-200 font-semibold">
+        <p className="text-2xl md:text-3xl text-neutral-200 font-semibold">
           {HERO_DATA.role}
         </p>
-        <p className="text-base md:text-lg text-gray-400 max-w-2xl mx-auto">
+        <p className="text-base md:text-lg text-neutral-500 max-w-2xl mx-auto">
           {HERO_DATA.tagline}
         </p>
         <div className="pt-8">

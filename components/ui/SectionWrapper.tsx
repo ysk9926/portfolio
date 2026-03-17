@@ -26,7 +26,7 @@ export default function SectionWrapper({
         <div className={fullWidthContent ? 'max-w-6xl mx-auto px-4' : ''}>
           <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">
             {title}
-            <span className="block w-12 h-1 bg-blue-500 mx-auto mt-4 rounded-full" />
+            <span className="block w-12 h-1 bg-neutral-800 mx-auto mt-4 rounded-full" />
           </h2>
         </div>
         {children}

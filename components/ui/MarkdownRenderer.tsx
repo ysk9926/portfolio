@@ -29,7 +29,7 @@ const components: Components = {
       );
     }
     return (
-      <code className="bg-gray-100 text-blue-600 rounded px-1.5 py-0.5 text-sm font-mono">
+      <code className="bg-gray-100 text-neutral-800 rounded px-1.5 py-0.5 text-sm font-mono">
         {children}
       </code>
     );
@@ -39,12 +39,12 @@ const components: Components = {
   ),
   li: ({ children }) => (
     <li className="flex items-start gap-2 text-gray-600">
-      <span className="text-blue-400 mt-1 shrink-0 text-xs">▶</span>
+      <span className="text-neutral-500 mt-1 shrink-0 text-xs">▶</span>
       <span>{children}</span>
     </li>
   ),
   blockquote: ({ children }) => (
-    <blockquote className="border-l-3 border-blue-300 pl-3 italic text-gray-600 my-2">
+    <blockquote className="border-l-3 border-neutral-400 pl-3 italic text-gray-600 my-2">
       {children}
     </blockquote>
   ),
@@ -53,7 +53,7 @@ const components: Components = {
       href={href}
       target="_blank"
       rel="noopener noreferrer"
-      className="text-blue-500 underline hover:text-blue-600 transition-colors"
+      className="text-neutral-900 underline hover:text-neutral-600 transition-colors"
     >
       {children}
     </a>

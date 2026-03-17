@@ -4,9 +4,9 @@
 @theme inline {
   --color-background: #ffffff;
   --color-foreground: #171717;
-  --color-section-skills: #f9c51d;
-  --color-section-archiving: #222222;
-  --color-section-career: #f5f5f5;
+  --color-section-skills: #fafafa;
+  --color-section-archiving: #111111;
+  --color-section-career: #fafafa;
   --font-sans: var(--font-pretendard);
   --animate-fade-in-up: fade-in-up 0.6s ease-out forwards;
   --animate-bounce-arrow: bounce-arrow 2s infinite;

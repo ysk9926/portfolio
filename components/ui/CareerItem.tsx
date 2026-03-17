@@ -9,7 +9,7 @@ export default function CareerItem({
   achievements,
 }: CareerEntry) {
   return (
-    <div className="border-l-4 border-blue-500 pl-6 pb-8">
+    <div className="border-l-4 border-neutral-800 pl-6 pb-8">
       <h3 className="text-xl md:text-2xl font-bold text-gray-900 mb-1">
         {company}
       </h3>
@@ -22,7 +22,7 @@ export default function CareerItem({
         <ul className="space-y-2">
           {achievements.map((achievement, index) => (
             <li key={index} className="flex items-start gap-2 text-gray-600">
-              <ChevronRight className="text-blue-500 mt-1 shrink-0" size={16} strokeWidth={2.5} />
+              <ChevronRight className="text-neutral-700 mt-1 shrink-0" size={16} strokeWidth={2.5} />
               <span>{achievement}</span>
             </li>
           ))}

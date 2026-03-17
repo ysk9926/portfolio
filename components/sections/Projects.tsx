@@ -80,7 +80,7 @@ export default function Projects() {
     <SectionWrapper
       id="projects"
       title="Projects"
-      className="bg-gray-50"
+      className="bg-neutral-50"
       contentVisibility
       fullWidthContent
     >

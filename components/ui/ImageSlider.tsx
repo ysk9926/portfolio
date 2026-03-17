@@ -96,7 +96,7 @@ export default function ImageSlider({ screenshots, alt }: ImageSliderProps) {
               key={index}
               onClick={() => goTo(index)}
               className={`w-2 h-2 rounded-full transition-colors cursor-pointer ${
-                index === currentIndex ? 'bg-blue-500' : 'bg-gray-300'
+                index === currentIndex ? 'bg-neutral-800' : 'bg-gray-300'
               }`}
               aria-label={`스크린샷 ${index + 1}`}
             />

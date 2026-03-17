@@ -64,8 +64,8 @@ export default function Header() {
             }}
             className={`text-xl font-bold transition-colors ${
               isScrolled
-                ? 'text-gray-900 hover:text-blue-500'
-                : 'text-white hover:text-blue-300'
+                ? 'text-gray-900 hover:text-neutral-500'
+                : 'text-white hover:text-neutral-300'
             }`}
           >
             {HERO_DATA.name}
@@ -82,9 +82,11 @@ export default function Header() {
                 }}
                 className={`transition-colors ${
                   activeSection === item.href
-                    ? 'text-blue-500 font-semibold'
+                    ? isScrolled
+                      ? 'text-neutral-900 font-semibold'
+                      : 'text-white font-semibold'
                     : isScrolled
-                      ? 'text-gray-600 hover:text-gray-900'
+                      ? 'text-gray-600 hover:text-neutral-900'
                       : 'text-gray-300 hover:text-white'
                 }`}
               >
@@ -130,8 +132,8 @@ export default function Header() {
                   }}
                   className={`text-lg transition-colors ${
                     activeSection === item.href
-                      ? 'text-blue-500 font-semibold'
-                      : 'text-gray-600 hover:text-gray-900'
+                      ? 'text-neutral-900 font-semibold'
+                      : 'text-gray-600 hover:text-neutral-900'
                   }`}
                 >
                   {item.label}

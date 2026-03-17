@@ -13,10 +13,10 @@ const iconMap: Record<string, LucideIcon> = {
 export default function InfoCard({ icon, label, value }: AboutItem) {
   const IconComponent = iconMap[icon];
   return (
-    <div className="bg-gray-50 rounded-xl p-6 text-center hover:shadow-md transition-shadow">
+    <div className="bg-neutral-50 rounded-xl p-6 text-center hover:shadow-md transition-shadow">
       <div className="flex justify-center mb-3">
         {IconComponent ? (
-          <IconComponent className="w-8 h-8 text-blue-500" strokeWidth={1.5} />
+          <IconComponent className="w-8 h-8 text-neutral-700" strokeWidth={1.5} />
         ) : (
           <span className="text-3xl">{icon}</span>
         )}

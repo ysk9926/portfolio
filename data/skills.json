@@ -1,7 +1,7 @@
 [
   {
     "category": "Frontend",
-    "color": "#3B82F6",
+    "color": "#404040",
     "skills": [
       { "name": "React", "level": 70 },
       { "name": "Next.js", "level": 70 },
@@ -13,7 +13,7 @@
   },
   {
     "category": "Backend",
-    "color": "#10B981",
+    "color": "#404040",
     "skills": [
       { "name": "Python", "level": 60 },
       { "name": "FastAPI", "level": 60 },
@@ -23,7 +23,7 @@
   },
   {
     "category": "Database",
-    "color": "#8B5CF6",
+    "color": "#404040",
     "skills": [
       { "name": "PostgreSQL", "level": 70 },
       { "name": "MySQL", "level": 60 }
@@ -31,7 +31,7 @@
   },
   {
     "category": "DevOps & Tools",
-    "color": "#F59E0B",
+    "color": "#404040",
     "skills": [
       { "name": "Docker", "level": 60 },
       { "name": "AWS", "level": 60 },
@@ -40,7 +40,7 @@
   },
   {
     "category": "Mobile",
-    "color": "#EC4899",
+    "color": "#404040",
     "skills": [
       { "name": "Flutter", "level": 70 },
       { "name": "Dart", "level": 60 }

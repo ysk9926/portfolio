@@ -48,7 +48,7 @@ export default function ProjectCard({ project, onDetailClick }: ProjectCardProps
           sizes="(max-width: 768px) calc(100vw - 3rem), 480px"
         />
       ) : (
-        <div className="absolute inset-0 bg-gradient-to-br from-slate-700 via-slate-800 to-slate-900
+        <div className="absolute inset-0 bg-gradient-to-br from-neutral-700 via-neutral-800 to-neutral-900
                         transition duration-500 ease-out
                         md:group-hover/card:brightness-75">
           <div className="absolute inset-0 flex flex-col items-center justify-center gap-3 -translate-y-4">

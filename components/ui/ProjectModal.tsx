@@ -129,7 +129,7 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
         </button>
 
         {/* Hero image */}
-        <div className="relative aspect-video w-full bg-gradient-to-br from-slate-700 via-slate-800 to-slate-900">
+        <div className="relative aspect-video w-full bg-gradient-to-br from-neutral-700 via-neutral-800 to-neutral-900">
           {project.thumbnail ? (
             <Image
               src={project.thumbnail}
@@ -159,7 +159,7 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
           {/* Title + Period */}
           <h2 className="text-2xl font-bold text-gray-900">{project.title}</h2>
           {project.star && (
-            <span className="inline-block mt-2 bg-blue-100 text-blue-700 text-xs font-medium px-2.5 py-1 rounded-full">
+            <span className="inline-block mt-2 bg-neutral-200 text-neutral-800 text-xs font-medium px-2.5 py-1 rounded-full">
               {project.star.role}
             </span>
           )}
@@ -171,27 +171,27 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
               <p className="text-gray-700 leading-relaxed mb-6">{project.star.summary}</p>
 
               {/* Background */}
-              <div className="bg-blue-50/70 rounded-2xl p-4 md:p-5 mb-4">
+              <div className="bg-neutral-100/70 rounded-2xl p-4 md:p-5 mb-4">
                 <div className="flex items-center gap-2 mb-3">
-                  <AlertCircle className="text-blue-500 shrink-0" size={18} />
+                  <AlertCircle className="text-neutral-600 shrink-0" size={18} />
                   <h3 className="font-semibold text-gray-900">프로젝트 배경</h3>
                 </div>
                 <MarkdownRenderer content={project.star.background} />
               </div>
 
               {/* Solutions */}
-              <div className="border-l-3 border-blue-400 pl-4 md:pl-5 mb-4">
+              <div className="border-l-3 border-neutral-400 pl-4 md:pl-5 mb-4">
                 <div className="flex items-center gap-2 mb-3">
-                  <Lightbulb className="text-blue-500 shrink-0" size={18} />
+                  <Lightbulb className="text-neutral-600 shrink-0" size={18} />
                   <h3 className="font-semibold text-gray-900">핵심 구현</h3>
                 </div>
                 <MarkdownRenderer content={project.star.solutions} />
               </div>
 
               {/* Results */}
-              <div className="bg-emerald-50/70 rounded-2xl p-4 md:p-5 mb-4">
+              <div className="bg-neutral-50 rounded-2xl p-4 md:p-5 mb-4">
                 <div className="flex items-center gap-2 mb-3">
-                  <TrendingUp className="text-emerald-500 shrink-0" size={18} />
+                  <TrendingUp className="text-neutral-600 shrink-0" size={18} />
                   <h3 className="font-semibold text-gray-900">성과</h3>
                 </div>
                 <MarkdownRenderer content={project.star.results} />
@@ -199,9 +199,9 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
 
               {/* Troubleshooting (optional) */}
               {project.star.troubleshooting && (
-                <div className="bg-amber-50/70 rounded-2xl p-4 md:p-5 mb-4">
+                <div className="bg-neutral-100 rounded-2xl p-4 md:p-5 mb-4">
                   <div className="flex items-center gap-2 mb-3">
-                    <Wrench className="text-amber-500 shrink-0" size={18} />
+                    <Wrench className="text-neutral-600 shrink-0" size={18} />
                     <h3 className="font-semibold text-gray-900">트러블슈팅</h3>
                   </div>
                   <MarkdownRenderer content={project.star.troubleshooting} />
@@ -219,7 +219,7 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
             <ul className="space-y-2">
               {project.features.map((feature, i) => (
                 <li key={i} className="flex items-start gap-2 text-gray-600">
-                  <ChevronRight className="text-blue-500 mt-1 shrink-0" size={16} strokeWidth={2.5} />
+                  <ChevronRight className="text-neutral-600 mt-1 shrink-0" size={16} strokeWidth={2.5} />
                   <span>{feature}</span>
                 </li>
               ))}
@@ -233,7 +233,7 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
               {project.techStack.map((tech, i) => (
                 <span
                   key={i}
-                  className="bg-blue-50 text-blue-600 text-xs font-medium px-3 py-1 rounded-full"
+                  className="bg-neutral-100 text-neutral-700 text-xs font-medium px-3 py-1 rounded-full"
                 >
                   {tech}
                 </span>
@@ -248,7 +248,7 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
                 href={project.deployUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex-1 bg-blue-500 hover:bg-blue-600 text-white font-medium py-2.5 px-4 rounded-xl text-center transition-colors"
+                className="flex-1 bg-neutral-900 hover:bg-neutral-800 text-white font-medium py-2.5 px-4 rounded-xl text-center transition-colors"
               >
                 배포 사이트
               </a>
