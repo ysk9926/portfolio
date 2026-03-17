@@ -2,7 +2,7 @@
   { "icon": "user", "label": "이름", "value": "윤승규" },
   { "icon": "calendar", "label": "생년월일", "value": "1999.03.03" },
   { "icon": "mail", "label": "이메일", "value": "tmdrb9926@gmail.com" },
-  { "icon": "graduation-cap", "label": "학력", "value": "정보통신공학과" },
+  { "icon": "graduation-cap", "label": "학력", "value": "정보통신공학과 졸업" },
   { "icon": "smartphone", "label": "연락처", "value": "010-3549-9926" },
   { "icon": "map-pin", "label": "위치", "value": "경기도 안양시" }
 ]

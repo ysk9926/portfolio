@@ -7,9 +7,10 @@ interface SkillBarProps {
   level: number;
   color: string;
   index: number;
+  detail?: string;
 }
 
-export default function SkillBar({ name, level, color, index }: SkillBarProps) {
+export default function SkillBar({ name, level, color, index, detail }: SkillBarProps) {
   const barRef = useRef<HTMLDivElement>(null);
   const [isVisible, setIsVisible] = useState(false);
 
@@ -35,9 +36,16 @@ export default function SkillBar({ name, level, color, index }: SkillBarProps) {
 
   return (
     <div ref={barRef} className="mb-4">
-      <span className="text-sm md:text-base font-medium text-gray-900 mb-1 block">
-        {name}
-      </span>
+      <div className="flex items-baseline justify-between mb-1">
+        <span className="text-sm md:text-base font-medium text-gray-900">
+          {name}
+        </span>
+        {detail && (
+          <span className="text-xs text-gray-500">
+            {detail}
+          </span>
+        )}
+      </div>
       <div className="w-full h-3 bg-white/60 rounded-full overflow-hidden">
         <div
           className="h-full rounded-full transition-all duration-1000 ease-out"

@@ -3,47 +3,50 @@
     "category": "Frontend",
     "color": "#404040",
     "skills": [
-      { "name": "React", "level": 70 },
-      { "name": "Next.js", "level": 70 },
-      { "name": "TypeScript", "level": 70 },
-      { "name": "Tailwind CSS", "level": 70 },
-      { "name": "Zustand", "level": 70 },
-      { "name": "Vite", "level": 60 }
+      { "name": "React", "level": 80, "detail": "6개 프로젝트 실무 사용" },
+      { "name": "Next.js", "level": 80, "detail": "5개 프로젝트 실무 사용" },
+      { "name": "TypeScript", "level": 85, "detail": "전 프로젝트 적용" },
+      { "name": "Tailwind CSS", "level": 80, "detail": "6개 프로젝트 실무 사용" },
+      { "name": "Zustand", "level": 75, "detail": "5개 프로젝트 실무 사용" },
+      { "name": "Vite", "level": 60, "detail": "2개 프로젝트 실무 사용" }
     ]
   },
   {
     "category": "Backend",
     "color": "#404040",
     "skills": [
-      { "name": "Python", "level": 60 },
-      { "name": "FastAPI", "level": 60 },
-      { "name": "Kotlin", "level": 60 },
-      { "name": "Spring Boot", "level": 60 }
+      { "name": "Python / FastAPI", "level": 65, "detail": "RAG 챗봇, Doc Creator" },
+      { "name": "Kotlin / Spring Boot", "level": 70, "detail": "Vemontes 6개월 실무" },
+      { "name": "Node.js / Express", "level": 65, "detail": "Jobcard API 서버" },
+      { "name": ".NET / ASP.NET Core", "level": 65, "detail": "Recipe 관리 7개월 실무" }
     ]
   },
   {
     "category": "Database",
     "color": "#404040",
     "skills": [
-      { "name": "PostgreSQL", "level": 70 },
-      { "name": "MySQL", "level": 60 }
+      { "name": "PostgreSQL", "level": 75, "detail": "5개 프로젝트 메인 DB" },
+      { "name": "MySQL", "level": 65, "detail": "Vemontes 42개 Entity" },
+      { "name": "MongoDB", "level": 60, "detail": "Recipe 관리 시스템" }
     ]
   },
   {
-    "category": "DevOps & Tools",
+    "category": "DevOps & Infra",
     "color": "#404040",
     "skills": [
-      { "name": "Docker", "level": 60 },
-      { "name": "AWS", "level": 60 },
-      { "name": "Nginx", "level": 60 }
+      { "name": "Docker", "level": 65, "detail": "11개 마이크로서비스 오케스트레이션" },
+      { "name": "AWS (EC2/RDS/S3)", "level": 60, "detail": "Vemontes 프로덕션 운영" },
+      { "name": "Nginx", "level": 60, "detail": "리버스 프록시 구성" },
+      { "name": "Vercel", "level": 65, "detail": "3개 프로젝트 배포·운영" }
     ]
   },
   {
-    "category": "Mobile",
+    "category": "Mobile & Desktop",
     "color": "#404040",
     "skills": [
-      { "name": "Flutter", "level": 70 },
-      { "name": "Dart", "level": 60 }
+      { "name": "Flutter", "level": 75, "detail": "4개 프로젝트 하이브리드 앱" },
+      { "name": "Electron", "level": 55, "detail": "교량 AI 데스크탑 앱" },
+      { "name": "Swift / SwiftUI", "level": 50, "detail": "macOS 메뉴바 앱" }
     ]
   }
 ]

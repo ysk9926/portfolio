@@ -15,6 +15,7 @@ export interface AboutItem {
 export interface Skill {
   name: string;
   level: number;
+  detail?: string;
 }
 
 export interface SkillCategory {

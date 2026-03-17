@@ -28,6 +28,7 @@ export default function Skills() {
                   level={skill.level}
                   color={category.color}
                   index={skillIndex}
+                  detail={skill.detail}
                 />
               ))}
             </div>

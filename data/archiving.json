@@ -4,9 +4,19 @@
     "description": "소스 코드 저장소",
     "url": "https://github.com/ysk9926",
     "details": [
-      "개인 프로젝트 및 팀 프로젝트 소스 코드 관리",
-      "풀스택 프로젝트 다수 공개 (Next.js, Spring Boot, FastAPI, Flutter 등)",
-      "꾸준한 커밋을 통한 개발 이력 기록"
+      "풀스택 프로젝트 다수 공개 (Next.js, Spring Boot, FastAPI, Flutter, Blazor 등)",
+      "소셜 캘린더, RAG 챗봇 등 주요 프로젝트 소스 코드 공개",
+      "10개월간 2,000+ 커밋의 꾸준한 개발 이력"
+    ]
+  },
+  {
+    "title": "Portfolio",
+    "description": "포트폴리오 웹사이트",
+    "url": "#hero",
+    "details": [
+      "Next.js 16 + React 19 + TypeScript로 직접 설계·구현",
+      "STAR 방법론 기반 프로젝트 상세 문서화",
+      "SEO 최적화 (JSON-LD, OG Image, Sitemap)"
     ]
   }
 ]

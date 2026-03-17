@@ -18,7 +18,7 @@ export default function Hero() {
         <p className="text-2xl md:text-3xl text-neutral-200 font-semibold">
           {HERO_DATA.role}
         </p>
-        <p className="text-base md:text-lg text-neutral-500 max-w-2xl mx-auto">
+        <p className="text-base md:text-lg text-neutral-500 max-w-2xl mx-auto whitespace-pre-line">
           {HERO_DATA.tagline}
         </p>
         <div className="pt-8">

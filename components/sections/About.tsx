@@ -2,6 +2,7 @@ import Image from 'next/image';
 import aboutData from '../../data/about.json';
 import siteData from '../../data/site.json';
 import { AboutItem } from '../../lib/types';
+import { ABOUT_SUMMARY } from '../../lib/constants';
 import SectionWrapper from '../ui/SectionWrapper';
 import InfoCard from '../ui/InfoCard';
 import AnimateOnScroll from '../ui/AnimateOnScroll';
@@ -31,6 +32,13 @@ export default function About() {
           )}
         </div>
       </div>
+
+      {/* Professional Summary */}
+      <AnimateOnScroll>
+        <p className="text-center text-gray-600 text-base md:text-lg leading-relaxed max-w-3xl mx-auto mb-10">
+          {ABOUT_SUMMARY}
+        </p>
+      </AnimateOnScroll>
 
       <div className="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-6">
         {data.map((item, index) => (
