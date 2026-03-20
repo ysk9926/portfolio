@@ -48,11 +48,11 @@ function levelColor(level: number, track: 'company' | 'personal') {
 
 function MonthLabels() {
   return (
-    <div className="flex gap-1 mb-2 pl-10">
+    <div className="mb-2 flex gap-0.5 pl-7 sm:gap-1 sm:pl-10">
       {heatmap.weeks.map((week, index) => {
         const firstVisibleDay = week.days.find((day) => day.inRange);
         if (!firstVisibleDay) {
-          return <div key={week.weekStart} className="w-4" />;
+          return <div key={week.weekStart} className="w-3 sm:w-4" />;
         }
 
         const monthKey = firstVisibleDay.date.slice(0, 7);
@@ -68,7 +68,7 @@ function MonthLabels() {
         return (
           <div
             key={week.weekStart}
-            className="w-4 text-[10px] leading-none text-neutral-400"
+            className="w-3 text-[9px] leading-none text-neutral-400 sm:w-4 sm:text-[10px]"
           >
             {label}
           </div>
@@ -138,7 +138,7 @@ export default function ActivityHeatmap() {
       className="bg-white"
       contentVisibility
     >
-      <div className="grid gap-8 lg:grid-cols-[minmax(0,1fr)_320px]">
+      <div className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_320px] lg:gap-8">
         <AnimateOnScroll className="space-y-6">
           <div className="grid gap-4 md:grid-cols-3">
             <div className="rounded-3xl border border-neutral-200 bg-neutral-50 p-5">
@@ -170,13 +170,13 @@ export default function ActivityHeatmap() {
             </div>
           </div>
 
-          <div className="rounded-[28px] border border-neutral-200 bg-neutral-950 px-5 py-6 text-white md:px-6">
+          <div className="rounded-[28px] border border-neutral-200 bg-neutral-950 px-4 py-5 text-white sm:px-5 sm:py-6 md:px-6">
             <div className="flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
               <div>
-                <p className="text-sm uppercase tracking-[0.24em] text-neutral-500">
+                <p className="text-xs uppercase tracking-[0.22em] text-neutral-500 sm:text-sm sm:tracking-[0.24em]">
                   Portfolio Activity
                 </p>
-                <h3 className="mt-2 text-2xl font-semibold">
+                <h3 className="mt-2 text-xl font-semibold sm:text-2xl">
                   GitHub 잔디처럼 보는 1년 작업 흐름
                 </h3>
               </div>
@@ -196,24 +196,28 @@ export default function ActivityHeatmap() {
               </div>
             </div>
 
-            <div className="mt-6 overflow-x-auto pb-2">
-              <div className="min-w-[900px]">
+            <p className="mt-4 text-xs text-neutral-500 sm:hidden">
+              좌우로 스와이프해서 1년 활동을 확인할 수 있습니다.
+            </p>
+
+            <div className="-mx-4 mt-5 overflow-x-auto px-4 pb-2 sm:mx-0 sm:mt-6 sm:px-0">
+              <div className="min-w-max">
                 <MonthLabels />
-                <div className="flex gap-3">
-                  <div className="mt-5 flex flex-col gap-1 text-[10px] uppercase tracking-[0.16em] text-neutral-500">
+                <div className="flex gap-2 sm:gap-3">
+                  <div className="mt-4 flex flex-col gap-0.5 pr-1 text-[9px] uppercase tracking-[0.14em] text-neutral-500 sm:mt-5 sm:gap-1 sm:pr-0 sm:text-[10px] sm:tracking-[0.16em]">
                     {['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'].map((label) => (
                       <div
                         key={label}
-                        className="flex h-4 items-center justify-end pr-1"
+                        className="flex h-3 items-center justify-end sm:h-4 sm:pr-1"
                       >
                         {weekdayRows.includes(label) ? label : ''}
                       </div>
                     ))}
                   </div>
 
-                  <div className="flex gap-1">
+                  <div className="flex gap-0.5 sm:gap-1">
                     {heatmap.weeks.map((week) => (
-                      <div key={week.weekStart} className="flex flex-col gap-1">
+                      <div key={week.weekStart} className="flex flex-col gap-0.5 sm:gap-1">
                         {week.days.map((day) => {
                           const isActive = activeDay?.date === day.date;
                           const hasBothTracks =
@@ -228,17 +232,17 @@ export default function ActivityHeatmap() {
                               onMouseEnter={() => setActiveDate(day.date)}
                               onFocus={() => setActiveDate(day.date)}
                               onClick={() => setActiveDate(day.date)}
-                              className={`group relative h-4 w-4 rounded-[4px] border transition-transform cursor-pointer ${
+                              className={`group relative h-3 w-3 touch-manipulation rounded-[3px] border transition-transform sm:h-4 sm:w-4 sm:rounded-[4px] cursor-pointer ${
                                 day.inRange
                                   ? 'border-white/10 hover:scale-110 focus:scale-110'
                                   : 'border-transparent opacity-30'
-                              } ${isActive ? 'ring-2 ring-white/70 ring-offset-2 ring-offset-neutral-950' : ''}`}
+                              } ${isActive ? 'ring-2 ring-white/70 ring-offset-1 ring-offset-neutral-950 sm:ring-offset-2' : ''}`}
                             >
                               <span className="sr-only">{buildAriaLabel(day)}</span>
-                              <span className="absolute inset-0 rounded-[4px] bg-[var(--color-heatmap-empty)]" />
+                              <span className="absolute inset-0 rounded-[3px] bg-[var(--color-heatmap-empty)] sm:rounded-[4px]" />
                               {day.companyCommitCount > 0 && (
                                 <span
-                                  className={`absolute inset-0 rounded-[4px] ${
+                                  className={`absolute inset-0 rounded-[3px] sm:rounded-[4px] ${
                                     hasBothTracks ? 'heatmap-company-slice' : ''
                                   }`}
                                   style={{
@@ -248,7 +252,7 @@ export default function ActivityHeatmap() {
                               )}
                               {day.personalCommitCount > 0 && (
                                 <span
-                                  className={`absolute inset-0 rounded-[4px] ${
+                                  className={`absolute inset-0 rounded-[3px] sm:rounded-[4px] ${
                                     hasBothTracks ? 'heatmap-personal-slice' : ''
                                   }`}
                                   style={{
