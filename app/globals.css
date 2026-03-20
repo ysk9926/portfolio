@@ -7,6 +7,15 @@
   --color-section-skills: #fafafa;
   --color-section-archiving: #111111;
   --color-section-career: #fafafa;
+  --color-heatmap-empty: #212121;
+  --color-heatmap-company-1: #fef3c7;
+  --color-heatmap-company-2: #fcd34d;
+  --color-heatmap-company-3: #f59e0b;
+  --color-heatmap-company-4: #b45309;
+  --color-heatmap-personal-1: #d1fae5;
+  --color-heatmap-personal-2: #6ee7b7;
+  --color-heatmap-personal-3: #10b981;
+  --color-heatmap-personal-4: #047857;
   --font-sans: var(--font-pretendard);
   --animate-fade-in-up: fade-in-up 0.6s ease-out forwards;
   --animate-bounce-arrow: bounce-arrow 2s infinite;
@@ -97,4 +106,12 @@ body {
 }
 .carousel-scrollbar-hide::-webkit-scrollbar {
   display: none;
+}
+
+.heatmap-company-slice {
+  clip-path: polygon(0 0, 100% 0, 0 100%);
+}
+
+.heatmap-personal-slice {
+  clip-path: polygon(100% 0, 100% 100%, 0 100%);
 }

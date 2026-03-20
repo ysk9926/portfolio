@@ -15,14 +15,14 @@ interface ProjectModalProps {
 
 export default function ProjectModal({ project, onClose }: ProjectModalProps) {
   const [isClosing, setIsClosing] = useState(false);
-  const [mounted, setMounted] = useState(false);
   const overlayRef = useRef<HTMLDivElement>(null);
   const modalRef = useRef<HTMLDivElement>(null);
   const previousFocusRef = useRef<HTMLElement | null>(null);
 
-  useEffect(() => {
-    setMounted(true);
-  }, []);
+  const handleClose = useCallback(() => {
+    if (isClosing) return;
+    setIsClosing(true);
+  }, [isClosing]);
 
   // Body scroll lock + focus management
   useEffect(() => {
@@ -74,12 +74,7 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
 
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [project, isClosing]);
-
-  const handleClose = useCallback(() => {
-    if (isClosing) return;
-    setIsClosing(true);
-  }, [isClosing]);
+  }, [project, handleClose]);
 
   const handleAnimationEnd = useCallback(() => {
     if (isClosing) {
@@ -97,7 +92,9 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
     [handleClose],
   );
 
-  if (!mounted || !project) return null;
+  const portalRoot = typeof document === 'undefined' ? null : document.body;
+
+  if (!project || !portalRoot) return null;
 
   const modalContent = (
     <div
@@ -164,6 +161,45 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
             </span>
           )}
           <p className="text-sm text-gray-500 mt-1 mb-3">{project.period}</p>
+          {project.portfolioSync && (
+            <div className="mb-5 rounded-2xl border border-neutral-200 bg-neutral-50 p-4">
+              <div className="flex flex-wrap items-center gap-2">
+                {project.portfolioSync.status && (
+                  <span className="rounded-full bg-neutral-900 px-3 py-1 text-xs font-medium text-white">
+                    {project.portfolioSync.status}
+                  </span>
+                )}
+                {project.portfolioSync.track && project.portfolioSync.track !== '-' && (
+                  <span className="rounded-full bg-amber-100 px-3 py-1 text-xs font-medium text-amber-900">
+                    {project.portfolioSync.track}
+                  </span>
+                )}
+                {project.portfolioSync.company && (
+                  <span className="rounded-full bg-neutral-200 px-3 py-1 text-xs font-medium text-neutral-700">
+                    {project.portfolioSync.company}
+                  </span>
+                )}
+                {project.portfolioSync.role && (
+                  <span className="rounded-full bg-neutral-200 px-3 py-1 text-xs font-medium text-neutral-700">
+                    {project.portfolioSync.role}
+                  </span>
+                )}
+              </div>
+              <div className="mt-3 grid gap-2 text-sm text-neutral-600 md:grid-cols-2">
+                {project.portfolioSync.updated && <p>문서 갱신일: {project.portfolioSync.updated}</p>}
+                {project.portfolioSync.lastAuthoredCommitAt &&
+                  project.portfolioSync.lastAuthoredCommitAt !== '-' && (
+                    <p>마지막 내 커밋: {project.portfolioSync.lastAuthoredCommitAt}</p>
+                  )}
+                {!!project.portfolioSync.todayCommitCount && (
+                  <p>오늘 반영된 commit: {project.portfolioSync.todayCommitCount}개</p>
+                )}
+                {!!project.portfolioSync.linkedRepos.length && (
+                  <p>연결 repo: {project.portfolioSync.linkedRepos.join(', ')}</p>
+                )}
+              </div>
+            </div>
+          )}
 
           {project.star ? (
             <>
@@ -211,6 +247,20 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
           ) : (
             /* Legacy Layout */
             <p className="text-gray-700 leading-relaxed mb-6">{project.description}</p>
+          )}
+
+          {project.portfolioSync?.recentUpdates && (
+            <div className="mb-6 rounded-2xl border border-emerald-200 bg-emerald-50/60 p-4 md:p-5">
+              <h3 className="mb-3 font-semibold text-gray-900">최근 업데이트</h3>
+              <MarkdownRenderer content={project.portfolioSync.recentUpdates} />
+            </div>
+          )}
+
+          {project.portfolioSync?.portfolioNotes && (
+            <div className="mb-6 rounded-2xl border border-amber-200 bg-amber-50/70 p-4 md:p-5">
+              <h3 className="mb-3 font-semibold text-gray-900">포트폴리오 반영 메모</h3>
+              <MarkdownRenderer content={project.portfolioSync.portfolioNotes} />
+            </div>
           )}
 
           {/* Features */}
@@ -269,5 +319,5 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
     </div>
   );
 
-  return createPortal(modalContent, document.body);
+  return createPortal(modalContent, portalRoot);
 }

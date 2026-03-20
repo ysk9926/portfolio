@@ -32,6 +32,78 @@ export interface ArchiveItem {
   details: string[];
 }
 
+// Activity heatmap
+export interface ActivityProjectRef {
+  name: string;
+  count: number;
+  track: '회사' | '개인';
+}
+
+export interface ActivityDay {
+  date: string;
+  weekday: string;
+  inRange: boolean;
+  companyCommitCount: number;
+  personalCommitCount: number;
+  companyProjects: ActivityProjectRef[];
+  personalProjects: ActivityProjectRef[];
+  totalCommitCount: number;
+  intensityLevel: number;
+  companyIntensityLevel: number;
+  personalIntensityLevel: number;
+  hasActivity: boolean;
+}
+
+export interface ActivityWeek {
+  weekStart: string;
+  days: ActivityDay[];
+}
+
+export interface ActivityHeatmapSummary {
+  activeDays: number;
+  companyActiveDays: number;
+  personalActiveDays: number;
+  totalCompanyCommits: number;
+  totalPersonalCommits: number;
+  totalCommits: number;
+  latestActiveDate: string | null;
+}
+
+export interface ActivityHeatmap {
+  generatedAt: string;
+  rangeStart: string;
+  rangeEnd: string;
+  summary: ActivityHeatmapSummary;
+  weeks: ActivityWeek[];
+}
+
+export interface ProjectPortfolioSyncEntry {
+  projectKey: string;
+  projectTitle: string;
+  sourceDoc: string;
+  sourceDocRelative: string;
+  headline: string;
+  summary: string;
+  status: string;
+  period: string;
+  company: string;
+  role: string;
+  teamSize: string;
+  updated: string;
+  tech: string[];
+  track: string;
+  todayCommitCount: number;
+  lastAuthoredCommitAt: string;
+  linkedRepos: string[];
+  recentUpdates: string;
+  portfolioNotes: string;
+}
+
+export interface ProjectPortfolioSync {
+  generatedAt: string;
+  projects: ProjectPortfolioSyncEntry[];
+}
+
 // Project STAR structure
 export interface ProjectStar {
   summary: string;
@@ -57,6 +129,7 @@ export interface Project {
   screenshots: string[];
   shortDescription?: string;
   star?: ProjectStar;
+  portfolioSync?: ProjectPortfolioSyncEntry;
 }
 
 // Career

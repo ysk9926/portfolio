@@ -1,10 +1,11 @@
 'use client';
 
-import { useState, useCallback, useRef, useEffect } from 'react';
+import { useState, useCallback, useRef, useEffect, useMemo } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import dynamic from 'next/dynamic';
 import projectsData from '../../data/projects.json';
-import { Project } from '@/lib/types';
+import projectPortfolioSyncData from '../../data/project-portfolio-sync.json';
+import { Project, ProjectPortfolioSync, ProjectPortfolioSyncEntry } from '@/lib/types';
 import SectionWrapper from '../ui/SectionWrapper';
 import ProjectCard from '../ui/ProjectCard';
 
@@ -13,6 +14,11 @@ const ProjectModal = dynamic(() => import('../ui/ProjectModal'), { ssr: false })
 type FilterType = 'all' | 'main';
 
 const SCROLL_AMOUNT = 504; // card 480px + gap 24px
+const projectPortfolioSync = projectPortfolioSyncData as ProjectPortfolioSync;
+
+function normalizeProjectKey(value: string) {
+  return value.replace(/[^a-zA-Z0-9]/g, '').toLowerCase();
+}
 
 export default function Projects() {
   const [filter, setFilter] = useState<FilterType>('all');
@@ -21,11 +27,31 @@ export default function Projects() {
   const [canScrollRight, setCanScrollRight] = useState(true);
   const [activeIndex, setActiveIndex] = useState(0);
   const scrollRef = useRef<HTMLDivElement>(null);
+  const syncLookup = useMemo(() => {
+    return projectPortfolioSync.projects.reduce<Record<string, ProjectPortfolioSyncEntry>>(
+      (acc, entry) => {
+        acc[entry.projectKey] = entry;
+        return acc;
+      },
+      {},
+    );
+  }, []);
+  const mergedProjects = useMemo<Project[]>(() => {
+    return projectsData.map((project) => {
+      const portfolioSync = syncLookup[normalizeProjectKey(project.title)];
+      return {
+        ...project,
+        period: portfolioSync?.period || project.period,
+        shortDescription: portfolioSync?.summary || project.shortDescription,
+        portfolioSync,
+      };
+    });
+  }, [syncLookup]);
 
   const filteredProjects =
     filter === 'all'
-      ? projectsData
-      : projectsData.filter((project) => project.isMain);
+      ? mergedProjects
+      : mergedProjects.filter((project) => project.isMain);
 
   const updateScrollButtons = useCallback(() => {
     const el = scrollRef.current;
@@ -56,7 +82,6 @@ export default function Projects() {
     const el = scrollRef.current;
     if (!el) return;
     el.scrollTo({ left: 0, behavior: 'instant' as ScrollBehavior });
-    setActiveIndex(0);
     requestAnimationFrame(updateScrollButtons);
   }, [filter, updateScrollButtons]);
 

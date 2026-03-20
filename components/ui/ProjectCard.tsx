@@ -9,6 +9,7 @@ interface ProjectCardProps {
 
 export default function ProjectCard({ project, onDetailClick }: ProjectCardProps) {
   const shortDesc =
+    project.portfolioSync?.summary ||
     project.shortDescription ||
     project.description.slice(0, 80) + (project.description.length > 80 ? '...' : '');
 
@@ -65,6 +66,18 @@ export default function ProjectCard({ project, onDetailClick }: ProjectCardProps
                       bg-gradient-to-t from-black/85 via-black/50 to-transparent
                       transition-all duration-500 ease-out">
         <div className="p-4 md:p-5">
+          {project.portfolioSync?.status && (
+            <div className="mb-2 flex flex-wrap items-center gap-2">
+              <span className="rounded-full border border-white/20 bg-white/10 px-2.5 py-1 text-[11px] font-medium text-white/85 backdrop-blur-sm">
+                {project.portfolioSync.status}
+              </span>
+              {project.portfolioSync.updated && (
+                <span className="text-[11px] text-white/55">
+                  updated {project.portfolioSync.updated}
+                </span>
+              )}
+            </div>
+          )}
           <h3 className="text-lg md:text-xl font-bold text-white">{project.title}</h3>
           <p className="text-sm text-white/60 mt-0.5">{project.period}</p>
 
@@ -112,6 +125,11 @@ export default function ProjectCard({ project, onDetailClick }: ProjectCardProps
                           opacity-0 md:group-hover/card:opacity-100">
             <div className="overflow-hidden">
               <p className="text-sm text-slate-300 mt-3 line-clamp-2">{shortDesc}</p>
+              {project.portfolioSync?.todayCommitCount ? (
+                <p className="mt-2 text-xs text-amber-200/90">
+                  오늘 {project.portfolioSync.todayCommitCount}개 commit 반영됨
+                </p>
+              ) : null}
               <button
                 onClick={handleButtonClick}
                 className="mt-3 inline-flex items-center gap-1.5
