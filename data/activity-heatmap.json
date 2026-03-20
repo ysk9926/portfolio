@@ -6,9 +6,9 @@
     "activeDays": 155,
     "companyActiveDays": 126,
     "personalActiveDays": 49,
-    "totalCompanyCommits": 1420,
-    "totalPersonalCommits": 362,
-    "totalCommits": 1782,
+    "totalCompanyCommits": 1411,
+    "totalPersonalCommits": 359,
+    "totalCommits": 1770,
     "latestActiveDate": "2026-03-20"
   },
   "weeks": [
@@ -5717,7 +5717,7 @@
           "date": "2026-02-06",
           "weekday": "Fri",
           "inRange": true,
-          "companyCommitCount": 22,
+          "companyCommitCount": 21,
           "personalCommitCount": 0,
           "companyProjects": [
             {
@@ -5734,15 +5734,10 @@
               "name": "doc-creator",
               "count": 1,
               "track": "회사"
-            },
-            {
-              "name": "portfolio",
-              "count": 1,
-              "track": "회사"
             }
           ],
           "personalProjects": [],
-          "totalCommitCount": 22,
+          "totalCommitCount": 21,
           "intensityLevel": 4,
           "companyIntensityLevel": 4,
           "personalIntensityLevel": 0,
@@ -5752,14 +5747,9 @@
           "date": "2026-02-07",
           "weekday": "Sat",
           "inRange": true,
-          "companyCommitCount": 9,
+          "companyCommitCount": 3,
           "personalCommitCount": 0,
           "companyProjects": [
-            {
-              "name": "portfolio",
-              "count": 6,
-              "track": "회사"
-            },
             {
               "name": "아이엠파인",
               "count": 3,
@@ -5767,9 +5757,9 @@
             }
           ],
           "personalProjects": [],
-          "totalCommitCount": 9,
-          "intensityLevel": 4,
-          "companyIntensityLevel": 4,
+          "totalCommitCount": 3,
+          "intensityLevel": 2,
+          "companyIntensityLevel": 2,
           "personalIntensityLevel": 0,
           "hasActivity": true
         }
@@ -6036,17 +6026,12 @@
           "date": "2026-02-18",
           "weekday": "Wed",
           "inRange": true,
-          "companyCommitCount": 6,
-          "personalCommitCount": 44,
+          "companyCommitCount": 4,
+          "personalCommitCount": 43,
           "companyProjects": [
             {
               "name": "calender-table-mono",
               "count": 4,
-              "track": "회사"
-            },
-            {
-              "name": "portfolio",
-              "count": 2,
               "track": "회사"
             }
           ],
@@ -6055,14 +6040,9 @@
               "name": "calender-table-mono",
               "count": 43,
               "track": "개인"
-            },
-            {
-              "name": "portfolio",
-              "count": 1,
-              "track": "개인"
             }
           ],
-          "totalCommitCount": 50,
+          "totalCommitCount": 47,
           "intensityLevel": 4,
           "companyIntensityLevel": 3,
           "personalIntensityLevel": 4,
@@ -6892,7 +6872,7 @@
           "weekday": "Tue",
           "inRange": true,
           "companyCommitCount": 42,
-          "personalCommitCount": 19,
+          "personalCommitCount": 17,
           "companyProjects": [
             {
               "name": "한수",
@@ -6920,14 +6900,9 @@
               "name": "calender-table-mono",
               "count": 17,
               "track": "개인"
-            },
-            {
-              "name": "portfolio",
-              "count": 2,
-              "track": "개인"
             }
           ],
-          "totalCommitCount": 61,
+          "totalCommitCount": 59,
           "intensityLevel": 4,
           "companyIntensityLevel": 4,
           "personalIntensityLevel": 4,
