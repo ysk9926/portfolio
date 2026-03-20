@@ -43,6 +43,11 @@ export default function Projects() {
         ...project,
         period: portfolioSync?.period || project.period,
         shortDescription: portfolioSync?.summary || project.shortDescription,
+        thumbnail: portfolioSync?.thumbnail || project.thumbnail,
+        screenshots:
+          portfolioSync?.screenshots.length
+            ? portfolioSync.screenshots
+            : project.screenshots,
         portfolioSync,
       };
     });

@@ -30,7 +30,10 @@
       "lastAuthoredCommitAt": "-",
       "linkedRepos": [],
       "recentUpdates": "",
-      "portfolioNotes": ""
+      "portfolioNotes": "",
+      "thumbnail": "",
+      "screenshots": [],
+      "screenshotCount": 0
     },
     {
       "projectKey": "calendertablemono",
@@ -64,7 +67,10 @@
       "lastAuthoredCommitAt": "-",
       "linkedRepos": [],
       "recentUpdates": "",
-      "portfolioNotes": ""
+      "portfolioNotes": "",
+      "thumbnail": "",
+      "screenshots": [],
+      "screenshotCount": 0
     },
     {
       "projectKey": "doccreator",
@@ -92,7 +98,10 @@
       "lastAuthoredCommitAt": "-",
       "linkedRepos": [],
       "recentUpdates": "",
-      "portfolioNotes": ""
+      "portfolioNotes": "",
+      "thumbnail": "",
+      "screenshots": [],
+      "screenshotCount": 0
     },
     {
       "projectKey": "iamfinemonorepo",
@@ -124,7 +133,10 @@
         "iamfine-mono-repo"
       ],
       "recentUpdates": "",
-      "portfolioNotes": ""
+      "portfolioNotes": "",
+      "thumbnail": "",
+      "screenshots": [],
+      "screenshotCount": 0
     },
     {
       "projectKey": "jobcard",
@@ -159,7 +171,10 @@
         "job-card-frontend"
       ],
       "recentUpdates": "",
-      "portfolioNotes": ""
+      "portfolioNotes": "",
+      "thumbnail": "",
+      "screenshots": [],
+      "screenshotCount": 0
     },
     {
       "projectKey": "pooolinginternaltools",
@@ -195,7 +210,10 @@
       "lastAuthoredCommitAt": "-",
       "linkedRepos": [],
       "recentUpdates": "",
-      "portfolioNotes": ""
+      "portfolioNotes": "",
+      "thumbnail": "",
+      "screenshots": [],
+      "screenshotCount": 0
     },
     {
       "projectKey": "vemontes",
@@ -226,7 +244,10 @@
       "lastAuthoredCommitAt": "-",
       "linkedRepos": [],
       "recentUpdates": "",
-      "portfolioNotes": ""
+      "portfolioNotes": "",
+      "thumbnail": "",
+      "screenshots": [],
+      "screenshotCount": 0
     },
     {
       "projectKey": "wonikpnerecipemanagement",
@@ -260,7 +281,10 @@
         "wonikpne-recipe-management"
       ],
       "recentUpdates": "",
-      "portfolioNotes": ""
+      "portfolioNotes": "",
+      "thumbnail": "",
+      "screenshots": [],
+      "screenshotCount": 0
     }
   ]
 }

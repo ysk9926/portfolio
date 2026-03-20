@@ -6,9 +6,9 @@
     "activeDays": 155,
     "companyActiveDays": 126,
     "personalActiveDays": 49,
-    "totalCompanyCommits": 1411,
+    "totalCompanyCommits": 1418,
     "totalPersonalCommits": 359,
-    "totalCommits": 1770,
+    "totalCommits": 1777,
     "latestActiveDate": "2026-03-20"
   },
   "weeks": [
@@ -6984,17 +6984,17 @@
           "date": "2026-03-20",
           "weekday": "Fri",
           "inRange": true,
-          "companyCommitCount": 6,
+          "companyCommitCount": 13,
           "personalCommitCount": 0,
           "companyProjects": [
             {
-              "name": "kipo-desktop",
-              "count": 2,
+              "name": "법무법인 마중",
+              "count": 8,
               "track": "회사"
             },
             {
-              "name": "법무법인 마중",
-              "count": 2,
+              "name": "kipo-desktop",
+              "count": 3,
               "track": "회사"
             },
             {
@@ -7004,9 +7004,9 @@
             }
           ],
           "personalProjects": [],
-          "totalCommitCount": 6,
-          "intensityLevel": 3,
-          "companyIntensityLevel": 3,
+          "totalCommitCount": 13,
+          "intensityLevel": 4,
+          "companyIntensityLevel": 4,
           "personalIntensityLevel": 0,
           "hasActivity": true
         },

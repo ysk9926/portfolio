@@ -97,6 +97,9 @@ export interface ProjectPortfolioSyncEntry {
   linkedRepos: string[];
   recentUpdates: string;
   portfolioNotes: string;
+  thumbnail: string;
+  screenshots: string[];
+  screenshotCount: number;
 }
 
 export interface ProjectPortfolioSync {
