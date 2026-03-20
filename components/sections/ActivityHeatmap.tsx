@@ -6,12 +6,15 @@ import {
   ActivityDay,
   ActivityHeatmap as ActivityHeatmapType,
   ActivityProjectRef,
+  ActivityWeek,
 } from '@/lib/types';
 import SectionWrapper from '../ui/SectionWrapper';
 import AnimateOnScroll from '../ui/AnimateOnScroll';
 
 const heatmap = activityHeatmapData as ActivityHeatmapType;
 const weekdayRows = ['Mon', 'Wed', 'Fri'];
+const allWeekdayLabels = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+const MOBILE_WEEKS_PER_PAGE = 14;
 
 function formatDateLabel(value: string) {
   return new Intl.DateTimeFormat('ko-KR', {
@@ -46,17 +49,36 @@ function levelColor(level: number, track: 'company' | 'personal') {
   return `var(--color-heatmap-${prefix}-${level})`;
 }
 
-function MonthLabels() {
+function formatMonthRange(weeks: ActivityWeek[]) {
+  const visibleDays = weeks.flatMap((week) => week.days).filter((day) => day.inRange);
+  if (!visibleDays.length) {
+    return '';
+  }
+
+  const first = visibleDays[0];
+  const last = visibleDays[visibleDays.length - 1];
+  return `${Number(first.date.slice(5, 7))}월 - ${Number(last.date.slice(5, 7))}월`;
+}
+
+function MonthLabels({
+  weeks,
+  compact = false,
+}: {
+  weeks: ActivityWeek[];
+  compact?: boolean;
+}) {
   return (
-    <div className="mb-2 flex gap-0.5 pl-7 sm:gap-1 sm:pl-10">
-      {heatmap.weeks.map((week, index) => {
+    <div
+      className={`mb-2 flex ${compact ? 'gap-0.5 pl-6' : 'gap-0.5 pl-7 sm:gap-1 sm:pl-10'}`}
+    >
+      {weeks.map((week, index) => {
         const firstVisibleDay = week.days.find((day) => day.inRange);
         if (!firstVisibleDay) {
-          return <div key={week.weekStart} className="w-3 sm:w-4" />;
+          return <div key={week.weekStart} className={compact ? 'w-3' : 'w-3 sm:w-4'} />;
         }
 
         const monthKey = firstVisibleDay.date.slice(0, 7);
-        const previousVisibleDay = [...heatmap.weeks.slice(0, index)]
+        const previousVisibleDay = [...weeks.slice(0, index)]
           .reverse()
           .map((previousWeek) => previousWeek.days.find((day) => day.inRange))
           .find(Boolean);
@@ -68,13 +90,110 @@ function MonthLabels() {
         return (
           <div
             key={week.weekStart}
-            className="w-3 text-[9px] leading-none text-neutral-400 sm:w-4 sm:text-[10px]"
+            className={
+              compact
+                ? 'w-3 text-[9px] leading-none text-neutral-400'
+                : 'w-3 text-[9px] leading-none text-neutral-400 sm:w-4 sm:text-[10px]'
+            }
           >
             {label}
           </div>
         );
       })}
     </div>
+  );
+}
+
+function HeatmapGrid({
+  weeks,
+  activeDay,
+  onSelectDay,
+  compact = false,
+}: {
+  weeks: ActivityWeek[];
+  activeDay?: ActivityDay;
+  onSelectDay: (day: ActivityDay) => void;
+  compact?: boolean;
+}) {
+  const axisClasses = compact
+    ? 'mt-4 flex flex-col gap-0.5 pr-1 text-[9px] uppercase tracking-[0.14em] text-neutral-500'
+    : 'mt-4 flex flex-col gap-0.5 pr-1 text-[9px] uppercase tracking-[0.14em] text-neutral-500 sm:mt-5 sm:gap-1 sm:pr-0 sm:text-[10px] sm:tracking-[0.16em]';
+  const axisCellClasses = compact
+    ? 'flex h-3 items-center justify-end'
+    : 'flex h-3 items-center justify-end sm:h-4 sm:pr-1';
+  const columnGapClasses = compact ? 'flex gap-0.5' : 'flex gap-0.5 sm:gap-1';
+  const weekClasses = compact ? 'flex flex-col gap-0.5' : 'flex flex-col gap-0.5 sm:gap-1';
+  const buttonBaseClasses = compact
+    ? 'group relative h-3 w-3 touch-manipulation rounded-[3px] border transition-transform cursor-pointer'
+    : 'group relative h-3 w-3 touch-manipulation rounded-[3px] border transition-transform sm:h-4 sm:w-4 sm:rounded-[4px] cursor-pointer';
+  const emptyClasses = compact
+    ? 'absolute inset-0 rounded-[3px] bg-[var(--color-heatmap-empty)]'
+    : 'absolute inset-0 rounded-[3px] bg-[var(--color-heatmap-empty)] sm:rounded-[4px]';
+  const fillClasses = compact
+    ? 'absolute inset-0 rounded-[3px]'
+    : 'absolute inset-0 rounded-[3px] sm:rounded-[4px]';
+
+  return (
+    <>
+      <MonthLabels weeks={weeks} compact={compact} />
+      <div className={`flex ${compact ? 'gap-2' : 'gap-2 sm:gap-3'}`}>
+        <div className={axisClasses}>
+          {allWeekdayLabels.map((label) => (
+            <div key={label} className={axisCellClasses}>
+              {weekdayRows.includes(label) ? label : ''}
+            </div>
+          ))}
+        </div>
+
+        <div className={columnGapClasses}>
+          {weeks.map((week) => (
+            <div key={week.weekStart} className={weekClasses}>
+              {week.days.map((day) => {
+                const isActive = activeDay?.date === day.date;
+                const hasBothTracks =
+                  day.companyCommitCount > 0 && day.personalCommitCount > 0;
+
+                return (
+                  <button
+                    key={day.date}
+                    type="button"
+                    aria-label={buildAriaLabel(day)}
+                    title={buildAriaLabel(day)}
+                    onMouseEnter={() => onSelectDay(day)}
+                    onFocus={() => onSelectDay(day)}
+                    onClick={() => onSelectDay(day)}
+                    className={`${buttonBaseClasses} ${
+                      day.inRange
+                        ? 'border-white/10 hover:scale-110 focus:scale-110'
+                        : 'border-transparent opacity-30'
+                    } ${isActive ? 'ring-2 ring-white/70 ring-offset-1 ring-offset-neutral-950 sm:ring-offset-2' : ''}`}
+                  >
+                    <span className="sr-only">{buildAriaLabel(day)}</span>
+                    <span className={emptyClasses} />
+                    {day.companyCommitCount > 0 && (
+                      <span
+                        className={`${fillClasses} ${hasBothTracks ? 'heatmap-company-slice' : ''}`}
+                        style={{
+                          backgroundColor: levelColor(day.companyIntensityLevel, 'company'),
+                        }}
+                      />
+                    )}
+                    {day.personalCommitCount > 0 && (
+                      <span
+                        className={`${fillClasses} ${hasBothTracks ? 'heatmap-personal-slice' : ''}`}
+                        style={{
+                          backgroundColor: levelColor(day.personalIntensityLevel, 'personal'),
+                        }}
+                      />
+                    )}
+                  </button>
+                );
+              })}
+            </div>
+          ))}
+        </div>
+      </div>
+    </>
   );
 }
 
@@ -121,15 +240,42 @@ export default function ActivityHeatmap() {
     () => heatmap.weeks.flatMap((week) => week.days).filter((day) => day.inRange),
     []
   );
+  const mobileWeekPages = useMemo(() => {
+    const pages: ActivityWeek[][] = [];
+    for (let index = 0; index < heatmap.weeks.length; index += MOBILE_WEEKS_PER_PAGE) {
+      pages.push(heatmap.weeks.slice(index, index + MOBILE_WEEKS_PER_PAGE));
+    }
+    return pages;
+  }, []);
   const initialDay =
     flatDays.find((day) => day.date === heatmap.summary.latestActiveDate) ??
     [...flatDays].reverse().find((day) => day.inRange) ??
     flatDays[0];
+  const initialWeekIndex = heatmap.weeks.findIndex((week) =>
+    week.days.some((day) => day.date === initialDay?.date)
+  );
+  const initialMobilePageIndex =
+    initialWeekIndex >= 0
+      ? Math.floor(initialWeekIndex / MOBILE_WEEKS_PER_PAGE)
+      : Math.max(mobileWeekPages.length - 1, 0);
   const [activeDate, setActiveDate] = useState(initialDay?.date ?? '');
+  const [mobilePageIndex, setMobilePageIndex] = useState(initialMobilePageIndex);
 
   const activeDay =
     flatDays.find((day) => day.date === activeDate) ??
     initialDay;
+
+  const mobileWeeks = mobileWeekPages[mobilePageIndex] ?? mobileWeekPages[0] ?? [];
+
+  const handleSelectDay = (day: ActivityDay) => {
+    setActiveDate(day.date);
+    const selectedWeekIndex = heatmap.weeks.findIndex((week) =>
+      week.days.some((item) => item.date === day.date)
+    );
+    if (selectedWeekIndex >= 0) {
+      setMobilePageIndex(Math.floor(selectedWeekIndex / MOBILE_WEEKS_PER_PAGE));
+    }
+  };
 
   return (
     <SectionWrapper
@@ -196,77 +342,55 @@ export default function ActivityHeatmap() {
               </div>
             </div>
 
-            <p className="mt-4 text-xs text-neutral-500 sm:hidden">
-              좌우로 스와이프해서 1년 활동을 확인할 수 있습니다.
-            </p>
-
-            <div className="-mx-4 mt-5 overflow-x-auto px-4 pb-2 sm:mx-0 sm:mt-6 sm:px-0">
-              <div className="min-w-max">
-                <MonthLabels />
-                <div className="flex gap-2 sm:gap-3">
-                  <div className="mt-4 flex flex-col gap-0.5 pr-1 text-[9px] uppercase tracking-[0.14em] text-neutral-500 sm:mt-5 sm:gap-1 sm:pr-0 sm:text-[10px] sm:tracking-[0.16em]">
-                    {['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'].map((label) => (
-                      <div
-                        key={label}
-                        className="flex h-3 items-center justify-end sm:h-4 sm:pr-1"
-                      >
-                        {weekdayRows.includes(label) ? label : ''}
-                      </div>
-                    ))}
-                  </div>
-
-                  <div className="flex gap-0.5 sm:gap-1">
-                    {heatmap.weeks.map((week) => (
-                      <div key={week.weekStart} className="flex flex-col gap-0.5 sm:gap-1">
-                        {week.days.map((day) => {
-                          const isActive = activeDay?.date === day.date;
-                          const hasBothTracks =
-                            day.companyCommitCount > 0 && day.personalCommitCount > 0;
-
-                          return (
-                            <button
-                              key={day.date}
-                              type="button"
-                              aria-label={buildAriaLabel(day)}
-                              title={buildAriaLabel(day)}
-                              onMouseEnter={() => setActiveDate(day.date)}
-                              onFocus={() => setActiveDate(day.date)}
-                              onClick={() => setActiveDate(day.date)}
-                              className={`group relative h-3 w-3 touch-manipulation rounded-[3px] border transition-transform sm:h-4 sm:w-4 sm:rounded-[4px] cursor-pointer ${
-                                day.inRange
-                                  ? 'border-white/10 hover:scale-110 focus:scale-110'
-                                  : 'border-transparent opacity-30'
-                              } ${isActive ? 'ring-2 ring-white/70 ring-offset-1 ring-offset-neutral-950 sm:ring-offset-2' : ''}`}
-                            >
-                              <span className="sr-only">{buildAriaLabel(day)}</span>
-                              <span className="absolute inset-0 rounded-[3px] bg-[var(--color-heatmap-empty)] sm:rounded-[4px]" />
-                              {day.companyCommitCount > 0 && (
-                                <span
-                                  className={`absolute inset-0 rounded-[3px] sm:rounded-[4px] ${
-                                    hasBothTracks ? 'heatmap-company-slice' : ''
-                                  }`}
-                                  style={{
-                                    backgroundColor: levelColor(day.companyIntensityLevel, 'company'),
-                                  }}
-                                />
-                              )}
-                              {day.personalCommitCount > 0 && (
-                                <span
-                                  className={`absolute inset-0 rounded-[3px] sm:rounded-[4px] ${
-                                    hasBothTracks ? 'heatmap-personal-slice' : ''
-                                  }`}
-                                  style={{
-                                    backgroundColor: levelColor(day.personalIntensityLevel, 'personal'),
-                                  }}
-                                />
-                              )}
-                            </button>
-                          );
-                        })}
-                      </div>
-                    ))}
-                  </div>
+            <div className="mt-4 space-y-3 md:hidden">
+              <div className="flex items-center justify-between gap-3">
+                <button
+                  type="button"
+                  onClick={() => setMobilePageIndex((current) => Math.max(current - 1, 0))}
+                  disabled={mobilePageIndex === 0}
+                  className="rounded-full border border-white/10 px-3 py-2 text-xs font-medium text-neutral-200 transition disabled:opacity-30"
+                >
+                  이전
+                </button>
+                <div className="text-center">
+                  <p className="text-[11px] uppercase tracking-[0.22em] text-neutral-500">
+                    {mobilePageIndex + 1} / {mobileWeekPages.length}
+                  </p>
+                  <p className="mt-1 text-sm font-medium text-white">
+                    {formatMonthRange(mobileWeeks)}
+                  </p>
                 </div>
+                <button
+                  type="button"
+                  onClick={() =>
+                    setMobilePageIndex((current) =>
+                      Math.min(current + 1, mobileWeekPages.length - 1)
+                    )
+                  }
+                  disabled={mobilePageIndex === mobileWeekPages.length - 1}
+                  className="rounded-full border border-white/10 px-3 py-2 text-xs font-medium text-neutral-200 transition disabled:opacity-30"
+                >
+                  다음
+                </button>
+              </div>
+
+              <div className="rounded-2xl border border-white/8 bg-white/[0.03] p-3">
+                <HeatmapGrid
+                  weeks={mobileWeeks}
+                  activeDay={activeDay}
+                  onSelectDay={handleSelectDay}
+                  compact
+                />
+              </div>
+            </div>
+
+            <div className="-mx-4 mt-5 hidden overflow-x-auto px-4 pb-2 md:block md:mx-0 md:mt-6 md:px-0">
+              <div className="min-w-max">
+                <HeatmapGrid
+                  weeks={heatmap.weeks}
+                  activeDay={activeDay}
+                  onSelectDay={handleSelectDay}
+                />
               </div>
             </div>
           </div>
