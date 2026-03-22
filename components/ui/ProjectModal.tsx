@@ -92,7 +92,11 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
     [handleClose],
   );
 
-  const portalRoot = typeof document === 'undefined' ? null : document.body;
+  const [portalRoot, setPortalRoot] = useState<HTMLElement | null>(null);
+
+  useEffect(() => {
+    setPortalRoot(document.body);
+  }, []);
 
   if (!project || !portalRoot) return null;
 
