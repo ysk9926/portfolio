@@ -2,8 +2,8 @@
   "generatedAt": "2026-03-22T17:40:00+09:00",
   "projects": [
     {
-      "projectKey": "bridgeuiclient",
-      "projectTitle": "bridgeui-client",
+      "projectKey": "bridgeui교량손상분석데스크탑애플리케이션",
+      "projectTitle": "BridgeUI - 교량 손상 분석 데스크탑 애플리케이션",
       "sourceDoc": "/Users/seungkyu/Documents/Obsidian Vault/02-Projects/portfolio/bridgeui-client.md",
       "sourceDocRelative": "bridgeui-client.md",
       "headline": "BridgeUI - 교량 손상 분석 데스크탑 애플리케이션",
@@ -36,8 +36,8 @@
       "screenshotCount": 0
     },
     {
-      "projectKey": "calendertablemono",
-      "projectTitle": "calender-table-mono",
+      "projectKey": "calendartable",
+      "projectTitle": "CalendarTable",
       "sourceDoc": "/Users/seungkyu/Documents/Obsidian Vault/02-Projects/portfolio/calender-table-mono.md",
       "sourceDocRelative": "calender-table-mono.md",
       "headline": "CalendarTable",
@@ -73,8 +73,8 @@
       "screenshotCount": 0
     },
     {
-      "projectKey": "doccreator",
-      "projectTitle": "Doc Creator",
+      "projectKey": "doccreatorkipo문서자동생성도구",
+      "projectTitle": "Doc Creator (KIPO 문서 자동 생성 도구)",
       "sourceDoc": "/Users/seungkyu/Documents/Obsidian Vault/02-Projects/portfolio/doc-creator.md",
       "sourceDocRelative": "doc-creator.md",
       "headline": "Doc Creator (KIPO 문서 자동 생성 도구)",
@@ -104,8 +104,8 @@
       "screenshotCount": 0
     },
     {
-      "projectKey": "iamfinemonorepo",
-      "projectTitle": "iamfine-mono-repo",
+      "projectKey": "iamfinemonoreporag고객응대챗봇",
+      "projectTitle": "iamfine-mono-repo (RAG 고객 응대 챗봇)",
       "sourceDoc": "/Users/seungkyu/Documents/Obsidian Vault/02-Projects/portfolio/iamfine-mono-repo.md",
       "sourceDocRelative": "iamfine-mono-repo.md",
       "headline": "iamfine-mono-repo (RAG 고객 응대 챗봇)",
@@ -139,8 +139,8 @@
       "screenshotCount": 0
     },
     {
-      "projectKey": "jobcard",
-      "projectTitle": "Jobcard",
+      "projectKey": "introsjobcard반도체설비현장작업보고서관리시스템",
+      "projectTitle": "Intros Job Card - 반도체 설비 현장 작업보고서 관리 시스템",
       "sourceDoc": "/Users/seungkyu/Documents/Obsidian Vault/02-Projects/portfolio/jobcard.md",
       "sourceDocRelative": "jobcard.md",
       "headline": "Intros Job Card - 반도체 설비 현장 작업보고서 관리 시스템",
@@ -177,8 +177,8 @@
       "screenshotCount": 0
     },
     {
-      "projectKey": "pooolinginternaltools",
-      "projectTitle": "poooling-internal-tools",
+      "projectKey": "poooling내부도구프로젝트관리시스템",
+      "projectTitle": "Poooling 내부 도구 & 프로젝트 관리 시스템",
       "sourceDoc": "/Users/seungkyu/Documents/Obsidian Vault/02-Projects/portfolio/poooling-internal-tools.md",
       "sourceDocRelative": "poooling-internal-tools.md",
       "headline": "Poooling 내부 도구 & 프로젝트 관리 시스템",
@@ -216,8 +216,8 @@
       "screenshotCount": 0
     },
     {
-      "projectKey": "vemontes",
-      "projectTitle": "Vemontes",
+      "projectKey": "vemontes스킨케어구독커머스플랫폼",
+      "projectTitle": "VEMONTES - 스킨케어 구독 커머스 플랫폼",
       "sourceDoc": "/Users/seungkyu/Documents/Obsidian Vault/02-Projects/portfolio/vemontes.md",
       "sourceDocRelative": "vemontes.md",
       "headline": "VEMONTES - 스킨케어 구독 커머스 플랫폼",
@@ -251,7 +251,7 @@
     },
     {
       "projectKey": "wonikpnerecipemanagement",
-      "projectTitle": "wonikpne-recipe-management",
+      "projectTitle": "Wonik PNE Recipe Management",
       "sourceDoc": "/Users/seungkyu/Documents/Obsidian Vault/02-Projects/portfolio/wonikpne-recipe-management.md",
       "sourceDocRelative": "wonikpne-recipe-management.md",
       "headline": "Wonik PNE Recipe Management",

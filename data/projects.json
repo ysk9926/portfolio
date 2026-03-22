@@ -1,7 +1,7 @@
 [
   {
     "id": 1,
-    "title": "calender-table-mono",
+    "title": "CalendarTable",
     "period": "2026.02 ~ 2026.03",
     "description": "몇 번의 클릭만으로 일정을 만들고, 친구와 약속·투두를 공유하는 소셜 캘린더 앱",
     "features": [
@@ -47,7 +47,7 @@
   },
   {
     "id": 2,
-    "title": "poooling-internal-tools",
+    "title": "Poooling 내부 도구 & 프로젝트 관리 시스템",
     "period": "2026.02 ~ 현재",
     "description": "다수의 프로젝트를 효율적으로 관리하고 개발 생산성을 높이기 위한 사내 도구 모음 (P-Grid, DoneDone, multi-dev-ctrl, poooling-skills)",
     "features": [
@@ -89,7 +89,7 @@
   },
   {
     "id": 3,
-    "title": "iamfine-mono-repo",
+    "title": "iamfine-mono-repo (RAG 고객 응대 챗봇)",
     "period": "2026.01 ~ 2026.02",
     "description": "문서 업로드부터 OCR, 임베딩, 하이브리드 검색, LLM 답변까지 전 과정을 처리하는 엔터프라이즈급 RAG 기반 고객 응대 챗봇 시스템",
     "features": [
@@ -127,7 +127,7 @@
   },
   {
     "id": 4,
-    "title": "Jobcard",
+    "title": "Intros Job Card - 반도체 설비 현장 작업보고서 관리 시스템",
     "period": "2026.01 ~ 2026.02",
     "description": "반도체 설비 현장 엔지니어의 수기 작업보고서를 디지털화하여, 모바일 앱 + 웹 관리자 시스템으로 2단계 승인 워크플로우·대시보드·마스터데이터 관리를 통합 제공하는 풀스택 시스템",
     "features": [
@@ -166,7 +166,7 @@
   },
   {
     "id": 5,
-    "title": "Vemontes",
+    "title": "VEMONTES - 스킨케어 구독 커머스 플랫폼",
     "period": "2025.05 ~ 2025.11",
     "description": "카페24 기반 스킨케어 쇼핑몰에 구독 서비스, 추천인 보상, 영업대리/지사 관리 등 카페24에 없는 기능을 추가 구현한 풀스택 커머스 플랫폼",
     "features": [
@@ -207,7 +207,7 @@
   },
   {
     "id": 6,
-    "title": "Doc Creator",
+    "title": "Doc Creator (KIPO 문서 자동 생성 도구)",
     "period": "2026.01 ~ 2026.03",
     "description": "소스코드를 분석하여 특허청(KIPO) SW개발방법론 기반 기술 산출물을 AI로 자동 생성하는 Python CLI 도구",
     "features": [
@@ -242,7 +242,7 @@
   },
   {
     "id": 7,
-    "title": "wonikpne-recipe-management",
+    "title": "Wonik PNE Recipe Management",
     "period": "2025.07 ~ 2026.02",
     "description": "배터리 테스트 공정의 레시피(공정 실행 지시서)를 시각적으로 편집·관리하는 엔터프라이즈 웹 애플리케이션. 자체 WebGL 렌더러를 구축하여 3만 개 이상 블록의 실시간 렌더링 및 인터랙션을 구현.",
     "features": [
@@ -283,7 +283,7 @@
   },
   {
     "id": 8,
-    "title": "bridgeui-client",
+    "title": "BridgeUI - 교량 손상 분석 데스크탑 애플리케이션",
     "period": "2025.11 ~ 2025.12",
     "description": "AI 기반 교량 손상 탐지·추적·정량화·평가를 자동화하는 Electron 데스크탑 애플리케이션",
     "features": [
