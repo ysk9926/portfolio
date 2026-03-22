@@ -21,7 +21,7 @@
     "cta": "더 알아보기"
   },
   "aboutSummary": "웹·모바일·데스크탑·AI 전 영역에서 기획부터 배포까지 주도하는 풀스택 개발자입니다. 비즈니스 문제를 기술로 해결하는 데 집중하며, 복잡한 도메인을 빠르게 학습하고 최적의 아키텍처를 설계합니다. 현재 (주)풀링포레스트에서 SI 프로젝트와 사내 서비스를 동시에 이끌고 있습니다.",
-  "profileImage": "",
+  "profileImage": "/images/profile/profile.jpeg",
   "footer": {
     "copyright": "© 2026 윤승규. All rights reserved.",
     "builtWith": "Built with Next.js & Tailwind CSS"
