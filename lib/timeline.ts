@@ -15,19 +15,20 @@ export interface TimelineMonth {
 }
 
 export function parsePeriod(period: string): ParsedPeriod {
-  const parts = period.split('~').map((s) => s.trim());
-  const [startPart, endPart] = parts;
+  const separator = period.includes('~') ? '~' : period.includes('-') ? '-' : null;
+  const startPart = separator ? period.split(separator)[0].trim() : period.trim();
+  const endPart = separator ? period.split(separator)[1]?.trim() : undefined;
 
   const [startYear, startMonth] = startPart.split('.').map(Number);
 
-  const isOngoing = endPart === '현재';
+  const isOngoing = endPart === '현재' || endPart === '진행중';
   let endYear: number;
   let endMonth: number;
 
-  if (isOngoing) {
+  if (!endPart || isOngoing) {
     const now = new Date();
-    endYear = now.getFullYear();
-    endMonth = now.getMonth() + 1;
+    endYear = isOngoing ? now.getFullYear() : startYear;
+    endMonth = isOngoing ? now.getMonth() + 1 : startMonth;
   } else {
     [endYear, endMonth] = endPart.split('.').map(Number);
   }

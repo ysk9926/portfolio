@@ -260,11 +260,6 @@ export default function ActivityHeatmap() {
       : Math.max(mobileWeekPages.length - 1, 0);
   const [activeDate, setActiveDate] = useState(initialDay?.date ?? '');
   const [mobilePageIndex, setMobilePageIndex] = useState(initialMobilePageIndex);
-  const [isMounted, setIsMounted] = useState(false);
-
-  useEffect(() => {
-    setIsMounted(true);
-  }, []);
 
   const activeDay =
     flatDays.find((day) => day.date === activeDate) ??
@@ -409,7 +404,7 @@ export default function ActivityHeatmap() {
                   Selected Day
                 </p>
                 <h3 className="mt-2 text-xl font-semibold text-neutral-950">
-                  {isMounted ? formatDateLabel(activeDay.date) : activeDay.date}
+                  {formatDateLabel(activeDay.date)}
                 </h3>
                 <p className="mt-3 text-sm text-neutral-500">
                   총 {activeDay.totalCommitCount}개 commit, 회사 {activeDay.companyCommitCount}개,
