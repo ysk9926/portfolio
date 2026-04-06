@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-04-07T07:51:11.617234+09:00",
+  "generatedAt": "2026-04-07T07:53:36.103494+09:00",
   "projects": [
     {
       "projectKey": "bridgeuiclient",
@@ -29,7 +29,6 @@
       "todayCommitCount": 0,
       "lastAuthoredCommitAt": "2025-12-29 10:58",
       "linkedRepos": [
-        "BridgeGUI_final2",
         "bridgeui-client"
       ],
       "recentUpdates": "",
@@ -233,7 +232,6 @@
       "linkedRepos": [
         "DoneDone",
         "multi-dev-ctrl",
-        "pgrid-cli",
         "poooling-skills",
         "weave-pgrid-client"
       ],
