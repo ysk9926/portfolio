@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-04-07T07:34:36.474736+09:00",
+  "generatedAt": "2026-04-07T07:48:20.585763+09:00",
   "projects": [
     {
       "projectKey": "bridgeui교량손상분석데스크탑애플리케이션",
@@ -13,7 +13,7 @@
       "company": "풀링포레스트",
       "role": "풀스택 개발 (1인)",
       "teamSize": "1",
-      "updated": "2026-03-12",
+      "updated": "2026-04-07",
       "tech": [
         "React 18",
         "TypeScript",
@@ -47,7 +47,7 @@
       "company": "개인 프로젝트",
       "role": "풀스택 (1인)",
       "teamSize": "1",
-      "updated": "2026-04-06",
+      "updated": "2026-04-07",
       "tech": [
         "Next.js 16",
         "React 19",
@@ -86,7 +86,7 @@
       "company": "poooling",
       "role": "풀스택 개발 (1인)",
       "teamSize": "1명 (외부 협업 1명)",
-      "updated": "2026-03-13",
+      "updated": "2026-04-07",
       "tech": [
         "Python",
         "OpenAI GPT-4o",
@@ -95,10 +95,12 @@
         "Playwright",
         "python-pptx"
       ],
-      "track": "-",
+      "track": "회사",
       "todayCommitCount": 0,
-      "lastAuthoredCommitAt": "-",
-      "linkedRepos": [],
+      "lastAuthoredCommitAt": "2026-03-03 13:56",
+      "linkedRepos": [
+        "doc-creator"
+      ],
       "recentUpdates": "",
       "portfolioNotes": "",
       "thumbnail": "",
@@ -117,7 +119,7 @@
       "company": "Poooling",
       "role": "풀스택 개발 (1인)",
       "teamSize": "1",
-      "updated": "2026-03-13",
+      "updated": "2026-04-07",
       "tech": [
         "React",
         "TypeScript",
@@ -152,7 +154,7 @@
       "company": "풀링포레스트 (클라이언트: 인트로스)",
       "role": "풀스택 개발",
       "teamSize": "2",
-      "updated": "2026-03-30",
+      "updated": "2026-04-07",
       "tech": [
         "Next.js 16",
         "React 19",
@@ -190,7 +192,7 @@
       "company": "풀링포레스트",
       "role": "메인 개발 총괄",
       "teamSize": "10명 (전직원)",
-      "updated": "2026-04-06",
+      "updated": "2026-04-07",
       "tech": [
         "Next.js 16",
         "React 19",
@@ -209,9 +211,13 @@
       ],
       "track": "회사",
       "todayCommitCount": 0,
-      "lastAuthoredCommitAt": "2026-04-06 17:52",
+      "lastAuthoredCommitAt": "2026-04-02 00:38",
       "linkedRepos": [
-        "poooling-ai-chatbot"
+        "DoneDone",
+        "multi-dev-ctrl",
+        "pgrid-cli",
+        "poooling-skills",
+        "weave-pgrid-client"
       ],
       "recentUpdates": "- 월요일 실행으로 2026-04-04 (토), 2026-04-05 (일), 2026-04-06 (월) 커밋을 함께 반영합니다.\n\n### 2026-04-06 (월)\n- 17:40 `06008b2` feat: AI 도구 관리 페이지 UX 개선\n- 17:19 `d99414a` fix: 스토어 선택 시 UUID가 표시되는 문제 수정\n- 17:09 `facbcbc` refactor: auth middleware의 any 타입을 unknown으로 변경\n- 17:09 `f45f169` fix: body 태그에 suppressHydrationWarning 추가\n- 17:09 `90358cb` chore: useEffect 내 setState에 eslint-disable 주석 추가\n- 17:08 `92e67ed` fix(admin): 스토어 관리 페이지에서 문서 수가 0으로 표시되는 버그 수정\n- 15:46 `140ec85` fix(chat): fix overlapping edit/delete icons in sidebar\n- 15:04 `aa77f6d` feat(chat): add auto title generation and inline title editing in sidebar\n- 15:03 `4b43d1a` feat(api): add AI-powered conversation title generation endpoint\n- 15:02 `fe33546` feat(api): add PATCH endpoint for conversation title update\n- 14:17 `c045cf6` chore(chat): remove unused imports in action-status and assistant-message\n- 14:13 `02e6d2b` chore(chat): remove unused source-card, tool-call-progress, step-indicator\n- 14:12 `79686e3` feat(chat): include toolCalls/sources in new chat page messages\n- 14:12 `92610b5` feat(chat): include toolCalls/sources in live messages, remove StepIndicator\n- 14:09 `174098d` refactor(chat): pass isStreaming to MessageBubble, remove simple spinner\n- 14:08 `d53c2c2` refactor(chat): delegate assistant messages to AssistantMessage component\n- 14:06 `385c5ce` feat(chat): add AssistantMessage component with full-width layout\n- 14:04 `e2a0588` feat(chat): add ActionStatus component for AI behavior display\n- 14:04 `d1a1bed` feat(chat): add InlineCitation component for text reference badges\n- 14:04 `c2f36e2` feat(chat): add SourceChips component for horizontal source display\n- 13:37 `1a7aa61` feat(chat): stabilize websocket session and protocol flow\n- 10:40 `60974ea` feat: replace model select with searchable combobox grouped by provider\n- 10:37 `7512466` fix: separate sync endpoint into API-key authenticated router\n- 10:29 `14ee6d1` feat: auto-fill provider preset fields and hide baseUrl input\n- 10:27 `6a08297` feat: add google provider sync support in developer router\n- 10:27 `0845dcb` feat: add Google Gemini provider with sync_models support\n- 10:26 `5ebd595` feat: remove keyword filter from OpenAI sync_models to return all models\n- 10:21 `8dc9a6d` docs: add provider preset + gemini support design spec\n- 09:49 `5c6dd60` fix: implement real streaming cancellation with asyncio.Event\n- 09:44 `d54d452` fix: replace polling-based redirect with server-sent conversation_started event\n- 09:41 `5d36cd1` fix: handle chat.sources WebSocket event to show RAG citations in real-time\n- 09:40 `72362da` fix: add isError to frontend tool_end type and truncate output\n- 09:34 `7643bc1` fix: emit tool_end WebSocket events so frontend can update tool call status\n\n### 2026-04-05 (일)\n- 23:14 `d39bb8f` refactor: admin settings uses chat_model key instead of default_model\n- 23:14 `ac9fea9` feat: developer model settings page with role-based model selection\n- 23:12 `4b77830` feat: developer settings API for model role configuration\n- 23:11 `e5c8188` feat: add model sync button to providers page\n- 23:09 `f325619` feat: model sync API for OpenAI and Anthropic providers\n- 23:06 `dd7bc73` refactor: draft chat model from tenant settings\n- 23:05 `b7bd427` refactor: compactor model from tenant settings\n- 23:04 `f76e37b` feat(dynamic-tools): replace hardcoded models with tenant settings lookup\n- 23:02 `402e8c5` feat(benchmark): replace hardcoded model strings with tenant settings lookup\n- 22:59 `4914f87` refactor: chat _resolve_provider uses chat_model setting via helper\n- 22:58 `a982909` feat: add model_settings helper for role-based model resolution\n- 22:55 `c7aa6e6` docs: add developer model settings implementation plan\n- 22:55 `306ae3f` refactor: remove legacy prompts page, replaced by instructions system\n- 22:55 `b20bb5d` refactor: fix WebSocket route, remove fallback logic, use correct DB schema\n- 15:07 `547315f` chore: gitignore .superpowers/ directory\n- 15:05 `56ffdea` chore: gitignore docs/superpowers/ and remove tracked files\n- 15:03 `250d588` feat: add /admin/instructions page with persona, rules, and preview tabs\n- 15:02 `d0942aa` feat: add prompt preview API for admin instructions page\n- 15:00 `6e81112` feat: connect new instruction system to chat router with legacy fallback\n- 14:59 `26e2564` feat: add persona and rules sections to SystemPromptBuilder\n- 14:59 `88720b5` feat: add Python DB queries for personas and rules\n- 14:57 `b897652` feat: add CRUD + reorder API for tenant rules\n- 14:57 `197d20c` feat: add AI persona generation API with streaming\n- 14:55 `2938ffc` feat: add GET/PUT API for tenant personas\n- 14:54 `ea592cb` feat: add Drizzle schemas for tenant_personas and tenant_rules\n- 14:52 `464de4f` feat: add tenant_personas and tenant_rules migration SQL\n- 12:37 `808f3df` fix(agent): address codex review — multi-tool, usage, compaction, TTL bugs\n- 12:26 `45621f1` refactor(agent): mark core/ modules as deprecated in favor of runtime/\n- 12:24 `3c7a4fd` feat(agent): switch chat handler from core/ to runtime/\n- 12:20 `5f888e1` infra: add Redis service and env config for session management\n- 12:19 `e11e57f` feat(db): add tenant_hook_rules table for configurable tool hooks\n\n### 2026-04-04 (토)\n- 14:07 `fa37888` feat(agent): export runtime public API\n- 14:04 `650f824` feat(agent): add ConversationRuntime with agentic loop, hooks, and compact\n- 13:59 `4dfb537` feat(agent): add TenantHookRunner with builtin hooks and DB-based tenant rules\n- 13:55 `c1c797d` feat(agent): add LLMCompactor with LLM-based context compression\n- 13:52 `24d4ad3` feat(agent): add SystemPromptBuilder with 6-section layered prompt\n- 13:50 `8f916a9` test(agent): improve RedisSession test coverage\n- 13:46 `f73c82c` feat(agent): add RedisSession with Redis persistence and DB fallback\n- 13:43 `ad94a21` feat(agent): add redis dependency and config for runtime redesign",
       "portfolioNotes": "- 기능/설계 관점에서 설명 가능한 변경만 본문 사례에 반영합니다.\n- 구현 상세가 부족한 초기 커밋은 프로젝트 소개 수준으로만 반영합니다.",
@@ -231,7 +237,7 @@
       "company": "베몽테스 (외주)",
       "role": "풀스택 개발 (메인)",
       "teamSize": "2",
-      "updated": "2026-03-15",
+      "updated": "2026-04-07",
       "tech": [
         "Spring Boot 3.4",
         "Kotlin",
@@ -265,7 +271,7 @@
       "company": "외부 클라이언트 (Wonik PNE) - SI 프로젝트",
       "role": "Recipe Management 풀스택 개발",
       "teamSize": "2명 (공동 개발: hun2ee)",
-      "updated": "2026-02-13",
+      "updated": "2026-04-07",
       "tech": [
         "Blazor WebAssembly",
         ".NET 9.0",
