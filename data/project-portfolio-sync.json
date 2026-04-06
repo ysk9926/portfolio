@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-04-07T07:53:36.103494+09:00",
+  "generatedAt": "2026-04-07T07:58:31.773014+09:00",
   "projects": [
     {
       "projectKey": "bridgeuiclient",
@@ -114,9 +114,15 @@
       ],
       "recentUpdates": "",
       "portfolioNotes": "",
-      "thumbnail": "",
-      "screenshots": [],
-      "screenshotCount": 0
+      "thumbnail": "/images/projects/generated/doccreator/01-item.png",
+      "screenshots": [
+        "/images/projects/generated/doccreator/01-item.png",
+        "/images/projects/generated/doccreator/02-item.png",
+        "/images/projects/generated/doccreator/03-item.png",
+        "/images/projects/generated/doccreator/04-item.png",
+        "/images/projects/generated/doccreator/05-item.png"
+      ],
+      "screenshotCount": 5
     },
     {
       "projectKey": "iamfinemonorepo",

@@ -152,8 +152,14 @@
     ],
     "githubUrl": "https://github.com/Pooolingforest/doc-creator",
     "isMain": true,
-    "thumbnail": "",
-    "screenshots": [],
+    "thumbnail": "/images/projects/generated/doccreator/01-item.png",
+    "screenshots": [
+      "/images/projects/generated/doccreator/01-item.png",
+      "/images/projects/generated/doccreator/02-item.png",
+      "/images/projects/generated/doccreator/03-item.png",
+      "/images/projects/generated/doccreator/04-item.png",
+      "/images/projects/generated/doccreator/05-item.png"
+    ],
     "shortDescription": "소스코드를 분석하여 특허청(KIPO) SW개발방법론 기반 기술 산출물을 AI로 자동 생성하는 Python CLI 도구",
     "star": {
       "summary": "소스코드를 분석하여 특허청(KIPO) SW개발방법론 기반 기술 산출물을 AI로 자동 생성하는 Python CLI 도구",
