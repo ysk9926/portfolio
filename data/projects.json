@@ -66,8 +66,13 @@
     ],
     "githubUrl": "https://github.com/Pooolingforest/bridgeui-client",
     "isMain": true,
-    "thumbnail": "",
-    "screenshots": [],
+    "thumbnail": "/images/projects/generated/bridgeuiclient/01-item.png",
+    "screenshots": [
+      "/images/projects/generated/bridgeuiclient/01-item.png",
+      "/images/projects/generated/bridgeuiclient/02-item.jpg",
+      "/images/projects/generated/bridgeuiclient/03-item.jpg",
+      "/images/projects/generated/bridgeuiclient/04-item.jpg"
+    ],
     "shortDescription": "AI 기반 교량 손상 탐지·추적·정량화·평가를 자동화하는 Electron 데스크탑 애플리케이션",
     "star": {
       "summary": "AI 기반 교량 손상 탐지·추적·정량화·평가를 자동화하는 Electron 데스크탑 애플리케이션",
@@ -108,8 +113,12 @@
     ],
     "githubUrl": "https://github.com/ysk9926/calender-table-mono",
     "isMain": true,
-    "thumbnail": "",
-    "screenshots": [],
+    "thumbnail": "/images/projects/generated/calendertablemono/01-item.png",
+    "screenshots": [
+      "/images/projects/generated/calendertablemono/01-item.png",
+      "/images/projects/generated/calendertablemono/02-item.png",
+      "/images/projects/generated/calendertablemono/03-item.png"
+    ],
     "shortDescription": "몇 번의 클릭만으로 일정을 만들고, 친구와 약속·투두를 공유하는 소셜 캘린더 앱",
     "star": {
       "summary": "몇 번의 클릭만으로 일정을 만들고, 친구와 약속·투두를 공유하는 소셜 캘린더 앱",
@@ -220,8 +229,14 @@
     ],
     "githubUrl": "https://github.com/Pooolingforest/job-card-frontend",
     "isMain": true,
-    "thumbnail": "",
-    "screenshots": [],
+    "thumbnail": "/images/projects/generated/jobcard/01-item.png",
+    "screenshots": [
+      "/images/projects/generated/jobcard/01-item.png",
+      "/images/projects/generated/jobcard/02-item.png",
+      "/images/projects/generated/jobcard/03-item.png",
+      "/images/projects/generated/jobcard/04-item.png",
+      "/images/projects/generated/jobcard/05-item.png"
+    ],
     "shortDescription": "반도체 설비 현장 엔지니어의 수기 작업보고서를 디지털화하여, 모바일 앱 + 웹 관리자 시스템으로 2단계 승인 워크플로우·대시보드·마스터데이터 관리를 통합 제공하는 풀스택 시스템",
     "star": {
       "summary": "반도체 설비 현장 엔지니어의 수기 작업보고서를 디지털화하여, 모바일 앱 + 웹 관리자 시스템으로 2단계 승인 워크플로우·대시보드·마스터데이터 관리를 통합 제공하는 풀스택 시스템",
@@ -261,8 +276,11 @@
     ],
     "githubUrl": "https://github.com/poooling-internal/weave-pgrid-client",
     "isMain": true,
-    "thumbnail": "",
-    "screenshots": [],
+    "thumbnail": "/images/projects/generated/pooolinginternaltools/01-item.png",
+    "screenshots": [
+      "/images/projects/generated/pooolinginternaltools/01-item.png",
+      "/images/projects/generated/pooolinginternaltools/02-item.jpg"
+    ],
     "shortDescription": "다수의 프로젝트를 효율적으로 관리하고 개발 생산성을 높이기 위한 사내 도구 모음 (P-Grid, DoneDone, multi-dev-ctrl, poooling-skills)",
     "star": {
       "summary": "다수의 프로젝트를 효율적으로 관리하고 개발 생산성을 높이기 위한 사내 도구 모음 (P-Grid, DoneDone, multi-dev-ctrl, poooling-skills)",
@@ -301,8 +319,14 @@
     ],
     "githubUrl": "https://github.com/Pooolingforest/vemontes-server",
     "isMain": true,
-    "thumbnail": "",
-    "screenshots": [],
+    "thumbnail": "/images/projects/generated/vemontes/01-item.png",
+    "screenshots": [
+      "/images/projects/generated/vemontes/01-item.png",
+      "/images/projects/generated/vemontes/02-item.png",
+      "/images/projects/generated/vemontes/03-item.png",
+      "/images/projects/generated/vemontes/04-item.png",
+      "/images/projects/generated/vemontes/05-item.png"
+    ],
     "shortDescription": "카페24 기반 스킨케어 쇼핑몰에 구독 서비스, 추천인 보상, 영업대리/지사 관리 등 카페24에 없는 기능을 추가 구현한 풀스택 커머스 플랫폼",
     "star": {
       "summary": "카페24 기반 스킨케어 쇼핑몰에 구독 서비스, 추천인 보상, 영업대리/지사 관리 등 카페24에 없는 기능을 추가 구현한 풀스택 커머스 플랫폼",

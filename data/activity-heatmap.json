@@ -1,14 +1,14 @@
 {
-  "generatedAt": "2026-04-07T07:48:20.585763+09:00",
+  "generatedAt": "2026-04-07T07:51:11.617234+09:00",
   "rangeStart": "2025-04-08",
   "rangeEnd": "2026-04-07",
   "summary": {
-    "activeDays": 68,
-    "companyActiveDays": 67,
-    "personalActiveDays": 30,
-    "totalCompanyCommits": 1326,
-    "totalPersonalCommits": 339,
-    "totalCommits": 1665,
+    "activeDays": 201,
+    "companyActiveDays": 195,
+    "personalActiveDays": 45,
+    "totalCompanyCommits": 2330,
+    "totalPersonalCommits": 381,
+    "totalCommits": 2711,
     "latestActiveDate": "2026-04-06"
   },
   "weeks": [
@@ -487,43 +487,66 @@
           "date": "2025-05-08",
           "weekday": "Thu",
           "inRange": true,
-          "companyCommitCount": 0,
+          "companyCommitCount": 10,
           "personalCommitCount": 0,
-          "companyProjects": [],
+          "companyProjects": [
+            {
+              "name": "medical-client",
+              "count": 10,
+              "track": "회사"
+            }
+          ],
           "personalProjects": [],
-          "totalCommitCount": 0,
-          "intensityLevel": 0,
-          "companyIntensityLevel": 0,
+          "totalCommitCount": 10,
+          "intensityLevel": 4,
+          "companyIntensityLevel": 4,
           "personalIntensityLevel": 0,
-          "hasActivity": false
+          "hasActivity": true
         },
         {
           "date": "2025-05-09",
           "weekday": "Fri",
           "inRange": true,
-          "companyCommitCount": 0,
+          "companyCommitCount": 5,
           "personalCommitCount": 0,
-          "companyProjects": [],
+          "companyProjects": [
+            {
+              "name": "medical-client",
+              "count": 4,
+              "track": "회사"
+            },
+            {
+              "name": "medical-server",
+              "count": 1,
+              "track": "회사"
+            }
+          ],
           "personalProjects": [],
-          "totalCommitCount": 0,
-          "intensityLevel": 0,
-          "companyIntensityLevel": 0,
+          "totalCommitCount": 5,
+          "intensityLevel": 3,
+          "companyIntensityLevel": 3,
           "personalIntensityLevel": 0,
-          "hasActivity": false
+          "hasActivity": true
         },
         {
           "date": "2025-05-10",
           "weekday": "Sat",
           "inRange": true,
-          "companyCommitCount": 0,
+          "companyCommitCount": 1,
           "personalCommitCount": 0,
-          "companyProjects": [],
+          "companyProjects": [
+            {
+              "name": "medical-server",
+              "count": 1,
+              "track": "회사"
+            }
+          ],
           "personalProjects": [],
-          "totalCommitCount": 0,
-          "intensityLevel": 0,
-          "companyIntensityLevel": 0,
+          "totalCommitCount": 1,
+          "intensityLevel": 1,
+          "companyIntensityLevel": 1,
           "personalIntensityLevel": 0,
-          "hasActivity": false
+          "hasActivity": true
         }
       ]
     },
@@ -562,29 +585,46 @@
           "date": "2025-05-13",
           "weekday": "Tue",
           "inRange": true,
-          "companyCommitCount": 0,
+          "companyCommitCount": 2,
           "personalCommitCount": 0,
-          "companyProjects": [],
+          "companyProjects": [
+            {
+              "name": "medical-client",
+              "count": 1,
+              "track": "회사"
+            },
+            {
+              "name": "medical-server",
+              "count": 1,
+              "track": "회사"
+            }
+          ],
           "personalProjects": [],
-          "totalCommitCount": 0,
-          "intensityLevel": 0,
-          "companyIntensityLevel": 0,
+          "totalCommitCount": 2,
+          "intensityLevel": 2,
+          "companyIntensityLevel": 2,
           "personalIntensityLevel": 0,
-          "hasActivity": false
+          "hasActivity": true
         },
         {
           "date": "2025-05-14",
           "weekday": "Wed",
           "inRange": true,
-          "companyCommitCount": 0,
+          "companyCommitCount": 4,
           "personalCommitCount": 0,
-          "companyProjects": [],
+          "companyProjects": [
+            {
+              "name": "베몽테스",
+              "count": 4,
+              "track": "회사"
+            }
+          ],
           "personalProjects": [],
-          "totalCommitCount": 0,
-          "intensityLevel": 0,
-          "companyIntensityLevel": 0,
+          "totalCommitCount": 4,
+          "intensityLevel": 3,
+          "companyIntensityLevel": 3,
           "personalIntensityLevel": 0,
-          "hasActivity": false
+          "hasActivity": true
         },
         {
           "date": "2025-05-15",
@@ -604,15 +644,21 @@
           "date": "2025-05-16",
           "weekday": "Fri",
           "inRange": true,
-          "companyCommitCount": 0,
+          "companyCommitCount": 5,
           "personalCommitCount": 0,
-          "companyProjects": [],
+          "companyProjects": [
+            {
+              "name": "베몽테스",
+              "count": 5,
+              "track": "회사"
+            }
+          ],
           "personalProjects": [],
-          "totalCommitCount": 0,
-          "intensityLevel": 0,
-          "companyIntensityLevel": 0,
+          "totalCommitCount": 5,
+          "intensityLevel": 3,
+          "companyIntensityLevel": 3,
           "personalIntensityLevel": 0,
-          "hasActivity": false
+          "hasActivity": true
         },
         {
           "date": "2025-05-17",
@@ -665,15 +711,21 @@
           "date": "2025-05-20",
           "weekday": "Tue",
           "inRange": true,
-          "companyCommitCount": 0,
+          "companyCommitCount": 8,
           "personalCommitCount": 0,
-          "companyProjects": [],
+          "companyProjects": [
+            {
+              "name": "베몽테스",
+              "count": 8,
+              "track": "회사"
+            }
+          ],
           "personalProjects": [],
-          "totalCommitCount": 0,
-          "intensityLevel": 0,
-          "companyIntensityLevel": 0,
+          "totalCommitCount": 8,
+          "intensityLevel": 4,
+          "companyIntensityLevel": 4,
           "personalIntensityLevel": 0,
-          "hasActivity": false
+          "hasActivity": true
         },
         {
           "date": "2025-05-21",
@@ -707,29 +759,41 @@
           "date": "2025-05-23",
           "weekday": "Fri",
           "inRange": true,
-          "companyCommitCount": 0,
+          "companyCommitCount": 9,
           "personalCommitCount": 0,
-          "companyProjects": [],
+          "companyProjects": [
+            {
+              "name": "베몽테스",
+              "count": 9,
+              "track": "회사"
+            }
+          ],
           "personalProjects": [],
-          "totalCommitCount": 0,
-          "intensityLevel": 0,
-          "companyIntensityLevel": 0,
+          "totalCommitCount": 9,
+          "intensityLevel": 4,
+          "companyIntensityLevel": 4,
           "personalIntensityLevel": 0,
-          "hasActivity": false
+          "hasActivity": true
         },
         {
           "date": "2025-05-24",
           "weekday": "Sat",
           "inRange": true,
-          "companyCommitCount": 0,
+          "companyCommitCount": 1,
           "personalCommitCount": 0,
-          "companyProjects": [],
+          "companyProjects": [
+            {
+              "name": "베몽테스",
+              "count": 1,
+              "track": "회사"
+            }
+          ],
           "personalProjects": [],
-          "totalCommitCount": 0,
-          "intensityLevel": 0,
-          "companyIntensityLevel": 0,
+          "totalCommitCount": 1,
+          "intensityLevel": 1,
+          "companyIntensityLevel": 1,
           "personalIntensityLevel": 0,
-          "hasActivity": false
+          "hasActivity": true
         }
       ]
     },
@@ -754,71 +818,111 @@
           "date": "2025-05-26",
           "weekday": "Mon",
           "inRange": true,
-          "companyCommitCount": 0,
+          "companyCommitCount": 5,
           "personalCommitCount": 0,
-          "companyProjects": [],
+          "companyProjects": [
+            {
+              "name": "medical-server",
+              "count": 3,
+              "track": "회사"
+            },
+            {
+              "name": "medical-client",
+              "count": 1,
+              "track": "회사"
+            },
+            {
+              "name": "베몽테스",
+              "count": 1,
+              "track": "회사"
+            }
+          ],
           "personalProjects": [],
-          "totalCommitCount": 0,
-          "intensityLevel": 0,
-          "companyIntensityLevel": 0,
+          "totalCommitCount": 5,
+          "intensityLevel": 3,
+          "companyIntensityLevel": 3,
           "personalIntensityLevel": 0,
-          "hasActivity": false
+          "hasActivity": true
         },
         {
           "date": "2025-05-27",
           "weekday": "Tue",
           "inRange": true,
-          "companyCommitCount": 0,
+          "companyCommitCount": 1,
           "personalCommitCount": 0,
-          "companyProjects": [],
+          "companyProjects": [
+            {
+              "name": "베몽테스",
+              "count": 1,
+              "track": "회사"
+            }
+          ],
           "personalProjects": [],
-          "totalCommitCount": 0,
-          "intensityLevel": 0,
-          "companyIntensityLevel": 0,
+          "totalCommitCount": 1,
+          "intensityLevel": 1,
+          "companyIntensityLevel": 1,
           "personalIntensityLevel": 0,
-          "hasActivity": false
+          "hasActivity": true
         },
         {
           "date": "2025-05-28",
           "weekday": "Wed",
           "inRange": true,
-          "companyCommitCount": 0,
+          "companyCommitCount": 6,
           "personalCommitCount": 0,
-          "companyProjects": [],
+          "companyProjects": [
+            {
+              "name": "베몽테스",
+              "count": 6,
+              "track": "회사"
+            }
+          ],
           "personalProjects": [],
-          "totalCommitCount": 0,
-          "intensityLevel": 0,
-          "companyIntensityLevel": 0,
+          "totalCommitCount": 6,
+          "intensityLevel": 3,
+          "companyIntensityLevel": 3,
           "personalIntensityLevel": 0,
-          "hasActivity": false
+          "hasActivity": true
         },
         {
           "date": "2025-05-29",
           "weekday": "Thu",
           "inRange": true,
-          "companyCommitCount": 0,
+          "companyCommitCount": 8,
           "personalCommitCount": 0,
-          "companyProjects": [],
+          "companyProjects": [
+            {
+              "name": "베몽테스",
+              "count": 8,
+              "track": "회사"
+            }
+          ],
           "personalProjects": [],
-          "totalCommitCount": 0,
-          "intensityLevel": 0,
-          "companyIntensityLevel": 0,
+          "totalCommitCount": 8,
+          "intensityLevel": 4,
+          "companyIntensityLevel": 4,
           "personalIntensityLevel": 0,
-          "hasActivity": false
+          "hasActivity": true
         },
         {
           "date": "2025-05-30",
           "weekday": "Fri",
           "inRange": true,
-          "companyCommitCount": 0,
+          "companyCommitCount": 4,
           "personalCommitCount": 0,
-          "companyProjects": [],
+          "companyProjects": [
+            {
+              "name": "베몽테스",
+              "count": 4,
+              "track": "회사"
+            }
+          ],
           "personalProjects": [],
-          "totalCommitCount": 0,
-          "intensityLevel": 0,
-          "companyIntensityLevel": 0,
+          "totalCommitCount": 4,
+          "intensityLevel": 3,
+          "companyIntensityLevel": 3,
           "personalIntensityLevel": 0,
-          "hasActivity": false
+          "hasActivity": true
         },
         {
           "date": "2025-05-31",
@@ -899,15 +1003,21 @@
           "date": "2025-06-05",
           "weekday": "Thu",
           "inRange": true,
-          "companyCommitCount": 0,
+          "companyCommitCount": 3,
           "personalCommitCount": 0,
-          "companyProjects": [],
+          "companyProjects": [
+            {
+              "name": "베몽테스",
+              "count": 3,
+              "track": "회사"
+            }
+          ],
           "personalProjects": [],
-          "totalCommitCount": 0,
-          "intensityLevel": 0,
-          "companyIntensityLevel": 0,
+          "totalCommitCount": 3,
+          "intensityLevel": 2,
+          "companyIntensityLevel": 2,
           "personalIntensityLevel": 0,
-          "hasActivity": false
+          "hasActivity": true
         },
         {
           "date": "2025-06-06",
@@ -960,43 +1070,61 @@
           "date": "2025-06-09",
           "weekday": "Mon",
           "inRange": true,
-          "companyCommitCount": 0,
+          "companyCommitCount": 2,
           "personalCommitCount": 0,
-          "companyProjects": [],
+          "companyProjects": [
+            {
+              "name": "베몽테스",
+              "count": 2,
+              "track": "회사"
+            }
+          ],
           "personalProjects": [],
-          "totalCommitCount": 0,
-          "intensityLevel": 0,
-          "companyIntensityLevel": 0,
+          "totalCommitCount": 2,
+          "intensityLevel": 2,
+          "companyIntensityLevel": 2,
           "personalIntensityLevel": 0,
-          "hasActivity": false
+          "hasActivity": true
         },
         {
           "date": "2025-06-10",
           "weekday": "Tue",
           "inRange": true,
-          "companyCommitCount": 0,
+          "companyCommitCount": 3,
           "personalCommitCount": 0,
-          "companyProjects": [],
+          "companyProjects": [
+            {
+              "name": "베몽테스",
+              "count": 3,
+              "track": "회사"
+            }
+          ],
           "personalProjects": [],
-          "totalCommitCount": 0,
-          "intensityLevel": 0,
-          "companyIntensityLevel": 0,
+          "totalCommitCount": 3,
+          "intensityLevel": 2,
+          "companyIntensityLevel": 2,
           "personalIntensityLevel": 0,
-          "hasActivity": false
+          "hasActivity": true
         },
         {
           "date": "2025-06-11",
           "weekday": "Wed",
           "inRange": true,
-          "companyCommitCount": 0,
+          "companyCommitCount": 2,
           "personalCommitCount": 0,
-          "companyProjects": [],
+          "companyProjects": [
+            {
+              "name": "베몽테스",
+              "count": 2,
+              "track": "회사"
+            }
+          ],
           "personalProjects": [],
-          "totalCommitCount": 0,
-          "intensityLevel": 0,
-          "companyIntensityLevel": 0,
+          "totalCommitCount": 2,
+          "intensityLevel": 2,
+          "companyIntensityLevel": 2,
           "personalIntensityLevel": 0,
-          "hasActivity": false
+          "hasActivity": true
         },
         {
           "date": "2025-06-12",
@@ -1031,14 +1159,20 @@
           "weekday": "Sat",
           "inRange": true,
           "companyCommitCount": 0,
-          "personalCommitCount": 0,
+          "personalCommitCount": 4,
           "companyProjects": [],
-          "personalProjects": [],
-          "totalCommitCount": 0,
-          "intensityLevel": 0,
+          "personalProjects": [
+            {
+              "name": "work-snap-server",
+              "count": 4,
+              "track": "개인"
+            }
+          ],
+          "totalCommitCount": 4,
+          "intensityLevel": 3,
           "companyIntensityLevel": 0,
-          "personalIntensityLevel": 0,
-          "hasActivity": false
+          "personalIntensityLevel": 3,
+          "hasActivity": true
         }
       ]
     },
@@ -1063,15 +1197,27 @@
           "date": "2025-06-16",
           "weekday": "Mon",
           "inRange": true,
-          "companyCommitCount": 0,
-          "personalCommitCount": 0,
-          "companyProjects": [],
-          "personalProjects": [],
-          "totalCommitCount": 0,
-          "intensityLevel": 0,
-          "companyIntensityLevel": 0,
-          "personalIntensityLevel": 0,
-          "hasActivity": false
+          "companyCommitCount": 1,
+          "personalCommitCount": 1,
+          "companyProjects": [
+            {
+              "name": "베몽테스",
+              "count": 1,
+              "track": "회사"
+            }
+          ],
+          "personalProjects": [
+            {
+              "name": "work-snap-app",
+              "count": 1,
+              "track": "개인"
+            }
+          ],
+          "totalCommitCount": 2,
+          "intensityLevel": 2,
+          "companyIntensityLevel": 1,
+          "personalIntensityLevel": 1,
+          "hasActivity": true
         },
         {
           "date": "2025-06-17",
@@ -1181,14 +1327,25 @@
           "weekday": "Tue",
           "inRange": true,
           "companyCommitCount": 0,
-          "personalCommitCount": 0,
+          "personalCommitCount": 3,
           "companyProjects": [],
-          "personalProjects": [],
-          "totalCommitCount": 0,
-          "intensityLevel": 0,
+          "personalProjects": [
+            {
+              "name": "work-snap-client",
+              "count": 2,
+              "track": "개인"
+            },
+            {
+              "name": "work-snap-server",
+              "count": 1,
+              "track": "개인"
+            }
+          ],
+          "totalCommitCount": 3,
+          "intensityLevel": 2,
           "companyIntensityLevel": 0,
-          "personalIntensityLevel": 0,
-          "hasActivity": false
+          "personalIntensityLevel": 2,
+          "hasActivity": true
         },
         {
           "date": "2025-06-25",
@@ -1283,15 +1440,21 @@
           "date": "2025-07-01",
           "weekday": "Tue",
           "inRange": true,
-          "companyCommitCount": 0,
+          "companyCommitCount": 1,
           "personalCommitCount": 0,
-          "companyProjects": [],
+          "companyProjects": [
+            {
+              "name": "베몽테스",
+              "count": 1,
+              "track": "회사"
+            }
+          ],
           "personalProjects": [],
-          "totalCommitCount": 0,
-          "intensityLevel": 0,
-          "companyIntensityLevel": 0,
+          "totalCommitCount": 1,
+          "intensityLevel": 1,
+          "companyIntensityLevel": 1,
           "personalIntensityLevel": 0,
-          "hasActivity": false
+          "hasActivity": true
         },
         {
           "date": "2025-07-02",
@@ -1326,14 +1489,25 @@
           "weekday": "Fri",
           "inRange": true,
           "companyCommitCount": 0,
-          "personalCommitCount": 0,
+          "personalCommitCount": 3,
           "companyProjects": [],
-          "personalProjects": [],
-          "totalCommitCount": 0,
-          "intensityLevel": 0,
+          "personalProjects": [
+            {
+              "name": "work-snap-client",
+              "count": 2,
+              "track": "개인"
+            },
+            {
+              "name": "work-snap-server",
+              "count": 1,
+              "track": "개인"
+            }
+          ],
+          "totalCommitCount": 3,
+          "intensityLevel": 2,
           "companyIntensityLevel": 0,
-          "personalIntensityLevel": 0,
-          "hasActivity": false
+          "personalIntensityLevel": 2,
+          "hasActivity": true
         },
         {
           "date": "2025-07-05",
@@ -1475,43 +1649,61 @@
           "date": "2025-07-14",
           "weekday": "Mon",
           "inRange": true,
-          "companyCommitCount": 0,
+          "companyCommitCount": 1,
           "personalCommitCount": 0,
-          "companyProjects": [],
+          "companyProjects": [
+            {
+              "name": "Wonik",
+              "count": 1,
+              "track": "회사"
+            }
+          ],
           "personalProjects": [],
-          "totalCommitCount": 0,
-          "intensityLevel": 0,
-          "companyIntensityLevel": 0,
+          "totalCommitCount": 1,
+          "intensityLevel": 1,
+          "companyIntensityLevel": 1,
           "personalIntensityLevel": 0,
-          "hasActivity": false
+          "hasActivity": true
         },
         {
           "date": "2025-07-15",
           "weekday": "Tue",
           "inRange": true,
-          "companyCommitCount": 0,
+          "companyCommitCount": 1,
           "personalCommitCount": 0,
-          "companyProjects": [],
+          "companyProjects": [
+            {
+              "name": "Wonik",
+              "count": 1,
+              "track": "회사"
+            }
+          ],
           "personalProjects": [],
-          "totalCommitCount": 0,
-          "intensityLevel": 0,
-          "companyIntensityLevel": 0,
+          "totalCommitCount": 1,
+          "intensityLevel": 1,
+          "companyIntensityLevel": 1,
           "personalIntensityLevel": 0,
-          "hasActivity": false
+          "hasActivity": true
         },
         {
           "date": "2025-07-16",
           "weekday": "Wed",
           "inRange": true,
-          "companyCommitCount": 0,
+          "companyCommitCount": 13,
           "personalCommitCount": 0,
-          "companyProjects": [],
+          "companyProjects": [
+            {
+              "name": "베몽테스",
+              "count": 13,
+              "track": "회사"
+            }
+          ],
           "personalProjects": [],
-          "totalCommitCount": 0,
-          "intensityLevel": 0,
-          "companyIntensityLevel": 0,
+          "totalCommitCount": 13,
+          "intensityLevel": 4,
+          "companyIntensityLevel": 4,
           "personalIntensityLevel": 0,
-          "hasActivity": false
+          "hasActivity": true
         },
         {
           "date": "2025-07-17",
@@ -1578,71 +1770,116 @@
           "date": "2025-07-21",
           "weekday": "Mon",
           "inRange": true,
-          "companyCommitCount": 0,
+          "companyCommitCount": 7,
           "personalCommitCount": 0,
-          "companyProjects": [],
+          "companyProjects": [
+            {
+              "name": "Wonik",
+              "count": 7,
+              "track": "회사"
+            }
+          ],
           "personalProjects": [],
-          "totalCommitCount": 0,
-          "intensityLevel": 0,
-          "companyIntensityLevel": 0,
+          "totalCommitCount": 7,
+          "intensityLevel": 4,
+          "companyIntensityLevel": 4,
           "personalIntensityLevel": 0,
-          "hasActivity": false
+          "hasActivity": true
         },
         {
           "date": "2025-07-22",
           "weekday": "Tue",
           "inRange": true,
-          "companyCommitCount": 0,
+          "companyCommitCount": 9,
           "personalCommitCount": 0,
-          "companyProjects": [],
+          "companyProjects": [
+            {
+              "name": "베몽테스",
+              "count": 7,
+              "track": "회사"
+            },
+            {
+              "name": "Wonik",
+              "count": 2,
+              "track": "회사"
+            }
+          ],
           "personalProjects": [],
-          "totalCommitCount": 0,
-          "intensityLevel": 0,
-          "companyIntensityLevel": 0,
+          "totalCommitCount": 9,
+          "intensityLevel": 4,
+          "companyIntensityLevel": 4,
           "personalIntensityLevel": 0,
-          "hasActivity": false
+          "hasActivity": true
         },
         {
           "date": "2025-07-23",
           "weekday": "Wed",
           "inRange": true,
-          "companyCommitCount": 0,
+          "companyCommitCount": 7,
           "personalCommitCount": 0,
-          "companyProjects": [],
+          "companyProjects": [
+            {
+              "name": "Wonik",
+              "count": 4,
+              "track": "회사"
+            },
+            {
+              "name": "베몽테스",
+              "count": 3,
+              "track": "회사"
+            }
+          ],
           "personalProjects": [],
-          "totalCommitCount": 0,
-          "intensityLevel": 0,
-          "companyIntensityLevel": 0,
+          "totalCommitCount": 7,
+          "intensityLevel": 4,
+          "companyIntensityLevel": 4,
           "personalIntensityLevel": 0,
-          "hasActivity": false
+          "hasActivity": true
         },
         {
           "date": "2025-07-24",
           "weekday": "Thu",
           "inRange": true,
-          "companyCommitCount": 0,
+          "companyCommitCount": 3,
           "personalCommitCount": 0,
-          "companyProjects": [],
+          "companyProjects": [
+            {
+              "name": "Wonik",
+              "count": 3,
+              "track": "회사"
+            }
+          ],
           "personalProjects": [],
-          "totalCommitCount": 0,
-          "intensityLevel": 0,
-          "companyIntensityLevel": 0,
+          "totalCommitCount": 3,
+          "intensityLevel": 2,
+          "companyIntensityLevel": 2,
           "personalIntensityLevel": 0,
-          "hasActivity": false
+          "hasActivity": true
         },
         {
           "date": "2025-07-25",
           "weekday": "Fri",
           "inRange": true,
-          "companyCommitCount": 0,
+          "companyCommitCount": 4,
           "personalCommitCount": 0,
-          "companyProjects": [],
+          "companyProjects": [
+            {
+              "name": "Wonik",
+              "count": 3,
+              "track": "회사"
+            },
+            {
+              "name": "베몽테스",
+              "count": 1,
+              "track": "회사"
+            }
+          ],
           "personalProjects": [],
-          "totalCommitCount": 0,
-          "intensityLevel": 0,
-          "companyIntensityLevel": 0,
+          "totalCommitCount": 4,
+          "intensityLevel": 3,
+          "companyIntensityLevel": 3,
           "personalIntensityLevel": 0,
-          "hasActivity": false
+          "hasActivity": true
         },
         {
           "date": "2025-07-26",
@@ -1681,57 +1918,86 @@
           "date": "2025-07-28",
           "weekday": "Mon",
           "inRange": true,
-          "companyCommitCount": 0,
+          "companyCommitCount": 4,
           "personalCommitCount": 0,
-          "companyProjects": [],
+          "companyProjects": [
+            {
+              "name": "Wonik",
+              "count": 4,
+              "track": "회사"
+            }
+          ],
           "personalProjects": [],
-          "totalCommitCount": 0,
-          "intensityLevel": 0,
-          "companyIntensityLevel": 0,
+          "totalCommitCount": 4,
+          "intensityLevel": 3,
+          "companyIntensityLevel": 3,
           "personalIntensityLevel": 0,
-          "hasActivity": false
+          "hasActivity": true
         },
         {
           "date": "2025-07-29",
           "weekday": "Tue",
           "inRange": true,
-          "companyCommitCount": 0,
+          "companyCommitCount": 2,
           "personalCommitCount": 0,
-          "companyProjects": [],
+          "companyProjects": [
+            {
+              "name": "Wonik",
+              "count": 2,
+              "track": "회사"
+            }
+          ],
           "personalProjects": [],
-          "totalCommitCount": 0,
-          "intensityLevel": 0,
-          "companyIntensityLevel": 0,
+          "totalCommitCount": 2,
+          "intensityLevel": 2,
+          "companyIntensityLevel": 2,
           "personalIntensityLevel": 0,
-          "hasActivity": false
+          "hasActivity": true
         },
         {
           "date": "2025-07-30",
           "weekday": "Wed",
           "inRange": true,
-          "companyCommitCount": 0,
+          "companyCommitCount": 6,
           "personalCommitCount": 0,
-          "companyProjects": [],
+          "companyProjects": [
+            {
+              "name": "Wonik",
+              "count": 6,
+              "track": "회사"
+            }
+          ],
           "personalProjects": [],
-          "totalCommitCount": 0,
-          "intensityLevel": 0,
-          "companyIntensityLevel": 0,
+          "totalCommitCount": 6,
+          "intensityLevel": 3,
+          "companyIntensityLevel": 3,
           "personalIntensityLevel": 0,
-          "hasActivity": false
+          "hasActivity": true
         },
         {
           "date": "2025-07-31",
           "weekday": "Thu",
           "inRange": true,
-          "companyCommitCount": 0,
+          "companyCommitCount": 3,
           "personalCommitCount": 0,
-          "companyProjects": [],
+          "companyProjects": [
+            {
+              "name": "베몽테스",
+              "count": 2,
+              "track": "회사"
+            },
+            {
+              "name": "Wonik",
+              "count": 1,
+              "track": "회사"
+            }
+          ],
           "personalProjects": [],
-          "totalCommitCount": 0,
-          "intensityLevel": 0,
-          "companyIntensityLevel": 0,
+          "totalCommitCount": 3,
+          "intensityLevel": 2,
+          "companyIntensityLevel": 2,
           "personalIntensityLevel": 0,
-          "hasActivity": false
+          "hasActivity": true
         },
         {
           "date": "2025-08-01",
@@ -1784,71 +2050,101 @@
           "date": "2025-08-04",
           "weekday": "Mon",
           "inRange": true,
-          "companyCommitCount": 0,
+          "companyCommitCount": 3,
           "personalCommitCount": 0,
-          "companyProjects": [],
+          "companyProjects": [
+            {
+              "name": "Wonik",
+              "count": 3,
+              "track": "회사"
+            }
+          ],
           "personalProjects": [],
-          "totalCommitCount": 0,
-          "intensityLevel": 0,
-          "companyIntensityLevel": 0,
+          "totalCommitCount": 3,
+          "intensityLevel": 2,
+          "companyIntensityLevel": 2,
           "personalIntensityLevel": 0,
-          "hasActivity": false
+          "hasActivity": true
         },
         {
           "date": "2025-08-05",
           "weekday": "Tue",
           "inRange": true,
-          "companyCommitCount": 0,
+          "companyCommitCount": 7,
           "personalCommitCount": 0,
-          "companyProjects": [],
+          "companyProjects": [
+            {
+              "name": "Wonik",
+              "count": 7,
+              "track": "회사"
+            }
+          ],
           "personalProjects": [],
-          "totalCommitCount": 0,
-          "intensityLevel": 0,
-          "companyIntensityLevel": 0,
+          "totalCommitCount": 7,
+          "intensityLevel": 4,
+          "companyIntensityLevel": 4,
           "personalIntensityLevel": 0,
-          "hasActivity": false
+          "hasActivity": true
         },
         {
           "date": "2025-08-06",
           "weekday": "Wed",
           "inRange": true,
-          "companyCommitCount": 0,
+          "companyCommitCount": 2,
           "personalCommitCount": 0,
-          "companyProjects": [],
+          "companyProjects": [
+            {
+              "name": "Wonik",
+              "count": 2,
+              "track": "회사"
+            }
+          ],
           "personalProjects": [],
-          "totalCommitCount": 0,
-          "intensityLevel": 0,
-          "companyIntensityLevel": 0,
+          "totalCommitCount": 2,
+          "intensityLevel": 2,
+          "companyIntensityLevel": 2,
           "personalIntensityLevel": 0,
-          "hasActivity": false
+          "hasActivity": true
         },
         {
           "date": "2025-08-07",
           "weekday": "Thu",
           "inRange": true,
-          "companyCommitCount": 0,
+          "companyCommitCount": 3,
           "personalCommitCount": 0,
-          "companyProjects": [],
+          "companyProjects": [
+            {
+              "name": "Wonik",
+              "count": 3,
+              "track": "회사"
+            }
+          ],
           "personalProjects": [],
-          "totalCommitCount": 0,
-          "intensityLevel": 0,
-          "companyIntensityLevel": 0,
+          "totalCommitCount": 3,
+          "intensityLevel": 2,
+          "companyIntensityLevel": 2,
           "personalIntensityLevel": 0,
-          "hasActivity": false
+          "hasActivity": true
         },
         {
           "date": "2025-08-08",
           "weekday": "Fri",
           "inRange": true,
-          "companyCommitCount": 0,
+          "companyCommitCount": 9,
           "personalCommitCount": 0,
-          "companyProjects": [],
+          "companyProjects": [
+            {
+              "name": "Wonik",
+              "count": 9,
+              "track": "회사"
+            }
+          ],
           "personalProjects": [],
-          "totalCommitCount": 0,
-          "intensityLevel": 0,
-          "companyIntensityLevel": 0,
+          "totalCommitCount": 9,
+          "intensityLevel": 4,
+          "companyIntensityLevel": 4,
           "personalIntensityLevel": 0,
-          "hasActivity": false
+          "hasActivity": true
         },
         {
           "date": "2025-08-09",
@@ -1887,57 +2183,86 @@
           "date": "2025-08-11",
           "weekday": "Mon",
           "inRange": true,
-          "companyCommitCount": 0,
+          "companyCommitCount": 9,
           "personalCommitCount": 0,
-          "companyProjects": [],
+          "companyProjects": [
+            {
+              "name": "Wonik",
+              "count": 9,
+              "track": "회사"
+            }
+          ],
           "personalProjects": [],
-          "totalCommitCount": 0,
-          "intensityLevel": 0,
-          "companyIntensityLevel": 0,
+          "totalCommitCount": 9,
+          "intensityLevel": 4,
+          "companyIntensityLevel": 4,
           "personalIntensityLevel": 0,
-          "hasActivity": false
+          "hasActivity": true
         },
         {
           "date": "2025-08-12",
           "weekday": "Tue",
           "inRange": true,
-          "companyCommitCount": 0,
+          "companyCommitCount": 5,
           "personalCommitCount": 0,
-          "companyProjects": [],
+          "companyProjects": [
+            {
+              "name": "Wonik",
+              "count": 5,
+              "track": "회사"
+            }
+          ],
           "personalProjects": [],
-          "totalCommitCount": 0,
-          "intensityLevel": 0,
-          "companyIntensityLevel": 0,
+          "totalCommitCount": 5,
+          "intensityLevel": 3,
+          "companyIntensityLevel": 3,
           "personalIntensityLevel": 0,
-          "hasActivity": false
+          "hasActivity": true
         },
         {
           "date": "2025-08-13",
           "weekday": "Wed",
           "inRange": true,
-          "companyCommitCount": 0,
+          "companyCommitCount": 11,
           "personalCommitCount": 0,
-          "companyProjects": [],
+          "companyProjects": [
+            {
+              "name": "Wonik",
+              "count": 11,
+              "track": "회사"
+            }
+          ],
           "personalProjects": [],
-          "totalCommitCount": 0,
-          "intensityLevel": 0,
-          "companyIntensityLevel": 0,
+          "totalCommitCount": 11,
+          "intensityLevel": 4,
+          "companyIntensityLevel": 4,
           "personalIntensityLevel": 0,
-          "hasActivity": false
+          "hasActivity": true
         },
         {
           "date": "2025-08-14",
           "weekday": "Thu",
           "inRange": true,
-          "companyCommitCount": 0,
+          "companyCommitCount": 17,
           "personalCommitCount": 0,
-          "companyProjects": [],
+          "companyProjects": [
+            {
+              "name": "Wonik",
+              "count": 11,
+              "track": "회사"
+            },
+            {
+              "name": "베몽테스",
+              "count": 6,
+              "track": "회사"
+            }
+          ],
           "personalProjects": [],
-          "totalCommitCount": 0,
-          "intensityLevel": 0,
-          "companyIntensityLevel": 0,
+          "totalCommitCount": 17,
+          "intensityLevel": 4,
+          "companyIntensityLevel": 4,
           "personalIntensityLevel": 0,
-          "hasActivity": false
+          "hasActivity": true
         },
         {
           "date": "2025-08-15",
@@ -2004,71 +2329,129 @@
           "date": "2025-08-19",
           "weekday": "Tue",
           "inRange": true,
-          "companyCommitCount": 0,
-          "personalCommitCount": 0,
-          "companyProjects": [],
-          "personalProjects": [],
-          "totalCommitCount": 0,
-          "intensityLevel": 0,
-          "companyIntensityLevel": 0,
-          "personalIntensityLevel": 0,
-          "hasActivity": false
+          "companyCommitCount": 4,
+          "personalCommitCount": 12,
+          "companyProjects": [
+            {
+              "name": "Wonik",
+              "count": 4,
+              "track": "회사"
+            }
+          ],
+          "personalProjects": [
+            {
+              "name": "work-snap-server",
+              "count": 8,
+              "track": "개인"
+            },
+            {
+              "name": "work-snap-client",
+              "count": 3,
+              "track": "개인"
+            },
+            {
+              "name": "work-snap-app",
+              "count": 1,
+              "track": "개인"
+            }
+          ],
+          "totalCommitCount": 16,
+          "intensityLevel": 4,
+          "companyIntensityLevel": 3,
+          "personalIntensityLevel": 4,
+          "hasActivity": true
         },
         {
           "date": "2025-08-20",
           "weekday": "Wed",
           "inRange": true,
-          "companyCommitCount": 0,
-          "personalCommitCount": 0,
-          "companyProjects": [],
-          "personalProjects": [],
-          "totalCommitCount": 0,
-          "intensityLevel": 0,
-          "companyIntensityLevel": 0,
-          "personalIntensityLevel": 0,
-          "hasActivity": false
+          "companyCommitCount": 4,
+          "personalCommitCount": 1,
+          "companyProjects": [
+            {
+              "name": "Wonik",
+              "count": 4,
+              "track": "회사"
+            }
+          ],
+          "personalProjects": [
+            {
+              "name": "work-snap-server",
+              "count": 1,
+              "track": "개인"
+            }
+          ],
+          "totalCommitCount": 5,
+          "intensityLevel": 3,
+          "companyIntensityLevel": 3,
+          "personalIntensityLevel": 1,
+          "hasActivity": true
         },
         {
           "date": "2025-08-21",
           "weekday": "Thu",
           "inRange": true,
-          "companyCommitCount": 0,
-          "personalCommitCount": 0,
-          "companyProjects": [],
-          "personalProjects": [],
-          "totalCommitCount": 0,
-          "intensityLevel": 0,
-          "companyIntensityLevel": 0,
-          "personalIntensityLevel": 0,
-          "hasActivity": false
+          "companyCommitCount": 1,
+          "personalCommitCount": 1,
+          "companyProjects": [
+            {
+              "name": "Wonik",
+              "count": 1,
+              "track": "회사"
+            }
+          ],
+          "personalProjects": [
+            {
+              "name": "work-snap-server",
+              "count": 1,
+              "track": "개인"
+            }
+          ],
+          "totalCommitCount": 2,
+          "intensityLevel": 2,
+          "companyIntensityLevel": 1,
+          "personalIntensityLevel": 1,
+          "hasActivity": true
         },
         {
           "date": "2025-08-22",
           "weekday": "Fri",
           "inRange": true,
-          "companyCommitCount": 0,
+          "companyCommitCount": 19,
           "personalCommitCount": 0,
-          "companyProjects": [],
+          "companyProjects": [
+            {
+              "name": "Wonik",
+              "count": 19,
+              "track": "회사"
+            }
+          ],
           "personalProjects": [],
-          "totalCommitCount": 0,
-          "intensityLevel": 0,
-          "companyIntensityLevel": 0,
+          "totalCommitCount": 19,
+          "intensityLevel": 4,
+          "companyIntensityLevel": 4,
           "personalIntensityLevel": 0,
-          "hasActivity": false
+          "hasActivity": true
         },
         {
           "date": "2025-08-23",
           "weekday": "Sat",
           "inRange": true,
-          "companyCommitCount": 0,
+          "companyCommitCount": 2,
           "personalCommitCount": 0,
-          "companyProjects": [],
+          "companyProjects": [
+            {
+              "name": "Wonik",
+              "count": 2,
+              "track": "회사"
+            }
+          ],
           "personalProjects": [],
-          "totalCommitCount": 0,
-          "intensityLevel": 0,
-          "companyIntensityLevel": 0,
+          "totalCommitCount": 2,
+          "intensityLevel": 2,
+          "companyIntensityLevel": 2,
           "personalIntensityLevel": 0,
-          "hasActivity": false
+          "hasActivity": true
         }
       ]
     },
@@ -2079,85 +2462,133 @@
           "date": "2025-08-24",
           "weekday": "Sun",
           "inRange": true,
-          "companyCommitCount": 0,
+          "companyCommitCount": 7,
           "personalCommitCount": 0,
-          "companyProjects": [],
+          "companyProjects": [
+            {
+              "name": "Wonik",
+              "count": 7,
+              "track": "회사"
+            }
+          ],
           "personalProjects": [],
-          "totalCommitCount": 0,
-          "intensityLevel": 0,
-          "companyIntensityLevel": 0,
+          "totalCommitCount": 7,
+          "intensityLevel": 4,
+          "companyIntensityLevel": 4,
           "personalIntensityLevel": 0,
-          "hasActivity": false
+          "hasActivity": true
         },
         {
           "date": "2025-08-25",
           "weekday": "Mon",
           "inRange": true,
-          "companyCommitCount": 0,
+          "companyCommitCount": 16,
           "personalCommitCount": 0,
-          "companyProjects": [],
+          "companyProjects": [
+            {
+              "name": "Wonik",
+              "count": 16,
+              "track": "회사"
+            }
+          ],
           "personalProjects": [],
-          "totalCommitCount": 0,
-          "intensityLevel": 0,
-          "companyIntensityLevel": 0,
+          "totalCommitCount": 16,
+          "intensityLevel": 4,
+          "companyIntensityLevel": 4,
           "personalIntensityLevel": 0,
-          "hasActivity": false
+          "hasActivity": true
         },
         {
           "date": "2025-08-26",
           "weekday": "Tue",
           "inRange": true,
-          "companyCommitCount": 0,
-          "personalCommitCount": 0,
-          "companyProjects": [],
-          "personalProjects": [],
-          "totalCommitCount": 0,
-          "intensityLevel": 0,
-          "companyIntensityLevel": 0,
-          "personalIntensityLevel": 0,
-          "hasActivity": false
+          "companyCommitCount": 4,
+          "personalCommitCount": 1,
+          "companyProjects": [
+            {
+              "name": "Wonik",
+              "count": 4,
+              "track": "회사"
+            }
+          ],
+          "personalProjects": [
+            {
+              "name": "work-snap-server",
+              "count": 1,
+              "track": "개인"
+            }
+          ],
+          "totalCommitCount": 5,
+          "intensityLevel": 3,
+          "companyIntensityLevel": 3,
+          "personalIntensityLevel": 1,
+          "hasActivity": true
         },
         {
           "date": "2025-08-27",
           "weekday": "Wed",
           "inRange": true,
-          "companyCommitCount": 0,
+          "companyCommitCount": 11,
           "personalCommitCount": 0,
-          "companyProjects": [],
+          "companyProjects": [
+            {
+              "name": "Wonik",
+              "count": 11,
+              "track": "회사"
+            }
+          ],
           "personalProjects": [],
-          "totalCommitCount": 0,
-          "intensityLevel": 0,
-          "companyIntensityLevel": 0,
+          "totalCommitCount": 11,
+          "intensityLevel": 4,
+          "companyIntensityLevel": 4,
           "personalIntensityLevel": 0,
-          "hasActivity": false
+          "hasActivity": true
         },
         {
           "date": "2025-08-28",
           "weekday": "Thu",
           "inRange": true,
-          "companyCommitCount": 0,
-          "personalCommitCount": 0,
-          "companyProjects": [],
-          "personalProjects": [],
-          "totalCommitCount": 0,
-          "intensityLevel": 0,
-          "companyIntensityLevel": 0,
-          "personalIntensityLevel": 0,
-          "hasActivity": false
+          "companyCommitCount": 20,
+          "personalCommitCount": 1,
+          "companyProjects": [
+            {
+              "name": "Wonik",
+              "count": 20,
+              "track": "회사"
+            }
+          ],
+          "personalProjects": [
+            {
+              "name": "베몽테스",
+              "count": 1,
+              "track": "개인"
+            }
+          ],
+          "totalCommitCount": 21,
+          "intensityLevel": 4,
+          "companyIntensityLevel": 4,
+          "personalIntensityLevel": 1,
+          "hasActivity": true
         },
         {
           "date": "2025-08-29",
           "weekday": "Fri",
           "inRange": true,
-          "companyCommitCount": 0,
+          "companyCommitCount": 8,
           "personalCommitCount": 0,
-          "companyProjects": [],
+          "companyProjects": [
+            {
+              "name": "Wonik",
+              "count": 8,
+              "track": "회사"
+            }
+          ],
           "personalProjects": [],
-          "totalCommitCount": 0,
-          "intensityLevel": 0,
-          "companyIntensityLevel": 0,
+          "totalCommitCount": 8,
+          "intensityLevel": 4,
+          "companyIntensityLevel": 4,
           "personalIntensityLevel": 0,
-          "hasActivity": false
+          "hasActivity": true
         },
         {
           "date": "2025-08-30",
@@ -2829,56 +3260,80 @@
           "weekday": "Tue",
           "inRange": true,
           "companyCommitCount": 0,
-          "personalCommitCount": 0,
+          "personalCommitCount": 2,
           "companyProjects": [],
-          "personalProjects": [],
-          "totalCommitCount": 0,
-          "intensityLevel": 0,
+          "personalProjects": [
+            {
+              "name": "work-snap-client",
+              "count": 2,
+              "track": "개인"
+            }
+          ],
+          "totalCommitCount": 2,
+          "intensityLevel": 2,
           "companyIntensityLevel": 0,
-          "personalIntensityLevel": 0,
-          "hasActivity": false
+          "personalIntensityLevel": 2,
+          "hasActivity": true
         },
         {
           "date": "2025-10-15",
           "weekday": "Wed",
           "inRange": true,
-          "companyCommitCount": 0,
+          "companyCommitCount": 1,
           "personalCommitCount": 0,
-          "companyProjects": [],
+          "companyProjects": [
+            {
+              "name": "Wonik",
+              "count": 1,
+              "track": "회사"
+            }
+          ],
           "personalProjects": [],
-          "totalCommitCount": 0,
-          "intensityLevel": 0,
-          "companyIntensityLevel": 0,
+          "totalCommitCount": 1,
+          "intensityLevel": 1,
+          "companyIntensityLevel": 1,
           "personalIntensityLevel": 0,
-          "hasActivity": false
+          "hasActivity": true
         },
         {
           "date": "2025-10-16",
           "weekday": "Thu",
           "inRange": true,
-          "companyCommitCount": 0,
+          "companyCommitCount": 3,
           "personalCommitCount": 0,
-          "companyProjects": [],
+          "companyProjects": [
+            {
+              "name": "Wonik",
+              "count": 3,
+              "track": "회사"
+            }
+          ],
           "personalProjects": [],
-          "totalCommitCount": 0,
-          "intensityLevel": 0,
-          "companyIntensityLevel": 0,
+          "totalCommitCount": 3,
+          "intensityLevel": 2,
+          "companyIntensityLevel": 2,
           "personalIntensityLevel": 0,
-          "hasActivity": false
+          "hasActivity": true
         },
         {
           "date": "2025-10-17",
           "weekday": "Fri",
           "inRange": true,
-          "companyCommitCount": 0,
+          "companyCommitCount": 10,
           "personalCommitCount": 0,
-          "companyProjects": [],
+          "companyProjects": [
+            {
+              "name": "Wonik",
+              "count": 10,
+              "track": "회사"
+            }
+          ],
           "personalProjects": [],
-          "totalCommitCount": 0,
-          "intensityLevel": 0,
-          "companyIntensityLevel": 0,
+          "totalCommitCount": 10,
+          "intensityLevel": 4,
+          "companyIntensityLevel": 4,
           "personalIntensityLevel": 0,
-          "hasActivity": false
+          "hasActivity": true
         },
         {
           "date": "2025-10-18",
@@ -2917,85 +3372,121 @@
           "date": "2025-10-20",
           "weekday": "Mon",
           "inRange": true,
-          "companyCommitCount": 0,
+          "companyCommitCount": 9,
           "personalCommitCount": 0,
-          "companyProjects": [],
+          "companyProjects": [
+            {
+              "name": "Wonik",
+              "count": 9,
+              "track": "회사"
+            }
+          ],
           "personalProjects": [],
-          "totalCommitCount": 0,
-          "intensityLevel": 0,
-          "companyIntensityLevel": 0,
+          "totalCommitCount": 9,
+          "intensityLevel": 4,
+          "companyIntensityLevel": 4,
           "personalIntensityLevel": 0,
-          "hasActivity": false
+          "hasActivity": true
         },
         {
           "date": "2025-10-21",
           "weekday": "Tue",
           "inRange": true,
-          "companyCommitCount": 0,
+          "companyCommitCount": 7,
           "personalCommitCount": 0,
-          "companyProjects": [],
+          "companyProjects": [
+            {
+              "name": "Wonik",
+              "count": 7,
+              "track": "회사"
+            }
+          ],
           "personalProjects": [],
-          "totalCommitCount": 0,
-          "intensityLevel": 0,
-          "companyIntensityLevel": 0,
+          "totalCommitCount": 7,
+          "intensityLevel": 4,
+          "companyIntensityLevel": 4,
           "personalIntensityLevel": 0,
-          "hasActivity": false
+          "hasActivity": true
         },
         {
           "date": "2025-10-22",
           "weekday": "Wed",
           "inRange": true,
-          "companyCommitCount": 0,
+          "companyCommitCount": 6,
           "personalCommitCount": 0,
-          "companyProjects": [],
+          "companyProjects": [
+            {
+              "name": "Wonik",
+              "count": 6,
+              "track": "회사"
+            }
+          ],
           "personalProjects": [],
-          "totalCommitCount": 0,
-          "intensityLevel": 0,
-          "companyIntensityLevel": 0,
+          "totalCommitCount": 6,
+          "intensityLevel": 3,
+          "companyIntensityLevel": 3,
           "personalIntensityLevel": 0,
-          "hasActivity": false
+          "hasActivity": true
         },
         {
           "date": "2025-10-23",
           "weekday": "Thu",
           "inRange": true,
-          "companyCommitCount": 0,
+          "companyCommitCount": 8,
           "personalCommitCount": 0,
-          "companyProjects": [],
+          "companyProjects": [
+            {
+              "name": "Wonik",
+              "count": 8,
+              "track": "회사"
+            }
+          ],
           "personalProjects": [],
-          "totalCommitCount": 0,
-          "intensityLevel": 0,
-          "companyIntensityLevel": 0,
+          "totalCommitCount": 8,
+          "intensityLevel": 4,
+          "companyIntensityLevel": 4,
           "personalIntensityLevel": 0,
-          "hasActivity": false
+          "hasActivity": true
         },
         {
           "date": "2025-10-24",
           "weekday": "Fri",
           "inRange": true,
-          "companyCommitCount": 0,
+          "companyCommitCount": 8,
           "personalCommitCount": 0,
-          "companyProjects": [],
+          "companyProjects": [
+            {
+              "name": "Wonik",
+              "count": 8,
+              "track": "회사"
+            }
+          ],
           "personalProjects": [],
-          "totalCommitCount": 0,
-          "intensityLevel": 0,
-          "companyIntensityLevel": 0,
+          "totalCommitCount": 8,
+          "intensityLevel": 4,
+          "companyIntensityLevel": 4,
           "personalIntensityLevel": 0,
-          "hasActivity": false
+          "hasActivity": true
         },
         {
           "date": "2025-10-25",
           "weekday": "Sat",
           "inRange": true,
-          "companyCommitCount": 0,
+          "companyCommitCount": 2,
           "personalCommitCount": 0,
-          "companyProjects": [],
+          "companyProjects": [
+            {
+              "name": "Wonik",
+              "count": 2,
+              "track": "회사"
+            }
+          ],
           "personalProjects": [],
-          "totalCommitCount": 0,
-          "intensityLevel": 0,
-          "companyIntensityLevel": 0,
+          "totalCommitCount": 2,
+          "intensityLevel": 2,
+          "companyIntensityLevel": 2,
           "personalIntensityLevel": 0,
-          "hasActivity": false
+          "hasActivity": true
         }
       ]
     },
@@ -3006,99 +3497,141 @@
           "date": "2025-10-26",
           "weekday": "Sun",
           "inRange": true,
-          "companyCommitCount": 0,
+          "companyCommitCount": 1,
           "personalCommitCount": 0,
-          "companyProjects": [],
+          "companyProjects": [
+            {
+              "name": "Wonik",
+              "count": 1,
+              "track": "회사"
+            }
+          ],
           "personalProjects": [],
-          "totalCommitCount": 0,
-          "intensityLevel": 0,
-          "companyIntensityLevel": 0,
+          "totalCommitCount": 1,
+          "intensityLevel": 1,
+          "companyIntensityLevel": 1,
           "personalIntensityLevel": 0,
-          "hasActivity": false
+          "hasActivity": true
         },
         {
           "date": "2025-10-27",
           "weekday": "Mon",
           "inRange": true,
-          "companyCommitCount": 0,
+          "companyCommitCount": 7,
           "personalCommitCount": 0,
-          "companyProjects": [],
+          "companyProjects": [
+            {
+              "name": "Wonik",
+              "count": 7,
+              "track": "회사"
+            }
+          ],
           "personalProjects": [],
-          "totalCommitCount": 0,
-          "intensityLevel": 0,
-          "companyIntensityLevel": 0,
+          "totalCommitCount": 7,
+          "intensityLevel": 4,
+          "companyIntensityLevel": 4,
           "personalIntensityLevel": 0,
-          "hasActivity": false
+          "hasActivity": true
         },
         {
           "date": "2025-10-28",
           "weekday": "Tue",
           "inRange": true,
-          "companyCommitCount": 0,
+          "companyCommitCount": 12,
           "personalCommitCount": 0,
-          "companyProjects": [],
+          "companyProjects": [
+            {
+              "name": "Wonik",
+              "count": 12,
+              "track": "회사"
+            }
+          ],
           "personalProjects": [],
-          "totalCommitCount": 0,
-          "intensityLevel": 0,
-          "companyIntensityLevel": 0,
+          "totalCommitCount": 12,
+          "intensityLevel": 4,
+          "companyIntensityLevel": 4,
           "personalIntensityLevel": 0,
-          "hasActivity": false
+          "hasActivity": true
         },
         {
           "date": "2025-10-29",
           "weekday": "Wed",
           "inRange": true,
-          "companyCommitCount": 0,
+          "companyCommitCount": 7,
           "personalCommitCount": 0,
-          "companyProjects": [],
+          "companyProjects": [
+            {
+              "name": "Wonik",
+              "count": 7,
+              "track": "회사"
+            }
+          ],
           "personalProjects": [],
-          "totalCommitCount": 0,
-          "intensityLevel": 0,
-          "companyIntensityLevel": 0,
+          "totalCommitCount": 7,
+          "intensityLevel": 4,
+          "companyIntensityLevel": 4,
           "personalIntensityLevel": 0,
-          "hasActivity": false
+          "hasActivity": true
         },
         {
           "date": "2025-10-30",
           "weekday": "Thu",
           "inRange": true,
-          "companyCommitCount": 0,
+          "companyCommitCount": 10,
           "personalCommitCount": 0,
-          "companyProjects": [],
+          "companyProjects": [
+            {
+              "name": "Wonik",
+              "count": 10,
+              "track": "회사"
+            }
+          ],
           "personalProjects": [],
-          "totalCommitCount": 0,
-          "intensityLevel": 0,
-          "companyIntensityLevel": 0,
+          "totalCommitCount": 10,
+          "intensityLevel": 4,
+          "companyIntensityLevel": 4,
           "personalIntensityLevel": 0,
-          "hasActivity": false
+          "hasActivity": true
         },
         {
           "date": "2025-10-31",
           "weekday": "Fri",
           "inRange": true,
-          "companyCommitCount": 0,
+          "companyCommitCount": 6,
           "personalCommitCount": 0,
-          "companyProjects": [],
+          "companyProjects": [
+            {
+              "name": "Wonik",
+              "count": 6,
+              "track": "회사"
+            }
+          ],
           "personalProjects": [],
-          "totalCommitCount": 0,
-          "intensityLevel": 0,
-          "companyIntensityLevel": 0,
+          "totalCommitCount": 6,
+          "intensityLevel": 3,
+          "companyIntensityLevel": 3,
           "personalIntensityLevel": 0,
-          "hasActivity": false
+          "hasActivity": true
         },
         {
           "date": "2025-11-01",
           "weekday": "Sat",
           "inRange": true,
-          "companyCommitCount": 0,
+          "companyCommitCount": 5,
           "personalCommitCount": 0,
-          "companyProjects": [],
+          "companyProjects": [
+            {
+              "name": "Wonik",
+              "count": 5,
+              "track": "회사"
+            }
+          ],
           "personalProjects": [],
-          "totalCommitCount": 0,
-          "intensityLevel": 0,
-          "companyIntensityLevel": 0,
+          "totalCommitCount": 5,
+          "intensityLevel": 3,
+          "companyIntensityLevel": 3,
           "personalIntensityLevel": 0,
-          "hasActivity": false
+          "hasActivity": true
         }
       ]
     },
@@ -3110,84 +3643,153 @@
           "weekday": "Sun",
           "inRange": true,
           "companyCommitCount": 0,
-          "personalCommitCount": 0,
+          "personalCommitCount": 6,
           "companyProjects": [],
-          "personalProjects": [],
-          "totalCommitCount": 0,
-          "intensityLevel": 0,
+          "personalProjects": [
+            {
+              "name": "work-snap-server",
+              "count": 4,
+              "track": "개인"
+            },
+            {
+              "name": "work-snap-app",
+              "count": 1,
+              "track": "개인"
+            },
+            {
+              "name": "work-snap-client",
+              "count": 1,
+              "track": "개인"
+            }
+          ],
+          "totalCommitCount": 6,
+          "intensityLevel": 3,
           "companyIntensityLevel": 0,
-          "personalIntensityLevel": 0,
-          "hasActivity": false
+          "personalIntensityLevel": 3,
+          "hasActivity": true
         },
         {
           "date": "2025-11-03",
           "weekday": "Mon",
           "inRange": true,
-          "companyCommitCount": 0,
+          "companyCommitCount": 13,
           "personalCommitCount": 0,
-          "companyProjects": [],
+          "companyProjects": [
+            {
+              "name": "Wonik",
+              "count": 13,
+              "track": "회사"
+            }
+          ],
           "personalProjects": [],
-          "totalCommitCount": 0,
-          "intensityLevel": 0,
-          "companyIntensityLevel": 0,
+          "totalCommitCount": 13,
+          "intensityLevel": 4,
+          "companyIntensityLevel": 4,
           "personalIntensityLevel": 0,
-          "hasActivity": false
+          "hasActivity": true
         },
         {
           "date": "2025-11-04",
           "weekday": "Tue",
           "inRange": true,
-          "companyCommitCount": 0,
-          "personalCommitCount": 0,
-          "companyProjects": [],
-          "personalProjects": [],
-          "totalCommitCount": 0,
-          "intensityLevel": 0,
-          "companyIntensityLevel": 0,
-          "personalIntensityLevel": 0,
-          "hasActivity": false
+          "companyCommitCount": 8,
+          "personalCommitCount": 2,
+          "companyProjects": [
+            {
+              "name": "Wonik",
+              "count": 8,
+              "track": "회사"
+            }
+          ],
+          "personalProjects": [
+            {
+              "name": "work-snap-server",
+              "count": 2,
+              "track": "개인"
+            }
+          ],
+          "totalCommitCount": 10,
+          "intensityLevel": 4,
+          "companyIntensityLevel": 4,
+          "personalIntensityLevel": 2,
+          "hasActivity": true
         },
         {
           "date": "2025-11-05",
           "weekday": "Wed",
           "inRange": true,
-          "companyCommitCount": 0,
-          "personalCommitCount": 0,
-          "companyProjects": [],
-          "personalProjects": [],
-          "totalCommitCount": 0,
-          "intensityLevel": 0,
-          "companyIntensityLevel": 0,
-          "personalIntensityLevel": 0,
-          "hasActivity": false
+          "companyCommitCount": 11,
+          "personalCommitCount": 1,
+          "companyProjects": [
+            {
+              "name": "Wonik",
+              "count": 9,
+              "track": "회사"
+            },
+            {
+              "name": "베몽테스",
+              "count": 2,
+              "track": "회사"
+            }
+          ],
+          "personalProjects": [
+            {
+              "name": "work-snap-client",
+              "count": 1,
+              "track": "개인"
+            }
+          ],
+          "totalCommitCount": 12,
+          "intensityLevel": 4,
+          "companyIntensityLevel": 4,
+          "personalIntensityLevel": 1,
+          "hasActivity": true
         },
         {
           "date": "2025-11-06",
           "weekday": "Thu",
           "inRange": true,
-          "companyCommitCount": 0,
-          "personalCommitCount": 0,
-          "companyProjects": [],
-          "personalProjects": [],
-          "totalCommitCount": 0,
-          "intensityLevel": 0,
-          "companyIntensityLevel": 0,
-          "personalIntensityLevel": 0,
-          "hasActivity": false
+          "companyCommitCount": 6,
+          "personalCommitCount": 2,
+          "companyProjects": [
+            {
+              "name": "Wonik",
+              "count": 6,
+              "track": "회사"
+            }
+          ],
+          "personalProjects": [
+            {
+              "name": "work-snap-server",
+              "count": 2,
+              "track": "개인"
+            }
+          ],
+          "totalCommitCount": 8,
+          "intensityLevel": 4,
+          "companyIntensityLevel": 3,
+          "personalIntensityLevel": 2,
+          "hasActivity": true
         },
         {
           "date": "2025-11-07",
           "weekday": "Fri",
           "inRange": true,
-          "companyCommitCount": 0,
+          "companyCommitCount": 11,
           "personalCommitCount": 0,
-          "companyProjects": [],
+          "companyProjects": [
+            {
+              "name": "Wonik",
+              "count": 11,
+              "track": "회사"
+            }
+          ],
           "personalProjects": [],
-          "totalCommitCount": 0,
-          "intensityLevel": 0,
-          "companyIntensityLevel": 0,
+          "totalCommitCount": 11,
+          "intensityLevel": 4,
+          "companyIntensityLevel": 4,
           "personalIntensityLevel": 0,
-          "hasActivity": false
+          "hasActivity": true
         },
         {
           "date": "2025-11-08",
@@ -3226,71 +3828,101 @@
           "date": "2025-11-10",
           "weekday": "Mon",
           "inRange": true,
-          "companyCommitCount": 0,
+          "companyCommitCount": 3,
           "personalCommitCount": 0,
-          "companyProjects": [],
+          "companyProjects": [
+            {
+              "name": "Wonik",
+              "count": 3,
+              "track": "회사"
+            }
+          ],
           "personalProjects": [],
-          "totalCommitCount": 0,
-          "intensityLevel": 0,
-          "companyIntensityLevel": 0,
+          "totalCommitCount": 3,
+          "intensityLevel": 2,
+          "companyIntensityLevel": 2,
           "personalIntensityLevel": 0,
-          "hasActivity": false
+          "hasActivity": true
         },
         {
           "date": "2025-11-11",
           "weekday": "Tue",
           "inRange": true,
-          "companyCommitCount": 0,
+          "companyCommitCount": 9,
           "personalCommitCount": 0,
-          "companyProjects": [],
+          "companyProjects": [
+            {
+              "name": "Wonik",
+              "count": 9,
+              "track": "회사"
+            }
+          ],
           "personalProjects": [],
-          "totalCommitCount": 0,
-          "intensityLevel": 0,
-          "companyIntensityLevel": 0,
+          "totalCommitCount": 9,
+          "intensityLevel": 4,
+          "companyIntensityLevel": 4,
           "personalIntensityLevel": 0,
-          "hasActivity": false
+          "hasActivity": true
         },
         {
           "date": "2025-11-12",
           "weekday": "Wed",
           "inRange": true,
-          "companyCommitCount": 0,
+          "companyCommitCount": 10,
           "personalCommitCount": 0,
-          "companyProjects": [],
+          "companyProjects": [
+            {
+              "name": "Wonik",
+              "count": 10,
+              "track": "회사"
+            }
+          ],
           "personalProjects": [],
-          "totalCommitCount": 0,
-          "intensityLevel": 0,
-          "companyIntensityLevel": 0,
+          "totalCommitCount": 10,
+          "intensityLevel": 4,
+          "companyIntensityLevel": 4,
           "personalIntensityLevel": 0,
-          "hasActivity": false
+          "hasActivity": true
         },
         {
           "date": "2025-11-13",
           "weekday": "Thu",
           "inRange": true,
-          "companyCommitCount": 0,
+          "companyCommitCount": 15,
           "personalCommitCount": 0,
-          "companyProjects": [],
+          "companyProjects": [
+            {
+              "name": "Wonik",
+              "count": 15,
+              "track": "회사"
+            }
+          ],
           "personalProjects": [],
-          "totalCommitCount": 0,
-          "intensityLevel": 0,
-          "companyIntensityLevel": 0,
+          "totalCommitCount": 15,
+          "intensityLevel": 4,
+          "companyIntensityLevel": 4,
           "personalIntensityLevel": 0,
-          "hasActivity": false
+          "hasActivity": true
         },
         {
           "date": "2025-11-14",
           "weekday": "Fri",
           "inRange": true,
-          "companyCommitCount": 0,
+          "companyCommitCount": 13,
           "personalCommitCount": 0,
-          "companyProjects": [],
+          "companyProjects": [
+            {
+              "name": "Wonik",
+              "count": 13,
+              "track": "회사"
+            }
+          ],
           "personalProjects": [],
-          "totalCommitCount": 0,
-          "intensityLevel": 0,
-          "companyIntensityLevel": 0,
+          "totalCommitCount": 13,
+          "intensityLevel": 4,
+          "companyIntensityLevel": 4,
           "personalIntensityLevel": 0,
-          "hasActivity": false
+          "hasActivity": true
         },
         {
           "date": "2025-11-15",
@@ -3315,99 +3947,172 @@
           "date": "2025-11-16",
           "weekday": "Sun",
           "inRange": true,
-          "companyCommitCount": 0,
+          "companyCommitCount": 3,
           "personalCommitCount": 0,
-          "companyProjects": [],
+          "companyProjects": [
+            {
+              "name": "Wonik",
+              "count": 3,
+              "track": "회사"
+            }
+          ],
           "personalProjects": [],
-          "totalCommitCount": 0,
-          "intensityLevel": 0,
-          "companyIntensityLevel": 0,
+          "totalCommitCount": 3,
+          "intensityLevel": 2,
+          "companyIntensityLevel": 2,
           "personalIntensityLevel": 0,
-          "hasActivity": false
+          "hasActivity": true
         },
         {
           "date": "2025-11-17",
           "weekday": "Mon",
           "inRange": true,
-          "companyCommitCount": 0,
+          "companyCommitCount": 15,
           "personalCommitCount": 0,
-          "companyProjects": [],
+          "companyProjects": [
+            {
+              "name": "bridgeui-client",
+              "count": 14,
+              "track": "회사"
+            },
+            {
+              "name": "Wonik",
+              "count": 1,
+              "track": "회사"
+            }
+          ],
           "personalProjects": [],
-          "totalCommitCount": 0,
-          "intensityLevel": 0,
-          "companyIntensityLevel": 0,
+          "totalCommitCount": 15,
+          "intensityLevel": 4,
+          "companyIntensityLevel": 4,
           "personalIntensityLevel": 0,
-          "hasActivity": false
+          "hasActivity": true
         },
         {
           "date": "2025-11-18",
           "weekday": "Tue",
           "inRange": true,
-          "companyCommitCount": 0,
+          "companyCommitCount": 15,
           "personalCommitCount": 0,
-          "companyProjects": [],
+          "companyProjects": [
+            {
+              "name": "Wonik",
+              "count": 10,
+              "track": "회사"
+            },
+            {
+              "name": "bridgeui-client",
+              "count": 5,
+              "track": "회사"
+            }
+          ],
           "personalProjects": [],
-          "totalCommitCount": 0,
-          "intensityLevel": 0,
-          "companyIntensityLevel": 0,
+          "totalCommitCount": 15,
+          "intensityLevel": 4,
+          "companyIntensityLevel": 4,
           "personalIntensityLevel": 0,
-          "hasActivity": false
+          "hasActivity": true
         },
         {
           "date": "2025-11-19",
           "weekday": "Wed",
           "inRange": true,
-          "companyCommitCount": 0,
+          "companyCommitCount": 15,
           "personalCommitCount": 0,
-          "companyProjects": [],
+          "companyProjects": [
+            {
+              "name": "bridgeui-client",
+              "count": 10,
+              "track": "회사"
+            },
+            {
+              "name": "Wonik",
+              "count": 5,
+              "track": "회사"
+            }
+          ],
           "personalProjects": [],
-          "totalCommitCount": 0,
-          "intensityLevel": 0,
-          "companyIntensityLevel": 0,
+          "totalCommitCount": 15,
+          "intensityLevel": 4,
+          "companyIntensityLevel": 4,
           "personalIntensityLevel": 0,
-          "hasActivity": false
+          "hasActivity": true
         },
         {
           "date": "2025-11-20",
           "weekday": "Thu",
           "inRange": true,
-          "companyCommitCount": 0,
+          "companyCommitCount": 5,
           "personalCommitCount": 0,
-          "companyProjects": [],
+          "companyProjects": [
+            {
+              "name": "Wonik",
+              "count": 3,
+              "track": "회사"
+            },
+            {
+              "name": "bridgeui-client",
+              "count": 2,
+              "track": "회사"
+            }
+          ],
           "personalProjects": [],
-          "totalCommitCount": 0,
-          "intensityLevel": 0,
-          "companyIntensityLevel": 0,
+          "totalCommitCount": 5,
+          "intensityLevel": 3,
+          "companyIntensityLevel": 3,
           "personalIntensityLevel": 0,
-          "hasActivity": false
+          "hasActivity": true
         },
         {
           "date": "2025-11-21",
           "weekday": "Fri",
           "inRange": true,
-          "companyCommitCount": 0,
+          "companyCommitCount": 14,
           "personalCommitCount": 0,
-          "companyProjects": [],
+          "companyProjects": [
+            {
+              "name": "bridgeui-client",
+              "count": 11,
+              "track": "회사"
+            },
+            {
+              "name": "Wonik",
+              "count": 3,
+              "track": "회사"
+            }
+          ],
           "personalProjects": [],
-          "totalCommitCount": 0,
-          "intensityLevel": 0,
-          "companyIntensityLevel": 0,
+          "totalCommitCount": 14,
+          "intensityLevel": 4,
+          "companyIntensityLevel": 4,
           "personalIntensityLevel": 0,
-          "hasActivity": false
+          "hasActivity": true
         },
         {
           "date": "2025-11-22",
           "weekday": "Sat",
           "inRange": true,
-          "companyCommitCount": 0,
-          "personalCommitCount": 0,
-          "companyProjects": [],
-          "personalProjects": [],
-          "totalCommitCount": 0,
-          "intensityLevel": 0,
-          "companyIntensityLevel": 0,
-          "personalIntensityLevel": 0,
-          "hasActivity": false
+          "companyCommitCount": 6,
+          "personalCommitCount": 2,
+          "companyProjects": [
+            {
+              "name": "bridgeui-client",
+              "count": 6,
+              "track": "회사"
+            }
+          ],
+          "personalProjects": [
+            {
+              "name": "bridgeui-client",
+              "count": 2,
+              "track": "개인"
+            }
+          ],
+          "totalCommitCount": 8,
+          "intensityLevel": 4,
+          "companyIntensityLevel": 3,
+          "personalIntensityLevel": 2,
+          "hasActivity": true
         }
       ]
     },
@@ -3418,99 +4123,146 @@
           "date": "2025-11-23",
           "weekday": "Sun",
           "inRange": true,
-          "companyCommitCount": 0,
+          "companyCommitCount": 25,
           "personalCommitCount": 0,
-          "companyProjects": [],
+          "companyProjects": [
+            {
+              "name": "bridgeui-client",
+              "count": 25,
+              "track": "회사"
+            }
+          ],
           "personalProjects": [],
-          "totalCommitCount": 0,
-          "intensityLevel": 0,
-          "companyIntensityLevel": 0,
+          "totalCommitCount": 25,
+          "intensityLevel": 4,
+          "companyIntensityLevel": 4,
           "personalIntensityLevel": 0,
-          "hasActivity": false
+          "hasActivity": true
         },
         {
           "date": "2025-11-24",
           "weekday": "Mon",
           "inRange": true,
-          "companyCommitCount": 0,
+          "companyCommitCount": 1,
           "personalCommitCount": 0,
-          "companyProjects": [],
+          "companyProjects": [
+            {
+              "name": "bridgeui-client",
+              "count": 1,
+              "track": "회사"
+            }
+          ],
           "personalProjects": [],
-          "totalCommitCount": 0,
-          "intensityLevel": 0,
-          "companyIntensityLevel": 0,
+          "totalCommitCount": 1,
+          "intensityLevel": 1,
+          "companyIntensityLevel": 1,
           "personalIntensityLevel": 0,
-          "hasActivity": false
+          "hasActivity": true
         },
         {
           "date": "2025-11-25",
           "weekday": "Tue",
           "inRange": true,
-          "companyCommitCount": 0,
+          "companyCommitCount": 4,
           "personalCommitCount": 0,
-          "companyProjects": [],
+          "companyProjects": [
+            {
+              "name": "bridgeui-client",
+              "count": 4,
+              "track": "회사"
+            }
+          ],
           "personalProjects": [],
-          "totalCommitCount": 0,
-          "intensityLevel": 0,
-          "companyIntensityLevel": 0,
+          "totalCommitCount": 4,
+          "intensityLevel": 3,
+          "companyIntensityLevel": 3,
           "personalIntensityLevel": 0,
-          "hasActivity": false
+          "hasActivity": true
         },
         {
           "date": "2025-11-26",
           "weekday": "Wed",
           "inRange": true,
-          "companyCommitCount": 0,
+          "companyCommitCount": 4,
           "personalCommitCount": 0,
-          "companyProjects": [],
+          "companyProjects": [
+            {
+              "name": "bridgeui-client",
+              "count": 4,
+              "track": "회사"
+            }
+          ],
           "personalProjects": [],
-          "totalCommitCount": 0,
-          "intensityLevel": 0,
-          "companyIntensityLevel": 0,
+          "totalCommitCount": 4,
+          "intensityLevel": 3,
+          "companyIntensityLevel": 3,
           "personalIntensityLevel": 0,
-          "hasActivity": false
+          "hasActivity": true
         },
         {
           "date": "2025-11-27",
           "weekday": "Thu",
           "inRange": true,
-          "companyCommitCount": 0,
+          "companyCommitCount": 2,
           "personalCommitCount": 0,
-          "companyProjects": [],
+          "companyProjects": [
+            {
+              "name": "bridgeui-client",
+              "count": 2,
+              "track": "회사"
+            }
+          ],
           "personalProjects": [],
-          "totalCommitCount": 0,
-          "intensityLevel": 0,
-          "companyIntensityLevel": 0,
+          "totalCommitCount": 2,
+          "intensityLevel": 2,
+          "companyIntensityLevel": 2,
           "personalIntensityLevel": 0,
-          "hasActivity": false
+          "hasActivity": true
         },
         {
           "date": "2025-11-28",
           "weekday": "Fri",
           "inRange": true,
-          "companyCommitCount": 0,
+          "companyCommitCount": 16,
           "personalCommitCount": 0,
-          "companyProjects": [],
+          "companyProjects": [
+            {
+              "name": "Wonik",
+              "count": 13,
+              "track": "회사"
+            },
+            {
+              "name": "bridgeui-client",
+              "count": 3,
+              "track": "회사"
+            }
+          ],
           "personalProjects": [],
-          "totalCommitCount": 0,
-          "intensityLevel": 0,
-          "companyIntensityLevel": 0,
+          "totalCommitCount": 16,
+          "intensityLevel": 4,
+          "companyIntensityLevel": 4,
           "personalIntensityLevel": 0,
-          "hasActivity": false
+          "hasActivity": true
         },
         {
           "date": "2025-11-29",
           "weekday": "Sat",
           "inRange": true,
-          "companyCommitCount": 0,
+          "companyCommitCount": 1,
           "personalCommitCount": 0,
-          "companyProjects": [],
+          "companyProjects": [
+            {
+              "name": "Wonik",
+              "count": 1,
+              "track": "회사"
+            }
+          ],
           "personalProjects": [],
-          "totalCommitCount": 0,
-          "intensityLevel": 0,
-          "companyIntensityLevel": 0,
+          "totalCommitCount": 1,
+          "intensityLevel": 1,
+          "companyIntensityLevel": 1,
           "personalIntensityLevel": 0,
-          "hasActivity": false
+          "hasActivity": true
         }
       ]
     },
@@ -3521,15 +4273,21 @@
           "date": "2025-11-30",
           "weekday": "Sun",
           "inRange": true,
-          "companyCommitCount": 0,
+          "companyCommitCount": 3,
           "personalCommitCount": 0,
-          "companyProjects": [],
+          "companyProjects": [
+            {
+              "name": "Wonik",
+              "count": 3,
+              "track": "회사"
+            }
+          ],
           "personalProjects": [],
-          "totalCommitCount": 0,
-          "intensityLevel": 0,
-          "companyIntensityLevel": 0,
+          "totalCommitCount": 3,
+          "intensityLevel": 2,
+          "companyIntensityLevel": 2,
           "personalIntensityLevel": 0,
-          "hasActivity": false
+          "hasActivity": true
         },
         {
           "date": "2025-12-01",
@@ -3549,15 +4307,21 @@
           "date": "2025-12-02",
           "weekday": "Tue",
           "inRange": true,
-          "companyCommitCount": 0,
+          "companyCommitCount": 4,
           "personalCommitCount": 0,
-          "companyProjects": [],
+          "companyProjects": [
+            {
+              "name": "Wonik",
+              "count": 4,
+              "track": "회사"
+            }
+          ],
           "personalProjects": [],
-          "totalCommitCount": 0,
-          "intensityLevel": 0,
-          "companyIntensityLevel": 0,
+          "totalCommitCount": 4,
+          "intensityLevel": 3,
+          "companyIntensityLevel": 3,
           "personalIntensityLevel": 0,
-          "hasActivity": false
+          "hasActivity": true
         },
         {
           "date": "2025-12-03",
@@ -3577,29 +4341,41 @@
           "date": "2025-12-04",
           "weekday": "Thu",
           "inRange": true,
-          "companyCommitCount": 0,
+          "companyCommitCount": 7,
           "personalCommitCount": 0,
-          "companyProjects": [],
+          "companyProjects": [
+            {
+              "name": "Wonik",
+              "count": 7,
+              "track": "회사"
+            }
+          ],
           "personalProjects": [],
-          "totalCommitCount": 0,
-          "intensityLevel": 0,
-          "companyIntensityLevel": 0,
+          "totalCommitCount": 7,
+          "intensityLevel": 4,
+          "companyIntensityLevel": 4,
           "personalIntensityLevel": 0,
-          "hasActivity": false
+          "hasActivity": true
         },
         {
           "date": "2025-12-05",
           "weekday": "Fri",
           "inRange": true,
-          "companyCommitCount": 0,
+          "companyCommitCount": 6,
           "personalCommitCount": 0,
-          "companyProjects": [],
+          "companyProjects": [
+            {
+              "name": "Wonik",
+              "count": 6,
+              "track": "회사"
+            }
+          ],
           "personalProjects": [],
-          "totalCommitCount": 0,
-          "intensityLevel": 0,
-          "companyIntensityLevel": 0,
+          "totalCommitCount": 6,
+          "intensityLevel": 3,
+          "companyIntensityLevel": 3,
           "personalIntensityLevel": 0,
-          "hasActivity": false
+          "hasActivity": true
         },
         {
           "date": "2025-12-06",
@@ -3638,71 +4414,101 @@
           "date": "2025-12-08",
           "weekday": "Mon",
           "inRange": true,
-          "companyCommitCount": 0,
+          "companyCommitCount": 1,
           "personalCommitCount": 0,
-          "companyProjects": [],
+          "companyProjects": [
+            {
+              "name": "Wonik",
+              "count": 1,
+              "track": "회사"
+            }
+          ],
           "personalProjects": [],
-          "totalCommitCount": 0,
-          "intensityLevel": 0,
-          "companyIntensityLevel": 0,
+          "totalCommitCount": 1,
+          "intensityLevel": 1,
+          "companyIntensityLevel": 1,
           "personalIntensityLevel": 0,
-          "hasActivity": false
+          "hasActivity": true
         },
         {
           "date": "2025-12-09",
           "weekday": "Tue",
           "inRange": true,
-          "companyCommitCount": 0,
+          "companyCommitCount": 12,
           "personalCommitCount": 0,
-          "companyProjects": [],
+          "companyProjects": [
+            {
+              "name": "Wonik",
+              "count": 12,
+              "track": "회사"
+            }
+          ],
           "personalProjects": [],
-          "totalCommitCount": 0,
-          "intensityLevel": 0,
-          "companyIntensityLevel": 0,
+          "totalCommitCount": 12,
+          "intensityLevel": 4,
+          "companyIntensityLevel": 4,
           "personalIntensityLevel": 0,
-          "hasActivity": false
+          "hasActivity": true
         },
         {
           "date": "2025-12-10",
           "weekday": "Wed",
           "inRange": true,
-          "companyCommitCount": 0,
+          "companyCommitCount": 9,
           "personalCommitCount": 0,
-          "companyProjects": [],
+          "companyProjects": [
+            {
+              "name": "Wonik",
+              "count": 9,
+              "track": "회사"
+            }
+          ],
           "personalProjects": [],
-          "totalCommitCount": 0,
-          "intensityLevel": 0,
-          "companyIntensityLevel": 0,
+          "totalCommitCount": 9,
+          "intensityLevel": 4,
+          "companyIntensityLevel": 4,
           "personalIntensityLevel": 0,
-          "hasActivity": false
+          "hasActivity": true
         },
         {
           "date": "2025-12-11",
           "weekday": "Thu",
           "inRange": true,
-          "companyCommitCount": 0,
+          "companyCommitCount": 14,
           "personalCommitCount": 0,
-          "companyProjects": [],
+          "companyProjects": [
+            {
+              "name": "Wonik",
+              "count": 14,
+              "track": "회사"
+            }
+          ],
           "personalProjects": [],
-          "totalCommitCount": 0,
-          "intensityLevel": 0,
-          "companyIntensityLevel": 0,
+          "totalCommitCount": 14,
+          "intensityLevel": 4,
+          "companyIntensityLevel": 4,
           "personalIntensityLevel": 0,
-          "hasActivity": false
+          "hasActivity": true
         },
         {
           "date": "2025-12-12",
           "weekday": "Fri",
           "inRange": true,
-          "companyCommitCount": 0,
+          "companyCommitCount": 17,
           "personalCommitCount": 0,
-          "companyProjects": [],
+          "companyProjects": [
+            {
+              "name": "Wonik",
+              "count": 17,
+              "track": "회사"
+            }
+          ],
           "personalProjects": [],
-          "totalCommitCount": 0,
-          "intensityLevel": 0,
-          "companyIntensityLevel": 0,
+          "totalCommitCount": 17,
+          "intensityLevel": 4,
+          "companyIntensityLevel": 4,
           "personalIntensityLevel": 0,
-          "hasActivity": false
+          "hasActivity": true
         },
         {
           "date": "2025-12-13",
@@ -3741,71 +4547,101 @@
           "date": "2025-12-15",
           "weekday": "Mon",
           "inRange": true,
-          "companyCommitCount": 0,
+          "companyCommitCount": 18,
           "personalCommitCount": 0,
-          "companyProjects": [],
+          "companyProjects": [
+            {
+              "name": "Wonik",
+              "count": 18,
+              "track": "회사"
+            }
+          ],
           "personalProjects": [],
-          "totalCommitCount": 0,
-          "intensityLevel": 0,
-          "companyIntensityLevel": 0,
+          "totalCommitCount": 18,
+          "intensityLevel": 4,
+          "companyIntensityLevel": 4,
           "personalIntensityLevel": 0,
-          "hasActivity": false
+          "hasActivity": true
         },
         {
           "date": "2025-12-16",
           "weekday": "Tue",
           "inRange": true,
-          "companyCommitCount": 0,
+          "companyCommitCount": 14,
           "personalCommitCount": 0,
-          "companyProjects": [],
+          "companyProjects": [
+            {
+              "name": "Wonik",
+              "count": 14,
+              "track": "회사"
+            }
+          ],
           "personalProjects": [],
-          "totalCommitCount": 0,
-          "intensityLevel": 0,
-          "companyIntensityLevel": 0,
+          "totalCommitCount": 14,
+          "intensityLevel": 4,
+          "companyIntensityLevel": 4,
           "personalIntensityLevel": 0,
-          "hasActivity": false
+          "hasActivity": true
         },
         {
           "date": "2025-12-17",
           "weekday": "Wed",
           "inRange": true,
-          "companyCommitCount": 0,
+          "companyCommitCount": 16,
           "personalCommitCount": 0,
-          "companyProjects": [],
+          "companyProjects": [
+            {
+              "name": "Wonik",
+              "count": 16,
+              "track": "회사"
+            }
+          ],
           "personalProjects": [],
-          "totalCommitCount": 0,
-          "intensityLevel": 0,
-          "companyIntensityLevel": 0,
+          "totalCommitCount": 16,
+          "intensityLevel": 4,
+          "companyIntensityLevel": 4,
           "personalIntensityLevel": 0,
-          "hasActivity": false
+          "hasActivity": true
         },
         {
           "date": "2025-12-18",
           "weekday": "Thu",
           "inRange": true,
-          "companyCommitCount": 0,
+          "companyCommitCount": 12,
           "personalCommitCount": 0,
-          "companyProjects": [],
+          "companyProjects": [
+            {
+              "name": "Wonik",
+              "count": 12,
+              "track": "회사"
+            }
+          ],
           "personalProjects": [],
-          "totalCommitCount": 0,
-          "intensityLevel": 0,
-          "companyIntensityLevel": 0,
+          "totalCommitCount": 12,
+          "intensityLevel": 4,
+          "companyIntensityLevel": 4,
           "personalIntensityLevel": 0,
-          "hasActivity": false
+          "hasActivity": true
         },
         {
           "date": "2025-12-19",
           "weekday": "Fri",
           "inRange": true,
-          "companyCommitCount": 0,
+          "companyCommitCount": 12,
           "personalCommitCount": 0,
-          "companyProjects": [],
+          "companyProjects": [
+            {
+              "name": "Wonik",
+              "count": 12,
+              "track": "회사"
+            }
+          ],
           "personalProjects": [],
-          "totalCommitCount": 0,
-          "intensityLevel": 0,
-          "companyIntensityLevel": 0,
+          "totalCommitCount": 12,
+          "intensityLevel": 4,
+          "companyIntensityLevel": 4,
           "personalIntensityLevel": 0,
-          "hasActivity": false
+          "hasActivity": true
         },
         {
           "date": "2025-12-20",
@@ -3844,29 +4680,41 @@
           "date": "2025-12-22",
           "weekday": "Mon",
           "inRange": true,
-          "companyCommitCount": 0,
+          "companyCommitCount": 3,
           "personalCommitCount": 0,
-          "companyProjects": [],
+          "companyProjects": [
+            {
+              "name": "Wonik",
+              "count": 3,
+              "track": "회사"
+            }
+          ],
           "personalProjects": [],
-          "totalCommitCount": 0,
-          "intensityLevel": 0,
-          "companyIntensityLevel": 0,
+          "totalCommitCount": 3,
+          "intensityLevel": 2,
+          "companyIntensityLevel": 2,
           "personalIntensityLevel": 0,
-          "hasActivity": false
+          "hasActivity": true
         },
         {
           "date": "2025-12-23",
           "weekday": "Tue",
           "inRange": true,
-          "companyCommitCount": 0,
+          "companyCommitCount": 1,
           "personalCommitCount": 0,
-          "companyProjects": [],
+          "companyProjects": [
+            {
+              "name": "Wonik",
+              "count": 1,
+              "track": "회사"
+            }
+          ],
           "personalProjects": [],
-          "totalCommitCount": 0,
-          "intensityLevel": 0,
-          "companyIntensityLevel": 0,
+          "totalCommitCount": 1,
+          "intensityLevel": 1,
+          "companyIntensityLevel": 1,
           "personalIntensityLevel": 0,
-          "hasActivity": false
+          "hasActivity": true
         },
         {
           "date": "2025-12-24",
@@ -3900,15 +4748,26 @@
           "date": "2025-12-26",
           "weekday": "Fri",
           "inRange": true,
-          "companyCommitCount": 0,
+          "companyCommitCount": 2,
           "personalCommitCount": 0,
-          "companyProjects": [],
+          "companyProjects": [
+            {
+              "name": "Wonik",
+              "count": 1,
+              "track": "회사"
+            },
+            {
+              "name": "bridgeui-client",
+              "count": 1,
+              "track": "회사"
+            }
+          ],
           "personalProjects": [],
-          "totalCommitCount": 0,
-          "intensityLevel": 0,
-          "companyIntensityLevel": 0,
+          "totalCommitCount": 2,
+          "intensityLevel": 2,
+          "companyIntensityLevel": 2,
           "personalIntensityLevel": 0,
-          "hasActivity": false
+          "hasActivity": true
         },
         {
           "date": "2025-12-27",
@@ -3947,15 +4806,21 @@
           "date": "2025-12-29",
           "weekday": "Mon",
           "inRange": true,
-          "companyCommitCount": 0,
+          "companyCommitCount": 2,
           "personalCommitCount": 0,
-          "companyProjects": [],
+          "companyProjects": [
+            {
+              "name": "bridgeui-client",
+              "count": 2,
+              "track": "회사"
+            }
+          ],
           "personalProjects": [],
-          "totalCommitCount": 0,
-          "intensityLevel": 0,
-          "companyIntensityLevel": 0,
+          "totalCommitCount": 2,
+          "intensityLevel": 2,
+          "companyIntensityLevel": 2,
           "personalIntensityLevel": 0,
-          "hasActivity": false
+          "hasActivity": true
         },
         {
           "date": "2025-12-30",
@@ -3975,15 +4840,21 @@
           "date": "2025-12-31",
           "weekday": "Wed",
           "inRange": true,
-          "companyCommitCount": 0,
+          "companyCommitCount": 12,
           "personalCommitCount": 0,
-          "companyProjects": [],
+          "companyProjects": [
+            {
+              "name": "Wonik",
+              "count": 12,
+              "track": "회사"
+            }
+          ],
           "personalProjects": [],
-          "totalCommitCount": 0,
-          "intensityLevel": 0,
-          "companyIntensityLevel": 0,
+          "totalCommitCount": 12,
+          "intensityLevel": 4,
+          "companyIntensityLevel": 4,
           "personalIntensityLevel": 0,
-          "hasActivity": false
+          "hasActivity": true
         },
         {
           "date": "2026-01-01",
@@ -4003,15 +4874,21 @@
           "date": "2026-01-02",
           "weekday": "Fri",
           "inRange": true,
-          "companyCommitCount": 0,
+          "companyCommitCount": 13,
           "personalCommitCount": 0,
-          "companyProjects": [],
+          "companyProjects": [
+            {
+              "name": "Wonik",
+              "count": 13,
+              "track": "회사"
+            }
+          ],
           "personalProjects": [],
-          "totalCommitCount": 0,
-          "intensityLevel": 0,
-          "companyIntensityLevel": 0,
+          "totalCommitCount": 13,
+          "intensityLevel": 4,
+          "companyIntensityLevel": 4,
           "personalIntensityLevel": 0,
-          "hasActivity": false
+          "hasActivity": true
         },
         {
           "date": "2026-01-03",
@@ -4036,23 +4913,34 @@
           "date": "2026-01-04",
           "weekday": "Sun",
           "inRange": true,
-          "companyCommitCount": 0,
+          "companyCommitCount": 1,
           "personalCommitCount": 0,
-          "companyProjects": [],
+          "companyProjects": [
+            {
+              "name": "Wonik",
+              "count": 1,
+              "track": "회사"
+            }
+          ],
           "personalProjects": [],
-          "totalCommitCount": 0,
-          "intensityLevel": 0,
-          "companyIntensityLevel": 0,
+          "totalCommitCount": 1,
+          "intensityLevel": 1,
+          "companyIntensityLevel": 1,
           "personalIntensityLevel": 0,
-          "hasActivity": false
+          "hasActivity": true
         },
         {
           "date": "2026-01-05",
           "weekday": "Mon",
           "inRange": true,
-          "companyCommitCount": 4,
+          "companyCommitCount": 9,
           "personalCommitCount": 0,
           "companyProjects": [
+            {
+              "name": "Wonik",
+              "count": 5,
+              "track": "회사"
+            },
             {
               "name": "아이엠파인",
               "count": 4,
@@ -4060,9 +4948,9 @@
             }
           ],
           "personalProjects": [],
-          "totalCommitCount": 4,
-          "intensityLevel": 3,
-          "companyIntensityLevel": 3,
+          "totalCommitCount": 9,
+          "intensityLevel": 4,
+          "companyIntensityLevel": 4,
           "personalIntensityLevel": 0,
           "hasActivity": true
         },
@@ -4070,39 +4958,31 @@
           "date": "2026-01-06",
           "weekday": "Tue",
           "inRange": true,
-          "companyCommitCount": 0,
+          "companyCommitCount": 1,
           "personalCommitCount": 0,
-          "companyProjects": [],
+          "companyProjects": [
+            {
+              "name": "Wonik",
+              "count": 1,
+              "track": "회사"
+            }
+          ],
           "personalProjects": [],
-          "totalCommitCount": 0,
-          "intensityLevel": 0,
-          "companyIntensityLevel": 0,
+          "totalCommitCount": 1,
+          "intensityLevel": 1,
+          "companyIntensityLevel": 1,
           "personalIntensityLevel": 0,
-          "hasActivity": false
+          "hasActivity": true
         },
         {
           "date": "2026-01-07",
           "weekday": "Wed",
           "inRange": true,
-          "companyCommitCount": 0,
-          "personalCommitCount": 0,
-          "companyProjects": [],
-          "personalProjects": [],
-          "totalCommitCount": 0,
-          "intensityLevel": 0,
-          "companyIntensityLevel": 0,
-          "personalIntensityLevel": 0,
-          "hasActivity": false
-        },
-        {
-          "date": "2026-01-08",
-          "weekday": "Thu",
-          "inRange": true,
           "companyCommitCount": 2,
           "personalCommitCount": 0,
           "companyProjects": [
             {
-              "name": "아이엠파인",
+              "name": "Wonik",
               "count": 2,
               "track": "회사"
             }
@@ -4115,32 +4995,69 @@
           "hasActivity": true
         },
         {
+          "date": "2026-01-08",
+          "weekday": "Thu",
+          "inRange": true,
+          "companyCommitCount": 5,
+          "personalCommitCount": 0,
+          "companyProjects": [
+            {
+              "name": "Wonik",
+              "count": 3,
+              "track": "회사"
+            },
+            {
+              "name": "아이엠파인",
+              "count": 2,
+              "track": "회사"
+            }
+          ],
+          "personalProjects": [],
+          "totalCommitCount": 5,
+          "intensityLevel": 3,
+          "companyIntensityLevel": 3,
+          "personalIntensityLevel": 0,
+          "hasActivity": true
+        },
+        {
           "date": "2026-01-09",
           "weekday": "Fri",
           "inRange": true,
-          "companyCommitCount": 0,
+          "companyCommitCount": 10,
           "personalCommitCount": 0,
-          "companyProjects": [],
+          "companyProjects": [
+            {
+              "name": "Wonik",
+              "count": 10,
+              "track": "회사"
+            }
+          ],
           "personalProjects": [],
-          "totalCommitCount": 0,
-          "intensityLevel": 0,
-          "companyIntensityLevel": 0,
+          "totalCommitCount": 10,
+          "intensityLevel": 4,
+          "companyIntensityLevel": 4,
           "personalIntensityLevel": 0,
-          "hasActivity": false
+          "hasActivity": true
         },
         {
           "date": "2026-01-10",
           "weekday": "Sat",
           "inRange": true,
-          "companyCommitCount": 0,
+          "companyCommitCount": 5,
           "personalCommitCount": 0,
-          "companyProjects": [],
+          "companyProjects": [
+            {
+              "name": "Wonik",
+              "count": 5,
+              "track": "회사"
+            }
+          ],
           "personalProjects": [],
-          "totalCommitCount": 0,
-          "intensityLevel": 0,
-          "companyIntensityLevel": 0,
+          "totalCommitCount": 5,
+          "intensityLevel": 3,
+          "companyIntensityLevel": 3,
           "personalIntensityLevel": 0,
-          "hasActivity": false
+          "hasActivity": true
         }
       ]
     },
@@ -4151,99 +5068,141 @@
           "date": "2026-01-11",
           "weekday": "Sun",
           "inRange": true,
-          "companyCommitCount": 0,
+          "companyCommitCount": 2,
           "personalCommitCount": 0,
-          "companyProjects": [],
+          "companyProjects": [
+            {
+              "name": "Wonik",
+              "count": 2,
+              "track": "회사"
+            }
+          ],
           "personalProjects": [],
-          "totalCommitCount": 0,
-          "intensityLevel": 0,
-          "companyIntensityLevel": 0,
+          "totalCommitCount": 2,
+          "intensityLevel": 2,
+          "companyIntensityLevel": 2,
           "personalIntensityLevel": 0,
-          "hasActivity": false
+          "hasActivity": true
         },
         {
           "date": "2026-01-12",
           "weekday": "Mon",
           "inRange": true,
-          "companyCommitCount": 0,
+          "companyCommitCount": 7,
           "personalCommitCount": 0,
-          "companyProjects": [],
+          "companyProjects": [
+            {
+              "name": "Wonik",
+              "count": 7,
+              "track": "회사"
+            }
+          ],
           "personalProjects": [],
-          "totalCommitCount": 0,
-          "intensityLevel": 0,
-          "companyIntensityLevel": 0,
+          "totalCommitCount": 7,
+          "intensityLevel": 4,
+          "companyIntensityLevel": 4,
           "personalIntensityLevel": 0,
-          "hasActivity": false
+          "hasActivity": true
         },
         {
           "date": "2026-01-13",
           "weekday": "Tue",
           "inRange": true,
-          "companyCommitCount": 0,
+          "companyCommitCount": 14,
           "personalCommitCount": 0,
-          "companyProjects": [],
+          "companyProjects": [
+            {
+              "name": "Wonik",
+              "count": 14,
+              "track": "회사"
+            }
+          ],
           "personalProjects": [],
-          "totalCommitCount": 0,
-          "intensityLevel": 0,
-          "companyIntensityLevel": 0,
+          "totalCommitCount": 14,
+          "intensityLevel": 4,
+          "companyIntensityLevel": 4,
           "personalIntensityLevel": 0,
-          "hasActivity": false
+          "hasActivity": true
         },
         {
           "date": "2026-01-14",
           "weekday": "Wed",
           "inRange": true,
-          "companyCommitCount": 0,
+          "companyCommitCount": 21,
           "personalCommitCount": 0,
-          "companyProjects": [],
+          "companyProjects": [
+            {
+              "name": "Wonik",
+              "count": 21,
+              "track": "회사"
+            }
+          ],
           "personalProjects": [],
-          "totalCommitCount": 0,
-          "intensityLevel": 0,
-          "companyIntensityLevel": 0,
+          "totalCommitCount": 21,
+          "intensityLevel": 4,
+          "companyIntensityLevel": 4,
           "personalIntensityLevel": 0,
-          "hasActivity": false
+          "hasActivity": true
         },
         {
           "date": "2026-01-15",
           "weekday": "Thu",
           "inRange": true,
-          "companyCommitCount": 0,
+          "companyCommitCount": 5,
           "personalCommitCount": 0,
-          "companyProjects": [],
+          "companyProjects": [
+            {
+              "name": "Wonik",
+              "count": 5,
+              "track": "회사"
+            }
+          ],
           "personalProjects": [],
-          "totalCommitCount": 0,
-          "intensityLevel": 0,
-          "companyIntensityLevel": 0,
+          "totalCommitCount": 5,
+          "intensityLevel": 3,
+          "companyIntensityLevel": 3,
           "personalIntensityLevel": 0,
-          "hasActivity": false
+          "hasActivity": true
         },
         {
           "date": "2026-01-16",
           "weekday": "Fri",
           "inRange": true,
-          "companyCommitCount": 0,
+          "companyCommitCount": 18,
           "personalCommitCount": 0,
-          "companyProjects": [],
+          "companyProjects": [
+            {
+              "name": "Wonik",
+              "count": 18,
+              "track": "회사"
+            }
+          ],
           "personalProjects": [],
-          "totalCommitCount": 0,
-          "intensityLevel": 0,
-          "companyIntensityLevel": 0,
+          "totalCommitCount": 18,
+          "intensityLevel": 4,
+          "companyIntensityLevel": 4,
           "personalIntensityLevel": 0,
-          "hasActivity": false
+          "hasActivity": true
         },
         {
           "date": "2026-01-17",
           "weekday": "Sat",
           "inRange": true,
-          "companyCommitCount": 0,
+          "companyCommitCount": 3,
           "personalCommitCount": 0,
-          "companyProjects": [],
+          "companyProjects": [
+            {
+              "name": "Wonik",
+              "count": 3,
+              "track": "회사"
+            }
+          ],
           "personalProjects": [],
-          "totalCommitCount": 0,
-          "intensityLevel": 0,
-          "companyIntensityLevel": 0,
+          "totalCommitCount": 3,
+          "intensityLevel": 2,
+          "companyIntensityLevel": 2,
           "personalIntensityLevel": 0,
-          "hasActivity": false
+          "hasActivity": true
         }
       ]
     },
@@ -4254,45 +5213,62 @@
           "date": "2026-01-18",
           "weekday": "Sun",
           "inRange": true,
-          "companyCommitCount": 0,
+          "companyCommitCount": 3,
           "personalCommitCount": 0,
-          "companyProjects": [],
+          "companyProjects": [
+            {
+              "name": "Wonik",
+              "count": 3,
+              "track": "회사"
+            }
+          ],
           "personalProjects": [],
-          "totalCommitCount": 0,
-          "intensityLevel": 0,
-          "companyIntensityLevel": 0,
+          "totalCommitCount": 3,
+          "intensityLevel": 2,
+          "companyIntensityLevel": 2,
           "personalIntensityLevel": 0,
-          "hasActivity": false
+          "hasActivity": true
         },
         {
           "date": "2026-01-19",
           "weekday": "Mon",
           "inRange": true,
-          "companyCommitCount": 0,
+          "companyCommitCount": 2,
           "personalCommitCount": 0,
-          "companyProjects": [],
+          "companyProjects": [
+            {
+              "name": "Wonik",
+              "count": 2,
+              "track": "회사"
+            }
+          ],
           "personalProjects": [],
-          "totalCommitCount": 0,
-          "intensityLevel": 0,
-          "companyIntensityLevel": 0,
+          "totalCommitCount": 2,
+          "intensityLevel": 2,
+          "companyIntensityLevel": 2,
           "personalIntensityLevel": 0,
-          "hasActivity": false
+          "hasActivity": true
         },
         {
           "date": "2026-01-20",
           "weekday": "Tue",
           "inRange": true,
-          "companyCommitCount": 9,
+          "companyCommitCount": 12,
           "personalCommitCount": 0,
           "companyProjects": [
             {
               "name": "아이엠파인",
               "count": 9,
               "track": "회사"
+            },
+            {
+              "name": "Wonik",
+              "count": 3,
+              "track": "회사"
             }
           ],
           "personalProjects": [],
-          "totalCommitCount": 9,
+          "totalCommitCount": 12,
           "intensityLevel": 4,
           "companyIntensityLevel": 4,
           "personalIntensityLevel": 0,
@@ -4391,9 +5367,14 @@
           "date": "2026-01-25",
           "weekday": "Sun",
           "inRange": true,
-          "companyCommitCount": 1,
+          "companyCommitCount": 6,
           "personalCommitCount": 0,
           "companyProjects": [
+            {
+              "name": "Wonik",
+              "count": 5,
+              "track": "회사"
+            },
             {
               "name": "아이엠파인",
               "count": 1,
@@ -4401,9 +5382,9 @@
             }
           ],
           "personalProjects": [],
-          "totalCommitCount": 1,
-          "intensityLevel": 1,
-          "companyIntensityLevel": 1,
+          "totalCommitCount": 6,
+          "intensityLevel": 3,
+          "companyIntensityLevel": 3,
           "personalIntensityLevel": 0,
           "hasActivity": true
         },
@@ -4411,9 +5392,19 @@
           "date": "2026-01-26",
           "weekday": "Mon",
           "inRange": true,
-          "companyCommitCount": 2,
+          "companyCommitCount": 20,
           "personalCommitCount": 0,
           "companyProjects": [
+            {
+              "name": "Wonik",
+              "count": 15,
+              "track": "회사"
+            },
+            {
+              "name": "베몽테스",
+              "count": 3,
+              "track": "회사"
+            },
             {
               "name": "아이엠파인",
               "count": 2,
@@ -4421,9 +5412,9 @@
             }
           ],
           "personalProjects": [],
-          "totalCommitCount": 2,
-          "intensityLevel": 2,
-          "companyIntensityLevel": 2,
+          "totalCommitCount": 20,
+          "intensityLevel": 4,
+          "companyIntensityLevel": 4,
           "personalIntensityLevel": 0,
           "hasActivity": true
         },
@@ -4431,23 +5422,34 @@
           "date": "2026-01-27",
           "weekday": "Tue",
           "inRange": true,
-          "companyCommitCount": 0,
+          "companyCommitCount": 12,
           "personalCommitCount": 0,
-          "companyProjects": [],
+          "companyProjects": [
+            {
+              "name": "Wonik",
+              "count": 12,
+              "track": "회사"
+            }
+          ],
           "personalProjects": [],
-          "totalCommitCount": 0,
-          "intensityLevel": 0,
-          "companyIntensityLevel": 0,
+          "totalCommitCount": 12,
+          "intensityLevel": 4,
+          "companyIntensityLevel": 4,
           "personalIntensityLevel": 0,
-          "hasActivity": false
+          "hasActivity": true
         },
         {
           "date": "2026-01-28",
           "weekday": "Wed",
           "inRange": true,
-          "companyCommitCount": 2,
+          "companyCommitCount": 12,
           "personalCommitCount": 0,
           "companyProjects": [
+            {
+              "name": "Wonik",
+              "count": 10,
+              "track": "회사"
+            },
             {
               "name": "아울 소사이어티",
               "count": 1,
@@ -4460,9 +5462,9 @@
             }
           ],
           "personalProjects": [],
-          "totalCommitCount": 2,
-          "intensityLevel": 2,
-          "companyIntensityLevel": 2,
+          "totalCommitCount": 12,
+          "intensityLevel": 4,
+          "companyIntensityLevel": 4,
           "personalIntensityLevel": 0,
           "hasActivity": true
         },
@@ -4490,9 +5492,14 @@
           "date": "2026-01-30",
           "weekday": "Fri",
           "inRange": true,
-          "companyCommitCount": 2,
+          "companyCommitCount": 5,
           "personalCommitCount": 0,
           "companyProjects": [
+            {
+              "name": "Wonik",
+              "count": 3,
+              "track": "회사"
+            },
             {
               "name": "아울 소사이어티",
               "count": 1,
@@ -4505,9 +5512,9 @@
             }
           ],
           "personalProjects": [],
-          "totalCommitCount": 2,
-          "intensityLevel": 2,
-          "companyIntensityLevel": 2,
+          "totalCommitCount": 5,
+          "intensityLevel": 3,
+          "companyIntensityLevel": 3,
           "personalIntensityLevel": 0,
           "hasActivity": true
         },
@@ -4559,17 +5566,22 @@
           "date": "2026-02-02",
           "weekday": "Mon",
           "inRange": true,
-          "companyCommitCount": 5,
+          "companyCommitCount": 6,
           "personalCommitCount": 0,
           "companyProjects": [
             {
               "name": "아이엠파인",
               "count": 5,
               "track": "회사"
+            },
+            {
+              "name": "Wonik",
+              "count": 1,
+              "track": "회사"
             }
           ],
           "personalProjects": [],
-          "totalCommitCount": 5,
+          "totalCommitCount": 6,
           "intensityLevel": 3,
           "companyIntensityLevel": 3,
           "personalIntensityLevel": 0,
@@ -4604,17 +5616,22 @@
           "date": "2026-02-04",
           "weekday": "Wed",
           "inRange": true,
-          "companyCommitCount": 11,
+          "companyCommitCount": 15,
           "personalCommitCount": 0,
           "companyProjects": [
             {
               "name": "아울 소사이어티",
               "count": 11,
               "track": "회사"
+            },
+            {
+              "name": "Wonik",
+              "count": 4,
+              "track": "회사"
             }
           ],
           "personalProjects": [],
-          "totalCommitCount": 11,
+          "totalCommitCount": 15,
           "intensityLevel": 4,
           "companyIntensityLevel": 4,
           "personalIntensityLevel": 0,
@@ -4654,9 +5671,14 @@
           "date": "2026-02-06",
           "weekday": "Fri",
           "inRange": true,
-          "companyCommitCount": 10,
+          "companyCommitCount": 21,
           "personalCommitCount": 0,
           "companyProjects": [
+            {
+              "name": "Wonik",
+              "count": 11,
+              "track": "회사"
+            },
             {
               "name": "아울 소사이어티",
               "count": 9,
@@ -4669,7 +5691,7 @@
             }
           ],
           "personalProjects": [],
-          "totalCommitCount": 10,
+          "totalCommitCount": 21,
           "intensityLevel": 4,
           "companyIntensityLevel": 4,
           "personalIntensityLevel": 0,
@@ -4718,23 +5740,34 @@
           "date": "2026-02-09",
           "weekday": "Mon",
           "inRange": true,
-          "companyCommitCount": 0,
+          "companyCommitCount": 2,
           "personalCommitCount": 0,
-          "companyProjects": [],
+          "companyProjects": [
+            {
+              "name": "Wonik",
+              "count": 2,
+              "track": "회사"
+            }
+          ],
           "personalProjects": [],
-          "totalCommitCount": 0,
-          "intensityLevel": 0,
-          "companyIntensityLevel": 0,
+          "totalCommitCount": 2,
+          "intensityLevel": 2,
+          "companyIntensityLevel": 2,
           "personalIntensityLevel": 0,
-          "hasActivity": false
+          "hasActivity": true
         },
         {
           "date": "2026-02-10",
           "weekday": "Tue",
           "inRange": true,
-          "companyCommitCount": 8,
+          "companyCommitCount": 24,
           "personalCommitCount": 0,
           "companyProjects": [
+            {
+              "name": "Wonik",
+              "count": 16,
+              "track": "회사"
+            },
             {
               "name": "인트로스",
               "count": 4,
@@ -4752,7 +5785,7 @@
             }
           ],
           "personalProjects": [],
-          "totalCommitCount": 8,
+          "totalCommitCount": 24,
           "intensityLevel": 4,
           "companyIntensityLevel": 4,
           "personalIntensityLevel": 0,
@@ -4782,17 +5815,22 @@
           "date": "2026-02-12",
           "weekday": "Thu",
           "inRange": true,
-          "companyCommitCount": 15,
+          "companyCommitCount": 17,
           "personalCommitCount": 0,
           "companyProjects": [
             {
               "name": "아울 소사이어티",
               "count": 15,
               "track": "회사"
+            },
+            {
+              "name": "Wonik",
+              "count": 2,
+              "track": "회사"
             }
           ],
           "personalProjects": [],
-          "totalCommitCount": 15,
+          "totalCommitCount": 17,
           "intensityLevel": 4,
           "companyIntensityLevel": 4,
           "personalIntensityLevel": 0,
@@ -4802,9 +5840,14 @@
           "date": "2026-02-13",
           "weekday": "Fri",
           "inRange": true,
-          "companyCommitCount": 7,
+          "companyCommitCount": 14,
           "personalCommitCount": 0,
           "companyProjects": [
+            {
+              "name": "Wonik",
+              "count": 7,
+              "track": "회사"
+            },
             {
               "name": "인트로스",
               "count": 4,
@@ -4822,7 +5865,7 @@
             }
           ],
           "personalProjects": [],
-          "totalCommitCount": 7,
+          "totalCommitCount": 14,
           "intensityLevel": 4,
           "companyIntensityLevel": 4,
           "personalIntensityLevel": 0,
