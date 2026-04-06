@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-03-22T17:40:00+09:00",
+  "generatedAt": "2026-04-07T07:34:36.474736+09:00",
   "projects": [
     {
       "projectKey": "bridgeui교량손상분석데스크탑애플리케이션",
@@ -47,7 +47,7 @@
       "company": "개인 프로젝트",
       "role": "풀스택 (1인)",
       "teamSize": "1",
-      "updated": "2026-03-15",
+      "updated": "2026-04-06",
       "tech": [
         "Next.js 16",
         "React 19",
@@ -62,12 +62,14 @@
         "NextAuth v5",
         "Vercel"
       ],
-      "track": "-",
+      "track": "개인",
       "todayCommitCount": 0,
-      "lastAuthoredCommitAt": "-",
-      "linkedRepos": [],
-      "recentUpdates": "",
-      "portfolioNotes": "",
+      "lastAuthoredCommitAt": "2026-04-06 10:13",
+      "linkedRepos": [
+        "calender-table-mono"
+      ],
+      "recentUpdates": "- 월요일 실행으로 2026-04-04 (토), 2026-04-05 (일), 2026-04-06 (월) 커밋을 함께 반영합니다.\n\n### 2026-04-06 (월)\n- 10:13 `2326462` fix(calendar): expanded 모드 가로 스크롤 방지 및 높이 전파 수정\n- 09:41 `93081e7` feat(calendar): expanded 모드 touch-action:none + 프로그래매틱 스크롤 적용\n- 09:40 `c7667c7` feat(calendar): expanded 모드 프로그래매틱 스크롤 + 모멘텀 구현\n- 09:37 `b973621` style(calendar): expanded 모드 프로그래매틱 스크롤 컨테이너 스타일\n- 09:37 `7bf11af` feat(calendar): 모멘텀 스크롤 상수 추가\n\n### 2026-04-05 (일)\n- 21:49 `764058b` feat(calendar): expanded 모드에 swipe 월 이동 추가 및 렌더링 최적화\n- 21:12 `e3cc598` chore: gitignore에 docs/superpowers/ 추가 및 Prisma generated 파일 업데이트\n- 21:08 `f091699` fix(mobile): async race condition 및 mounted guard 수정\n- 21:05 `a2e3777` feat(mobile): 뒤로가기 두 번으로 앱 종료 구현\n- 21:03 `6689d0a` feat(kbo): 게임 상세 바텀시트에 새로고침 버튼 추가\n- 21:01 `b3a2923` feat(kbo): 게임 상세 바텀시트에 새로고침 버튼 추가\n- 20:58 `695d60a` fix(onboarding): useSearchParams Suspense 바운더리 추가\n- 20:57 `ee42cf9` feat(mypage): 탈퇴 사용자 로그인 시 계정 복구 모달 표시\n- 20:55 `a98e3fa` feat(mypage): 회원 탈퇴 버튼 추가, 이용약관 인앱 링크 교체\n- 20:44 `efa1389` feat(api): 30일 경과 탈퇴 계정 영구 삭제 API 구현\n- 20:44 `891fe16` feat(mypage): 탈퇴 확인 모달, 계정 복구 모달 구현\n- 20:42 `b6f7955` feat(onboarding): 약관 동의 Step 0 추가\n- 20:42 `00a45a2` feat(api): 계정 삭제(탈퇴) 및 복구 API 구현\n- 20:40 `9b20c5c` feat(legal): 이용약관, 개인정보처리방침 인앱 페이지 생성\n- 20:40 `e9d522d` feat(proxy): 약관 미동의 사용자 리다이렉트 로직 추가\n- 20:39 `ee7123e` feat(api): 약관 동의 API 구현\n- 20:38 `5c6ab98` feat(auth): JWT/Session에 agreedToTerms 필드 추가\n- 20:35 `6edf377` feat(db): User 모델에 약관 동의 및 탈퇴 필드 추가\n- 15:56 `e54f0e0` fix(kbo): 점수 알림 중복 발송 및 득점 상세 누락 수정\n- 15:53 `3806b32` docs: 앱 출시 컴플라이언스 구현 계획 작성\n- 15:45 `11255f4` docs: 앱 출시 필수 컴플라이언스 설계 문서 작성\n- 15:35 `442ce3e` feat(kbo): 점수 알림에 득점 상세 정보 표시",
+      "portfolioNotes": "- 기능/설계 관점에서 설명 가능한 변경만 본문 사례에 반영합니다.\n- 구현 상세가 부족한 초기 커밋은 프로젝트 소개 수준으로만 반영합니다.",
       "thumbnail": "",
       "screenshots": [],
       "screenshotCount": 0
@@ -150,7 +152,7 @@
       "company": "풀링포레스트 (클라이언트: 인트로스)",
       "role": "풀스택 개발",
       "teamSize": "2",
-      "updated": "2026-03-16",
+      "updated": "2026-03-30",
       "tech": [
         "Next.js 16",
         "React 19",
@@ -164,14 +166,14 @@
       ],
       "track": "회사",
       "todayCommitCount": 0,
-      "lastAuthoredCommitAt": "2026-02-20 10:33",
+      "lastAuthoredCommitAt": "2026-03-30 09:47",
       "linkedRepos": [
         "job-card-app",
         "job-card-backend",
         "job-card-frontend"
       ],
-      "recentUpdates": "",
-      "portfolioNotes": "",
+      "recentUpdates": "- 월요일 실행으로 2026-03-28 (토), 2026-03-29 (일), 2026-03-30 (월) 커밋을 함께 반영합니다.\n\n### 2026-03-30 (월)\n- 09:47 `b61370a` fix: 빌드 오류 수정",
+      "portfolioNotes": "- 기능/설계 관점에서 설명 가능한 변경만 본문 사례에 반영합니다.\n- 구현 상세가 부족한 초기 커밋은 프로젝트 소개 수준으로만 반영합니다.",
       "thumbnail": "",
       "screenshots": [],
       "screenshotCount": 0
@@ -188,7 +190,7 @@
       "company": "풀링포레스트",
       "role": "메인 개발 총괄",
       "teamSize": "10명 (전직원)",
-      "updated": "2026-03-13",
+      "updated": "2026-04-06",
       "tech": [
         "Next.js 16",
         "React 19",
@@ -205,12 +207,14 @@
         "Google Cloud Storage",
         "OpenAI"
       ],
-      "track": "-",
+      "track": "회사",
       "todayCommitCount": 0,
-      "lastAuthoredCommitAt": "-",
-      "linkedRepos": [],
-      "recentUpdates": "",
-      "portfolioNotes": "",
+      "lastAuthoredCommitAt": "2026-04-06 17:52",
+      "linkedRepos": [
+        "poooling-ai-chatbot"
+      ],
+      "recentUpdates": "- 월요일 실행으로 2026-04-04 (토), 2026-04-05 (일), 2026-04-06 (월) 커밋을 함께 반영합니다.\n\n### 2026-04-06 (월)\n- 17:40 `06008b2` feat: AI 도구 관리 페이지 UX 개선\n- 17:19 `d99414a` fix: 스토어 선택 시 UUID가 표시되는 문제 수정\n- 17:09 `facbcbc` refactor: auth middleware의 any 타입을 unknown으로 변경\n- 17:09 `f45f169` fix: body 태그에 suppressHydrationWarning 추가\n- 17:09 `90358cb` chore: useEffect 내 setState에 eslint-disable 주석 추가\n- 17:08 `92e67ed` fix(admin): 스토어 관리 페이지에서 문서 수가 0으로 표시되는 버그 수정\n- 15:46 `140ec85` fix(chat): fix overlapping edit/delete icons in sidebar\n- 15:04 `aa77f6d` feat(chat): add auto title generation and inline title editing in sidebar\n- 15:03 `4b43d1a` feat(api): add AI-powered conversation title generation endpoint\n- 15:02 `fe33546` feat(api): add PATCH endpoint for conversation title update\n- 14:17 `c045cf6` chore(chat): remove unused imports in action-status and assistant-message\n- 14:13 `02e6d2b` chore(chat): remove unused source-card, tool-call-progress, step-indicator\n- 14:12 `79686e3` feat(chat): include toolCalls/sources in new chat page messages\n- 14:12 `92610b5` feat(chat): include toolCalls/sources in live messages, remove StepIndicator\n- 14:09 `174098d` refactor(chat): pass isStreaming to MessageBubble, remove simple spinner\n- 14:08 `d53c2c2` refactor(chat): delegate assistant messages to AssistantMessage component\n- 14:06 `385c5ce` feat(chat): add AssistantMessage component with full-width layout\n- 14:04 `e2a0588` feat(chat): add ActionStatus component for AI behavior display\n- 14:04 `d1a1bed` feat(chat): add InlineCitation component for text reference badges\n- 14:04 `c2f36e2` feat(chat): add SourceChips component for horizontal source display\n- 13:37 `1a7aa61` feat(chat): stabilize websocket session and protocol flow\n- 10:40 `60974ea` feat: replace model select with searchable combobox grouped by provider\n- 10:37 `7512466` fix: separate sync endpoint into API-key authenticated router\n- 10:29 `14ee6d1` feat: auto-fill provider preset fields and hide baseUrl input\n- 10:27 `6a08297` feat: add google provider sync support in developer router\n- 10:27 `0845dcb` feat: add Google Gemini provider with sync_models support\n- 10:26 `5ebd595` feat: remove keyword filter from OpenAI sync_models to return all models\n- 10:21 `8dc9a6d` docs: add provider preset + gemini support design spec\n- 09:49 `5c6dd60` fix: implement real streaming cancellation with asyncio.Event\n- 09:44 `d54d452` fix: replace polling-based redirect with server-sent conversation_started event\n- 09:41 `5d36cd1` fix: handle chat.sources WebSocket event to show RAG citations in real-time\n- 09:40 `72362da` fix: add isError to frontend tool_end type and truncate output\n- 09:34 `7643bc1` fix: emit tool_end WebSocket events so frontend can update tool call status\n\n### 2026-04-05 (일)\n- 23:14 `d39bb8f` refactor: admin settings uses chat_model key instead of default_model\n- 23:14 `ac9fea9` feat: developer model settings page with role-based model selection\n- 23:12 `4b77830` feat: developer settings API for model role configuration\n- 23:11 `e5c8188` feat: add model sync button to providers page\n- 23:09 `f325619` feat: model sync API for OpenAI and Anthropic providers\n- 23:06 `dd7bc73` refactor: draft chat model from tenant settings\n- 23:05 `b7bd427` refactor: compactor model from tenant settings\n- 23:04 `f76e37b` feat(dynamic-tools): replace hardcoded models with tenant settings lookup\n- 23:02 `402e8c5` feat(benchmark): replace hardcoded model strings with tenant settings lookup\n- 22:59 `4914f87` refactor: chat _resolve_provider uses chat_model setting via helper\n- 22:58 `a982909` feat: add model_settings helper for role-based model resolution\n- 22:55 `c7aa6e6` docs: add developer model settings implementation plan\n- 22:55 `306ae3f` refactor: remove legacy prompts page, replaced by instructions system\n- 22:55 `b20bb5d` refactor: fix WebSocket route, remove fallback logic, use correct DB schema\n- 15:07 `547315f` chore: gitignore .superpowers/ directory\n- 15:05 `56ffdea` chore: gitignore docs/superpowers/ and remove tracked files\n- 15:03 `250d588` feat: add /admin/instructions page with persona, rules, and preview tabs\n- 15:02 `d0942aa` feat: add prompt preview API for admin instructions page\n- 15:00 `6e81112` feat: connect new instruction system to chat router with legacy fallback\n- 14:59 `26e2564` feat: add persona and rules sections to SystemPromptBuilder\n- 14:59 `88720b5` feat: add Python DB queries for personas and rules\n- 14:57 `b897652` feat: add CRUD + reorder API for tenant rules\n- 14:57 `197d20c` feat: add AI persona generation API with streaming\n- 14:55 `2938ffc` feat: add GET/PUT API for tenant personas\n- 14:54 `ea592cb` feat: add Drizzle schemas for tenant_personas and tenant_rules\n- 14:52 `464de4f` feat: add tenant_personas and tenant_rules migration SQL\n- 12:37 `808f3df` fix(agent): address codex review — multi-tool, usage, compaction, TTL bugs\n- 12:26 `45621f1` refactor(agent): mark core/ modules as deprecated in favor of runtime/\n- 12:24 `3c7a4fd` feat(agent): switch chat handler from core/ to runtime/\n- 12:20 `5f888e1` infra: add Redis service and env config for session management\n- 12:19 `e11e57f` feat(db): add tenant_hook_rules table for configurable tool hooks\n\n### 2026-04-04 (토)\n- 14:07 `fa37888` feat(agent): export runtime public API\n- 14:04 `650f824` feat(agent): add ConversationRuntime with agentic loop, hooks, and compact\n- 13:59 `4dfb537` feat(agent): add TenantHookRunner with builtin hooks and DB-based tenant rules\n- 13:55 `c1c797d` feat(agent): add LLMCompactor with LLM-based context compression\n- 13:52 `24d4ad3` feat(agent): add SystemPromptBuilder with 6-section layered prompt\n- 13:50 `8f916a9` test(agent): improve RedisSession test coverage\n- 13:46 `f73c82c` feat(agent): add RedisSession with Redis persistence and DB fallback\n- 13:43 `ad94a21` feat(agent): add redis dependency and config for runtime redesign",
+      "portfolioNotes": "- 기능/설계 관점에서 설명 가능한 변경만 본문 사례에 반영합니다.\n- 구현 상세가 부족한 초기 커밋은 프로젝트 소개 수준으로만 반영합니다.",
       "thumbnail": "",
       "screenshots": [],
       "screenshotCount": 0
@@ -274,12 +278,10 @@
         "Tailwind CSS",
         "MudBlazor"
       ],
-      "track": "회사",
+      "track": "-",
       "todayCommitCount": 0,
-      "lastAuthoredCommitAt": "2026-02-13 13:42",
-      "linkedRepos": [
-        "wonikpne-recipe-management"
-      ],
+      "lastAuthoredCommitAt": "-",
+      "linkedRepos": [],
       "recentUpdates": "",
       "portfolioNotes": "",
       "thumbnail": "",
