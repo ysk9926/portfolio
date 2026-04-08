@@ -1,15 +1,15 @@
 {
-  "generatedAt": "2026-04-07T07:58:31.773014+09:00",
-  "rangeStart": "2025-04-08",
-  "rangeEnd": "2026-04-07",
+  "generatedAt": "2026-04-08T09:13:36.686514+09:00",
+  "rangeStart": "2025-04-09",
+  "rangeEnd": "2026-04-08",
   "summary": {
-    "activeDays": 201,
-    "companyActiveDays": 195,
-    "personalActiveDays": 45,
-    "totalCompanyCommits": 2330,
-    "totalPersonalCommits": 381,
-    "totalCommits": 2711,
-    "latestActiveDate": "2026-04-06"
+    "activeDays": 203,
+    "companyActiveDays": 197,
+    "personalActiveDays": 46,
+    "totalCompanyCommits": 2467,
+    "totalPersonalCommits": 387,
+    "totalCommits": 2854,
+    "latestActiveDate": "2026-04-08"
   },
   "weeks": [
     {
@@ -46,7 +46,7 @@
         {
           "date": "2025-04-08",
           "weekday": "Tue",
-          "inRange": true,
+          "inRange": false,
           "companyCommitCount": 0,
           "personalCommitCount": 0,
           "companyProjects": [],
@@ -7528,29 +7528,77 @@
           "date": "2026-04-07",
           "weekday": "Tue",
           "inRange": true,
-          "companyCommitCount": 0,
-          "personalCommitCount": 0,
-          "companyProjects": [],
-          "personalProjects": [],
-          "totalCommitCount": 0,
-          "intensityLevel": 0,
-          "companyIntensityLevel": 0,
-          "personalIntensityLevel": 0,
-          "hasActivity": false
+          "companyCommitCount": 132,
+          "personalCommitCount": 6,
+          "companyProjects": [
+            {
+              "name": "법무법인 마중",
+              "count": 77,
+              "track": "회사"
+            },
+            {
+              "name": "더맛있는하루",
+              "count": 31,
+              "track": "회사"
+            },
+            {
+              "name": "poooling-ai-chatbot",
+              "count": 16,
+              "track": "회사"
+            },
+            {
+              "name": "한수",
+              "count": 6,
+              "track": "회사"
+            },
+            {
+              "name": "kipo-desktop",
+              "count": 1,
+              "track": "회사"
+            },
+            {
+              "name": "poooling-skills",
+              "count": 1,
+              "track": "회사"
+            }
+          ],
+          "personalProjects": [
+            {
+              "name": "셰어워크",
+              "count": 6,
+              "track": "개인"
+            }
+          ],
+          "totalCommitCount": 138,
+          "intensityLevel": 4,
+          "companyIntensityLevel": 4,
+          "personalIntensityLevel": 3,
+          "hasActivity": true
         },
         {
           "date": "2026-04-08",
           "weekday": "Wed",
-          "inRange": false,
-          "companyCommitCount": 0,
+          "inRange": true,
+          "companyCommitCount": 5,
           "personalCommitCount": 0,
-          "companyProjects": [],
+          "companyProjects": [
+            {
+              "name": "한수",
+              "count": 4,
+              "track": "회사"
+            },
+            {
+              "name": "법무법인 마중",
+              "count": 1,
+              "track": "회사"
+            }
+          ],
           "personalProjects": [],
-          "totalCommitCount": 0,
-          "intensityLevel": 0,
-          "companyIntensityLevel": 0,
+          "totalCommitCount": 5,
+          "intensityLevel": 3,
+          "companyIntensityLevel": 3,
           "personalIntensityLevel": 0,
-          "hasActivity": false
+          "hasActivity": true
         },
         {
           "date": "2026-04-09",

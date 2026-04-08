@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-04-07T07:58:31.773014+09:00",
+  "generatedAt": "2026-04-08T09:13:36.686514+09:00",
   "projects": [
     {
       "projectKey": "bridgeuiclient",
@@ -234,7 +234,7 @@
       ],
       "track": "회사",
       "todayCommitCount": 0,
-      "lastAuthoredCommitAt": "2026-04-02 00:38",
+      "lastAuthoredCommitAt": "2026-04-07 10:05",
       "linkedRepos": [
         "DoneDone",
         "multi-dev-ctrl",
