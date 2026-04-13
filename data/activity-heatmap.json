@@ -1,127 +1,24 @@
 {
-  "generatedAt": "2026-04-08T09:13:36.686514+09:00",
-  "rangeStart": "2025-04-09",
-  "rangeEnd": "2026-04-08",
+  "generatedAt": "2026-04-13T21:09:06.354796+09:00",
+  "rangeStart": "2025-04-14",
+  "rangeEnd": "2026-04-13",
   "summary": {
-    "activeDays": 203,
-    "companyActiveDays": 197,
-    "personalActiveDays": 46,
-    "totalCompanyCommits": 2467,
-    "totalPersonalCommits": 387,
-    "totalCommits": 2854,
-    "latestActiveDate": "2026-04-08"
+    "activeDays": 208,
+    "companyActiveDays": 200,
+    "personalActiveDays": 48,
+    "totalCompanyCommits": 2818,
+    "totalPersonalCommits": 505,
+    "totalCommits": 3323,
+    "latestActiveDate": "2026-04-13"
   },
   "weeks": [
-    {
-      "weekStart": "2025-04-06",
-      "days": [
-        {
-          "date": "2025-04-06",
-          "weekday": "Sun",
-          "inRange": false,
-          "companyCommitCount": 0,
-          "personalCommitCount": 0,
-          "companyProjects": [],
-          "personalProjects": [],
-          "totalCommitCount": 0,
-          "intensityLevel": 0,
-          "companyIntensityLevel": 0,
-          "personalIntensityLevel": 0,
-          "hasActivity": false
-        },
-        {
-          "date": "2025-04-07",
-          "weekday": "Mon",
-          "inRange": false,
-          "companyCommitCount": 0,
-          "personalCommitCount": 0,
-          "companyProjects": [],
-          "personalProjects": [],
-          "totalCommitCount": 0,
-          "intensityLevel": 0,
-          "companyIntensityLevel": 0,
-          "personalIntensityLevel": 0,
-          "hasActivity": false
-        },
-        {
-          "date": "2025-04-08",
-          "weekday": "Tue",
-          "inRange": false,
-          "companyCommitCount": 0,
-          "personalCommitCount": 0,
-          "companyProjects": [],
-          "personalProjects": [],
-          "totalCommitCount": 0,
-          "intensityLevel": 0,
-          "companyIntensityLevel": 0,
-          "personalIntensityLevel": 0,
-          "hasActivity": false
-        },
-        {
-          "date": "2025-04-09",
-          "weekday": "Wed",
-          "inRange": true,
-          "companyCommitCount": 0,
-          "personalCommitCount": 0,
-          "companyProjects": [],
-          "personalProjects": [],
-          "totalCommitCount": 0,
-          "intensityLevel": 0,
-          "companyIntensityLevel": 0,
-          "personalIntensityLevel": 0,
-          "hasActivity": false
-        },
-        {
-          "date": "2025-04-10",
-          "weekday": "Thu",
-          "inRange": true,
-          "companyCommitCount": 0,
-          "personalCommitCount": 0,
-          "companyProjects": [],
-          "personalProjects": [],
-          "totalCommitCount": 0,
-          "intensityLevel": 0,
-          "companyIntensityLevel": 0,
-          "personalIntensityLevel": 0,
-          "hasActivity": false
-        },
-        {
-          "date": "2025-04-11",
-          "weekday": "Fri",
-          "inRange": true,
-          "companyCommitCount": 0,
-          "personalCommitCount": 0,
-          "companyProjects": [],
-          "personalProjects": [],
-          "totalCommitCount": 0,
-          "intensityLevel": 0,
-          "companyIntensityLevel": 0,
-          "personalIntensityLevel": 0,
-          "hasActivity": false
-        },
-        {
-          "date": "2025-04-12",
-          "weekday": "Sat",
-          "inRange": true,
-          "companyCommitCount": 0,
-          "personalCommitCount": 0,
-          "companyProjects": [],
-          "personalProjects": [],
-          "totalCommitCount": 0,
-          "intensityLevel": 0,
-          "companyIntensityLevel": 0,
-          "personalIntensityLevel": 0,
-          "hasActivity": false
-        }
-      ]
-    },
     {
       "weekStart": "2025-04-13",
       "days": [
         {
           "date": "2025-04-13",
           "weekday": "Sun",
-          "inRange": true,
+          "inRange": false,
           "companyCommitCount": 0,
           "personalCommitCount": 0,
           "companyProjects": [],
@@ -7579,12 +7476,102 @@
           "date": "2026-04-08",
           "weekday": "Wed",
           "inRange": true,
-          "companyCommitCount": 5,
+          "companyCommitCount": 58,
           "personalCommitCount": 0,
           "companyProjects": [
             {
               "name": "한수",
-              "count": 4,
+              "count": 21,
+              "track": "회사"
+            },
+            {
+              "name": "더맛있는하루",
+              "count": 20,
+              "track": "회사"
+            },
+            {
+              "name": "법무법인 마중",
+              "count": 11,
+              "track": "회사"
+            },
+            {
+              "name": "아울 소사이어티",
+              "count": 6,
+              "track": "회사"
+            }
+          ],
+          "personalProjects": [],
+          "totalCommitCount": 58,
+          "intensityLevel": 4,
+          "companyIntensityLevel": 4,
+          "personalIntensityLevel": 0,
+          "hasActivity": true
+        },
+        {
+          "date": "2026-04-09",
+          "weekday": "Thu",
+          "inRange": true,
+          "companyCommitCount": 112,
+          "personalCommitCount": 0,
+          "companyProjects": [
+            {
+              "name": "더맛있는하루",
+              "count": 67,
+              "track": "회사"
+            },
+            {
+              "name": "poooling-ai-chatbot",
+              "count": 22,
+              "track": "회사"
+            },
+            {
+              "name": "법무법인 마중",
+              "count": 12,
+              "track": "회사"
+            },
+            {
+              "name": "weave-pgrid-client",
+              "count": 8,
+              "track": "회사"
+            },
+            {
+              "name": "아울 소사이어티",
+              "count": 3,
+              "track": "회사"
+            }
+          ],
+          "personalProjects": [],
+          "totalCommitCount": 112,
+          "intensityLevel": 4,
+          "companyIntensityLevel": 4,
+          "personalIntensityLevel": 0,
+          "hasActivity": true
+        },
+        {
+          "date": "2026-04-10",
+          "weekday": "Fri",
+          "inRange": true,
+          "companyCommitCount": 95,
+          "personalCommitCount": 0,
+          "companyProjects": [
+            {
+              "name": "더맛있는하루",
+              "count": 40,
+              "track": "회사"
+            },
+            {
+              "name": "아울 소사이어티",
+              "count": 34,
+              "track": "회사"
+            },
+            {
+              "name": "kipo-desktop",
+              "count": 19,
+              "track": "회사"
+            },
+            {
+              "name": "poooling-ai-chatbot",
+              "count": 1,
               "track": "회사"
             },
             {
@@ -7594,14 +7581,117 @@
             }
           ],
           "personalProjects": [],
-          "totalCommitCount": 5,
-          "intensityLevel": 3,
-          "companyIntensityLevel": 3,
+          "totalCommitCount": 95,
+          "intensityLevel": 4,
+          "companyIntensityLevel": 4,
           "personalIntensityLevel": 0,
           "hasActivity": true
         },
         {
-          "date": "2026-04-09",
+          "date": "2026-04-11",
+          "weekday": "Sat",
+          "inRange": true,
+          "companyCommitCount": 0,
+          "personalCommitCount": 93,
+          "companyProjects": [],
+          "personalProjects": [
+            {
+              "name": "탄소 중립",
+              "count": 93,
+              "track": "개인"
+            }
+          ],
+          "totalCommitCount": 93,
+          "intensityLevel": 4,
+          "companyIntensityLevel": 0,
+          "personalIntensityLevel": 4,
+          "hasActivity": true
+        }
+      ]
+    },
+    {
+      "weekStart": "2026-04-12",
+      "days": [
+        {
+          "date": "2026-04-12",
+          "weekday": "Sun",
+          "inRange": true,
+          "companyCommitCount": 0,
+          "personalCommitCount": 25,
+          "companyProjects": [],
+          "personalProjects": [
+            {
+              "name": "탄소 중립",
+              "count": 25,
+              "track": "개인"
+            }
+          ],
+          "totalCommitCount": 25,
+          "intensityLevel": 4,
+          "companyIntensityLevel": 0,
+          "personalIntensityLevel": 4,
+          "hasActivity": true
+        },
+        {
+          "date": "2026-04-13",
+          "weekday": "Mon",
+          "inRange": true,
+          "companyCommitCount": 91,
+          "personalCommitCount": 0,
+          "companyProjects": [
+            {
+              "name": "제스프로",
+              "count": 45,
+              "track": "회사"
+            },
+            {
+              "name": "더맛있는하루",
+              "count": 35,
+              "track": "회사"
+            },
+            {
+              "name": "weave-pgrid-client",
+              "count": 11,
+              "track": "회사"
+            }
+          ],
+          "personalProjects": [],
+          "totalCommitCount": 91,
+          "intensityLevel": 4,
+          "companyIntensityLevel": 4,
+          "personalIntensityLevel": 0,
+          "hasActivity": true
+        },
+        {
+          "date": "2026-04-14",
+          "weekday": "Tue",
+          "inRange": false,
+          "companyCommitCount": 0,
+          "personalCommitCount": 0,
+          "companyProjects": [],
+          "personalProjects": [],
+          "totalCommitCount": 0,
+          "intensityLevel": 0,
+          "companyIntensityLevel": 0,
+          "personalIntensityLevel": 0,
+          "hasActivity": false
+        },
+        {
+          "date": "2026-04-15",
+          "weekday": "Wed",
+          "inRange": false,
+          "companyCommitCount": 0,
+          "personalCommitCount": 0,
+          "companyProjects": [],
+          "personalProjects": [],
+          "totalCommitCount": 0,
+          "intensityLevel": 0,
+          "companyIntensityLevel": 0,
+          "personalIntensityLevel": 0,
+          "hasActivity": false
+        },
+        {
+          "date": "2026-04-16",
           "weekday": "Thu",
           "inRange": false,
           "companyCommitCount": 0,
@@ -7615,7 +7705,7 @@
           "hasActivity": false
         },
         {
-          "date": "2026-04-10",
+          "date": "2026-04-17",
           "weekday": "Fri",
           "inRange": false,
           "companyCommitCount": 0,
@@ -7629,7 +7719,7 @@
           "hasActivity": false
         },
         {
-          "date": "2026-04-11",
+          "date": "2026-04-18",
           "weekday": "Sat",
           "inRange": false,
           "companyCommitCount": 0,

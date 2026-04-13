@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-04-08T09:13:36.686514+09:00",
+  "generatedAt": "2026-04-13T21:09:06.354796+09:00",
   "projects": [
     {
       "projectKey": "bridgeuiclient",
@@ -233,8 +233,8 @@
         "OpenAI"
       ],
       "track": "회사",
-      "todayCommitCount": 0,
-      "lastAuthoredCommitAt": "2026-04-07 10:05",
+      "todayCommitCount": 11,
+      "lastAuthoredCommitAt": "2026-04-13 15:54",
       "linkedRepos": [
         "DoneDone",
         "multi-dev-ctrl",
@@ -306,7 +306,7 @@
       "company": "외부 클라이언트 (Wonik PNE) - SI 프로젝트",
       "role": "Recipe Management 풀스택 개발",
       "teamSize": "2명 (공동 개발: hun2ee)",
-      "updated": "2026-04-07",
+      "updated": "2026-04-10",
       "tech": [
         "Blazor WebAssembly",
         ".NET 9.0",
@@ -325,8 +325,8 @@
       "linkedRepos": [
         "wonikpne-recipe-management"
       ],
-      "recentUpdates": "",
-      "portfolioNotes": "",
+      "recentUpdates": "- 16:48 `1e8c76a` chore(클라이언트): Accept-Language 헤더 자동 첨부 로직 적용 상태 확인\n- 16:47 `7c7d545` chore(통합): 서버 환율 변환 전환 작업 검증 완료\n- 16:41 `97ec67a` refactor(클라이언트): 레거시 환율 변환 코드 의존도 축소\n- 16:41 `afc195d` feat(클라이언트): 도매·클럽·구독 화면에 서버 변환 가격 연동\n- 16:41 `cd3d80b` feat(클라이언트): 장바구니 화면에서 서버 가격 기준으로 표기\n- 16:40 `8d785d1` feat(클라이언트): 주문/정산 화면에 서버 변환 가격 반영\n- 16:40 `c155161` feat(클라이언트): 상품 화면에 서버 변환 가격 우선 적용\n- 16:40 `5fea952` feat(클라이언트): 서버 환율 변환 필드 타입 정의 추가\n- 16:22 `dff20d2` feat(백엔드): 도매 플랜 API에 변환 가격과 통화 코드 추가\n- 16:22 `54c930f` feat(백엔드): 주문/정산 API에 서버 변환 금액 필드 연동\n- 16:22 `966b5e9` feat(백엔드): 상품 API에 변환 가격과 통화 코드 추가\n- 16:22 `143799b` feat(백엔드): 통화 해석 및 서버 환율 변환 서비스 추가\n- 11:24 `222956e` fix(backend): address code review feedback for invite feature\n- 11:11 `6e65532` feat(client): add i18n messages for invite flow\n- 11:11 `0c4cffb` feat(client): add invite registration complete page\n- 11:11 `d5f3361` feat(client): add invite profile setup page\n- 11:11 `7948b10` feat(client): add invite password setup page\n- 11:11 `3589e7b` feat(client): add invite landing page with language selection\n- 11:06 `56415cb` feat(client): add invite verify and complete React Query hooks\n- 11:06 `190acad` feat(client): add invite verify and complete API functions\n- 11:05 `6a9ec8d` feat(admin): integrate invite modal into UserList page\n- 11:05 `93a9016` feat(admin): add InviteMemberModal component\n- 11:05 `633c4e9` feat(admin): add inviteMember API function\n- 11:03 `1b1c9fb` feat(backend): allow public access to invite verify/complete endpoints\n- 11:03 `da1f269` feat(backend): add completeInviteSignUp to MemberService\n- 11:03 `253ed89` feat(backend): add invite verify and complete endpoints\n- 11:01 `413a0f1` feat(backend): add POST /admin/member/invite endpoint\n- 11:00 `4258a5d` feat(backend): add inviteMember to AdminMemberService\n- 10:59 `5dadfac` feat(backend): add sendInviteEmail to EmailService\n- 10:58 `be8a1a5` feat(backend): add member invite email template\n- 10:58 `b315d4d` feat(backend): add InviteCompleteRequest DTO\n- 10:58 `62cec2e` feat(backend): add AdminMemberInviteRequest DTO\n- 10:56 `9f9661d` docs: add admin member invite implementation plan\n- 10:49 `a823a68` docs: add admin member invite system design spec",
+      "portfolioNotes": "- 기능/설계 관점에서 설명 가능한 변경만 본문 사례에 반영합니다.\n- 구현 상세가 부족한 초기 커밋은 프로젝트 소개 수준으로만 반영합니다.",
       "thumbnail": "",
       "screenshots": [],
       "screenshotCount": 0
