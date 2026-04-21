@@ -1,6 +1,6 @@
 'use client';
 
-import { FormEvent, useMemo, useState } from 'react';
+import { FormEvent, Suspense, useMemo, useState } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { createClient } from '@/utils/supabase/client';
 
@@ -10,6 +10,14 @@ const errorMessageMap: Record<string, string> = {
 };
 
 export default function AdminLoginForm() {
+  return (
+    <Suspense fallback={null}>
+      <AdminLoginFormInner />
+    </Suspense>
+  );
+}
+
+function AdminLoginFormInner() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const [email, setEmail] = useState('');
