@@ -1,11 +1,6 @@
 import type { Metadata, Viewport } from 'next';
 import localFont from 'next/font/local';
-import { headers } from 'next/headers';
 import { GoogleAnalytics } from '@next/third-parties/google';
-import { PersonJsonLd, WebSiteJsonLd } from '@/components/seo/JsonLd';
-import Header from '@/components/layout/Header';
-import Footer from '@/components/layout/Footer';
-import ScrollToTop from '@/components/layout/ScrollToTop';
 import { getSiteData } from '@/lib/portfolio-data/server';
 import './globals.css';
 
@@ -79,34 +74,17 @@ export async function generateMetadata(): Promise<Metadata> {
   };
 }
 
-export default async function RootLayout({
+export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
   const gaId = process.env.GA_MEASUREMENT_ID;
-  const site = await getSiteData();
-  const headersList = await headers();
-  const pathname = headersList.get('x-pathname') ?? '';
-  const isAdminRoute = pathname.startsWith('/admin');
 
   return (
     <html lang="ko" className={pretendard.variable}>
       <body className="antialiased">
-        {!isAdminRoute && (
-          <>
-            <PersonJsonLd siteConfig={site.config} heroData={site.hero} />
-            <WebSiteJsonLd siteConfig={site.config} />
-            <Header navItems={site.nav} heroName={site.hero.name} />
-          </>
-        )}
-        <main>{children}</main>
-        {!isAdminRoute && (
-          <>
-            <Footer footerData={site.footer} />
-            <ScrollToTop />
-          </>
-        )}
+        {children}
       </body>
       {gaId && <GoogleAnalytics gaId={gaId} />}
     </html>

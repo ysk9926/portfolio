@@ -90,6 +90,9 @@ export default function AdminSectionEditor({
       setIsLoading(true);
       setError(null);
       setSuccessMessage(null);
+      setPayload(null);
+      setJsonText('');
+      setUpdatedAt(null);
 
       try {
         const response = await fetch(`/api/admin/sections/${nextSectionKey}`, {
@@ -366,6 +369,17 @@ function renderFormEditor(
   onChange: (next: unknown) => void,
 ) {
   if (payload === null || payload === undefined) return null;
+
+  const expectsArray =
+    sectionKey === 'about' ||
+    sectionKey === 'skills' ||
+    sectionKey === 'archiving' ||
+    sectionKey === 'career' ||
+    sectionKey === 'projects';
+  const expectsObject = sectionKey === 'site';
+
+  if (expectsArray && !Array.isArray(payload)) return null;
+  if (expectsObject && (typeof payload !== 'object' || Array.isArray(payload))) return null;
 
   switch (sectionKey) {
     case 'site':
