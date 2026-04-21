@@ -9,9 +9,12 @@ if (!supabaseUrl || !supabaseKey) {
 }
 
 export const updateSession = async (request: NextRequest) => {
+  const forwardedHeaders = new Headers(request.headers);
+  forwardedHeaders.set('x-pathname', request.nextUrl.pathname);
+
   let supabaseResponse = NextResponse.next({
     request: {
-      headers: request.headers,
+      headers: forwardedHeaders,
     },
   });
 

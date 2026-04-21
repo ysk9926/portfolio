@@ -56,9 +56,12 @@ export default function AdminLoginForm() {
   };
 
   return (
-    <div className="min-h-[70vh] flex items-center justify-center px-4">
+    <div className="min-h-screen flex items-center justify-center px-4 bg-neutral-50">
       <div className="w-full max-w-md rounded-2xl border border-neutral-200 bg-white p-8 shadow-sm">
-        <h1 className="text-2xl font-bold text-neutral-900">Admin Login</h1>
+        <p className="text-[11px] font-semibold uppercase tracking-wider text-neutral-400">
+          Portfolio
+        </p>
+        <h1 className="mt-0.5 text-2xl font-bold text-neutral-900">Admin Login</h1>
         <p className="mt-2 text-sm text-neutral-500">
           Supabase 이메일/비밀번호로 관리자 로그인하세요.
         </p>
@@ -95,7 +98,7 @@ export default function AdminLoginForm() {
           <button
             type="submit"
             disabled={isSubmitting}
-            className="w-full rounded-lg bg-neutral-900 px-3 py-2 text-sm font-semibold text-white transition hover:bg-neutral-800 disabled:cursor-not-allowed disabled:opacity-60"
+            className="w-full cursor-pointer rounded-lg bg-neutral-900 px-3 py-2 text-sm font-semibold text-white transition hover:bg-neutral-800 disabled:cursor-not-allowed disabled:opacity-60"
           >
             {isSubmitting ? '로그인 중...' : '로그인'}
           </button>

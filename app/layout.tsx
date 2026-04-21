@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from 'next';
 import localFont from 'next/font/local';
+import { headers } from 'next/headers';
 import { GoogleAnalytics } from '@next/third-parties/google';
 import { PersonJsonLd, WebSiteJsonLd } from '@/components/seo/JsonLd';
 import Header from '@/components/layout/Header';
@@ -85,16 +86,27 @@ export default async function RootLayout({
 }>) {
   const gaId = process.env.GA_MEASUREMENT_ID;
   const site = await getSiteData();
+  const headersList = await headers();
+  const pathname = headersList.get('x-pathname') ?? '';
+  const isAdminRoute = pathname.startsWith('/admin');
 
   return (
     <html lang="ko" className={pretendard.variable}>
       <body className="antialiased">
-        <PersonJsonLd siteConfig={site.config} heroData={site.hero} />
-        <WebSiteJsonLd siteConfig={site.config} />
-        <Header navItems={site.nav} heroName={site.hero.name} />
+        {!isAdminRoute && (
+          <>
+            <PersonJsonLd siteConfig={site.config} heroData={site.hero} />
+            <WebSiteJsonLd siteConfig={site.config} />
+            <Header navItems={site.nav} heroName={site.hero.name} />
+          </>
+        )}
         <main>{children}</main>
-        <Footer footerData={site.footer} />
-        <ScrollToTop />
+        {!isAdminRoute && (
+          <>
+            <Footer footerData={site.footer} />
+            <ScrollToTop />
+          </>
+        )}
       </body>
       {gaId && <GoogleAnalytics gaId={gaId} />}
     </html>
