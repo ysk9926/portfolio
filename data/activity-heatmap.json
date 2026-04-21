@@ -1,15 +1,15 @@
 {
-  "generatedAt": "2026-04-13T21:09:06.354796+09:00",
-  "rangeStart": "2025-04-14",
-  "rangeEnd": "2026-04-13",
+  "generatedAt": "2026-04-15T10:00:00+09:00",
+  "rangeStart": "2025-04-16",
+  "rangeEnd": "2026-04-15",
   "summary": {
-    "activeDays": 208,
-    "companyActiveDays": 200,
+    "activeDays": 210,
+    "companyActiveDays": 202,
     "personalActiveDays": 48,
-    "totalCompanyCommits": 2818,
+    "totalCompanyCommits": 2982,
     "totalPersonalCommits": 505,
-    "totalCommits": 3323,
-    "latestActiveDate": "2026-04-13"
+    "totalCommits": 3487,
+    "latestActiveDate": "2026-04-15"
   },
   "weeks": [
     {
@@ -32,7 +32,7 @@
         {
           "date": "2025-04-14",
           "weekday": "Mon",
-          "inRange": true,
+          "inRange": false,
           "companyCommitCount": 0,
           "personalCommitCount": 0,
           "companyProjects": [],
@@ -46,7 +46,7 @@
         {
           "date": "2025-04-15",
           "weekday": "Tue",
-          "inRange": true,
+          "inRange": false,
           "companyCommitCount": 0,
           "personalCommitCount": 0,
           "companyProjects": [],
@@ -7636,12 +7636,12 @@
           "date": "2026-04-13",
           "weekday": "Mon",
           "inRange": true,
-          "companyCommitCount": 91,
+          "companyCommitCount": 164,
           "personalCommitCount": 0,
           "companyProjects": [
             {
               "name": "제스프로",
-              "count": 45,
+              "count": 118,
               "track": "회사"
             },
             {
@@ -7656,7 +7656,7 @@
             }
           ],
           "personalProjects": [],
-          "totalCommitCount": 91,
+          "totalCommitCount": 164,
           "intensityLevel": 4,
           "companyIntensityLevel": 4,
           "personalIntensityLevel": 0,
@@ -7665,30 +7665,52 @@
         {
           "date": "2026-04-14",
           "weekday": "Tue",
-          "inRange": false,
-          "companyCommitCount": 0,
+          "inRange": true,
+          "companyCommitCount": 87,
           "personalCommitCount": 0,
-          "companyProjects": [],
+          "companyProjects": [
+            {
+              "name": "제스프로",
+              "count": 68,
+              "track": "회사"
+            },
+            {
+              "name": "한수",
+              "count": 16,
+              "track": "회사"
+            },
+            {
+              "name": "아울 소사이어티",
+              "count": 3,
+              "track": "회사"
+            }
+          ],
           "personalProjects": [],
-          "totalCommitCount": 0,
-          "intensityLevel": 0,
-          "companyIntensityLevel": 0,
+          "totalCommitCount": 87,
+          "intensityLevel": 4,
+          "companyIntensityLevel": 4,
           "personalIntensityLevel": 0,
-          "hasActivity": false
+          "hasActivity": true
         },
         {
           "date": "2026-04-15",
           "weekday": "Wed",
-          "inRange": false,
-          "companyCommitCount": 0,
+          "inRange": true,
+          "companyCommitCount": 4,
           "personalCommitCount": 0,
-          "companyProjects": [],
+          "companyProjects": [
+            {
+              "name": "제스프로",
+              "count": 4,
+              "track": "회사"
+            }
+          ],
           "personalProjects": [],
-          "totalCommitCount": 0,
-          "intensityLevel": 0,
-          "companyIntensityLevel": 0,
+          "totalCommitCount": 4,
+          "intensityLevel": 3,
+          "companyIntensityLevel": 3,
           "personalIntensityLevel": 0,
-          "hasActivity": false
+          "hasActivity": true
         },
         {
           "date": "2026-04-16",

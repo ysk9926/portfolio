@@ -2,9 +2,14 @@
 
 import { useState, useEffect } from 'react';
 import { Menu, X } from 'lucide-react';
-import { NAV_ITEMS, HERO_DATA } from '@/lib/constants';
+import { NavItem } from '@/lib/types/view';
 
-export default function Header() {
+interface HeaderProps {
+  navItems: NavItem[];
+  heroName: string;
+}
+
+export default function Header({ navItems, heroName }: HeaderProps) {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('');
@@ -27,16 +32,16 @@ export default function Header() {
           }
         });
       },
-      { root: null, rootMargin: '-50% 0px -50% 0px', threshold: 0 }
+      { root: null, rootMargin: '-50% 0px -50% 0px', threshold: 0 },
     );
 
-    NAV_ITEMS.forEach((item) => {
+    navItems.forEach((item) => {
       const element = document.querySelector(item.href);
       if (element) observer.observe(element);
     });
 
     return () => observer.disconnect();
-  }, []);
+  }, [navItems]);
 
   const handleNavClick = (href: string) => {
     const element = document.querySelector(href);
@@ -68,11 +73,11 @@ export default function Header() {
                 : 'text-white hover:text-neutral-300'
             }`}
           >
-            {HERO_DATA.name}
+            {heroName}
           </a>
 
           <nav className="hidden md:flex gap-8">
-            {NAV_ITEMS.map((item) => (
+            {navItems.map((item) => (
               <a
                 key={item.href}
                 href={item.href}
@@ -122,7 +127,7 @@ export default function Header() {
               >
                 <X className="w-6 h-6" />
               </button>
-              {NAV_ITEMS.map((item) => (
+              {navItems.map((item) => (
                 <a
                   key={item.href}
                   href={item.href}

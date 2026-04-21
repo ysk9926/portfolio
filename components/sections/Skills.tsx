@@ -1,12 +1,13 @@
-import skillsData from '../../data/skills.json';
 import SectionWrapper from '../ui/SectionWrapper';
 import SkillBar from '../ui/SkillBar';
 import AnimateOnScroll from '../ui/AnimateOnScroll';
-import { SkillCategory } from '../../lib/types';
+import { SkillCategory } from '@/lib/types/view';
 
-export default function Skills() {
-  const categories = skillsData as SkillCategory[];
+interface SkillsProps {
+  categories: SkillCategory[];
+}
 
+export default function Skills({ categories }: SkillsProps) {
   return (
     <SectionWrapper
       id="skills"

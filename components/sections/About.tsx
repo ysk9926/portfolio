@@ -1,24 +1,24 @@
 import Image from 'next/image';
-import aboutData from '../../data/about.json';
-import siteData from '../../data/site.json';
-import { AboutItem } from '../../lib/types';
-import { ABOUT_SUMMARY } from '../../lib/constants';
+import { AboutItem } from '@/lib/types/view';
 import SectionWrapper from '../ui/SectionWrapper';
 import InfoCard from '../ui/InfoCard';
 import AnimateOnScroll from '../ui/AnimateOnScroll';
 import { User } from 'lucide-react';
 
-const data = aboutData as AboutItem[];
+interface AboutProps {
+  data: AboutItem[];
+  aboutSummary: string;
+  profileImage: string;
+}
 
-export default function About() {
+export default function About({ data, aboutSummary, profileImage }: AboutProps) {
   return (
     <SectionWrapper id="about" title="About Me" className="bg-white">
-      {/* Profile Image */}
       <div className="flex justify-center mb-10">
         <div className="relative w-40 h-40 rounded-full overflow-hidden shadow-lg">
-          {siteData.profileImage ? (
+          {profileImage ? (
             <Image
-              src={siteData.profileImage}
+              src={profileImage}
               alt="프로필 사진"
               fill
               className="object-cover"
@@ -33,10 +33,9 @@ export default function About() {
         </div>
       </div>
 
-      {/* Professional Summary */}
       <AnimateOnScroll>
         <p className="text-center text-gray-600 text-base md:text-lg leading-relaxed max-w-3xl mx-auto mb-10">
-          {ABOUT_SUMMARY}
+          {aboutSummary}
         </p>
       </AnimateOnScroll>
 

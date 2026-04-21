@@ -4,6 +4,37 @@ export interface NavItem {
   href: string;
 }
 
+// Site
+export interface SiteConfig {
+  name: string;
+  title: string;
+  description: string;
+  url: string;
+  ogImage: string;
+}
+
+export interface HeroData {
+  greeting: string;
+  name: string;
+  role: string;
+  tagline: string;
+  cta: string;
+}
+
+export interface FooterData {
+  copyright: string;
+  builtWith: string;
+}
+
+export interface SiteViewData {
+  config: SiteConfig;
+  nav: NavItem[];
+  hero: HeroData;
+  aboutSummary: string;
+  profileImage: string;
+  footer: FooterData;
+}
+
 // About Me
 export interface AboutItem {
   icon: string;
@@ -142,4 +173,15 @@ export interface CareerEntry {
   period: string;
   description: string;
   achievements: string[];
+}
+
+export interface PortfolioViewData {
+  site: SiteViewData;
+  about: AboutItem[];
+  skills: SkillCategory[];
+  archiving: ArchiveItem[];
+  activityHeatmap: ActivityHeatmap;
+  projects: Project[];
+  projectPortfolioSync: ProjectPortfolioSync;
+  career: CareerEntry[];
 }

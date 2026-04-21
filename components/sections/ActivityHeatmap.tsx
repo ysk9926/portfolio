@@ -1,7 +1,6 @@
 'use client';
 
-import { useMemo, useState, useEffect } from 'react';
-import activityHeatmapData from '../../data/activity-heatmap.json';
+import { useMemo, useState } from 'react';
 import {
   ActivityDay,
   ActivityHeatmap as ActivityHeatmapType,
@@ -11,10 +10,13 @@ import {
 import SectionWrapper from '../ui/SectionWrapper';
 import AnimateOnScroll from '../ui/AnimateOnScroll';
 
-const heatmap = activityHeatmapData as ActivityHeatmapType;
 const weekdayRows = ['Mon', 'Wed', 'Fri'];
 const allWeekdayLabels = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 const MOBILE_WEEKS_PER_PAGE = 14;
+
+interface ActivityHeatmapProps {
+  heatmap: ActivityHeatmapType;
+}
 
 function formatDateLabel(value: string) {
   return new Intl.DateTimeFormat('ko-KR', {
@@ -235,10 +237,10 @@ function ActivityList({
   );
 }
 
-export default function ActivityHeatmap() {
+export default function ActivityHeatmap({ heatmap }: ActivityHeatmapProps) {
   const flatDays = useMemo(
     () => heatmap.weeks.flatMap((week) => week.days).filter((day) => day.inRange),
-    []
+    [heatmap.weeks],
   );
   const mobileWeekPages = useMemo(() => {
     const pages: ActivityWeek[][] = [];
@@ -246,7 +248,7 @@ export default function ActivityHeatmap() {
       pages.push(heatmap.weeks.slice(index, index + MOBILE_WEEKS_PER_PAGE));
     }
     return pages;
-  }, []);
+  }, [heatmap.weeks]);
   const initialDay =
     flatDays.find((day) => day.date === heatmap.summary.latestActiveDate) ??
     [...flatDays].reverse().find((day) => day.inRange) ??

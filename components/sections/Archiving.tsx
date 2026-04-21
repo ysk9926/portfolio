@@ -1,12 +1,13 @@
-import archivingData from '../../data/archiving.json';
-import { ArchiveItem } from '../../lib/types';
+import { ArchiveItem } from '@/lib/types/view';
 import SectionWrapper from '../ui/SectionWrapper';
 import ArchiveCard from '../ui/ArchiveCard';
 import AnimateOnScroll from '../ui/AnimateOnScroll';
 
-const data = archivingData as ArchiveItem[];
+interface ArchivingProps {
+  data: ArchiveItem[];
+}
 
-export default function Archiving() {
+export default function Archiving({ data }: ArchivingProps) {
   return (
     <SectionWrapper
       id="archiving"

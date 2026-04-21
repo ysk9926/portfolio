@@ -3,8 +3,6 @@
 import { useState, useCallback, useRef, useEffect, useMemo } from 'react';
 import { ChevronLeft, ChevronRight, LayoutGrid, GanttChart } from 'lucide-react';
 import dynamic from 'next/dynamic';
-import projectsData from '../../data/projects.json';
-import projectPortfolioSyncData from '../../data/project-portfolio-sync.json';
 import { Project, ProjectPortfolioSync, ProjectPortfolioSyncEntry } from '@/lib/types';
 import SectionWrapper from '../ui/SectionWrapper';
 import ProjectCard from '../ui/ProjectCard';
@@ -16,13 +14,20 @@ type FilterType = 'all' | 'main';
 type ViewType = 'card' | 'timeline';
 
 const SCROLL_AMOUNT = 504; // card 480px + gap 24px
-const projectPortfolioSync = projectPortfolioSyncData as ProjectPortfolioSync;
+
+interface ProjectsProps {
+  projectsData: Project[];
+  projectPortfolioSyncData: ProjectPortfolioSync;
+}
 
 function normalizeProjectKey(value: string) {
   return value.replace(/[^a-zA-Z0-9]/g, '').toLowerCase();
 }
 
-export default function Projects() {
+export default function Projects({
+  projectsData,
+  projectPortfolioSyncData,
+}: ProjectsProps) {
   const [filter, setFilter] = useState<FilterType>('all');
   const [view, setView] = useState<ViewType>('card');
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
@@ -30,6 +35,7 @@ export default function Projects() {
   const [canScrollRight, setCanScrollRight] = useState(true);
   const [activeIndex, setActiveIndex] = useState(0);
   const scrollRef = useRef<HTMLDivElement>(null);
+  const projectPortfolioSync = projectPortfolioSyncData;
   const syncLookup = useMemo(() => {
     return projectPortfolioSync.projects.reduce<Record<string, ProjectPortfolioSyncEntry>>(
       (acc, entry) => {
@@ -38,7 +44,7 @@ export default function Projects() {
       },
       {},
     );
-  }, []);
+  }, [projectPortfolioSync.projects]);
   const mergedProjects = useMemo<Project[]>(() => {
     return projectsData.map((project) => {
       const portfolioSync = syncLookup[normalizeProjectKey(project.title)];
@@ -54,7 +60,7 @@ export default function Projects() {
         portfolioSync,
       };
     });
-  }, [syncLookup]);
+  }, [projectsData, syncLookup]);
 
   const filteredProjects =
     filter === 'all'

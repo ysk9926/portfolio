@@ -1,11 +1,11 @@
 import type { Metadata, Viewport } from 'next';
 import localFont from 'next/font/local';
 import { GoogleAnalytics } from '@next/third-parties/google';
-import { SITE_CONFIG } from '@/lib/constants';
 import { PersonJsonLd, WebSiteJsonLd } from '@/components/seo/JsonLd';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import ScrollToTop from '@/components/layout/ScrollToTop';
+import { getSiteData } from '@/lib/portfolio-data/server';
 import './globals.css';
 
 const pretendard = localFont({
@@ -46,45 +46,54 @@ export const viewport: Viewport = {
   initialScale: 1,
 };
 
-export const metadata: Metadata = {
-  metadataBase: new URL(process.env.SITE_URL || 'https://portfolio.example.com'),
-  title: SITE_CONFIG.title,
-  description: SITE_CONFIG.description,
-  keywords: ['프론트엔드', '개발자', '포트폴리오', 'React', 'Next.js', 'TypeScript'],
-  alternates: { canonical: '/' },
-  openGraph: {
-    title: SITE_CONFIG.title,
-    description: SITE_CONFIG.description,
-    url: SITE_CONFIG.url,
-    siteName: SITE_CONFIG.name,
-    images: [{ url: SITE_CONFIG.ogImage, width: 1200, height: 630 }],
-    locale: 'ko_KR',
-    type: 'website',
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: SITE_CONFIG.title,
-    description: SITE_CONFIG.description,
-    images: [SITE_CONFIG.ogImage],
-  },
-  robots: { index: true, follow: true },
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const site = await getSiteData();
+  const siteConfig = site.config;
+  const metadataBase = new URL(
+    process.env.SITE_URL || siteConfig.url || 'https://portfolio.example.com',
+  );
 
-export default function RootLayout({
+  return {
+    metadataBase,
+    title: siteConfig.title,
+    description: siteConfig.description,
+    keywords: ['프론트엔드', '개발자', '포트폴리오', 'React', 'Next.js', 'TypeScript'],
+    alternates: { canonical: '/' },
+    openGraph: {
+      title: siteConfig.title,
+      description: siteConfig.description,
+      url: siteConfig.url,
+      siteName: siteConfig.name,
+      images: [{ url: siteConfig.ogImage, width: 1200, height: 630 }],
+      locale: 'ko_KR',
+      type: 'website',
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: siteConfig.title,
+      description: siteConfig.description,
+      images: [siteConfig.ogImage],
+    },
+    robots: { index: true, follow: true },
+  };
+}
+
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
   const gaId = process.env.GA_MEASUREMENT_ID;
+  const site = await getSiteData();
 
   return (
     <html lang="ko" className={pretendard.variable}>
       <body className="antialiased">
-        <PersonJsonLd />
-        <WebSiteJsonLd />
-        <Header />
+        <PersonJsonLd siteConfig={site.config} heroData={site.hero} />
+        <WebSiteJsonLd siteConfig={site.config} />
+        <Header navItems={site.nav} heroName={site.hero.name} />
         <main>{children}</main>
-        <Footer />
+        <Footer footerData={site.footer} />
         <ScrollToTop />
       </body>
       {gaId && <GoogleAnalytics gaId={gaId} />}

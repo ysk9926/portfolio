@@ -1,12 +1,13 @@
-import careerData from '../../data/career.json';
-import { CareerEntry } from '../../lib/types';
+import { CareerEntry } from '@/lib/types/view';
 import SectionWrapper from '../ui/SectionWrapper';
 import CareerItem from '../ui/CareerItem';
 import AnimateOnScroll from '../ui/AnimateOnScroll';
 
-const data = careerData as CareerEntry[];
+interface CareerProps {
+  data: CareerEntry[];
+}
 
-export default function Career() {
+export default function Career({ data }: CareerProps) {
   return (
     <SectionWrapper
       id="career"

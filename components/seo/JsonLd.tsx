@@ -1,12 +1,17 @@
-import { SITE_CONFIG, HERO_DATA } from '@/lib/constants';
+import { HeroData, SiteConfig } from '@/lib/types/view';
 
-export function PersonJsonLd() {
+interface JsonLdProps {
+  siteConfig: SiteConfig;
+  heroData: HeroData;
+}
+
+export function PersonJsonLd({ siteConfig, heroData }: JsonLdProps) {
   const jsonLd = {
     '@context': 'https://schema.org',
     '@type': 'Person',
-    name: HERO_DATA.name,
-    jobTitle: HERO_DATA.role,
-    url: SITE_CONFIG.url,
+    name: heroData.name,
+    jobTitle: heroData.role,
+    url: siteConfig.url,
     knowsAbout: ['React', 'Next.js', 'TypeScript', 'JavaScript', 'Tailwind CSS'],
   };
 
@@ -18,13 +23,13 @@ export function PersonJsonLd() {
   );
 }
 
-export function WebSiteJsonLd() {
+export function WebSiteJsonLd({ siteConfig }: Pick<JsonLdProps, 'siteConfig'>) {
   const jsonLd = {
     '@context': 'https://schema.org',
     '@type': 'WebSite',
-    name: SITE_CONFIG.name,
-    url: SITE_CONFIG.url,
-    description: SITE_CONFIG.description,
+    name: siteConfig.name,
+    url: siteConfig.url,
+    description: siteConfig.description,
     inLanguage: 'ko-KR',
   };
 

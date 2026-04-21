@@ -92,13 +92,7 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
     [handleClose],
   );
 
-  const [portalRoot, setPortalRoot] = useState<HTMLElement | null>(null);
-
-  useEffect(() => {
-    setPortalRoot(document.body);
-  }, []);
-
-  if (!project || !portalRoot) return null;
+  if (!project) return null;
 
   const modalContent = (
     <div
@@ -323,5 +317,5 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
     </div>
   );
 
-  return createPortal(modalContent, portalRoot);
+  return createPortal(modalContent, document.body);
 }

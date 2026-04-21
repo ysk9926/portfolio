@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-04-13T21:09:06.354796+09:00",
+  "generatedAt": "2026-04-15T10:00:00+09:00",
   "projects": [
     {
       "projectKey": "bridgeuiclient",
@@ -233,7 +233,7 @@
         "OpenAI"
       ],
       "track": "회사",
-      "todayCommitCount": 11,
+      "todayCommitCount": 0,
       "lastAuthoredCommitAt": "2026-04-13 15:54",
       "linkedRepos": [
         "DoneDone",
