@@ -7,6 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
+    "test:internal-sync": "node --import tsx --test tests/internal-sync/*.test.ts",
     "supabase:seed": "tsx scripts/supabase/seed-from-json.ts",
     "supabase:verify": "tsx scripts/supabase/verify-roundtrip.ts"
   },

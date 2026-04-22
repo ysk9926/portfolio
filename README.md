@@ -34,3 +34,28 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+
+## Internal Portfolio Sync
+
+The portfolio repo exposes an internal DB-backed sync endpoint for the daily automation.
+
+- `GET /api/internal/sync/portfolio` returns bootstrap payloads for `projects` and `project-portfolio-sync`.
+- `POST /api/internal/sync/portfolio` writes `projects`, `project-portfolio-sync`, and `activity-heatmap` in one Postgres transaction via `public.admin_replace_section()`.
+- Authentication uses `Authorization: Bearer <PORTFOLIO_SYNC_API_TOKEN>`.
+- The sync layer uses `SUPABASE_DB_URL` and `pg` directly. It does not use the SSR Supabase client.
+
+Required environment variables:
+
+```bash
+SUPABASE_DB_URL=postgres://...
+PORTFOLIO_SYNC_API_TOKEN=...
+```
+
+Example request:
+
+```bash
+curl -X POST http://localhost:3000/api/internal/sync/portfolio \
+  -H "Authorization: Bearer $PORTFOLIO_SYNC_API_TOKEN" \
+  -H "Content-Type: application/json" \
+  --data @payload.json
+```
