@@ -1,17 +1,18 @@
 'use client';
 
 import { useState, useCallback, useRef, useEffect, useMemo } from 'react';
-import { ChevronLeft, ChevronRight, LayoutGrid, GanttChart } from 'lucide-react';
+import { ChevronLeft, ChevronRight, LayoutGrid, GanttChart, AlignLeft } from 'lucide-react';
 import dynamic from 'next/dynamic';
 import { Project, ProjectPortfolioSync, ProjectPortfolioSyncEntry } from '@/lib/types';
 import SectionWrapper from '../ui/SectionWrapper';
 import ProjectCard from '../ui/ProjectCard';
 import ProjectTimelineView from '../ui/ProjectTimelineView';
+import ProjectVerticalTimelineView from '../ui/ProjectVerticalTimelineView';
 
 const ProjectModal = dynamic(() => import('../ui/ProjectModal'), { ssr: false });
 
 type FilterType = 'all' | 'main';
-type ViewType = 'card' | 'timeline';
+type ViewType = 'card' | 'timeline' | 'vertical';
 
 const SCROLL_AMOUNT = 504; // card 480px + gap 24px
 
@@ -170,7 +171,7 @@ export default function Projects({
             </button>
             <button
               onClick={() => setView('timeline')}
-              aria-label="타임라인 뷰"
+              aria-label="간트 타임라인 뷰"
               className={`p-2 rounded-full transition-colors ${
                 view === 'timeline'
                   ? 'bg-gray-900 text-white'
@@ -178,6 +179,17 @@ export default function Projects({
               }`}
             >
               <GanttChart size={16} />
+            </button>
+            <button
+              onClick={() => setView('vertical')}
+              aria-label="세로 타임라인 뷰"
+              className={`p-2 rounded-full transition-colors ${
+                view === 'vertical'
+                  ? 'bg-gray-900 text-white'
+                  : 'bg-gray-200 text-gray-600 hover:bg-gray-300'
+              }`}
+            >
+              <AlignLeft size={16} />
             </button>
           </div>
         </div>
@@ -241,9 +253,16 @@ export default function Projects({
             ))}
           </div>
         </div>
-      ) : (
+      ) : view === 'timeline' ? (
         <div className="max-w-6xl mx-auto px-4">
           <ProjectTimelineView
+            projects={filteredProjects}
+            onDetailClick={handleDetailClick}
+          />
+        </div>
+      ) : (
+        <div className="max-w-6xl mx-auto px-4">
+          <ProjectVerticalTimelineView
             projects={filteredProjects}
             onDetailClick={handleDetailClick}
           />
