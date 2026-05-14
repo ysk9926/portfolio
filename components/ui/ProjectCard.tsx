@@ -71,11 +71,6 @@ export default function ProjectCard({ project, onDetailClick }: ProjectCardProps
               <span className="rounded-full border border-white/20 bg-white/10 px-2.5 py-1 text-[11px] font-medium text-white/85 backdrop-blur-sm">
                 {project.portfolioSync.status}
               </span>
-              {project.portfolioSync.updated && (
-                <span className="text-[11px] text-white/55">
-                  updated {project.portfolioSync.updated}
-                </span>
-              )}
             </div>
           )}
           <h3 className="text-lg md:text-xl font-bold text-white">{project.title}</h3>
@@ -125,11 +120,6 @@ export default function ProjectCard({ project, onDetailClick }: ProjectCardProps
                           opacity-0 md:group-hover/card:opacity-100">
             <div className="overflow-hidden">
               <p className="text-sm text-slate-300 mt-3 line-clamp-2">{shortDesc}</p>
-              {project.portfolioSync?.todayCommitCount ? (
-                <p className="mt-2 text-xs text-amber-200/90">
-                  오늘 {project.portfolioSync.todayCommitCount}개 commit 반영됨
-                </p>
-              ) : null}
               <button
                 onClick={handleButtonClick}
                 className="mt-3 inline-flex items-center gap-1.5

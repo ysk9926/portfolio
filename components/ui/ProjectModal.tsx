@@ -183,16 +183,6 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
                   </span>
                 )}
               </div>
-              <div className="mt-3 grid gap-2 text-sm text-neutral-600 md:grid-cols-2">
-                {project.portfolioSync.updated && <p>문서 갱신일: {project.portfolioSync.updated}</p>}
-                {project.portfolioSync.lastAuthoredCommitAt &&
-                  project.portfolioSync.lastAuthoredCommitAt !== '-' && (
-                    <p>마지막 내 커밋: {project.portfolioSync.lastAuthoredCommitAt}</p>
-                  )}
-                {!!project.portfolioSync.todayCommitCount && (
-                  <p>오늘 반영된 commit: {project.portfolioSync.todayCommitCount}개</p>
-                )}
-              </div>
             </div>
           )}
 
@@ -242,20 +232,6 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
           ) : (
             /* Legacy Layout */
             <p className="text-gray-700 leading-relaxed mb-6">{project.description}</p>
-          )}
-
-          {project.portfolioSync?.recentUpdates && (
-            <div className="mb-6 rounded-2xl border border-emerald-200 bg-emerald-50/60 p-4 md:p-5">
-              <h3 className="mb-3 font-semibold text-gray-900">최근 업데이트</h3>
-              <MarkdownRenderer content={project.portfolioSync.recentUpdates} />
-            </div>
-          )}
-
-          {project.portfolioSync?.portfolioNotes && (
-            <div className="mb-6 rounded-2xl border border-amber-200 bg-amber-50/70 p-4 md:p-5">
-              <h3 className="mb-3 font-semibold text-gray-900">포트폴리오 반영 메모</h3>
-              <MarkdownRenderer content={project.portfolioSync.portfolioNotes} />
-            </div>
           )}
 
           {/* Features */}
