@@ -192,9 +192,6 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
                 {!!project.portfolioSync.todayCommitCount && (
                   <p>오늘 반영된 commit: {project.portfolioSync.todayCommitCount}개</p>
                 )}
-                {!!project.portfolioSync.linkedRepos.length && (
-                  <p>연결 repo: {project.portfolioSync.linkedRepos.join(', ')}</p>
-                )}
               </div>
             </div>
           )}

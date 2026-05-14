@@ -21,7 +21,7 @@ interface ProjectsProps {
 }
 
 function normalizeProjectKey(value: string) {
-  return value.replace(/[^a-zA-Z0-9]/g, '').toLowerCase();
+  return value.replace(/[^\p{L}\p{N}]/gu, '').toLowerCase();
 }
 
 export default function Projects({
@@ -39,7 +39,14 @@ export default function Projects({
   const syncLookup = useMemo(() => {
     return projectPortfolioSync.projects.reduce<Record<string, ProjectPortfolioSyncEntry>>(
       (acc, entry) => {
-        acc[entry.projectKey] = entry;
+        const lookupKeys = [
+          entry.projectKey,
+          normalizeProjectKey(entry.projectTitle),
+          normalizeProjectKey(entry.headline),
+        ].filter(Boolean);
+        for (const lookupKey of lookupKeys) {
+          acc[lookupKey] = entry;
+        }
         return acc;
       },
       {},
