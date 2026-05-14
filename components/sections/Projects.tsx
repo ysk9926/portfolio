@@ -159,15 +159,15 @@ export default function Projects({
 
           <div className="flex gap-1">
             <button
-              onClick={() => setView('card')}
-              aria-label="카드 뷰"
+              onClick={() => setView('vertical')}
+              aria-label="세로 타임라인 뷰"
               className={`p-2 rounded-full transition-colors ${
-                view === 'card'
+                view === 'vertical'
                   ? 'bg-gray-900 text-white'
                   : 'bg-gray-200 text-gray-600 hover:bg-gray-300'
               }`}
             >
-              <LayoutGrid size={16} />
+              <AlignLeft size={16} />
             </button>
             <button
               onClick={() => setView('timeline')}
@@ -181,15 +181,15 @@ export default function Projects({
               <GanttChart size={16} />
             </button>
             <button
-              onClick={() => setView('vertical')}
-              aria-label="세로 타임라인 뷰"
+              onClick={() => setView('card')}
+              aria-label="카드 뷰"
               className={`p-2 rounded-full transition-colors ${
-                view === 'vertical'
+                view === 'card'
                   ? 'bg-gray-900 text-white'
                   : 'bg-gray-200 text-gray-600 hover:bg-gray-300'
               }`}
             >
-              <AlignLeft size={16} />
+              <LayoutGrid size={16} />
             </button>
           </div>
         </div>
