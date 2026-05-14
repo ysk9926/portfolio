@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import { usePathname, useRouter } from 'next/navigation';
 import { Menu, X } from 'lucide-react';
 import { NavItem } from '@/lib/types/view';
 
@@ -9,21 +10,29 @@ interface HeaderProps {
   heroName: string;
 }
 
+const isAnchorHref = (href: string) => href.startsWith('#');
+
 export default function Header({ navItems, heroName }: HeaderProps) {
-  const [isScrolled, setIsScrolled] = useState(false);
+  const router = useRouter();
+  const pathname = usePathname();
+  const onHome = pathname === '/';
+  const [scrolledPastThreshold, setScrolledPastThreshold] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('');
+  const isScrolled = !onHome || scrolledPastThreshold;
 
   useEffect(() => {
+    if (!onHome) return;
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
+      setScrolledPastThreshold(window.scrollY > 50);
     };
-
+    handleScroll();
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  }, [onHome]);
 
   useEffect(() => {
+    if (!onHome) return;
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -36,19 +45,34 @@ export default function Header({ navItems, heroName }: HeaderProps) {
     );
 
     navItems.forEach((item) => {
+      if (!isAnchorHref(item.href)) return;
       const element = document.querySelector(item.href);
       if (element) observer.observe(element);
     });
 
     return () => observer.disconnect();
-  }, [navItems]);
+  }, [navItems, onHome]);
 
   const handleNavClick = (href: string) => {
-    const element = document.querySelector(href);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
     setIsMobileMenuOpen(false);
+    if (isAnchorHref(href)) {
+      if (!onHome) {
+        router.push(`/${href}`);
+        return;
+      }
+      const element = document.querySelector(href);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+      }
+      return;
+    }
+    router.push(href);
+  };
+
+  const isActive = (href: string) => {
+    if (isAnchorHref(href)) return onHome && activeSection === href;
+    if (href === '/') return pathname === '/';
+    return pathname === href || pathname?.startsWith(`${href}/`);
   };
 
   return (
@@ -62,10 +86,10 @@ export default function Header({ navItems, heroName }: HeaderProps) {
       >
         <div className="max-w-6xl mx-auto px-4 h-16 flex items-center justify-between">
           <a
-            href="#hero"
+            href={onHome ? '#hero' : '/'}
             onClick={(e) => {
               e.preventDefault();
-              handleNavClick('#hero');
+              handleNavClick(onHome ? '#hero' : '/');
             }}
             className={`text-xl font-bold transition-colors ${
               isScrolled
@@ -86,7 +110,7 @@ export default function Header({ navItems, heroName }: HeaderProps) {
                   handleNavClick(item.href);
                 }}
                 className={`transition-colors ${
-                  activeSection === item.href
+                  isActive(item.href)
                     ? isScrolled
                       ? 'text-neutral-900 font-semibold'
                       : 'text-white font-semibold'
@@ -136,7 +160,7 @@ export default function Header({ navItems, heroName }: HeaderProps) {
                     handleNavClick(item.href);
                   }}
                   className={`text-lg transition-colors ${
-                    activeSection === item.href
+                    isActive(item.href)
                       ? 'text-neutral-900 font-semibold'
                       : 'text-gray-600 hover:text-neutral-900'
                   }`}

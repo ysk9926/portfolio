@@ -1,7 +1,8 @@
 'use client';
 
 import { useRouter } from 'next/navigation';
-import { LogOut } from 'lucide-react';
+import Link from 'next/link';
+import { LogOut, BookOpen } from 'lucide-react';
 import { ReactNode } from 'react';
 import { SectionKey, sectionKeys } from '@/lib/types/payload';
 import { createClient } from '@/utils/supabase/client';
@@ -90,6 +91,22 @@ export function AdminShell({
                   onClick={() => onSelectSection(key)}
                 />
               ))}
+            </SidebarGroup>
+            <SidebarGroup title="블로그">
+              <li>
+                <Link
+                  href="/admin/blog"
+                  className="flex w-full cursor-pointer items-center gap-2 rounded-md px-2.5 py-2 text-left text-neutral-700 transition-colors hover:bg-neutral-100"
+                >
+                  <BookOpen className="h-4 w-4" />
+                  <div>
+                    <span className="block text-sm font-medium">글 관리</span>
+                    <span className="mt-0.5 block text-[11px] text-neutral-500">
+                      포스트 · 댓글
+                    </span>
+                  </div>
+                </Link>
+              </li>
             </SidebarGroup>
           </nav>
 
