@@ -30,7 +30,7 @@ export default function Projects({
   projectPortfolioSyncData,
 }: ProjectsProps) {
   const [filter, setFilter] = useState<FilterType>('all');
-  const [view, setView] = useState<ViewType>('card');
+  const [view, setView] = useState<ViewType>('vertical');
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
   const [canScrollLeft, setCanScrollLeft] = useState(false);
   const [canScrollRight, setCanScrollRight] = useState(true);

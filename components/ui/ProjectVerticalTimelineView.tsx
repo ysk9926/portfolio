@@ -42,7 +42,7 @@ export default function ProjectVerticalTimelineView({
     <div className="relative">
       <div
         aria-hidden
-        className="absolute top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-neutral-300 to-transparent left-4 md:left-1/2 md:-translate-x-1/2"
+        className="absolute top-0 bottom-0 w-0.5 bg-neutral-300 left-4 md:left-1/2 md:-translate-x-1/2"
       />
 
       <div className="space-y-10 md:space-y-16">
