@@ -10,13 +10,13 @@
     ]
   },
   {
-    "title": "Portfolio",
-    "description": "포트폴리오 웹사이트",
-    "url": "#hero",
+    "title": "Blog",
+    "description": "개발 기록 & 회고",
+    "url": "/blog",
     "details": [
-      "Next.js 16 + React 19 + TypeScript로 직접 설계·구현",
-      "STAR 방법론 기반 프로젝트 상세 문서화",
-      "SEO 최적화 (JSON-LD, OG Image, Sitemap)"
+      "프로젝트 진행 중 마주한 문제와 해결 과정 기록",
+      "기술 학습 노트와 트러블슈팅 회고",
+      "비회원도 댓글·좋아요로 참여 가능"
     ]
   }
 ]
