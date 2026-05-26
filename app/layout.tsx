@@ -1,6 +1,7 @@
-import type { Viewport } from 'next';
+import type { Metadata, Viewport } from 'next';
 import localFont from 'next/font/local';
 import { GoogleAnalytics } from '@next/third-parties/google';
+import { getSiteUrl } from '@/lib/seo/url';
 import './globals.css';
 
 const pretendard = localFont({
@@ -39,6 +40,10 @@ export const viewport: Viewport = {
   themeColor: '#0a0a0a',
   width: 'device-width',
   initialScale: 1,
+};
+
+export const metadata: Metadata = {
+  metadataBase: new URL(getSiteUrl()),
 };
 
 export default function RootLayout({

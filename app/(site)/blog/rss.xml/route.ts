@@ -1,5 +1,6 @@
 import { listPublishedPosts } from '@/lib/blog/server';
 import { getSiteData } from '@/lib/portfolio-data/server';
+import { getSiteUrl } from '@/lib/seo/url';
 
 export const revalidate = 300;
 
@@ -13,7 +14,7 @@ const escapeXml = (raw: string) =>
 
 export async function GET() {
   const [posts, site] = await Promise.all([listPublishedPosts(), getSiteData()]);
-  const siteUrl = process.env.SITE_URL || site.config.url || 'https://example.com';
+  const siteUrl = getSiteUrl(site.config);
 
   const items = posts
     .map((post) => {

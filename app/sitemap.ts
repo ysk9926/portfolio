@@ -1,8 +1,19 @@
 import type { MetadataRoute } from 'next';
-import { listPublishedPosts } from '@/lib/blog/server';
+import { listAllTags, listPublishedPosts } from '@/lib/blog/server';
+import { tagPath } from '@/lib/blog/tags';
+import { getSiteData } from '@/lib/portfolio-data/server';
+import type { SiteConfig } from '@/lib/types/view';
+import { getSiteUrl } from '@/lib/seo/url';
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const siteUrl = process.env.SITE_URL || 'https://portfolio.example.com';
+  let siteConfig: SiteConfig | undefined;
+  try {
+    siteConfig = (await getSiteData()).config;
+  } catch {
+    // SITE_URL is enough for canonical sitemap URLs if site data is unavailable.
+  }
+
+  const siteUrl = getSiteUrl(siteConfig);
 
   const entries: MetadataRoute.Sitemap = [
     {
@@ -20,7 +31,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   ];
 
   try {
-    const posts = await listPublishedPosts();
+    const [posts, tags] = await Promise.all([listPublishedPosts(), listAllTags()]);
     for (const post of posts) {
       entries.push({
         url: `${siteUrl}/blog/${post.slug}`,
@@ -29,6 +40,23 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
           : new Date(post.updatedAt),
         changeFrequency: 'monthly',
         priority: 0.6,
+      });
+    }
+
+    for (const tag of tags) {
+      const tagPosts = posts.filter((post) => post.tags.includes(tag));
+      if (tagPosts.length === 0) continue;
+
+      const latestUpdatedAt = tagPosts
+        .map((post) => post.updatedAt)
+        .sort()
+        .at(-1);
+
+      entries.push({
+        url: `${siteUrl}${tagPath(tag)}`,
+        lastModified: latestUpdatedAt ? new Date(latestUpdatedAt) : new Date(),
+        changeFrequency: 'weekly',
+        priority: 0.5,
       });
     }
   } catch {

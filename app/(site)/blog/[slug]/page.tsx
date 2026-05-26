@@ -9,8 +9,10 @@ import CommentSection from '@/components/blog/CommentSection';
 import PostLikeButton from '@/components/blog/PostLikeButton';
 import { getPostBySlug, listCommentsForPost } from '@/lib/blog/server';
 import { formatPostDate } from '@/lib/blog/format';
+import { tagPath } from '@/lib/blog/tags';
 import { estimateReadingMinutes, extractToc } from '@/lib/blog/toc';
 import { getSiteData } from '@/lib/portfolio-data/server';
+import { absoluteImageUrl, absoluteUrl } from '@/lib/seo/url';
 
 export const revalidate = 60;
 
@@ -24,19 +26,27 @@ export async function generateMetadata({ params }: BlogDetailPageProps): Promise
   if (!post) return { title: 'Not Found' };
 
   const site = await getSiteData();
-  const ogImage = post.thumbnail || site.config.ogImage;
+  const canonicalPath = `/blog/${post.slug}`;
+  const canonicalUrl = absoluteUrl(canonicalPath, site.config);
+  const ogImage = absoluteImageUrl(post.thumbnail, site.config);
+
   return {
     title: `${post.title} | ${site.config.name}`,
     description: post.summary,
-    alternates: { canonical: `/blog/${post.slug}` },
+    keywords: [...post.tags, site.hero.name],
+    alternates: { canonical: canonicalPath },
     openGraph: {
       title: post.title,
       description: post.summary,
       type: 'article',
-      url: `${site.config.url}/blog/${post.slug}`,
+      url: canonicalUrl,
+      siteName: site.config.name,
       images: [{ url: ogImage, width: 1200, height: 630 }],
       publishedTime: post.publishedAt ?? undefined,
+      modifiedTime: post.updatedAt,
+      authors: [absoluteUrl('/', site.config)],
       tags: post.tags,
+      locale: 'ko_KR',
     },
     twitter: {
       card: 'summary_large_image',
@@ -59,25 +69,60 @@ export default async function BlogDetailPage({ params }: BlogDetailPageProps) {
 
   const toc = extractToc(post.body);
   const readingMinutes = estimateReadingMinutes(post.body);
+  const canonicalUrl = absoluteUrl(`/blog/${post.slug}`, site.config);
+  const imageUrl = absoluteImageUrl(post.thumbnail, site.config);
 
-  const jsonLd = {
-    '@context': 'https://schema.org',
-    '@type': 'BlogPosting',
-    headline: post.title,
-    description: post.summary,
-    image: post.thumbnail ? [post.thumbnail] : undefined,
-    datePublished: post.publishedAt ?? undefined,
-    dateModified: post.updatedAt,
-    author: {
-      '@type': 'Person',
-      name: site.hero.name,
+  const jsonLd = [
+    {
+      '@context': 'https://schema.org',
+      '@type': 'BlogPosting',
+      headline: post.title,
+      description: post.summary,
+      image: [imageUrl],
+      datePublished: post.publishedAt ?? post.createdAt,
+      dateModified: post.updatedAt,
+      author: {
+        '@type': 'Person',
+        name: site.hero.name,
+        url: absoluteUrl('/', site.config),
+      },
+      publisher: {
+        '@type': 'Person',
+        name: site.hero.name,
+        url: absoluteUrl('/', site.config),
+      },
+      mainEntityOfPage: {
+        '@type': 'WebPage',
+        '@id': canonicalUrl,
+      },
+      url: canonicalUrl,
+      keywords: post.tags.join(', '),
     },
-    mainEntityOfPage: {
-      '@type': 'WebPage',
-      '@id': `${site.config.url}/blog/${post.slug}`,
+    {
+      '@context': 'https://schema.org',
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        {
+          '@type': 'ListItem',
+          position: 1,
+          name: site.hero.name,
+          item: absoluteUrl('/', site.config),
+        },
+        {
+          '@type': 'ListItem',
+          position: 2,
+          name: 'Blog',
+          item: absoluteUrl('/blog', site.config),
+        },
+        {
+          '@type': 'ListItem',
+          position: 3,
+          name: post.title,
+          item: canonicalUrl,
+        },
+      ],
     },
-    keywords: post.tags.join(', '),
-  };
+  ];
 
   return (
     <div className="min-h-screen bg-white pt-24 pb-20">
@@ -121,7 +166,7 @@ export default async function BlogDetailPage({ params }: BlogDetailPageProps) {
                   {post.tags.map((tag) => (
                     <Link
                       key={tag}
-                      href={`/blog?tag=${encodeURIComponent(tag)}`}
+                      href={tagPath(tag)}
                       className="inline-flex items-center gap-1 rounded-full bg-neutral-100 px-2 py-0.5 text-[10px] text-neutral-600 hover:bg-neutral-200"
                     >
                       <Tag className="h-2.5 w-2.5" /> {tag}

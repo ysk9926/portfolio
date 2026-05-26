@@ -1,12 +1,14 @@
 import type { MetadataRoute } from 'next';
+import { getSiteUrl } from '@/lib/seo/url';
 
 export default function robots(): MetadataRoute.Robots {
-  const siteUrl = process.env.SITE_URL || 'https://portfolio.example.com';
+  const siteUrl = getSiteUrl();
 
   return {
     rules: {
       userAgent: '*',
       allow: '/',
+      disallow: ['/admin/', '/api/'],
     },
     sitemap: `${siteUrl}/sitemap.xml`,
   };

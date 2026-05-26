@@ -1,14 +1,15 @@
+import { readFile } from 'node:fs/promises';
+import { join } from 'node:path';
 import { ImageResponse } from 'next/og';
 
-export const runtime = 'edge';
 export const alt = '윤승규 | 풀스택 개발자 포트폴리오';
 export const size = { width: 1200, height: 630 };
 export const contentType = 'image/png';
 
 export default async function Image() {
-  const profileBuffer = await fetch(
-    new URL('../public/images/profile/profile.jpeg', import.meta.url),
-  ).then((res) => res.arrayBuffer());
+  const profileBuffer = await readFile(
+    join(process.cwd(), 'public/images/profile/profile.jpeg'),
+  );
 
   const profileSrc = `data:image/jpeg;base64,${Buffer.from(profileBuffer).toString('base64')}`;
 
@@ -41,6 +42,7 @@ export default async function Image() {
         >
           <img
             src={profileSrc}
+            alt="윤승규 프로필"
             width={220}
             height={220}
             style={{ objectFit: 'cover' }}

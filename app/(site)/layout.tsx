@@ -4,13 +4,34 @@ import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import ScrollToTop from '@/components/layout/ScrollToTop';
 import { getSiteData } from '@/lib/portfolio-data/server';
+import type { NavItem } from '@/lib/types/view';
+import { absoluteImageUrl, getSiteUrl } from '@/lib/seo/url';
+
+const withBlogNav = (navItems: NavItem[]): NavItem[] => {
+  if (navItems.some((item) => item.href === '/blog')) {
+    return navItems;
+  }
+
+  const careerIndex = navItems.findIndex((item) => item.href === '#career');
+  const blogNavItem: NavItem = { label: 'Blog', href: '/blog' };
+
+  if (careerIndex === -1) {
+    return [...navItems, blogNavItem];
+  }
+
+  return [
+    ...navItems.slice(0, careerIndex),
+    blogNavItem,
+    ...navItems.slice(careerIndex),
+  ];
+};
 
 export async function generateMetadata(): Promise<Metadata> {
   const site = await getSiteData();
   const siteConfig = site.config;
-  const metadataBase = new URL(
-    process.env.SITE_URL || siteConfig.url || 'https://portfolio.example.com',
-  );
+  const siteUrl = getSiteUrl(siteConfig);
+  const ogImage = absoluteImageUrl(null, siteConfig);
+  const metadataBase = new URL(siteUrl);
 
   return {
     metadataBase,
@@ -21,9 +42,9 @@ export async function generateMetadata(): Promise<Metadata> {
     openGraph: {
       title: siteConfig.title,
       description: siteConfig.description,
-      url: siteConfig.url,
+      url: siteUrl,
       siteName: siteConfig.name,
-      images: [{ url: siteConfig.ogImage, width: 1200, height: 630 }],
+      images: [{ url: ogImage, width: 1200, height: 630 }],
       locale: 'ko_KR',
       type: 'website',
     },
@@ -31,7 +52,7 @@ export async function generateMetadata(): Promise<Metadata> {
       card: 'summary_large_image',
       title: siteConfig.title,
       description: siteConfig.description,
-      images: [siteConfig.ogImage],
+      images: [ogImage],
     },
     robots: { index: true, follow: true },
   };
@@ -48,7 +69,7 @@ export default async function SiteLayout({
     <>
       <PersonJsonLd siteConfig={site.config} heroData={site.hero} />
       <WebSiteJsonLd siteConfig={site.config} />
-      <Header navItems={site.nav} heroName={site.hero.name} />
+      <Header navItems={withBlogNav(site.nav)} heroName={site.hero.name} />
       <main>{children}</main>
       <Footer footerData={site.footer} />
       <ScrollToTop />

@@ -1,4 +1,5 @@
 import { HeroData, SiteConfig } from '@/lib/types/view';
+import { absoluteUrl, getSiteUrl } from '@/lib/seo/url';
 
 interface JsonLdProps {
   siteConfig: SiteConfig;
@@ -6,13 +7,23 @@ interface JsonLdProps {
 }
 
 export function PersonJsonLd({ siteConfig, heroData }: JsonLdProps) {
+  const siteUrl = getSiteUrl(siteConfig);
   const jsonLd = {
     '@context': 'https://schema.org',
     '@type': 'Person',
     name: heroData.name,
     jobTitle: heroData.role,
-    url: siteConfig.url,
-    knowsAbout: ['React', 'Next.js', 'TypeScript', 'JavaScript', 'Tailwind CSS'],
+    url: siteUrl,
+    knowsAbout: [
+      'React',
+      'Next.js',
+      'TypeScript',
+      'JavaScript',
+      'Tailwind CSS',
+      'Spring Boot',
+      'Flutter',
+      'AWS',
+    ],
   };
 
   return (
@@ -24,13 +35,18 @@ export function PersonJsonLd({ siteConfig, heroData }: JsonLdProps) {
 }
 
 export function WebSiteJsonLd({ siteConfig }: Pick<JsonLdProps, 'siteConfig'>) {
+  const siteUrl = getSiteUrl(siteConfig);
   const jsonLd = {
     '@context': 'https://schema.org',
     '@type': 'WebSite',
     name: siteConfig.name,
-    url: siteConfig.url,
+    url: siteUrl,
     description: siteConfig.description,
     inLanguage: 'ko-KR',
+    potentialAction: {
+      '@type': 'ReadAction',
+      target: absoluteUrl('/blog', siteConfig),
+    },
   };
 
   return (
