@@ -6,6 +6,11 @@ import ScrollToTop from '@/components/layout/ScrollToTop';
 import { getSiteData } from '@/lib/portfolio-data/server';
 import type { NavItem } from '@/lib/types/view';
 import { absoluteImageUrl, getSiteUrl } from '@/lib/seo/url';
+import {
+  PROFILE_HANDLE,
+  withProfileHandle,
+  withProfileHandleDescription,
+} from '@/lib/seo/profile';
 
 const withBlogNav = (navItems: NavItem[]): NavItem[] => {
   if (navItems.some((item) => item.href === '/blog')) {
@@ -32,16 +37,29 @@ export async function generateMetadata(): Promise<Metadata> {
   const siteUrl = getSiteUrl(siteConfig);
   const ogImage = absoluteImageUrl(null, siteConfig);
   const metadataBase = new URL(siteUrl);
+  const title = withProfileHandle(siteConfig.title);
+  const description = withProfileHandleDescription(siteConfig.description);
+  const googleSiteVerification = process.env.GOOGLE_SITE_VERIFICATION;
 
   return {
     metadataBase,
-    title: siteConfig.title,
-    description: siteConfig.description,
-    keywords: ['프론트엔드', '개발자', '포트폴리오', 'React', 'Next.js', 'TypeScript'],
+    title,
+    description,
+    keywords: [
+      PROFILE_HANDLE,
+      `@${PROFILE_HANDLE}`,
+      '윤승규',
+      '프론트엔드',
+      '풀스택 개발자',
+      '개발자 포트폴리오',
+      'React',
+      'Next.js',
+      'TypeScript',
+    ],
     alternates: { canonical: '/' },
     openGraph: {
-      title: siteConfig.title,
-      description: siteConfig.description,
+      title,
+      description,
       url: siteUrl,
       siteName: siteConfig.name,
       images: [{ url: ogImage, width: 1200, height: 630 }],
@@ -50,11 +68,14 @@ export async function generateMetadata(): Promise<Metadata> {
     },
     twitter: {
       card: 'summary_large_image',
-      title: siteConfig.title,
-      description: siteConfig.description,
+      title,
+      description,
       images: [ogImage],
     },
     robots: { index: true, follow: true },
+    verification: googleSiteVerification
+      ? { google: googleSiteVerification }
+      : undefined,
   };
 }
 

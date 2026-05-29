@@ -1,5 +1,6 @@
 import { ArrowDown } from 'lucide-react';
 import { HeroData } from '@/lib/types/view';
+import { PROFILE_HANDLE } from '@/lib/seo/profile';
 
 interface HeroProps {
   heroData: HeroData;
@@ -15,8 +16,14 @@ export default function Hero({ heroData }: HeroProps) {
         <p className="text-lg md:text-xl text-neutral-400">{heroData.greeting}</p>
         <h1 className="text-5xl md:text-7xl font-bold">
           <span className="text-white">{heroData.name}</span>
-          <span className="sr-only"> - {heroData.role} 포트폴리오</span>
+          <span className="sr-only">
+            {' '}
+            - {PROFILE_HANDLE} {heroData.role} 포트폴리오
+          </span>
         </h1>
+        <p className="text-sm md:text-base font-medium tracking-normal text-neutral-400">
+          @{PROFILE_HANDLE}
+        </p>
         <p className="text-2xl md:text-3xl text-neutral-200 font-semibold">
           {heroData.role}
         </p>

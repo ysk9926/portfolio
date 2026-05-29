@@ -2,7 +2,7 @@ import { readFile } from 'node:fs/promises';
 import { join } from 'node:path';
 import { ImageResponse } from 'next/og';
 
-export const alt = '윤승규 | 풀스택 개발자 포트폴리오';
+export const alt = '윤승규 | ysk9926 풀스택 개발자 포트폴리오';
 export const size = { width: 1200, height: 630 };
 export const contentType = 'image/png';
 
@@ -66,6 +66,15 @@ export default async function Image() {
             }}
           >
             윤승규
+          </div>
+          <div
+            style={{
+              fontSize: '26px',
+              fontWeight: 600,
+              color: '#737373',
+            }}
+          >
+            @ysk9926
           </div>
           <div
             style={{

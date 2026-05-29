@@ -59,3 +59,22 @@ curl -X POST http://localhost:3000/api/internal/sync/portfolio \
   -H "Content-Type: application/json" \
   --data @payload.json
 ```
+
+## Google Indexing
+
+To make the portfolio rank for `ysk9926`, deploy with a stable canonical URL and register it in Google Search Console.
+
+Recommended production environment variables:
+
+```bash
+SITE_URL=https://your-domain.example
+NEXT_PUBLIC_SITE_URL=https://your-domain.example
+GOOGLE_SITE_VERIFICATION=search-console-verification-token
+```
+
+After deployment:
+
+1. Add the production domain to Google Search Console.
+2. Submit `https://your-domain.example/sitemap.xml`.
+3. Use URL Inspection for the home page and request indexing.
+4. Link to the portfolio from indexed profiles such as GitHub, Velog, YouTube, and RocketPunch using anchor text like `ysk9926 포트폴리오`.
