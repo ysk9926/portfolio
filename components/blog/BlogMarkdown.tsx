@@ -4,6 +4,8 @@ import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import type { Components } from 'react-markdown';
 import { slugifyHeading } from '@/lib/blog/toc';
+import CodeBlock from './CodeBlock';
+import MermaidBlock from './MermaidBlock';
 
 interface BlogMarkdownProps {
   content: string;
@@ -74,13 +76,14 @@ const components: Components = {
     </blockquote>
   ),
   code: ({ children, className }) => {
-    const isBlock = className?.includes('language-');
-    if (isBlock) {
-      return (
-        <code className={`${className} block overflow-x-auto rounded-lg bg-neutral-900 p-4 text-sm leading-relaxed text-neutral-100`}>
-          {children}
-        </code>
-      );
+    const match = /language-([\w-]+)/.exec(className ?? '');
+    if (match) {
+      const language = match[1];
+      const raw = flattenChildren(children).replace(/\n$/, '');
+      if (language === 'mermaid') {
+        return <MermaidBlock code={raw} />;
+      }
+      return <CodeBlock code={raw} language={language} />;
     }
     return (
       <code className="rounded bg-neutral-100 px-1.5 py-0.5 font-mono text-[0.92em] text-neutral-800">
@@ -88,7 +91,7 @@ const components: Components = {
       </code>
     );
   },
-  pre: ({ children }) => <pre className="my-5">{children}</pre>,
+  pre: ({ children }) => <>{children}</>,
   img: ({ src, alt }) => (
     // eslint-disable-next-line @next/next/no-img-element
     <img
