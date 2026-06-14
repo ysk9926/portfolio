@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<title>윤승규 경력기술서</title>
+<style>
+  @page {
+    size: A4;
+    margin: 13mm 15mm 12mm 15mm;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  body {
+    font-family: -apple-system, "Apple SD Gothic Neo", "Pretendard", "Noto Sans KR", sans-serif;
+    color: #1a1a1a;
+    font-size: 9.8pt;
+    line-height: 1.54;
+    letter-spacing: -0.01em;
+  }
+
+  /* ---------- Header ---------- */
+  .header {
+    border-bottom: 2px solid #1a1a1a;
+    padding-bottom: 11px;
+    margin-bottom: 17px;
+  }
+  .header .doc-type {
+    font-size: 8.5pt;
+    letter-spacing: 0.32em;
+    color: #767676;
+    text-transform: uppercase;
+    font-weight: 600;
+    margin-bottom: 9px;
+  }
+  .header .name-row {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+  .header .name {
+    font-size: 23pt;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+  }
+  .header .name .role {
+    font-size: 11pt;
+    font-weight: 500;
+    color: #555;
+    margin-left: 10px;
+    letter-spacing: -0.01em;
+  }
+  .header .contact {
+    margin-top: 11px;
+    font-size: 9pt;
+    color: #444;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px 18px;
+  }
+  .header .contact span { white-space: nowrap; }
+  .header .contact .label { color: #999; margin-right: 5px; }
+
+  /* ---------- Section ---------- */
+  section { margin-bottom: 16px; }
+  .section-title {
+    font-size: 10.8pt;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    color: #1a1a1a;
+    padding-bottom: 5px;
+    border-bottom: 1px solid #d4d4d4;
+    margin-bottom: 11px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .section-title::before {
+    content: "";
+    width: 4px;
+    height: 13px;
+    background: #1a1a1a;
+    display: inline-block;
+  }
+
+  /* ---------- Summary ---------- */
+  .summary { color: #2a2a2a; line-height: 1.72; }
+
+  /* ---------- Experience ---------- */
+  .exp-head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    margin-bottom: 3px;
+  }
+  .exp-company { font-size: 12.5pt; font-weight: 700; }
+  .exp-period { font-size: 9pt; color: #767676; white-space: nowrap; }
+  .exp-role { font-size: 9.5pt; font-weight: 600; color: #444; margin-bottom: 8px; }
+  .exp-desc { color: #3a3a3a; margin-bottom: 12px; line-height: 1.65; }
+
+  .ach-label {
+    font-size: 8.5pt;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    color: #767676;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+  ul.achievements { list-style: none; }
+  ul.achievements > li {
+    position: relative;
+    padding-left: 16px;
+    margin-bottom: 6px;
+    line-height: 1.5;
+    color: #2a2a2a;
+    break-inside: avoid;
+  }
+  ul.achievements > li::before {
+    content: "";
+    position: absolute;
+    left: 1px;
+    top: 7px;
+    width: 5px;
+    height: 5px;
+    background: #1a1a1a;
+    border-radius: 50%;
+  }
+  ul.achievements > li b { font-weight: 700; color: #111; }
+  ul.achievements > li .stack {
+    display: inline-block;
+    color: #767676;
+    font-size: 8.8pt;
+  }
+
+  /* ---------- Skills ---------- */
+  .skills-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6px 26px;
+  }
+  .skill-row {
+    display: flex;
+    gap: 10px;
+    padding: 4px 0;
+    border-bottom: 1px dotted #e0e0e0;
+    break-inside: avoid;
+  }
+  .skill-cat {
+    flex: 0 0 92px;
+    font-weight: 700;
+    font-size: 9pt;
+    color: #1a1a1a;
+  }
+  .skill-list { font-size: 9pt; color: #3a3a3a; line-height: 1.5; }
+
+  /* ---------- Footer note ---------- */
+  .endnote {
+    margin-top: 18px;
+    padding-top: 10px;
+    border-top: 1px solid #e0e0e0;
+    font-size: 8.5pt;
+    color: #999;
+    text-align: center;
+  }
+
+  .keep { break-inside: avoid; }
+</style>
+</head>
+<body>
+
+  <div class="header">
+    <div class="doc-type">Career Description · 경력기술서</div>
+    <div class="name-row">
+      <div class="name">윤승규<span class="role">Enterprise 1팀 리더 / 풀스택 개발자</span></div>
+    </div>
+    <div class="contact">
+      <span><span class="label">Email</span>tmdrb9926@gmail.com</span>
+      <span><span class="label">Mobile</span>010-3549-9926</span>
+      <span><span class="label">GitHub</span>github.com/ysk9926</span>
+      <span><span class="label">Location</span>경기도 안양시</span>
+      <span><span class="label">Education</span>정보통신공학과 졸업</span>
+    </div>
+  </div>
+
+  <section>
+    <div class="section-title">SUMMARY</div>
+    <p class="summary">
+      웹·모바일·데스크탑·AI 전 영역에서 기획부터 배포까지 주도하는 풀스택 개발자입니다. 단순히 요구사항을 코드로 옮기는 것이 아니라, 비즈니스 로직의 본질을 이해하고 기술로 문제를 해결합니다. 클라이언트 미팅 주도, 요구사항 정의, 아키텍처 설계, 팀원 작업 배분, 개발, QA, 산출물 작성까지 프로젝트 전 과정을 책임지며, 현재 (주)풀링포레스트에서 Enterprise 1팀 리더로 SI 프로젝트와 사내 서비스를 동시에 이끌고 있습니다.
+    </p>
+  </section>
+
+  <section>
+    <div class="section-title">WORK EXPERIENCE</div>
+    <div class="keep">
+      <div class="exp-head">
+        <div class="exp-company">(주)풀링포레스트</div>
+        <div class="exp-period">2025.05 — 현재</div>
+      </div>
+      <div class="exp-role">Enterprise 1팀 리더 / 풀스택 개발자</div>
+      <p class="exp-desc">
+        Enterprise 1팀 리더로 SI 프로젝트 및 자사 서비스의 풀스택 개발을 담당하고 있습니다. 웹, 모바일, 데스크탑, AI/RAG 등 다양한 도메인의 프로젝트에서 요구사항 정의, 아키텍처 설계, 팀원 작업 배분, QA, 배포까지 주도하고 있습니다.
+      </p>
+    </div>
+
+    <div class="ach-label">KEY ACHIEVEMENTS</div>
+    <ul class="achievements">
+      <li><b>Enterprise 1팀 리딩</b> — SI 프로젝트와 자사 서비스를 병행하는 팀의 개발 리딩을 맡아 요구사항 정리, 일정 조율, 아키텍처 설계, 작업 배분, QA 기준 정리, 배포 대응까지 프로젝트 실행 전 과정을 관리</li>
+      <li><b>B2B 에스테틱 구독 커머스 플랫폼 구축</b> — 서비스 기획(IA 설계)부터 참여하여 구독 엔진·AI 사업자 승인·회원 등급별 자동 할인·ERP 전표 자동화 등 17개 커스텀 기능 설계/구현, 상품 등록 공수 1/N 절감 및 수동 ERP 처리 완전 제거 <span class="stack">(Spring Boot + Next.js + Flutter, 6개월)</span></li>
+      <li><b>배터리 테스트 레시피 관리 시스템</b> — 자체 WebGL 렌더러로 DOM 대비 30배(1,000 → 30,000+ 블록) 성능 개선, O(n²) → O(n log n) 알고리즘 최적화로 60fps 달성 <span class="stack">(Blazor + .NET 9, 7개월)</span></li>
+      <li><b>RAG 기반 고객 응대 챗봇</b> — BM25+Vector+Reranker 하이브리드 검색으로 단일 검색 대비 정확도 대폭 개선, 11개 마이크로서비스 아키텍처 설계 <span class="stack">(FastAPI + LangChain + Qdrant, 2개월)</span></li>
+      <li><b>반도체 설비 작업보고서 디지털화</b> — 수기 작성→엑셀 이중 작업을 제거하고 2단계 승인 워크플로우(9상태) 구축, 4주 만에 3개 앱 개발 완료 <span class="stack">(Next.js + Express + Flutter)</span></li>
+      <li><b>사내 프로젝트 관리 플랫폼(P-Grid) 및 생산성 도구 4종</b> — 전직원 10명이 일상적으로 사용하는 핵심 사내 도구로 정착, 프로젝트 관리 프로세스 표준화 달성 <span class="stack">(63,000+ LOC)</span></li>
+    </ul>
+  </section>
+
+  <section>
+    <div class="section-title">TECHNICAL SKILLS</div>
+    <div class="skills-grid">
+      <div class="skill-row">
+        <div class="skill-cat">Frontend</div>
+        <div class="skill-list">React, Next.js, TypeScript, Tailwind CSS, Zustand, Vite</div>
+      </div>
+      <div class="skill-row">
+        <div class="skill-cat">Backend</div>
+        <div class="skill-list">Python/FastAPI, Kotlin/Spring Boot, Node.js/Express, .NET/ASP.NET Core</div>
+      </div>
+      <div class="skill-row">
+        <div class="skill-cat">Database</div>
+        <div class="skill-list">PostgreSQL, MySQL, MongoDB</div>
+      </div>
+      <div class="skill-row">
+        <div class="skill-cat">DevOps · Infra</div>
+        <div class="skill-list">Docker, AWS (EC2/RDS/S3), Nginx, Vercel</div>
+      </div>
+      <div class="skill-row">
+        <div class="skill-cat">Mobile · Desktop</div>
+        <div class="skill-list">Flutter, Electron, Swift/SwiftUI</div>
+      </div>
+      <div class="skill-row">
+        <div class="skill-cat">AI · RAG</div>
+        <div class="skill-list">LangChain, Qdrant, OpenAI, PaddleOCR, ONNX Runtime</div>
+      </div>
+    </div>
+  </section>
+
+  <div class="endnote">윤승규 · ysk9926 — 본 문서는 채용 전형 제출을 위해 작성되었습니다.</div>
+
+</body>
+</html>

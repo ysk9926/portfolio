@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<title>윤승규 포트폴리오</title>
+<style>
+  @page {
+    size: A4;
+    margin: 15mm 15mm 16mm 15mm;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  body {
+    font-family: -apple-system, "Apple SD Gothic Neo", "Pretendard", "Noto Sans KR", sans-serif;
+    color: #1a1a1a;
+    font-size: 9.6pt;
+    line-height: 1.6;
+    letter-spacing: -0.01em;
+  }
+
+  /* ---------- Cover ---------- */
+  .cover {
+    height: 252mm;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    page-break-after: always;
+  }
+  .cover .kicker {
+    font-size: 9pt;
+    letter-spacing: 0.34em;
+    color: #767676;
+    text-transform: uppercase;
+    font-weight: 600;
+    margin-bottom: 22px;
+  }
+  .cover h1 {
+    font-size: 40pt;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    line-height: 1.05;
+    margin-bottom: 6px;
+  }
+  .cover .sub {
+    font-size: 14pt;
+    color: #444;
+    font-weight: 500;
+    margin-bottom: 30px;
+  }
+  .cover .tagline {
+    font-size: 11pt;
+    line-height: 1.75;
+    color: #333;
+    max-width: 150mm;
+    padding-left: 18px;
+    border-left: 3px solid #1a1a1a;
+    margin-bottom: 38px;
+  }
+  .cover .meta {
+    font-size: 9.5pt;
+    color: #555;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+  .cover .meta .row { display: flex; gap: 10px; }
+  .cover .meta .k { width: 70px; color: #999; font-weight: 600; }
+  .cover .toc {
+    margin-top: 42px;
+    padding-top: 20px;
+    border-top: 1px solid #d4d4d4;
+  }
+  .cover .toc-title {
+    font-size: 8.5pt; letter-spacing: 0.2em; color: #767676;
+    text-transform: uppercase; font-weight: 700; margin-bottom: 12px;
+  }
+  .cover .toc ol { list-style: none; counter-reset: toc; }
+  .cover .toc li {
+    counter-increment: toc;
+    display: flex;
+    align-items: baseline;
+    padding: 4px 0;
+    font-size: 10pt;
+  }
+  .cover .toc li::before {
+    content: counter(toc, decimal-leading-zero);
+    font-weight: 700;
+    color: #1a1a1a;
+    margin-right: 14px;
+    font-variant-numeric: tabular-nums;
+  }
+  .cover .toc .t-name { font-weight: 600; }
+  .cover .toc .t-meta { color: #999; margin-left: 8px; font-size: 9pt; }
+
+  /* ---------- Project ---------- */
+  .project { page-break-before: always; padding-top: 2px; }
+  .project:first-of-type { page-break-before: avoid; }
+
+  .p-head { border-bottom: 2px solid #1a1a1a; padding-bottom: 11px; margin-bottom: 15px; }
+  .p-num {
+    font-size: 8.5pt; font-weight: 700; letter-spacing: 0.18em;
+    color: #767676; text-transform: uppercase; margin-bottom: 6px;
+  }
+  .p-title { font-size: 17pt; font-weight: 700; letter-spacing: -0.02em; line-height: 1.2; }
+  .p-line {
+    margin-top: 7px; display: flex; flex-wrap: wrap; gap: 4px 16px;
+    font-size: 8.8pt; color: #666;
+  }
+  .p-line .role { font-weight: 600; color: #1a1a1a; }
+  .p-summary { color: #333; margin: 12px 0 14px; line-height: 1.66; }
+
+  .stack-row { margin-bottom: 15px; }
+  .chip {
+    display: inline-block;
+    border: 1px solid #c8c8c8;
+    border-radius: 3px;
+    padding: 1.5px 7px;
+    font-size: 8pt;
+    color: #444;
+    margin: 0 4px 4px 0;
+    background: #fafafa;
+  }
+
+  .block { margin-bottom: 14px; break-inside: avoid; }
+  .block-title {
+    font-size: 9.5pt; font-weight: 700; letter-spacing: 0.05em;
+    color: #1a1a1a; margin-bottom: 7px;
+    display: flex; align-items: center; gap: 7px;
+  }
+  .block-title::before {
+    content: ""; width: 3px; height: 11px; background: #1a1a1a; display: inline-block;
+  }
+  .block p { color: #333; line-height: 1.62; }
+
+  ul.dash { list-style: none; }
+  ul.dash > li {
+    position: relative; padding-left: 13px; margin-bottom: 5px;
+    color: #333; line-height: 1.55;
+  }
+  ul.dash > li::before {
+    content: "–"; position: absolute; left: 0; top: 0; color: #999; font-weight: 600;
+  }
+  ul.dash > li b { color: #111; font-weight: 700; }
+
+  /* results metrics */
+  .metrics {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 5px 18px;
+    margin-bottom: 8px;
+  }
+  .metric {
+    display: flex; gap: 8px; align-items: baseline; padding: 3px 0;
+    border-bottom: 1px dotted #e0e0e0; font-size: 9pt; break-inside: avoid;
+  }
+  .metric::before { content: "▪"; color: #1a1a1a; font-size: 7pt; }
+
+  /* STAR */
+  .star { background: #f6f6f6; border-left: 3px solid #1a1a1a; padding: 11px 13px; margin-bottom: 10px; break-inside: avoid; }
+  .star-case { font-size: 9.8pt; font-weight: 700; color: #111; margin-bottom: 8px; }
+  .star-grid { display: flex; flex-direction: column; gap: 6px; }
+  .star-item { display: flex; gap: 9px; }
+  .star-tag {
+    flex: 0 0 18px; height: 18px; border-radius: 3px; background: #1a1a1a; color: #fff;
+    font-size: 8pt; font-weight: 700; display: flex; align-items: center; justify-content: center;
+  }
+  .star-body { font-size: 9pt; line-height: 1.55; color: #2a2a2a; }
+  .star-body b { font-weight: 700; }
+
+  .pagenum { font-size: 8pt; color: #bbb; text-align: right; margin-top: 6px; }
+  .keep { break-inside: avoid; }
+</style>
+</head>
+<body>
+
+  <!-- ===================== COVER ===================== -->
+  <div class="cover">
+    <div class="kicker">Portfolio · 2026</div>
+    <h1>윤승규</h1>
+    <div class="sub">Enterprise 1팀 리더 / 풀스택 개발자 · ysk9926</div>
+    <div class="tagline">
+      11개월간 14개 프로젝트를 기획부터 배포까지 주도한 풀스택 개발자.<br/>
+      카페24 구독 엔진부터 RAG 법률 AI, WebGL 3만+ 블록 렌더링까지 —<br/>
+      비즈니스를 이해하고 기술로 문제를 끝까지 해결합니다.
+    </div>
+    <div class="meta">
+      <div class="row"><span class="k">Email</span><span>tmdrb9926@gmail.com</span></div>
+      <div class="row"><span class="k">Mobile</span><span>010-3549-9926</span></div>
+      <div class="row"><span class="k">GitHub</span><span>github.com/ysk9926</span></div>
+      <div class="row"><span class="k">Company</span><span>(주)풀링포레스트 · 2025.05 — 현재</span></div>
+    </div>
+
+    <div class="toc">
+      <div class="toc-title">Selected Projects</div>
+      <ol>
+        <li><span class="t-name">Wonik PNE Recipe Management</span><span class="t-meta">Blazor · .NET 9 · WebGL · 7개월</span></li>
+        <li><span class="t-name">VEMONTES — 스킨케어 구독 커머스</span><span class="t-meta">Spring Boot · Next.js · Flutter · 6개월</span></li>
+        <li><span class="t-name">iamfine — RAG 고객 응대 챗봇</span><span class="t-meta">FastAPI · LangChain · Qdrant · 2개월</span></li>
+        <li><span class="t-name">Intros Job Card — 작업보고서 관리</span><span class="t-meta">Next.js · Express · Flutter · 4주</span></li>
+        <li><span class="t-name">Doc Creator — KIPO 문서 자동 생성</span><span class="t-meta">Python · GPT-4o · Playwright</span></li>
+        <li><span class="t-name">BridgeUI — 교량 손상 분석 데스크탑</span><span class="t-meta">React · Electron · Python ML</span></li>
+        <li><span class="t-name">Poooling 사내 도구 (P-Grid 외)</span><span class="t-meta">Next.js · Swift · 63,000+ LOC</span></li>
+      </ol>
+    </div>
+  </div>
+
+  <!-- ===================== PROJECT 1 ===================== -->
+  <div class="project">
+    <div class="p-head">
+      <div class="p-num">Project 01</div>
+      <div class="p-title">Wonik PNE Recipe Management</div>
+      <div class="p-line">
+        <span class="role">Recipe Management 풀스택 (2인)</span>
+        <span>2025.07 — 2026.02 (7개월)</span>
+        <span>955 commits · 312,000+ LOC</span>
+      </div>
+    </div>
+    <p class="p-summary">
+      배터리 테스트 공정의 레시피(공정 실행 지시서)를 시각적으로 편집·관리하는 엔터프라이즈 웹 애플리케이션. 자체 WebGL 렌더러를 구축하여 3만 개 이상 블록의 실시간 렌더링 및 인터랙션을 구현.
+    </p>
+    <div class="stack-row">
+      <span class="chip">Blazor WebAssembly</span><span class="chip">.NET 9.0</span><span class="chip">ASP.NET Core</span><span class="chip">MongoDB</span><span class="chip">WebGL (PixiJS)</span><span class="chip">Blockly</span><span class="chip">MediatR (CQRS)</span><span class="chip">SignalR</span><span class="chip">MudBlazor</span>
+    </div>
+
+    <div class="block">
+      <div class="block-title">주요 구현</div>
+      <ul class="dash">
+        <li><b>블록 기반 레시피 에디터 (WebGL)</b> — PixiJS 자체 렌더러로 3만+ 블록 실시간 렌더링·드래그·드롭, 뷰포트 가상화 스케줄러 적용</li>
+        <li><b>Blockly 비주얼 프로그래밍</b> — 레시피 도메인 특화 커스텀 블록 정의 및 워크스페이스 직렬화</li>
+        <li><b>레시피 관리·MyStep</b> — 폴더 트리 구조, 커서 기반 페이지네이션, 재사용 스텝 템플릿</li>
+        <li><b>임포트·익스포트</b> — CSV/Excel(EPPlus·ClosedXML)/JSON, 온도·전압 패턴 임포트</li>
+        <li><b>유효성 검증 & 변경 이력</b> — 스텝 정합성·안전조건 검증, JSON Diff 기반 감사 추적</li>
+      </ul>
+    </div>
+
+    <div class="block">
+      <div class="block-title">성과</div>
+      <div class="metrics">
+        <div class="metric">3만+ 블록 실시간 렌더링 (WebGL 가상화)</div>
+        <div class="metric">60fps 유지, 메모리 사용량 대폭 감소</div>
+        <div class="metric">25개 REST API · 51개 CQRS 핸들러</div>
+        <div class="metric">4차 QA까지 반복 개선, 프로덕션 안정성 확보</div>
+      </div>
+    </div>
+
+    <div class="block">
+      <div class="block-title">핵심 트러블슈팅 (STAR)</div>
+      <div class="star">
+        <div class="star-case">자체 WebGL 렌더러로 3만+ 블록 실시간 렌더링 최적화</div>
+        <div class="star-grid">
+          <div class="star-item"><div class="star-tag">S</div><div class="star-body">기존 DOM 기반(Blockly) 렌더링은 1,000개 이상 블록에서 프레임 드롭·메모리 급증·브라우저 크래시 발생.</div></div>
+          <div class="star-item"><div class="star-tag">T</div><div class="star-body">3만+ 블록을 실시간 렌더링하면서 드래그&드롭·스크롤·결합/분리 인터랙션이 끊김 없이 동작하도록.</div></div>
+          <div class="star-item"><div class="star-tag">A</div><div class="star-body">PixiJS 기반 GPU 가속 Canvas 렌더러 구축, 뷰포트 가상화 스케줄러 적용, 블록 탐색·정렬을 <b>O(n²) → O(n log n)</b>으로 최적화, 동적 높이 계산·드래그 레이어 분리.</div></div>
+          <div class="star-item"><div class="star-tag">R</div><div class="star-body"><b>3만+ 블록에서 60fps 달성</b>, DOM 대비 메모리 대폭 감소, 인터랙션 체감 성능 크게 개선.</div></div>
+        </div>
+      </div>
+      <div class="star">
+        <div class="star-case">Clean Architecture + CQRS 기반 확장 가능한 서버 설계</div>
+        <div class="star-grid">
+          <div class="star-item"><div class="star-tag">S</div><div class="star-body">25개 컨트롤러·54+ DTO·20+ 레포지토리로 구성된 복잡한 도메인, 부가 기능이 계속 추가되는 상황.</div></div>
+          <div class="star-item"><div class="star-tag">A</div><div class="star-body">MediatR CQRS로 비즈니스 로직을 51개 Command/Query 핸들러로 분리, Repository Pattern·FluentValidation·JSON Diff 변경 로그 적용.</div></div>
+          <div class="star-item"><div class="star-tag">R</div><div class="star-body">신규 기능 추가 시 기존 코드 수정 최소화, 2,037 commits 동안 아키텍처 일관성 유지, 팀원과 충돌 없는 병렬 개발.</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================== PROJECT 2 ===================== -->
+  <div class="project">
+    <div class="p-head">
+      <div class="p-num">Project 02</div>
+      <div class="p-title">VEMONTES — 스킨케어 구독 커머스 플랫폼</div>
+      <div class="p-line">
+        <span class="role">풀스택 메인 (2인)</span>
+        <span>2025.05 — 2025.11 (6개월)</span>
+        <span>240 commits · 38,000+ LOC</span>
+      </div>
+    </div>
+    <p class="p-summary">
+      카페24 기반 스킨케어 쇼핑몰에 구독 서비스, 추천인 보상, 영업대리/지사 관리 등 카페24에 없는 기능을 추가 구현한 풀스택 커머스 플랫폼.
+    </p>
+    <div class="stack-row">
+      <span class="chip">Spring Boot 3.4</span><span class="chip">Kotlin</span><span class="chip">Next.js 15</span><span class="chip">React 19</span><span class="chip">Flutter</span><span class="chip">MySQL 8</span><span class="chip">AWS (EC2·RDS·S3)</span><span class="chip">Docker</span>
+    </div>
+
+    <div class="block">
+      <div class="block-title">주요 구현</div>
+      <ul class="dash">
+        <li><b>구독 서비스 엔진</b> — 카페24에 없는 정기 구독 자체 구현, 회차별 등급 변경·선물·적립금 자동 처리, 결제·만료 스케줄러</li>
+        <li><b>카페24 연동</b> — OAuth 2.0, 상품·주문·고객 20+ 항목 동기화, 주문 웹훅 실시간 처리</li>
+        <li><b>영업대리/지사/추천인</b> — 실적 자동 기록·통계(Recharts), 추천 코드 기반 적립금 자동 지급(5%)</li>
+        <li><b>ERP(Ecount) 연동 & OCR 인증</b> — 주문 자동 전송·부분 실패 처리, OpenAI Vision 사업자등록증 자동 추출</li>
+        <li><b>Flutter WebView 앱</b> — 70+ 결제 앱 딥링크 처리, iOS/Android 스토어 폴백</li>
+      </ul>
+    </div>
+
+    <div class="block">
+      <div class="block-title">성과</div>
+      <div class="metrics">
+        <div class="metric">42개 Entity · 34개 API Controller</div>
+        <div class="metric">관리자 대시보드 25+ 페이지 통합</div>
+        <div class="metric">수동 ERP 입력 업무 자동 연동 대체</div>
+        <div class="metric">OCR 사업자 인증으로 수기 확인 제거</div>
+      </div>
+    </div>
+
+    <div class="block">
+      <div class="block-title">핵심 트러블슈팅 (STAR)</div>
+      <div class="star">
+        <div class="star-case">카페24 위에 구독 서비스 전체 설계/구현</div>
+        <div class="star-grid">
+          <div class="star-item"><div class="star-tag">S</div><div class="star-body">카페24는 정기 구독 미지원. 회차별 등급/선물/적립금 시스템이 핵심 비즈니스 모델.</div></div>
+          <div class="star-item"><div class="star-tag">T</div><div class="star-body">기존 카페24 주문 흐름을 깨지 않으면서 자체 구독 엔진을 얹고 결제·등급·선물·알림 자동화.</div></div>
+          <div class="star-item"><div class="star-tag">A</div><div class="star-body"><b>SubscriptionProduct → GradeRule → GiftItem</b> 계층 모델 설계, 주문 웹훅으로 구독 상태 자동 업데이트, 회차별 등급/선물/적립금 스케줄러 자동화, 레거시(Boolean) → Enum 상태 점진 마이그레이션.</div></div>
+          <div class="star-item"><div class="star-tag">R</div><div class="star-body">관리자가 대시보드에서 직접 설정 가능, 구독 관리 업무 완전 자동화, 다중 구독·일시정지/재활성화 세밀 관리.</div></div>
+        </div>
+      </div>
+      <div class="star">
+        <div class="star-case">70+ 결제 앱 딥링크 처리 (Flutter)</div>
+        <div class="star-grid">
+          <div class="star-item"><div class="star-tag">S</div><div class="star-body">WebView 결제 시 카카오페이·토스·KB페이 등 외부 앱 호출, 카드사·OS마다 URL 스킴·동작 상이.</div></div>
+          <div class="star-item"><div class="star-tag">A</div><div class="star-body">PaymentAppInfo에 Android 패키지명·iOS App Store ID 매핑, Android는 MethodChannel·Intent, iOS는 url_launcher·LSApplicationQueriesSchemes 80개 등록, 미설치 시 스토어 폴백·1.5초 TTL 중복 방지.</div></div>
+          <div class="star-item"><div class="star-tag">R</div><div class="star-body">전 카드사 + 카카오페이·토스·페이코 등 간편결제 완벽 지원, 미설치·에러 상황에서도 안정적 UX.</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================== PROJECT 3 ===================== -->
+  <div class="project">
+    <div class="p-head">
+      <div class="p-num">Project 03</div>
+      <div class="p-title">iamfine — RAG 기반 고객 응대 챗봇</div>
+      <div class="p-line">
+        <span class="role">풀스택 (1인)</span>
+        <span>2026.01 — 2026.02 (2개월)</span>
+        <span>270 files · 33,500+ LOC</span>
+      </div>
+    </div>
+    <p class="p-summary">
+      문서 업로드부터 OCR, 임베딩, 하이브리드 검색, LLM 답변까지 전 과정을 처리하는 엔터프라이즈급 RAG 기반 고객 응대 챗봇 시스템. 11개 마이크로서비스를 1인이 설계·구현.
+    </p>
+    <div class="stack-row">
+      <span class="chip">React</span><span class="chip">TypeScript</span><span class="chip">FastAPI</span><span class="chip">LangChain</span><span class="chip">PostgreSQL</span><span class="chip">Qdrant</span><span class="chip">Docker</span><span class="chip">PaddleOCR</span>
+    </div>
+
+    <div class="block">
+      <div class="block-title">주요 구현</div>
+      <ul class="dash">
+        <li><b>RAG 하이브리드 검색</b> — Intent 분류 → BM25 + Vector → RRF 융합 → Cross-encoder 리랭킹 → LLM 답변·할루시네이션 검증</li>
+        <li><b>문서 인덱싱 파이프라인</b> — 업로드 → OCR(PaddleOCR) → 청킹 → 임베딩 → 벡터 저장을 비동기 워커로 처리</li>
+        <li><b>멀티테넌시</b> — Store/Device 단위 지식 베이스·프롬프트·응답 템플릿 분리</li>
+        <li><b>관리자 대시보드 & 다국어</b> — 인덱싱 모니터링·RBAC·채팅 설정, langdetect 기반 한·영·일·중 지원</li>
+        <li><b>유연한 배포</b> — Docker Compose Single/App/Data/GPU 4가지 시나리오</li>
+      </ul>
+    </div>
+
+    <div class="block">
+      <div class="block-title">성과</div>
+      <div class="metrics">
+        <div class="metric">프로덕션 환경 실제 서비스 배포 완료</div>
+        <div class="metric">11개 Docker 서비스 단독 설계·구현</div>
+        <div class="metric">하이브리드 검색으로 검색 성능 최적화</div>
+        <div class="metric">2개월 내 1인 개발 (33,500+ LOC)</div>
+      </div>
+    </div>
+
+    <div class="block">
+      <div class="block-title">핵심 트러블슈팅 (STAR)</div>
+      <div class="star">
+        <div class="star-case">하이브리드 검색으로 RAG 검색 정확도 개선</div>
+        <div class="star-grid">
+          <div class="star-item"><div class="star-tag">S</div><div class="star-body">벡터 검색만으로는 고유명사·제품 코드 등 키워드 질의에서 관련 문서를 찾지 못하는 문제.</div></div>
+          <div class="star-item"><div class="star-tag">A</div><div class="star-body">BM25 인덱스 추가, <b>RRF(alpha=0.5, K=60)</b>로 두 검색 점수 통합, Cross-encoder(BGE-Reranker) 재순위화, Intent Classification으로 RAG/일반 대화 분류.</div></div>
+          <div class="star-item"><div class="star-tag">R</div><div class="star-body">고유명사·짧은 키워드 질의 miss 감소, 상위 결과 관련성 안정화, "문맥은 비슷하나 답이 아닌" 문서 상위 노출 빈도 감소.</div></div>
+        </div>
+      </div>
+      <div class="star">
+        <div class="star-case">OCR 문단 분리 로직 구현</div>
+        <div class="star-grid">
+          <div class="star-item"><div class="star-tag">S</div><div class="star-body">PaddleOCR 결과가 한 덩어리로 추출되어 의미 단위 청킹 불가.</div></div>
+          <div class="star-item"><div class="star-tag">A</div><div class="star-body">OpenCV 전처리(노이즈 제거·이진화), 좌표 기반 문단 분리, 품질 검사기, 2단계 플로우(자동 파싱 → 관리자 확인/수정).</div></div>
+          <div class="star-item"><div class="star-tag">R</div><div class="star-body">문단 단위 분리로 청킹 품질 향상, 관리자 검수 수정량 감소, 자동화와 실무 품질 간극을 운영적으로 흡수.</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================== PROJECT 4 ===================== -->
+  <div class="project">
+    <div class="p-head">
+      <div class="p-num">Project 04</div>
+      <div class="p-title">Intros Job Card — 반도체 설비 작업보고서 관리</div>
+      <div class="p-line">
+        <span class="role">풀스택 (2인)</span>
+        <span>2026.01 — 2026.02 (약 4주)</span>
+        <span>3개 앱 · 65+ 엔드포인트</span>
+      </div>
+    </div>
+    <p class="p-summary">
+      반도체 설비 현장 엔지니어의 수기 작업보고서를 디지털화하여, 모바일 앱 + 웹 관리자 시스템으로 2단계 승인 워크플로우·대시보드·마스터데이터 관리를 통합 제공하는 풀스택 시스템.
+    </p>
+    <div class="stack-row">
+      <span class="chip">Next.js 16</span><span class="chip">React 19</span><span class="chip">Express.js 5</span><span class="chip">Prisma 7</span><span class="chip">PostgreSQL</span><span class="chip">Flutter</span><span class="chip">Firebase</span>
+    </div>
+
+    <div class="block">
+      <div class="block-title">주요 구현</div>
+      <ul class="dash">
+        <li><b>2단계 승인 워크플로우</b> — DRAFT부터 COMPLETED까지 9단계 상태 관리, 팀장 1차 → 매니저 2차 승인, 반려·재제출·감사 추적</li>
+        <li><b>관리자 대시보드 6종</b> — KPI·작업자별·설비그룹별·작업그룹별·설비별·PO별 시간 분석</li>
+        <li><b>마스터데이터 관리</b> — Client→Fab→Bay, EquipmentGroup→Equipment 등 다단계 계층, 탭 기반 CRUD, 소프트 삭제</li>
+        <li><b>RBAC & 엑셀 내보내기</b> — engineer/team_leader/manager/admin 4종 권한, ExcelJS 서버·클라 양쪽 지원</li>
+        <li><b>푸시 알림 & 딥링크</b> — Firebase FCM 승인/반려 실시간 알림, 알림 탭 시 해당 보고서로 딥링크</li>
+      </ul>
+    </div>
+
+    <div class="block">
+      <div class="block-title">성과</div>
+      <div class="metrics">
+        <div class="metric">웹 + 백엔드 + 모바일 3개 앱 구축</div>
+        <div class="metric">20+ DB 모델 정규화 스키마 설계</div>
+        <div class="metric">수기→엑셀 이중 작업 프로세스 제거</div>
+        <div class="metric">약 4주·31 commits로 완성</div>
+      </div>
+    </div>
+
+    <div class="block">
+      <div class="block-title">핵심 트러블슈팅 (STAR)</div>
+      <div class="star">
+        <div class="star-case">복잡한 마스터데이터 계층 구조 설계 & JWT 자동 갱신</div>
+        <div class="star-grid">
+          <div class="star-item"><div class="star-tag">S</div><div class="star-body">다단계 계층·다대다 참조의 비정규화 엑셀 데이터, 4종 역할별 차등 접근, 토큰 만료 시 UX 단절 우려.</div></div>
+          <div class="star-item"><div class="star-tag">A</div><div class="star-body">Prisma 20+ 모델 계층 관계 정의·연쇄 셀렉트 UI, CustomerEquipment+PoMapping 분리, Access(15분)+Refresh(7일) 이중 토큰·Axios 인터셉터 자동 갱신, AuthGuard·미들웨어 라우트 보호.</div></div>
+          <div class="star-item"><div class="star-tag">R</div><div class="star-body">관리자가 직접 마스터데이터 관리(개발자 의존 제거), 입력 오류 최소화, 토큰 만료를 인지하지 않는 seamless 인증.</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================== PROJECT 5 ===================== -->
+  <div class="project">
+    <div class="p-head">
+      <div class="p-num">Project 05</div>
+      <div class="p-title">Doc Creator — KIPO 문서 자동 생성 도구</div>
+      <div class="p-line">
+        <span class="role">풀스택 (1인)</span>
+        <span>2026.01 — 2026.03</span>
+        <span>Python CLI · GPT-4o</span>
+      </div>
+    </div>
+    <p class="p-summary">
+      소스코드를 분석하여 특허청(KIPO) SW개발방법론 기반 8종 기술 산출물을 AI로 자동 생성하는 Python CLI 도구. 문서 작성 시간을 수일 → 수시간으로 단축.
+    </p>
+    <div class="stack-row">
+      <span class="chip">Python</span><span class="chip">OpenAI GPT-4o</span><span class="chip">Typer CLI</span><span class="chip">Jinja2</span><span class="chip">Playwright</span><span class="chip">python-pptx</span>
+    </div>
+
+    <div class="block">
+      <div class="block-title">주요 구현</div>
+      <ul class="dash">
+        <li><b>소스코드 자동 분석</b> — .gitignore 준수 스캔, 파일 유형별 스마트 청킹(250KB), 30+ 언어 지원</li>
+        <li><b>AI 문서 생성</b> — 문서 유형별 전용 프롬프트 에이전트 12개, 청크 분할 → 개별 분석 → 병합</li>
+        <li><b>다중 포맷 출력</b> — HTML(Jinja2) / PDF(Playwright Chromium) / PPTX(python-pptx)</li>
+        <li><b>Mermaid 다이어그램 자동 생성</b> — 아키텍처·클래스·ERD·시퀀스, 15+ 구문 규칙 검증·정규화</li>
+        <li><b>품질 관리 & 배치</b> — 구조 검증·품질 리포트, 8종 문서 일괄 생성</li>
+      </ul>
+    </div>
+
+    <div class="block">
+      <div class="block-title">성과 & 핵심 트러블슈팅 (STAR)</div>
+      <div class="star">
+        <div class="star-case">대용량 소스코드의 LLM 컨텍스트 한계 극복</div>
+        <div class="star-grid">
+          <div class="star-item"><div class="star-tag">S</div><div class="star-body">고객사 프로젝트 소스가 GPT-4o 컨텍스트 윈도우를 초과해 한 번에 분석 불가.</div></div>
+          <div class="star-item"><div class="star-tag">A</div><div class="star-body">파일 유형별 스마트 청킹(MAX 250KB), 청크별 개별 분석 후 병합, 중복 제거·일관성 검증.</div></div>
+          <div class="star-item"><div class="star-tag">R</div><div class="star-body"><b>1,000+ 파일 대규모 프로젝트</b>에서도 안정적으로 문서 생성, 다수 프로젝트 납품 산출물에 실제 활용.</div></div>
+        </div>
+      </div>
+      <div class="star">
+        <div class="star-case">PPTX 한글 폰트 렌더링 & Mermaid 구문 자동 교정</div>
+        <div class="star-grid">
+          <div class="star-item"><div class="star-tag">A</div><div class="star-body">uharfbuzz+freetype-py로 한글 텍스트 메트릭 정확 측정·자동 페이지 분할, mermaid_guard 15+ 규칙으로 LLM 오류 패턴 자동 수정·폴백(Mermaid.ink → mmdc CLI).</div></div>
+          <div class="star-item"><div class="star-tag">R</div><div class="star-body">한글 PPTX 오버플로우 해결, Mermaid 렌더링 성공률 크게 향상되어 수작업 교정 없이 다이어그램 포함 문서 생성.</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================== PROJECT 6 ===================== -->
+  <div class="project">
+    <div class="p-head">
+      <div class="p-num">Project 06</div>
+      <div class="p-title">BridgeUI — AI 교량 손상 분석 데스크탑 앱</div>
+      <div class="p-line">
+        <span class="role">풀스택 (1인)</span>
+        <span>2025.11 — 2025.12 (6주)</span>
+        <span>Electron · 92 commits</span>
+      </div>
+    </div>
+    <p class="p-summary">
+      AI 기반 교량 손상 탐지·추적·정량화·평가를 자동화하는 Electron 데스크탑 애플리케이션. Python ML 백엔드를 내장하여 로컬 환경에서 독립 동작.
+    </p>
+    <div class="stack-row">
+      <span class="chip">React 18</span><span class="chip">TypeScript</span><span class="chip">Electron 39</span><span class="chip">Vite 7</span><span class="chip">Zustand</span><span class="chip">Ant Design</span><span class="chip">Python (Flask)</span><span class="chip">WebSocket</span>
+    </div>
+
+    <div class="block">
+      <div class="block-title">주요 구현</div>
+      <ul class="dash">
+        <li><b>순차적 워크플로우 엔진</b> — 설정→탐지→키프레임 검토→추적→정량화→3D 매핑→평가→보고서, SettingsGuard로 단계 접근 제어</li>
+        <li><b>AI 손상 탐지 & 3D 시각화</b> — ONNX ML 모델로 균열·박리·철근 노출 감지, CSS3D 손상 위치 시각화</li>
+        <li><b>실시간 진행률</b> — WebSocket 진행률, 지수 백오프 자동 재연결(최대 5회), 5분 타임아웃 리셋</li>
+        <li><b>멀티 포맷 보고서</b> — 4종 템플릿, PDF·Excel·CSV 내보내기</li>
+        <li><b>크로스 플랫폼</b> — macOS(Intel/AS)·Windows·Linux, PyInstaller 백엔드 번들링</li>
+      </ul>
+    </div>
+
+    <div class="block">
+      <div class="block-title">성과 & 핵심 트러블슈팅 (STAR)</div>
+      <div class="star">
+        <div class="star-case">PyTorch → ONNX 엔진 전환 (Windows 설치 이슈 해결)</div>
+        <div class="star-grid">
+          <div class="star-item"><div class="star-tag">S</div><div class="star-body">PyTorch ML 모델 번들링 시 Windows에서 DLL 의존성 에러로 설치 실패.</div></div>
+          <div class="star-item"><div class="star-tag">A</div><div class="star-body">PyTorch → ONNX Runtime 전환, DLL 진단 스크립트로 원인 파악, PyTorch 코드 전면 제거 후 재구성, 빌드·테스트·롤백 반복 안정화.</div></div>
+          <div class="star-item"><div class="star-tag">R</div><div class="star-body">Windows 정상 설치·실행 확보, <b>macOS/Windows/Linux 3종 배포 안정성</b> 달성. Electron 첫 사용 프로젝트에서 3개 플랫폼 모두 정상 빌드·배포 성공.</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================== PROJECT 7 ===================== -->
+  <div class="project">
+    <div class="p-head">
+      <div class="p-num">Project 07</div>
+      <div class="p-title">Poooling 사내 도구 & 프로젝트 관리 시스템</div>
+      <div class="p-line">
+        <span class="role">메인 개발 총괄</span>
+        <span>2026.02 — 현재</span>
+        <span>4개 도구 · 63,000+ LOC</span>
+      </div>
+    </div>
+    <p class="p-summary">
+      다수 프로젝트를 효율적으로 관리하고 개발 생산성을 높이기 위한 사내 도구 모음. 전직원 10명이 사용하며, 대표를 제외한 팀원 중 메인 개발을 총괄.
+    </p>
+    <div class="stack-row">
+      <span class="chip">Next.js 16</span><span class="chip">React 19</span><span class="chip">Prisma</span><span class="chip">PostgreSQL</span><span class="chip">Supabase</span><span class="chip">Swift / SwiftUI</span><span class="chip">Firestore</span><span class="chip">OpenAI</span>
+    </div>
+
+    <div class="block">
+      <div class="block-title">구성 도구</div>
+      <ul class="dash">
+        <li><b>Weave P-Grid</b> (~50,000 LOC) — 프로젝트 관리 플랫폼. WBS(AI 자동 제안·Gantt), 테스트 관리·결함 추적, XyFlow ERD 에디터, JWT 기반 고객 포털, Slack·GCS 연동. 99개 API·20+ DB 모델</li>
+        <li><b>DoneDone</b> (~4,100 LOC) — macOS 메뉴바 TODO 앱. 루틴 자동 리셋, Firestore 팀 동기화, 월별 아카이브, 로컬/팀 이중 저장소</li>
+        <li><b>multi-dev-ctrl</b> (~4,000 LOC) — SwiftUI 개발 환경 런처. iTerm 자동화, 포트 관리, Git 상태 모니터링, 의존성 자동 설치</li>
+        <li><b>poooling-skills</b> (~4,700 LOC) — Claude Code 팀 공용 AI 스킬 저장소. ui-ux-pro-max, pgrid-erd/testcase, hwpx 등</li>
+      </ul>
+    </div>
+
+    <div class="block">
+      <div class="block-title">성과 & 핵심 트러블슈팅 (STAR)</div>
+      <div class="metrics">
+        <div class="metric">전직원 10명 일상 사용 도구로 정착</div>
+        <div class="metric">프로젝트 관리 프로세스 표준화 달성</div>
+        <div class="metric">4개 저장소 병렬 설계·개발·운영</div>
+        <div class="metric">총 120 commits · 약 1개월 구축</div>
+      </div>
+      <div class="star">
+        <div class="star-case">내부/외부 사용자 인증 분리 아키텍처</div>
+        <div class="star-grid">
+          <div class="star-item"><div class="star-tag">S</div><div class="star-body">P-Grid는 내부 직원(Google OAuth)과 외부 고객(이메일/비밀번호)이 동시 사용, 서로 다른 인증·권한 필요.</div></div>
+          <div class="star-item"><div class="star-tag">A</div><div class="star-body">NextAuth(OAuth)+커스텀 JWT 이중 인증, Middleware에서 /p-grid/* → OAuth, /client/* → JWT 라우팅, Prisma 스키마 모듈형 6개 파일 분리.</div></div>
+          <div class="star-item"><div class="star-tag">R</div><div class="star-body">단일 Next.js 코드베이스로 내부 포털·고객 포털 통합 운영, 인증/권한 충돌 없이 고객사별 프로젝트 접근 제어 완성.</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>
