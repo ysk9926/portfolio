@@ -94,7 +94,7 @@ export default async function Image() {
               maxWidth: '500px',
             }}
           >
-            10개월간 8개 프로덕션 시스템을 기획부터 배포까지 주도
+            11개월간 14개 프로젝트를 기획부터 배포까지 주도
           </div>
           <div
             style={{

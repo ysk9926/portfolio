@@ -4,6 +4,13 @@ const nextConfig: NextConfig = {
   images: {
     formats: ['image/avif', 'image/webp'],
   },
+  redirects: async () => [
+    {
+      source: '/og-image.png',
+      destination: '/opengraph-image',
+      permanent: true,
+    },
+  ],
   headers: async () => [
     {
       source: '/(.*)',

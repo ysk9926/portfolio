@@ -3,7 +3,8 @@
 import { useState, useCallback, useRef, useEffect, useMemo } from 'react';
 import { ChevronLeft, ChevronRight, LayoutGrid, GanttChart, AlignLeft } from 'lucide-react';
 import dynamic from 'next/dynamic';
-import { Project, ProjectPortfolioSync, ProjectPortfolioSyncEntry } from '@/lib/types';
+import { Project, ProjectPortfolioSync } from '@/lib/types';
+import { mergePortfolioProjects } from '@/lib/projects/portfolio';
 import SectionWrapper from '../ui/SectionWrapper';
 import ProjectCard from '../ui/ProjectCard';
 import ProjectTimelineView from '../ui/ProjectTimelineView';
@@ -21,10 +22,6 @@ interface ProjectsProps {
   projectPortfolioSyncData: ProjectPortfolioSync;
 }
 
-function normalizeProjectKey(value: string) {
-  return value.replace(/[^\p{L}\p{N}]/gu, '').toLowerCase();
-}
-
 export default function Projects({
   projectsData,
   projectPortfolioSyncData,
@@ -36,39 +33,9 @@ export default function Projects({
   const [canScrollRight, setCanScrollRight] = useState(true);
   const [activeIndex, setActiveIndex] = useState(0);
   const scrollRef = useRef<HTMLDivElement>(null);
-  const projectPortfolioSync = projectPortfolioSyncData;
-  const syncLookup = useMemo(() => {
-    return projectPortfolioSync.projects.reduce<Record<string, ProjectPortfolioSyncEntry>>(
-      (acc, entry) => {
-        const lookupKeys = [
-          entry.projectKey,
-          normalizeProjectKey(entry.projectTitle),
-          normalizeProjectKey(entry.headline),
-        ].filter(Boolean);
-        for (const lookupKey of lookupKeys) {
-          acc[lookupKey] = entry;
-        }
-        return acc;
-      },
-      {},
-    );
-  }, [projectPortfolioSync.projects]);
   const mergedProjects = useMemo<Project[]>(() => {
-    return projectsData.map((project) => {
-      const portfolioSync = syncLookup[normalizeProjectKey(project.title)];
-      return {
-        ...project,
-        period: portfolioSync?.period || project.period,
-        shortDescription: portfolioSync?.summary || project.shortDescription,
-        thumbnail: portfolioSync?.thumbnail || project.thumbnail,
-        screenshots:
-          portfolioSync?.screenshots.length
-            ? portfolioSync.screenshots
-            : project.screenshots,
-        portfolioSync,
-      };
-    });
-  }, [projectsData, syncLookup]);
+    return mergePortfolioProjects(projectsData, projectPortfolioSyncData);
+  }, [projectsData, projectPortfolioSyncData]);
 
   const filteredProjects =
     filter === 'all'

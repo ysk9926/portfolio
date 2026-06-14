@@ -69,3 +69,31 @@ export function WebSiteJsonLd({ siteConfig }: Pick<JsonLdProps, 'siteConfig'>) {
     />
   );
 }
+
+export function ProfilePageJsonLd({ siteConfig, heroData }: JsonLdProps) {
+  const siteUrl = getSiteUrl(siteConfig);
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'ProfilePage',
+    name: siteConfig.title,
+    url: siteUrl,
+    description: withProfileHandleDescription(siteConfig.description),
+    inLanguage: 'ko-KR',
+    mainEntity: {
+      '@type': 'Person',
+      name: heroData.name,
+      alternateName: [PROFILE_HANDLE, `@${PROFILE_HANDLE}`],
+      identifier: PROFILE_HANDLE,
+      jobTitle: heroData.role,
+      url: siteUrl,
+      sameAs: PROFILE_SAME_AS,
+    },
+  };
+
+  return (
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+    />
+  );
+}

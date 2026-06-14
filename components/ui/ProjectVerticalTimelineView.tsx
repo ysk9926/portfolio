@@ -1,7 +1,9 @@
 'use client';
 
 import { useMemo } from 'react';
+import Link from 'next/link';
 import { Project } from '@/lib/types';
+import { projectPath } from '@/lib/projects/portfolio';
 import { parsePeriod, sortProjectsByStartDate } from '@/lib/timeline';
 import AnimateOnScroll from './AnimateOnScroll';
 
@@ -87,10 +89,7 @@ export default function ProjectVerticalTimelineView({
                             : 'md:col-start-2 md:pl-8'
                         }`}
                       >
-                        <button
-                          onClick={() => onDetailClick(project)}
-                          className="w-full text-left p-4 md:p-5 rounded-xl bg-white border border-neutral-200 hover:border-neutral-300 hover:shadow-md transition-all cursor-pointer"
-                        >
+                        <article className="w-full rounded-xl border border-neutral-200 bg-white p-4 text-left transition-all hover:border-neutral-300 hover:shadow-md md:p-5">
                           <div
                             className={`flex flex-wrap items-center gap-2 mb-2 ${
                               isLeft ? 'md:justify-end' : ''
@@ -144,7 +143,26 @@ export default function ProjectVerticalTimelineView({
                               </span>
                             )}
                           </div>
-                        </button>
+                          <div
+                            className={`mt-4 flex flex-wrap gap-2 ${
+                              isLeft ? 'md:justify-end' : ''
+                            }`}
+                          >
+                            <button
+                              type="button"
+                              onClick={() => onDetailClick(project)}
+                              className="rounded-md bg-neutral-900 px-3 py-1.5 text-xs font-medium text-white transition hover:bg-neutral-700"
+                            >
+                              빠른 보기
+                            </button>
+                            <Link
+                              href={projectPath(project)}
+                              className="rounded-md border border-neutral-300 px-3 py-1.5 text-xs font-medium text-neutral-700 transition hover:border-neutral-900 hover:text-neutral-950"
+                            >
+                              상세 페이지
+                            </Link>
+                          </div>
+                        </article>
                       </div>
 
                       <div

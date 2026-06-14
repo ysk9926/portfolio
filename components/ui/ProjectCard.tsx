@@ -1,6 +1,8 @@
 import Image from 'next/image';
+import Link from 'next/link';
 import { ArrowRight, FolderCode } from 'lucide-react';
 import { Project } from '@/lib/types';
+import { projectPath } from '@/lib/projects/portfolio';
 
 interface ProjectCardProps {
   project: Project;
@@ -17,9 +19,8 @@ export default function ProjectCard({ project, onDetailClick }: ProjectCardProps
     onDetailClick(project);
   };
 
-  const handleButtonClick = (e: React.MouseEvent) => {
+  const handleLinkClick = (e: React.MouseEvent) => {
     e.stopPropagation();
-    onDetailClick(project);
   };
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
@@ -120,16 +121,17 @@ export default function ProjectCard({ project, onDetailClick }: ProjectCardProps
                           opacity-0 md:group-hover/card:opacity-100">
             <div className="overflow-hidden">
               <p className="text-sm text-slate-300 mt-3 line-clamp-2">{shortDesc}</p>
-              <button
-                onClick={handleButtonClick}
+              <Link
+                href={projectPath(project)}
+                onClick={handleLinkClick}
                 className="mt-3 inline-flex items-center gap-1.5
                            bg-white text-slate-900 font-medium text-sm
                            px-5 py-2 rounded-full hover:bg-slate-100
                            transition-colors cursor-pointer"
               >
-                자세히 보기
+                상세 페이지
                 <ArrowRight size={14} strokeWidth={2.5} />
-              </button>
+              </Link>
             </div>
           </div>
         </div>

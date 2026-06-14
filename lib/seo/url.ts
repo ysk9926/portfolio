@@ -2,6 +2,7 @@ import type { SiteConfig } from '@/lib/types/view';
 
 const LOCAL_SITE_URL = 'http://localhost:3000';
 const EXAMPLE_HOSTS = new Set(['example.com', 'portfolio.example.com']);
+const LEGACY_OG_IMAGE_PATHS = new Set(['/og-image.png', 'og-image.png']);
 
 const normalizeOrigin = (rawUrl: string | null | undefined): string | null => {
   if (!rawUrl) return null;
@@ -39,4 +40,11 @@ export const absoluteUrl = (
 export const absoluteImageUrl = (
   imagePath: string | null | undefined,
   siteConfig?: Pick<SiteConfig, 'url' | 'ogImage'>,
-): string => absoluteUrl(imagePath || siteConfig?.ogImage || '/opengraph-image', siteConfig);
+): string => {
+  const resolvedPath = imagePath || siteConfig?.ogImage || '/opengraph-image';
+  const normalizedPath = LEGACY_OG_IMAGE_PATHS.has(resolvedPath)
+    ? '/opengraph-image'
+    : resolvedPath;
+
+  return absoluteUrl(normalizedPath, siteConfig);
+};

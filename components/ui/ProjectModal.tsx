@@ -3,8 +3,10 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
 import { createPortal } from 'react-dom';
 import Image from 'next/image';
+import Link from 'next/link';
 import { X, ChevronRight, AlertCircle, Lightbulb, TrendingUp, Wrench, FolderCode } from 'lucide-react';
 import { Project } from '@/lib/types';
+import { projectPath } from '@/lib/projects/portfolio';
 import ImageSlider from './ImageSlider';
 import MarkdownRenderer from './MarkdownRenderer';
 
@@ -264,6 +266,12 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
 
           {/* Links */}
           <div className="flex gap-3">
+            <Link
+              href={projectPath(project)}
+              className="flex-1 bg-neutral-900 hover:bg-neutral-800 text-white font-medium py-2.5 px-4 rounded-xl text-center transition-colors"
+            >
+              상세 페이지
+            </Link>
             {project.deployUrl && (
               <a
                 href={project.deployUrl}

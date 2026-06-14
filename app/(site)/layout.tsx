@@ -1,5 +1,9 @@
 import type { Metadata } from 'next';
-import { PersonJsonLd, WebSiteJsonLd } from '@/components/seo/JsonLd';
+import {
+  PersonJsonLd,
+  ProfilePageJsonLd,
+  WebSiteJsonLd,
+} from '@/components/seo/JsonLd';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import ScrollToTop from '@/components/layout/ScrollToTop';
@@ -89,6 +93,7 @@ export default async function SiteLayout({
   return (
     <>
       <PersonJsonLd siteConfig={site.config} heroData={site.hero} />
+      <ProfilePageJsonLd siteConfig={site.config} heroData={site.hero} />
       <WebSiteJsonLd siteConfig={site.config} />
       <Header navItems={withBlogNav(site.nav)} heroName={site.hero.name} />
       <main>{children}</main>
