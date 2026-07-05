@@ -97,11 +97,19 @@ export const mergePortfolioProjects = (
   });
 };
 
+const decodeSlug = (slug: string): string => {
+  try {
+    return decodeURIComponent(slug);
+  } catch {
+    return slug;
+  }
+};
+
 export const findProjectBySlug = (
   projects: Project[],
   slug: string,
 ): Project | undefined => {
-  const normalizedSlug = slugify(slug);
+  const normalizedSlug = slugify(decodeSlug(slug));
   return projects.find(
     (project) =>
       getProjectSlug(project) === normalizedSlug ||
