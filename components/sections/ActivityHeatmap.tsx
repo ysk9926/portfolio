@@ -7,28 +7,20 @@ import {
   ActivityProjectRef,
   ActivityWeek,
 } from '@/lib/types';
+import { formatActivityDateLabel } from '@/lib/activity/format';
 import SectionWrapper from '../ui/SectionWrapper';
 import AnimateOnScroll from '../ui/AnimateOnScroll';
 
 const weekdayRows = ['Mon', 'Wed', 'Fri'];
 const allWeekdayLabels = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
-const MOBILE_WEEKS_PER_PAGE = 14;
+const MOBILE_WEEKS_PER_PAGE = 12;
 
 interface ActivityHeatmapProps {
   heatmap: ActivityHeatmapType;
 }
 
-function formatDateLabel(value: string) {
-  return new Intl.DateTimeFormat('ko-KR', {
-    year: 'numeric',
-    month: 'long',
-    day: 'numeric',
-    weekday: 'short',
-  }).format(new Date(`${value}T00:00:00+09:00`));
-}
-
 function buildAriaLabel(day: ActivityDay) {
-  const parts = [formatDateLabel(day.date)];
+  const parts = [formatActivityDateLabel(day.date)];
 
   if (!day.inRange) {
     parts.push('표시 범위 밖 날짜');
@@ -76,7 +68,7 @@ function MonthLabels({
       {weeks.map((week, index) => {
         const firstVisibleDay = week.days.find((day) => day.inRange);
         if (!firstVisibleDay) {
-          return <div key={week.weekStart} className={compact ? 'w-5' : 'w-3 sm:w-4'} />;
+          return <div key={week.weekStart} className={compact ? 'w-6' : 'w-3 sm:w-4'} />;
         }
 
         const monthKey = firstVisibleDay.date.slice(0, 7);
@@ -94,7 +86,7 @@ function MonthLabels({
             key={week.weekStart}
             className={
               compact
-                ? 'w-5 text-xs leading-none text-neutral-300'
+                ? 'w-6 text-xs leading-none text-neutral-300'
                 : 'w-3 text-[9px] leading-none text-neutral-400 sm:w-4 sm:text-[10px]'
             }
           >
@@ -122,12 +114,12 @@ function HeatmapGrid({
     ? 'mt-4 flex flex-col gap-0.5 pr-1 text-xs uppercase tracking-[0.08em] text-neutral-300'
     : 'mt-4 flex flex-col gap-0.5 pr-1 text-[9px] uppercase tracking-[0.14em] text-neutral-500 sm:mt-5 sm:gap-1 sm:pr-0 sm:text-[10px] sm:tracking-[0.16em]';
   const axisCellClasses = compact
-    ? 'flex h-5 items-center justify-end'
+    ? 'flex h-6 items-center justify-end'
     : 'flex h-3 items-center justify-end sm:h-4 sm:pr-1';
   const columnGapClasses = compact ? 'flex gap-0.5' : 'flex gap-0.5 sm:gap-1';
   const weekClasses = compact ? 'flex flex-col gap-0.5' : 'flex flex-col gap-0.5 sm:gap-1';
   const buttonBaseClasses = compact
-    ? 'group relative h-5 w-5 touch-manipulation rounded-[4px] border transition-transform cursor-pointer focus-visible:outline-2 focus-visible:outline-offset-1 focus-visible:outline-white'
+    ? 'group relative h-6 w-6 touch-manipulation rounded-[5px] border transition-transform cursor-pointer focus-visible:outline-2 focus-visible:outline-offset-1 focus-visible:outline-white'
     : 'group relative h-3 w-3 touch-manipulation rounded-[3px] border transition-transform sm:h-4 sm:w-4 sm:rounded-[4px] cursor-pointer';
   const emptyClasses = compact
     ? 'absolute inset-0 rounded-[3px] bg-[var(--color-heatmap-empty)]'
@@ -438,7 +430,7 @@ export default function ActivityHeatmap({ heatmap }: ActivityHeatmapProps) {
                   Selected Day
                 </p>
                 <h3 className="mt-2 text-xl font-semibold text-neutral-950">
-                  {formatDateLabel(activeDay.date)}
+                  {formatActivityDateLabel(activeDay.date)}
                 </h3>
                 <p className="mt-3 text-sm text-neutral-500">
                   총 {activeDay.totalCommitCount}개 commit, 회사 {activeDay.companyCommitCount}개,

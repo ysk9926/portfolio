@@ -2,7 +2,7 @@
   "config": {
     "name": "윤승규 포트폴리오",
     "title": "윤승규 | ysk9926 풀스택 개발자 포트폴리오",
-    "description": "ysk9926 윤승규의 풀스택 개발자 포트폴리오입니다. React, Next.js, TypeScript를 활용한 프로젝트를 소개합니다.",
+    "description": "ERP·커머스·RAG AI 프로젝트를 기획부터 배포까지 주도한 Enterprise 팀 리더 윤승규(ysk9926)의 풀스택 개발자 포트폴리오입니다.",
     "url": "https://portfolio-pink-two-vymvu56oaw.vercel.app",
     "ogImage": "/opengraph-image"
   },

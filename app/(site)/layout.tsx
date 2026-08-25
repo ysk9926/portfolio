@@ -13,7 +13,6 @@ import { absoluteImageUrl, getSiteUrl } from '@/lib/seo/url';
 import {
   PROFILE_HANDLE,
   withProfileHandle,
-  withProfileHandleDescription,
 } from '@/lib/seo/profile';
 
 const withBlogNav = (navItems: NavItem[]): NavItem[] => {
@@ -42,7 +41,7 @@ export async function generateMetadata(): Promise<Metadata> {
   const ogImage = absoluteImageUrl(null, siteConfig);
   const metadataBase = new URL(siteUrl);
   const title = withProfileHandle(siteConfig.title);
-  const description = withProfileHandleDescription(siteConfig.description);
+  const description = `${site.hero.role} ${site.hero.name}(${PROFILE_HANDLE})의 포트폴리오입니다. ERP·커머스·RAG AI 프로젝트를 기획부터 배포까지 주도한 경험과 기술 기록을 소개합니다.`;
   const googleSiteVerification = process.env.GOOGLE_SITE_VERIFICATION;
 
   return {
