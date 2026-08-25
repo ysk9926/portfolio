@@ -1,3 +1,4 @@
+@import "pretendard/dist/web/variable/pretendardvariable-dynamic-subset.css";
 @import "tailwindcss";
 @plugin "@tailwindcss/typography";
 
@@ -16,7 +17,7 @@
   --color-heatmap-personal-2: #6ee7b7;
   --color-heatmap-personal-3: #10b981;
   --color-heatmap-personal-4: #047857;
-  --font-sans: var(--font-pretendard);
+  --font-sans: "Pretendard Variable";
   --animate-fade-in-up: fade-in-up 0.6s ease-out forwards;
   --animate-bounce-arrow: bounce-arrow 2s infinite;
   --animate-pulse-dot: pulse-dot 2s ease-in-out infinite;
@@ -58,7 +59,7 @@ html {
 body {
   background: var(--color-background);
   color: var(--color-foreground);
-  font-family: var(--font-pretendard), system-ui, -apple-system, sans-serif;
+  font-family: "Pretendard Variable", Pretendard, system-ui, -apple-system, sans-serif;
 }
 
 /* content-visibility for below-the-fold sections */
@@ -120,4 +121,19 @@ body {
 
 .heatmap-personal-slice {
   clip-path: polygon(100% 0, 100% 100%, 0 100%);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
 }

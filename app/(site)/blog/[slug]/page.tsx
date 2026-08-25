@@ -83,11 +83,13 @@ export default async function BlogDetailPage({ params }: BlogDetailPageProps) {
       dateModified: post.updatedAt,
       author: {
         '@type': 'Person',
+        '@id': absoluteUrl('/#person', site.config),
         name: site.hero.name,
         url: absoluteUrl('/', site.config),
       },
       publisher: {
         '@type': 'Person',
+        '@id': absoluteUrl('/#person', site.config),
         name: site.hero.name,
         url: absoluteUrl('/', site.config),
       },

@@ -1,12 +1,13 @@
-import { ArrowDown } from 'lucide-react';
+import { ArrowDown, Download, Github, Mail } from 'lucide-react';
 import { HeroData } from '@/lib/types/view';
 import { PROFILE_HANDLE } from '@/lib/seo/profile';
 
 interface HeroProps {
   heroData: HeroData;
+  publicEmail?: string;
 }
 
-export default function Hero({ heroData }: HeroProps) {
+export default function Hero({ heroData, publicEmail }: HeroProps) {
   return (
     <section
       id="hero"
@@ -27,13 +28,41 @@ export default function Hero({ heroData }: HeroProps) {
         <p className="text-2xl md:text-3xl text-neutral-200 font-semibold">
           {heroData.role}
         </p>
-        <p className="text-base md:text-lg text-neutral-500 max-w-2xl mx-auto whitespace-pre-line">
+        <p className="text-base md:text-lg text-neutral-400 max-w-2xl mx-auto whitespace-pre-line">
           {heroData.tagline}
         </p>
-        <div className="pt-8">
+        <div className="flex flex-col items-center justify-center gap-3 pt-8 sm:flex-row">
+          <a
+            href="/resume/portfolio.pdf"
+            download="윤승규-포트폴리오.pdf"
+            className="inline-flex min-h-11 items-center justify-center gap-2 rounded-full bg-white px-7 py-3 font-semibold text-gray-900 transition-colors hover:bg-gray-100 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white"
+          >
+            <Download aria-hidden size={18} />
+            포트폴리오 PDF 다운로드
+          </a>
+          {publicEmail && (
+            <a
+              href={`mailto:${publicEmail}`}
+              className="inline-flex min-h-11 items-center justify-center gap-2 rounded-full border border-white/30 bg-white/5 px-7 py-3 font-semibold text-white transition-colors hover:bg-white/10 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white"
+            >
+              <Mail aria-hidden size={18} />
+              이메일로 연락하기
+            </a>
+          )}
+        </div>
+        <div className="flex items-center justify-center gap-5 text-sm font-medium text-neutral-300">
+          <a
+            href="https://github.com/ysk9926"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex min-h-11 items-center gap-1.5 underline decoration-white/30 underline-offset-4 transition-colors hover:text-white focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white"
+          >
+            <Github aria-hidden size={16} />
+            GitHub
+          </a>
           <a
             href="#about"
-            className="inline-block bg-white text-gray-900 rounded-full px-8 py-3 font-semibold hover:bg-gray-100 transition-colors"
+            className="inline-flex min-h-11 items-center underline decoration-white/30 underline-offset-4 transition-colors hover:text-white focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white"
           >
             {heroData.cta}
           </a>

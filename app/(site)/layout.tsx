@@ -95,8 +95,14 @@ export default async function SiteLayout({
       <PersonJsonLd siteConfig={site.config} heroData={site.hero} />
       <ProfilePageJsonLd siteConfig={site.config} heroData={site.hero} />
       <WebSiteJsonLd siteConfig={site.config} />
+      <a
+        href="#main-content"
+        className="fixed left-4 top-4 z-[60] -translate-y-24 rounded-md bg-white px-4 py-3 font-semibold text-neutral-950 shadow-lg transition-transform focus:translate-y-0"
+      >
+        본문으로 건너뛰기
+      </a>
       <Header navItems={withBlogNav(site.nav)} heroName={site.hero.name} />
-      <main>{children}</main>
+      <main id="main-content" tabIndex={-1}>{children}</main>
       <Footer footerData={site.footer} />
       <ScrollToTop />
     </>

@@ -116,12 +116,14 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
       dateModified: updatedDate?.toISOString(),
       creator: {
         '@type': 'Person',
+        '@id': absoluteUrl('/#person', site.config),
         name: site.hero.name,
         alternateName: 'ysk9926',
         url: absoluteUrl('/', site.config),
       },
       author: {
         '@type': 'Person',
+        '@id': absoluteUrl('/#person', site.config),
         name: site.hero.name,
         alternateName: 'ysk9926',
         url: absoluteUrl('/', site.config),

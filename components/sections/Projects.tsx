@@ -7,10 +7,12 @@ import { Project, ProjectPortfolioSync } from '@/lib/types';
 import { mergePortfolioProjects } from '@/lib/projects/portfolio';
 import SectionWrapper from '../ui/SectionWrapper';
 import ProjectCard from '../ui/ProjectCard';
-import ProjectTimelineView from '../ui/ProjectTimelineView';
-import ProjectVerticalTimelineView from '../ui/ProjectVerticalTimelineView';
 
 const ProjectModal = dynamic(() => import('../ui/ProjectModal'), { ssr: false });
+const ProjectTimelineView = dynamic(() => import('../ui/ProjectTimelineView'));
+const ProjectVerticalTimelineView = dynamic(
+  () => import('../ui/ProjectVerticalTimelineView'),
+);
 
 type FilterType = 'all' | 'main';
 type ViewType = 'card' | 'timeline' | 'vertical';

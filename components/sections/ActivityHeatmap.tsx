@@ -76,7 +76,7 @@ function MonthLabels({
       {weeks.map((week, index) => {
         const firstVisibleDay = week.days.find((day) => day.inRange);
         if (!firstVisibleDay) {
-          return <div key={week.weekStart} className={compact ? 'w-3' : 'w-3 sm:w-4'} />;
+          return <div key={week.weekStart} className={compact ? 'w-5' : 'w-3 sm:w-4'} />;
         }
 
         const monthKey = firstVisibleDay.date.slice(0, 7);
@@ -94,7 +94,7 @@ function MonthLabels({
             key={week.weekStart}
             className={
               compact
-                ? 'w-3 text-[9px] leading-none text-neutral-400'
+                ? 'w-5 text-xs leading-none text-neutral-300'
                 : 'w-3 text-[9px] leading-none text-neutral-400 sm:w-4 sm:text-[10px]'
             }
           >
@@ -117,16 +117,17 @@ function HeatmapGrid({
   onSelectDay: (day: ActivityDay) => void;
   compact?: boolean;
 }) {
+  const visibleDays = weeks.flatMap((week) => week.days).filter((day) => day.inRange);
   const axisClasses = compact
-    ? 'mt-4 flex flex-col gap-0.5 pr-1 text-[9px] uppercase tracking-[0.14em] text-neutral-500'
+    ? 'mt-4 flex flex-col gap-0.5 pr-1 text-xs uppercase tracking-[0.08em] text-neutral-300'
     : 'mt-4 flex flex-col gap-0.5 pr-1 text-[9px] uppercase tracking-[0.14em] text-neutral-500 sm:mt-5 sm:gap-1 sm:pr-0 sm:text-[10px] sm:tracking-[0.16em]';
   const axisCellClasses = compact
-    ? 'flex h-3 items-center justify-end'
+    ? 'flex h-5 items-center justify-end'
     : 'flex h-3 items-center justify-end sm:h-4 sm:pr-1';
   const columnGapClasses = compact ? 'flex gap-0.5' : 'flex gap-0.5 sm:gap-1';
   const weekClasses = compact ? 'flex flex-col gap-0.5' : 'flex flex-col gap-0.5 sm:gap-1';
   const buttonBaseClasses = compact
-    ? 'group relative h-3 w-3 touch-manipulation rounded-[3px] border transition-transform cursor-pointer'
+    ? 'group relative h-5 w-5 touch-manipulation rounded-[4px] border transition-transform cursor-pointer focus-visible:outline-2 focus-visible:outline-offset-1 focus-visible:outline-white'
     : 'group relative h-3 w-3 touch-manipulation rounded-[3px] border transition-transform sm:h-4 sm:w-4 sm:rounded-[4px] cursor-pointer';
   const emptyClasses = compact
     ? 'absolute inset-0 rounded-[3px] bg-[var(--color-heatmap-empty)]'
@@ -138,7 +139,11 @@ function HeatmapGrid({
   return (
     <>
       <MonthLabels weeks={weeks} compact={compact} />
-      <div className={`flex ${compact ? 'gap-2' : 'gap-2 sm:gap-3'}`}>
+      <div
+        role="group"
+        aria-label="최근 1년 개발 활동 달력. 방향키로 날짜를 이동할 수 있습니다."
+        className={`flex ${compact ? 'gap-2' : 'gap-2 sm:gap-3'}`}
+      >
         <div className={axisClasses}>
           {allWeekdayLabels.map((label) => (
             <div key={label} className={axisCellClasses}>
@@ -160,17 +165,44 @@ function HeatmapGrid({
                     key={day.date}
                     type="button"
                     aria-label={buildAriaLabel(day)}
+                    aria-pressed={isActive}
                     title={buildAriaLabel(day)}
+                    disabled={!day.inRange}
+                    tabIndex={day.inRange && isActive ? 0 : -1}
                     onMouseEnter={() => onSelectDay(day)}
                     onFocus={() => onSelectDay(day)}
                     onClick={() => onSelectDay(day)}
+                    onKeyDown={(event) => {
+                      const offsets: Record<string, number> = {
+                        ArrowUp: -1,
+                        ArrowDown: 1,
+                        ArrowLeft: -7,
+                        ArrowRight: 7,
+                      };
+                      const offset = offsets[event.key];
+                      if (!offset) return;
+
+                      event.preventDefault();
+                      const grid = event.currentTarget.closest('[role="group"]');
+                      const cells = Array.from(
+                        grid?.querySelectorAll<HTMLButtonElement>('button[data-date]:not(:disabled)') ?? [],
+                      );
+                      const currentIndex = cells.indexOf(event.currentTarget);
+                      const nextCell = cells[currentIndex + offset];
+                      if (!nextCell) return;
+
+                      nextCell.focus();
+                      const nextDate = nextCell.dataset.date;
+                      const nextDay = visibleDays.find((item) => item.date === nextDate);
+                      if (nextDay) onSelectDay(nextDay);
+                    }}
+                    data-date={day.date}
                     className={`${buttonBaseClasses} ${
                       day.inRange
                         ? 'border-white/10 hover:scale-110 focus:scale-110'
                         : 'border-transparent opacity-30'
                     } ${isActive ? 'ring-2 ring-white/70 ring-offset-1 ring-offset-neutral-950 sm:ring-offset-2' : ''}`}
                   >
-                    <span className="sr-only">{buildAriaLabel(day)}</span>
                     <span className={emptyClasses} />
                     {day.companyCommitCount > 0 && (
                       <span

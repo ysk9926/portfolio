@@ -9,10 +9,11 @@ import { getPortfolioPageData } from '@/lib/portfolio-data/server';
 
 export default async function Home() {
   const data = await getPortfolioPageData();
+  const publicEmail = data.about.find((item) => item.label === '이메일')?.value;
 
   return (
     <>
-      <Hero heroData={data.site.hero} />
+      <Hero heroData={data.site.hero} publicEmail={publicEmail} />
       <About
         data={data.about}
         aboutSummary={data.site.aboutSummary}

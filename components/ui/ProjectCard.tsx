@@ -129,7 +129,7 @@ export default function ProjectCard({ project, onDetailClick }: ProjectCardProps
                            px-5 py-2 rounded-full hover:bg-slate-100
                            transition-colors cursor-pointer"
               >
-                상세 페이지
+                {project.title} 상세 보기
                 <ArrowRight size={14} strokeWidth={2.5} />
               </Link>
             </div>

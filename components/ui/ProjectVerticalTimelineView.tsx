@@ -108,9 +108,9 @@ export default function ProjectVerticalTimelineView({
                             )}
                           </div>
 
-                          <h4 className="font-semibold text-sm md:text-base text-neutral-900 mb-1.5">
+                          <h3 className="font-semibold text-sm md:text-base text-neutral-900 mb-1.5">
                             {project.title}
-                          </h4>
+                          </h3>
 
                           {(project.portfolioSync?.summary ||
                             project.shortDescription) && (
@@ -159,7 +159,7 @@ export default function ProjectVerticalTimelineView({
                               href={projectPath(project)}
                               className="rounded-md border border-neutral-300 px-3 py-1.5 text-xs font-medium text-neutral-700 transition hover:border-neutral-900 hover:text-neutral-950"
                             >
-                              상세 페이지
+                              {project.title} 상세 보기
                             </Link>
                           </div>
                         </article>

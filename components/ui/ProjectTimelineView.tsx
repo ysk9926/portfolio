@@ -183,12 +183,12 @@ export default function ProjectTimelineView({
 
                   {/* Card */}
                   <article className="w-full rounded-xl border border-neutral-200 bg-white p-4 text-left transition-all hover:border-neutral-300 hover:shadow-sm">
-                    <h4 className="font-semibold text-sm text-neutral-900 mb-1">
+                    <h3 className="font-semibold text-sm text-neutral-900 mb-1">
                       {project.title}
                       {parsed.isOngoing && (
                         <span className="ml-2 inline-block w-2 h-2 rounded-full bg-green-500 animate-pulse-dot" />
                       )}
-                    </h4>
+                    </h3>
                     <p className="text-xs text-neutral-500 mb-2">
                       {project.period}
                     </p>
@@ -214,7 +214,7 @@ export default function ProjectTimelineView({
                         href={projectPath(project)}
                         className="rounded-md border border-neutral-300 px-3 py-1.5 text-xs font-medium text-neutral-700 transition hover:border-neutral-900 hover:text-neutral-950"
                       >
-                        상세 페이지
+                        {project.title} 상세 보기
                       </Link>
                     </div>
                   </article>

@@ -1,5 +1,5 @@
 import { HeroData, SiteConfig } from '@/lib/types/view';
-import { absoluteUrl, getSiteUrl } from '@/lib/seo/url';
+import { absoluteImageUrl, absoluteUrl, getSiteUrl } from '@/lib/seo/url';
 import {
   PROFILE_HANDLE,
   PROFILE_SAME_AS,
@@ -16,11 +16,13 @@ export function PersonJsonLd({ siteConfig, heroData }: JsonLdProps) {
   const jsonLd = {
     '@context': 'https://schema.org',
     '@type': 'Person',
+    '@id': absoluteUrl('/#person', siteConfig),
     name: heroData.name,
     alternateName: [PROFILE_HANDLE, `@${PROFILE_HANDLE}`],
     identifier: PROFILE_HANDLE,
     jobTitle: heroData.role,
     url: siteUrl,
+    image: absoluteImageUrl(null, siteConfig),
     sameAs: PROFILE_SAME_AS,
     knowsAbout: [
       'React',
@@ -56,10 +58,6 @@ export function WebSiteJsonLd({ siteConfig }: Pick<JsonLdProps, 'siteConfig'>) {
     url: siteUrl,
     description: withProfileHandleDescription(siteConfig.description),
     inLanguage: 'ko-KR',
-    potentialAction: {
-      '@type': 'ReadAction',
-      target: absoluteUrl('/blog', siteConfig),
-    },
   };
 
   return (
@@ -81,6 +79,7 @@ export function ProfilePageJsonLd({ siteConfig, heroData }: JsonLdProps) {
     inLanguage: 'ko-KR',
     mainEntity: {
       '@type': 'Person',
+      '@id': absoluteUrl('/#person', siteConfig),
       name: heroData.name,
       alternateName: [PROFILE_HANDLE, `@${PROFILE_HANDLE}`],
       identifier: PROFILE_HANDLE,

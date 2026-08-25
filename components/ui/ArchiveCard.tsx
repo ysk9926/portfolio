@@ -8,6 +8,7 @@ export default function ArchiveCard({
   details,
 }: ArchiveItem) {
   const isGitHub = title.toLowerCase().includes('github');
+  const isExternal = /^https?:\/\//.test(url);
   const cardClass = isGitHub
     ? 'bg-neutral-900 text-white'
     : 'bg-neutral-100 text-gray-900';
@@ -15,8 +16,8 @@ export default function ArchiveCard({
   return (
     <a
       href={url}
-      target="_blank"
-      rel="noopener noreferrer"
+      target={isExternal ? '_blank' : undefined}
+      rel={isExternal ? 'noopener noreferrer' : undefined}
       className={`rounded-2xl p-8 md:p-10 flex flex-col gap-4 hover:scale-[1.02] transition-transform duration-300 ${cardClass}`}
     >
       <h3 className="text-2xl md:text-3xl font-bold">{title}</h3>

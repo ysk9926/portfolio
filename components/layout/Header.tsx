@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { usePathname, useRouter } from 'next/navigation';
 import { Menu, X } from 'lucide-react';
 import { NavItem } from '@/lib/types/view';
@@ -19,7 +19,24 @@ export default function Header({ navItems, heroName }: HeaderProps) {
   const [scrolledPastThreshold, setScrolledPastThreshold] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('');
+  const menuButtonRef = useRef<HTMLButtonElement>(null);
+  const closeButtonRef = useRef<HTMLButtonElement>(null);
   const isScrolled = !onHome || scrolledPastThreshold;
+
+  useEffect(() => {
+    if (!isMobileMenuOpen) return;
+
+    closeButtonRef.current?.focus();
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        setIsMobileMenuOpen(false);
+        menuButtonRef.current?.focus();
+      }
+    };
+
+    document.addEventListener('keydown', handleKeyDown);
+    return () => document.removeEventListener('keydown', handleKeyDown);
+  }, [isMobileMenuOpen]);
 
   useEffect(() => {
     if (!onHome) return;
@@ -125,9 +142,12 @@ export default function Header({ navItems, heroName }: HeaderProps) {
           </nav>
 
           <button
+            ref={menuButtonRef}
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="md:hidden w-10 h-10 flex items-center justify-center"
-            aria-label="Toggle menu"
+            className="md:hidden w-11 h-11 flex items-center justify-center rounded-full focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-current"
+            aria-label={isMobileMenuOpen ? '메뉴 닫기' : '메뉴 열기'}
+            aria-expanded={isMobileMenuOpen}
+            aria-controls="mobile-navigation"
           >
             <Menu className={`w-6 h-6 transition-colors ${isScrolled ? 'text-gray-900' : 'text-white'}`} />
           </button>
@@ -140,14 +160,16 @@ export default function Header({ navItems, heroName }: HeaderProps) {
           onClick={() => setIsMobileMenuOpen(false)}
         >
           <div
+            id="mobile-navigation"
             className="fixed inset-y-0 right-0 w-64 bg-white shadow-lg"
             onClick={(e) => e.stopPropagation()}
           >
             <nav className="flex flex-col p-8 gap-6">
               <button
+                ref={closeButtonRef}
                 onClick={() => setIsMobileMenuOpen(false)}
-                className="self-end text-gray-600 hover:text-gray-900"
-                aria-label="Close menu"
+                className="self-end flex h-11 w-11 items-center justify-center rounded-full text-gray-600 hover:text-gray-900 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-neutral-900"
+                aria-label="메뉴 닫기"
               >
                 <X className="w-6 h-6" />
               </button>

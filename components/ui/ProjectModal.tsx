@@ -270,7 +270,7 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
               href={projectPath(project)}
               className="flex-1 bg-neutral-900 hover:bg-neutral-800 text-white font-medium py-2.5 px-4 rounded-xl text-center transition-colors"
             >
-              상세 페이지
+              {project.title} 상세 보기
             </Link>
             {project.deployUrl && (
               <a
