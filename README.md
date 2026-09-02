@@ -60,6 +60,21 @@ curl -X POST http://localhost:3000/api/internal/sync/portfolio \
   --data @payload.json
 ```
 
+### Local daily Git activity sync
+
+The activity heatmap can be rebuilt without AI calls from Git repositories under
+`Workspace/Projects/Work` (company) and `Workspace/Projects/Personal` (personal).
+
+```bash
+npm run activity:dry-run
+npm run activity:sync
+npm run activity:install
+```
+
+The installer registers `com.ysk9926.portfolio-git-activity` as a macOS
+LaunchAgent. It runs every day at 18:30 local time and once at login/restart.
+Logs are written to `~/Library/Logs/portfolio-git-activity/`.
+
 ## Google Indexing
 
 To make the portfolio rank for `ysk9926`, deploy with a stable canonical URL,
