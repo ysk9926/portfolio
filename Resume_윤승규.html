@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>윤승규 Resume | 이력서 · 경력기술서</title>
+<meta name="description" content="윤승규(ysk9926) 풀스택 개발자 이력서 및 경력기술서" />
+<link rel="preconnect" href="https://cdn.jsdelivr.net" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+<style>
+  :root {
+    --fg: #17181c;
+    --muted: #6b7280;
+    --faint: #9aa0aa;
+    --line: #e6e8ec;
+    --line-strong: #d5d8dd;
+    --accent: #2b2d31;
+    --dark: #111214;
+    --bg-soft: #f7f8fa;
+    --chip: #f0f1f4;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  body {
+    font-family: "Pretendard", -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+    color: var(--fg);
+    background: #e9ebee;
+    line-height: 1.62;
+    -webkit-font-smoothing: antialiased;
+    letter-spacing: -0.01em;
+    font-size: 11px;
+  }
+  a { color: inherit; text-decoration: none; }
+  b, strong { font-weight: 700; }
+
+  .sheet {
+    width: 210mm;
+    min-height: 297mm;
+    margin: 16px auto;
+    background: #fff;
+    padding: 15mm 15mm 13mm;
+    box-shadow: 0 10px 44px -18px rgba(0,0,0,.4);
+  }
+
+  /* 헤더 */
+  .head { display: flex; justify-content: space-between; align-items: flex-end; gap: 22px; border-bottom: 2.5px solid var(--dark); padding-bottom: 14px; }
+  .head .id .name { font-size: 30px; font-weight: 800; letter-spacing: -0.04em; line-height: 1; }
+  .head .id .role { margin-top: 8px; font-size: 12.5px; font-weight: 700; color: var(--accent); }
+  .head .id .handle { font-size: 11px; color: var(--faint); font-weight: 600; margin-top: 2px; }
+  .head .contact { text-align: right; font-size: 10px; color: #4b5563; line-height: 1.85; }
+  .head .contact .lab { color: var(--faint); font-weight: 600; margin-right: 6px; }
+
+  .doc-badge { margin-top: 12px; display: flex; gap: 8px; }
+  .doc-badge span { font-size: 9px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); border: 1px solid var(--line-strong); border-radius: 99px; padding: 3px 11px; }
+  .doc-badge span.on { color: #fff; background: var(--dark); border-color: var(--dark); }
+
+  .summary { margin-top: 12px; font-size: 11px; color: #3b3f46; line-height: 1.72; background: var(--bg-soft); border: 1px solid var(--line); border-radius: 10px; padding: 12px 15px; }
+  .summary b { color: var(--fg); }
+
+  /* 섹션 헤더 */
+  .sec { margin-top: 20px; }
+  .sec-t { font-size: 11px; font-weight: 800; letter-spacing: 0.13em; text-transform: uppercase; color: var(--fg); padding-bottom: 6px; border-bottom: 1.5px solid var(--line-strong); display: flex; align-items: center; gap: 8px; }
+  .sec-t::before { content: ""; width: 16px; height: 3px; background: var(--dark); border-radius: 2px; }
+  .sec-t .hint { margin-left: auto; font-size: 9px; font-weight: 500; letter-spacing: 0; text-transform: none; color: var(--faint); }
+  .part-label { margin-top: 26px; font-size: 12px; font-weight: 800; color: var(--dark); letter-spacing: .02em; display: flex; align-items: center; gap: 9px; }
+  .part-label::before { content: ""; width: 5px; height: 16px; background: var(--dark); border-radius: 2px; }
+  .part-label .en { font-size: 9.5px; color: var(--faint); font-weight: 600; letter-spacing: .1em; text-transform: uppercase; }
+
+  /* Profile 정보 */
+  .info { margin-top: 12px; display: grid; grid-template-columns: 1fr 1fr; gap: 5px 30px; font-size: 10.5px; }
+  .info div { display: flex; gap: 10px; padding: 3px 0; border-bottom: 1px dotted var(--line); }
+  .info .k { color: var(--muted); font-weight: 700; min-width: 60px; }
+
+  /* 스킬 */
+  .skills { margin-top: 12px; display: grid; grid-template-columns: 1fr 1fr; gap: 7px 26px; }
+  .sk { display: flex; gap: 10px; font-size: 10.5px; align-items: baseline; padding: 3px 0; border-bottom: 1px dotted var(--line); }
+  .sk .k { width: 92px; flex-shrink: 0; font-weight: 800; color: var(--accent); font-size: 10px; }
+  .sk .v { color: #3f434a; }
+
+  /* 경력 */
+  .exp { margin-top: 12px; break-inside: avoid; }
+  .exp .r1 { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; flex-wrap: wrap; }
+  .exp .co { font-size: 15px; font-weight: 800; }
+  .exp .pe { font-size: 10px; color: var(--muted); font-weight: 700; }
+  .exp .ro { font-size: 11px; font-weight: 700; color: var(--accent); margin-top: 2px; }
+  .exp .d { margin-top: 8px; font-size: 10px; color: #4b5563; line-height: 1.6; }
+  .exp ul { list-style: none; margin-top: 9px; display: flex; flex-direction: column; gap: 6px; }
+  .exp ul li { position: relative; padding-left: 16px; font-size: 10px; color: #3f434a; line-height: 1.55; }
+  .exp ul li::before { content: "▹"; position: absolute; left: 0; top: -1px; color: var(--accent); font-weight: 700; }
+  .exp ul li b { color: var(--fg); }
+
+  /* 프로젝트 (경력기술서) */
+  .projs { margin-top: 12px; display: flex; flex-direction: column; gap: 11px; }
+  .pj { border: 1px solid var(--line); border-radius: 11px; overflow: hidden; break-inside: avoid; }
+  .pj-h { padding: 11px 14px 10px; background: var(--bg-soft); border-bottom: 1px solid var(--line); }
+  .pj-h .r1 { display: flex; justify-content: space-between; align-items: baseline; gap: 10px; }
+  .pj-h .nm { font-size: 13.5px; font-weight: 800; letter-spacing: -0.02em; }
+  .pj-h .pe { font-size: 9.5px; color: var(--muted); font-weight: 700; white-space: nowrap; }
+  .pj-h .role { display: inline-block; margin-top: 6px; font-size: 8.5px; font-weight: 700; color: #fff; background: var(--dark); padding: 2px 9px; border-radius: 99px; }
+  .pj-h .d { margin-top: 7px; font-size: 10px; color: #4b5563; line-height: 1.55; }
+  .pj-b { padding: 11px 14px 12px; }
+  .star { display: grid; grid-template-columns: auto 1fr; gap: 4px 11px; margin-bottom: 9px; }
+  .star .lt { font-size: 8.5px; font-weight: 800; color: var(--faint); letter-spacing: .06em; padding-top: 1.5px; white-space: nowrap; }
+  .star .lt b { color: var(--accent); }
+  .star .tx { font-size: 10px; color: #3f434a; line-height: 1.55; }
+  .star .tx b { color: var(--fg); }
+  .mx { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; margin: 9px 0; }
+  .mx .m { border: 1px solid var(--line); border-radius: 7px; padding: 7px 8px; background: #fff; }
+  .mx .m .n { font-size: 12px; font-weight: 800; letter-spacing: -0.02em; line-height: 1.1; }
+  .mx .m .l { font-size: 8px; color: var(--muted); margin-top: 3px; line-height: 1.28; }
+  .tags { display: flex; flex-wrap: wrap; gap: 4px; }
+  .tags span { font-size: 8.5px; font-weight: 500; padding: 2px 7px; border-radius: 5px; background: var(--chip); color: #4b5563; }
+
+  .page-break { break-before: page; }
+  footer { margin-top: 22px; padding-top: 12px; border-top: 1px solid var(--line); font-size: 9px; color: var(--faint); display: flex; justify-content: space-between; }
+
+  @page { size: A4; margin: 0; }
+  @media print {
+    body { background: #fff; font-size: 11px; }
+    .sheet { margin: 0; box-shadow: none; width: auto; min-height: auto; padding: 14mm 14mm 12mm; }
+    .pj, .exp, .sec { break-inside: avoid; }
+  }
+  @media (max-width: 800px) {
+    .sheet { width: auto; padding: 20px; }
+    .info, .skills { grid-template-columns: 1fr; }
+    .mx { grid-template-columns: repeat(2, 1fr); }
+  }
+</style>
+</head>
+<body>
+
+<div class="sheet">
+
+  <!-- 헤더 -->
+  <header class="head">
+    <div class="id">
+      <div class="name">윤승규</div>
+      <div class="role">Enterprise 1팀 리더 · 풀스택 개발자</div>
+      <div class="handle">ysk9926 · (주)풀링포레스트</div>
+    </div>
+    <div class="contact">
+      <div><span class="lab">EMAIL</span>tmdrb9926@gmail.com</div>
+      <div><span class="lab">PHONE</span>010-3549-9926</div>
+      <div><span class="lab">SITE</span>portfolio-pink-two-vymvu56oaw.vercel.app</div>
+      <div><span class="lab">LOC</span>경기도 안양시</div>
+    </div>
+  </header>
+
+  <div class="doc-badge">
+    <span class="on">RESUME 이력서</span>
+    <span class="on">CAREER 경력기술서</span>
+  </div>
+
+  <p class="summary">
+    웹·모바일·데스크탑·AI 전 영역에서 <b>기획부터 배포까지 주도</b>하는 풀스택 개발자입니다.
+    요구사항을 코드로 옮기는 데 그치지 않고 비즈니스 로직의 본질을 이해해 기술로 문제를 해결합니다.
+    시니어 부재 환경에서 <b>Enterprise 1팀 리더</b>로서 클라이언트 미팅·요구사항 정의·아키텍처 설계·작업 배분·QA·배포까지
+    프로젝트 전 과정을 책임지며, 11개월간 ERP·커머스·AI 플랫폼을 아우르는 다수의 핵심 프로젝트를 주도했습니다.
+  </p>
+
+  <!-- ============ PART 1. 이력서 ============ -->
+  <div class="part-label">이력서 <span class="en">Resume</span></div>
+
+  <section class="sec">
+    <div class="sec-t">Profile</div>
+    <div class="info">
+      <div><span class="k">이름</span><span>윤승규 (ysk9926)</span></div>
+      <div><span class="k">생년월일</span><span>1999.03.03</span></div>
+      <div><span class="k">학력</span><span>정보통신공학과 졸업</span></div>
+      <div><span class="k">소속</span><span>(주)풀링포레스트 (2025.05 ~ 현재)</span></div>
+      <div><span class="k">직무</span><span>Enterprise 1팀 리더 / 풀스택 개발자</span></div>
+      <div><span class="k">전문</span><span>Web · Mobile · Desktop · AI/RAG · ERP</span></div>
+    </div>
+  </section>
+
+  <section class="sec">
+    <div class="sec-t">Skills <span class="hint">실무 프로젝트에서 직접 검증한 기술</span></div>
+    <div class="skills">
+      <div class="sk"><span class="k">Frontend</span><span class="v">React, Next.js, TypeScript, Tailwind CSS, Zustand, Vite</span></div>
+      <div class="sk"><span class="k">Backend</span><span class="v">Kotlin/Spring Boot, Python/FastAPI, Node.js/Express, .NET/ASP.NET Core</span></div>
+      <div class="sk"><span class="k">Database</span><span class="v">PostgreSQL, MySQL, MongoDB, Prisma</span></div>
+      <div class="sk"><span class="k">Mobile·Desktop</span><span class="v">Flutter, Electron, Swift/SwiftUI, Blazor WASM</span></div>
+      <div class="sk"><span class="k">DevOps</span><span class="v">Docker, AWS (EC2/RDS/S3), Nginx, Vercel, GitHub Actions</span></div>
+      <div class="sk"><span class="k">AI · Data</span><span class="v">LangChain, Qdrant, OpenAI GPT-4o, RAG (BM25+Vector+Reranker), OCR</span></div>
+    </div>
+  </section>
+
+  <section class="sec">
+    <div class="sec-t">Career Summary <span class="hint">경력 요약</span></div>
+    <div class="exp">
+      <div class="r1"><span class="co">(주)풀링포레스트</span><span class="pe">2025.05 – 현재</span></div>
+      <div class="ro">Enterprise 1팀 리더 / 풀스택 개발자</div>
+      <div class="d">SI 프로젝트와 자사 서비스를 병행하는 팀의 개발 리딩을 맡아, 웹·모바일·데스크탑·AI/RAG 도메인에서 요구사항 정의부터 배포까지 전 과정을 주도.</div>
+      <ul>
+        <li><b>팀 리딩</b> — 요구사항 정리·일정 조율·아키텍처 설계·작업 배분·QA 기준 정리·배포 대응까지 프로젝트 실행 전 과정 관리</li>
+        <li><b>B2B 구독 커머스 플랫폼</b> — 구독 엔진·AI 사업자 승인·등급별 자동 할인·ERP 전표 자동화 등 17개 커스텀 기능 설계/구현, 상품 등록 공수 절감 및 수동 ERP 처리 완전 제거</li>
+        <li><b>배터리 테스트 레시피 관리</b> — 자체 WebGL 렌더러로 DOM 대비 30배(1,000→30,000+ 블록) 성능 개선, O(n²)→O(n log n) 최적화로 60fps 달성</li>
+        <li><b>RAG 고객 응대 챗봇</b> — BM25+Vector+Reranker 하이브리드 검색으로 정확도 대폭 개선, 11개 마이크로서비스 아키텍처 단독 설계</li>
+        <li><b>반도체 설비 작업보고서 디지털화</b> — 수기→엑셀 이중 작업 제거 및 2단계 승인 워크플로우 구축, 4주 만에 3개 앱 개발 완료</li>
+        <li><b>사내 프로젝트 관리 플랫폼(P-Grid) 외 도구 4종</b> — 전직원 10명 일상 사용 도구로 정착, 프로젝트 관리 프로세스 표준화 (63,000+ LOC)</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ============ PART 2. 경력기술서 ============ -->
+  <div class="part-label page-break">경력기술서 <span class="en">Career Description · Project Details</span></div>
+
+  <section class="sec">
+    <div class="sec-t">Key Projects <span class="hint">기획·설계·개발·배포를 직접 주도한 8개 · STAR</span></div>
+    <div class="projs">
+
+      <!-- 1. Wonik PNE -->
+      <article class="pj">
+        <div class="pj-h">
+          <div class="r1"><span class="nm">Wonik PNE Recipe Management</span><span class="pe">2025.07 – 2026.02</span></div>
+          <span class="role">Recipe Management 풀스택 · 2인</span>
+          <div class="d">배터리 테스트 공정의 레시피(공정 실행 지시서)를 시각적으로 편집·관리하는 엔터프라이즈 웹 앱. 자체 WebGL 렌더러로 3만+ 블록 실시간 렌더링·인터랙션 구현.</div>
+        </div>
+        <div class="pj-b">
+          <div class="star">
+            <span class="lt"><b>S</b>ituation</span><span class="tx">충전/방전/온도제어/안전조건 등 다양한 스텝의 테스트 "레시피"를 직관적으로 편집·검증할 도구가 없어 SI로 발주됨.</span>
+            <span class="lt"><b>T</b>ask</span><span class="tx">3만+ 블록을 끊김 없이 렌더링·편집하는 블록 에디터와 안정적 저장·검증 서버를 2인 풀스택으로 구축.</span>
+            <span class="lt"><b>A</b>ction</span><span class="tx">DOM 한계를 넘기 위해 <b>PixiJS 기반 자체 WebGL 렌더러</b>(Scene Graph·가상화 스케줄러) 설계, Recipe Server를 <b>Clean Architecture + CQRS(MediatR)</b>로 구현(25 REST API·51 핸들러), CSV/Excel 임포트·검증 및 4차 QA 반복.</span>
+            <span class="lt"><b>R</b>esult</span><span class="tx">DOM 대비 30배(1,000→30,000+ 블록) 성능 개선, O(n²)→O(n log n) 최적화로 <b>60fps 달성</b>.</span>
+          </div>
+          <div class="mx">
+            <div class="m"><div class="n">30,000+</div><div class="l">블록 실시간 렌더링</div></div>
+            <div class="m"><div class="n">312K+ LOC</div><div class="l">Client 267.8K + Server 44.6K</div></div>
+            <div class="m"><div class="n">51 / 25</div><div class="l">CQRS 핸들러 · REST API</div></div>
+            <div class="m"><div class="n">955</div><div class="l">커밋 · 7개월 지속 개발</div></div>
+          </div>
+          <div class="tags"><span>Blazor WebAssembly</span><span>.NET 9.0</span><span>ASP.NET Core</span><span>MongoDB</span><span>WebGL (PixiJS)</span><span>Blockly</span><span>MediatR (CQRS)</span><span>SignalR</span><span>Tailwind</span><span>MudBlazor</span></div>
+        </div>
+      </article>
+
+      <!-- 2. VEMONTES -->
+      <article class="pj">
+        <div class="pj-h">
+          <div class="r1"><span class="nm">VEMONTES — 스킨케어 구독 커머스 플랫폼</span><span class="pe">2025.05 – 2025.11</span></div>
+          <span class="role">풀스택 (메인) · 2인</span>
+          <div class="d">카페24 기반 스킨케어 쇼핑몰에 구독·추천인 보상·영업대리/지사 관리 등 카페24에 없는 기능을 자체 구현한 풀스택 커머스 플랫폼.</div>
+        </div>
+        <div class="pj-b">
+          <div class="star">
+            <span class="lt"><b>S</b>ituation</span><span class="tx">카페24가 제공하지 않는 구독·추천인 적립금·영업대리/지사/전문점 관리·ERP 연동을 처리할 수 없었음.</span>
+            <span class="lt"><b>T</b>ask</span><span class="tx">카페24 제약을 우회해 위 기능을 자체 구현하고 관리자가 한곳에서 운영하는 통합 플랫폼을 메인 개발자로 구축.</span>
+            <span class="lt"><b>A</b>ction</span><span class="tx"><b>구독 서비스 엔진을 자체 설계</b>(42 Entity·34 API Controller)해 카페24 API와 연동, 통합 관리자 대시보드(25+ 페이지)·Flutter 앱 개발, Ecount <b>ERP 자동 연동</b>·사업자등록증 <b>OCR 인증</b>으로 수기 업무 제거.</span>
+            <span class="lt"><b>R</b>esult</span><span class="tx">수동 ERP 입력을 자동 연동으로 대체하고 OCR 인증으로 수기 확인 프로세스를 완전히 제거 (Server 66%·Client 66%·App 96% 기여).</span>
+          </div>
+          <div class="mx">
+            <div class="m"><div class="n">42 Entity</div><div class="l">자체 구독 엔진 · 34 Controller</div></div>
+            <div class="m"><div class="n">25+</div><div class="l">관리자 대시보드 페이지</div></div>
+            <div class="m"><div class="n">38K+ LOC</div><div class="l">Kotlin 서버 · 253 클라 파일</div></div>
+            <div class="m"><div class="n">240</div><div class="l">총 커밋 · 약 6개월</div></div>
+          </div>
+          <div class="tags"><span>Spring Boot 3.4</span><span>Kotlin</span><span>Next.js 15</span><span>React 19</span><span>TypeScript</span><span>Flutter</span><span>MySQL 8</span><span>AWS (EC2/RDS/S3)</span><span>Docker</span></div>
+        </div>
+      </article>
+
+      <!-- 3. iamfine RAG -->
+      <article class="pj">
+        <div class="pj-h">
+          <div class="r1"><span class="nm">iamfine — RAG 기반 고객 응대 챗봇</span><span class="pe">2026.01 – 2026.02</span></div>
+          <span class="role">풀스택 · 1인</span>
+          <div class="d">문서 업로드→OCR→임베딩→하이브리드 검색→LLM 답변까지 전 과정을 처리하는 엔터프라이즈급 RAG 고객 응대 챗봇.</div>
+        </div>
+        <div class="pj-b">
+          <div class="star">
+            <span class="lt"><b>S</b>ituation</span><span class="tx">반복 고객 응대를 자동화하기 위해 업로드 문서를 근거로 정확히 답하는 AI 챗봇 필요, 매장/디바이스별 지식 베이스 분리(멀티테넌시) 요구.</span>
+            <span class="lt"><b>T</b>ask</span><span class="tx">RAG 파이프라인과 관리자 대시보드를 인프라 포함 1인 풀스택으로 프로덕션 수준까지 완성.</span>
+            <span class="lt"><b>A</b>ction</span><span class="tx">FastAPI 3개 서비스(Admin API·AI Core·OCR)와 React 대시보드 설계, 정확도를 위해 <b>BM25 + Vector + Reranker 하이브리드 검색</b> 구성, Qdrant·vLLM·TEI 포함 <b>11개 Docker MSA</b>를 단독 설계하고 4가지 배포 시나리오 지원.</span>
+            <span class="lt"><b>R</b>esult</span><span class="tx">프로덕션 배포 완료, 단일 검색 대비 정확도 대폭 개선. 벡터 DB·LLM 서빙 등 AI 인프라 운영 경험 확보.</span>
+          </div>
+          <div class="mx">
+            <div class="m"><div class="n">11</div><div class="l">Docker MSA 단독 설계</div></div>
+            <div class="m"><div class="n">33.5K+ LOC</div><div class="l">270 파일 · 2개월 1인</div></div>
+            <div class="m"><div class="n">하이브리드</div><div class="l">BM25+Vector+Reranker</div></div>
+            <div class="m"><div class="n">4</div><div class="l">배포 시나리오</div></div>
+          </div>
+          <div class="tags"><span>React</span><span>TypeScript</span><span>FastAPI</span><span>LangChain</span><span>PostgreSQL</span><span>Qdrant</span><span>Docker</span><span>PaddleOCR</span></div>
+        </div>
+      </article>
+
+      <!-- 4. Intros Job Card -->
+      <article class="pj">
+        <div class="pj-h">
+          <div class="r1"><span class="nm">Intros Job Card — 반도체 설비 작업보고서 관리</span><span class="pe">2026.01 – 2026.02</span></div>
+          <span class="role">풀스택 · 2인</span>
+          <div class="d">현장 엔지니어의 수기 작업보고서를 디지털화해, 모바일 앱 + 웹 관리자로 2단계 승인 워크플로우·대시보드·마스터데이터를 통합 제공.</div>
+        </div>
+        <div class="pj-b">
+          <div class="star">
+            <span class="lt"><b>S</b>ituation</span><span class="tx">삼성전자·SK하이닉스 설비를 유지보수하는 현장 엔지니어가 수기 메모 후 사무실에서 엑셀로 재정리하는 <b>이중 작업</b> → 오기입·지연·실시간 현황 파악 불가.</span>
+            <span class="lt"><b>T</b>ask</span><span class="tx">현장 즉시 입력 모바일 앱과 승인·통계·마스터데이터 웹 관리자를 통합해 효율과 데이터 신뢰도 확보.</span>
+            <span class="lt"><b>A</b>ction</span><span class="tx">반도체 설비 도메인을 <b>20+ DB 모델로 정규화</b>하고 65+ 엔드포인트 API 구현, 모바일·웹·백엔드 <b>3개 앱을 4주 만에</b> 풀스택 개발, 9상태 2단계 승인+감사 추적·6종 분석 대시보드·푸시 알림 구축.</span>
+            <span class="lt"><b>R</b>esult</span><span class="tx">이중 작업 제거 및 관리자 실시간 현황 파악, 마스터데이터 기반 UI로 오기입·누락 방지.</span>
+          </div>
+          <div class="mx">
+            <div class="m"><div class="n">3개 앱</div><div class="l">웹+API+모바일 (4주)</div></div>
+            <div class="m"><div class="n">20+ / 65+</div><div class="l">DB 모델 · API 엔드포인트</div></div>
+            <div class="m"><div class="n">6종</div><div class="l">분석 대시보드</div></div>
+            <div class="m"><div class="n">9상태</div><div class="l">2단계 승인 워크플로우</div></div>
+          </div>
+          <div class="tags"><span>Next.js 16</span><span>React 19</span><span>TypeScript</span><span>Express.js 5</span><span>Prisma 7</span><span>PostgreSQL</span><span>Flutter</span><span>Firebase</span><span>Tailwind</span></div>
+        </div>
+      </article>
+
+      <!-- 5. Poooling Internal Tools -->
+      <article class="pj">
+        <div class="pj-h">
+          <div class="r1"><span class="nm">Poooling 내부 도구 &amp; 프로젝트 관리 시스템</span><span class="pe">2026.02 – 현재</span></div>
+          <span class="role">메인 개발 총괄</span>
+          <div class="d">다수 프로젝트를 효율적으로 관리하고 개발 생산성을 높이는 사내 도구 모음 (P-Grid · DoneDone · multi-dev-ctrl · poooling-skills).</div>
+        </div>
+        <div class="pj-b">
+          <div class="star">
+            <span class="lt"><b>S</b>ituation</span><span class="tx">다수 외부 프로젝트를 동시 수행하며 프로젝트 관리·일정 추적·테스트·일일 업무에 비효율 발생, 범용 도구(Jira/Notion)가 업무 흐름에 부적합.</span>
+            <span class="lt"><b>T</b>ask</span><span class="tx">실제 불편을 직접 보완하는 사내 도구를 전직원 10명이 일상적으로 쓰는 수준으로 총괄 설계·운영.</span>
+            <span class="lt"><b>A</b>ction</span><span class="tx">웹·macOS 앱·스킬 저장소를 아우르는 <b>4개 프로젝트를 병렬 설계·개발·운영</b>, 프로젝트 관리 & 고객 포털 <b>P-Grid</b>(99 API·20+ 모델·~50K LOC) 구축, macOS 메뉴바 TODO·개발환경 런처·팀 AI 스킬 저장소로 DX 개선.</span>
+            <span class="lt"><b>R</b>esult</span><span class="tx">프로젝트 관리 프로세스 표준화(WBS·테스트·결함 추적), 고객 포털로 커뮤니케이션 구조화, 팀 AI 활용도 향상.</span>
+          </div>
+          <div class="mx">
+            <div class="m"><div class="n">63K+ LOC</div><div class="l">4개 프로젝트 합산</div></div>
+            <div class="m"><div class="n">10명</div><div class="l">전직원 일상 사용</div></div>
+            <div class="m"><div class="n">99 / 20+</div><div class="l">P-Grid API · 모델</div></div>
+            <div class="m"><div class="n">120</div><div class="l">커밋 · 약 1개월</div></div>
+          </div>
+          <div class="tags"><span>Next.js 16</span><span>React 19</span><span>TypeScript</span><span>Prisma</span><span>PostgreSQL</span><span>Supabase</span><span>Swift/SwiftUI</span><span>Firebase</span><span>NextAuth</span><span>OpenAI</span></div>
+        </div>
+      </article>
+
+      <!-- 6. CalendarTable -->
+      <article class="pj">
+        <div class="pj-h">
+          <div class="r1"><span class="nm">CalendarTable — 소셜 캘린더 앱</span><span class="pe">2026.02 – 2026.03</span></div>
+          <span class="role">기획·디자인·풀스택 · 1인</span>
+          <div class="d">몇 번의 클릭만으로 일정을 만들고 친구와 약속·투두를 공유하는 소셜 캘린더 앱.</div>
+        </div>
+        <div class="pj-b">
+          <div class="star">
+            <span class="lt"><b>S</b>ituation</span><span class="tx">기존 캘린더는 일정 생성이 번거롭고 친구 약속 조율·할 일 공유가 부족 → "원하는 간편한 캘린더가 없어서" 직접 제작한 사이드 프로젝트.</span>
+            <span class="lt"><b>T</b>ask</span><span class="tx">CatchTable의 예약 컨셉과 Planit의 직관적 UX를 결합해 최소 조작으로 일정을 만드는 앱을 기획부터 배포까지 1인 완성.</span>
+            <span class="lt"><b>A</b>ction</span><span class="tx">기획 → <b>Liquid Glass 디자인 시스템</b> 설계 → 프론트/백엔드 → 모바일 → 배포 전 과정 단독 수행, <b>SSOT 기반 타입 안전 풀스택</b>으로 45 API·75 UI 컴포넌트 구현, Flutter WebView 하이브리드 네이티브 브릿지·APK 빌드까지.</span>
+            <span class="lt"><b>R</b>esult</span><span class="tx">1인으로 기획→디자인→개발→배포 전 프로세스 경험, 디자인 시스템·하이브리드 앱 노하우 축적.</span>
+          </div>
+          <div class="mx">
+            <div class="m"><div class="n">1개월</div><div class="l">풀스택+모바일 MVP (80 커밋)</div></div>
+            <div class="m"><div class="n">26.6K+ LOC</div><div class="l">45 API · 75 UI 컴포넌트</div></div>
+            <div class="m"><div class="n">출시 준비</div><div class="l">APK 빌드·네이티브 완료</div></div>
+            <div class="m"><div class="n">SSOT</div><div class="l">타입 안전 풀스택</div></div>
+          </div>
+          <div class="tags"><span>Next.js 16</span><span>React 19</span><span>TypeScript</span><span>Flutter</span><span>Tailwind 4</span><span>shadcn/ui</span><span>Prisma 7</span><span>PostgreSQL</span><span>FCM</span><span>NextAuth v5</span><span>Vercel</span></div>
+        </div>
+      </article>
+
+      <!-- 7. Doc Creator -->
+      <article class="pj">
+        <div class="pj-h">
+          <div class="r1"><span class="nm">Doc Creator — KIPO 문서 자동 생성 도구</span><span class="pe">2026.01 – 2026.03</span></div>
+          <span class="role">풀스택 · 1인</span>
+          <div class="d">소스코드를 분석해 특허청(KIPO) SW개발방법론 기반 기술 산출물을 AI로 자동 생성하는 Python CLI 도구.</div>
+        </div>
+        <div class="pj-b">
+          <div class="star">
+            <span class="lt"><b>S</b>ituation</span><span class="tx">납품용 SW 산출물(설계서·운영 매뉴얼 등)을 수작업 작성하는 데 프로젝트마다 수일 소요, KIPO는 표준 8종 문서를 요구.</span>
+            <span class="lt"><b>T</b>ask</span><span class="tx">소스코드를 분석해 KIPO 표준 8종을 일관된 품질로 자동 생성하고 여러 프로젝트에 재사용 가능한 도구를 단독 제작.</span>
+            <span class="lt"><b>A</b>ction</span><span class="tx">소스 자동 분석 → <b>GPT-4o 기반 문서 생성</b> 파이프라인을 Python CLI로 설계, 문서 유형별 <b>프롬프트 엔지니어링</b>·Mermaid 자동 생성·배치 처리, HTML/PDF/PPTX 다중 포맷 출력(Jinja2·Playwright·python-pptx).</span>
+            <span class="lt"><b>R</b>esult</span><span class="tx">개발자가 문서가 아닌 개발에 집중하는 환경을 만들고 산출물 품질을 일관화, 다수 프로젝트에 실제 적용·납품 활용.</span>
+          </div>
+          <div class="mx">
+            <div class="m"><div class="n">수일→수시간</div><div class="l">산출물 작성 시간 절감</div></div>
+            <div class="m"><div class="n">8종</div><div class="l">KIPO 표준 문서 일괄 생성</div></div>
+            <div class="m"><div class="n">다수</div><div class="l">프로젝트 실제 적용·납품</div></div>
+            <div class="m"><div class="n">3포맷</div><div class="l">HTML · PDF · PPTX</div></div>
+          </div>
+          <div class="tags"><span>Python</span><span>OpenAI GPT-4o</span><span>Typer CLI</span><span>Jinja2</span><span>Playwright</span><span>python-pptx</span></div>
+        </div>
+      </article>
+
+      <!-- 8. BridgeUI -->
+      <article class="pj">
+        <div class="pj-h">
+          <div class="r1"><span class="nm">BridgeUI — 교량 손상 분석 데스크탑 앱</span><span class="pe">2025.11 – 2025.12</span></div>
+          <span class="role">풀스택 · 1인</span>
+          <div class="d">AI 기반 교량 손상 탐지·추적·정량화·평가를 자동화하는 Electron 데스크탑 애플리케이션.</div>
+        </div>
+        <div class="pj-b">
+          <div class="star">
+            <span class="lt"><b>S</b>ituation</span><span class="tx">외부 고객사가 교량 구조 손상(균열·박리·철근 노출)을 영상/이미지에서 자동 탐지·정량화하고 부재별 등급(A~E)까지 평가하는 올인원 데스크탑 도구를 요청(SI).</span>
+            <span class="lt"><b>T</b>ask</span><span class="tx">Python ML 백엔드를 앱에 내장해 별도 서버 없이 로컬 독립 동작하는 앱을 처음 다루는 Electron으로 1인 풀스택 구축.</span>
+            <span class="lt"><b>A</b>ction</span><span class="tx">탐지→추적→정량화→평가→보고서로 이어지는 <b>순차 워크플로우 엔진</b>을 React로 설계, Python ML 백엔드를 <b>Electron에 내장</b>하고 WebSocket으로 실시간 진행률 연동, 3종 OS 크로스 플랫폼 패키징.</span>
+            <span class="lt"><b>R</b>esult</span><span class="tx">별도 서버 설치 없이 로컬 독립 실행, 처음 접하는 Electron을 빠르게 학습해 프로덕션 수준 앱 완성.</span>
+          </div>
+          <div class="mx">
+            <div class="m"><div class="n">14.8K+ LOC</div><div class="l">75 소스 파일 · 6주 92커밋</div></div>
+            <div class="m"><div class="n">3종 OS</div><div class="l">macOS/Windows/Linux</div></div>
+            <div class="m"><div class="n">올인원</div><div class="l">탐지→평가→보고서</div></div>
+            <div class="m"><div class="n">임베디드</div><div class="l">ML 백엔드 내장 실행</div></div>
+          </div>
+          <div class="tags"><span>React 18</span><span>TypeScript</span><span>Electron 39</span><span>Vite 7</span><span>Tailwind 4</span><span>Zustand</span><span>Ant Design</span><span>Python (Flask)</span><span>WebSocket</span></div>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <footer>
+    <span>윤승규 · ysk9926 · 이력서 &amp; 경력기술서</span>
+    <span>tmdrb9926@gmail.com · 010-3549-9926</span>
+  </footer>
+
+</div>
+</body>
+</html>
