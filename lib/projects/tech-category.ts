@@ -10,8 +10,6 @@ export type TechCategoryKey =
 export interface TechCategory {
   key: TechCategoryKey;
   label: string;
-  /** Tailwind classes for the chip surface: text, background, border. */
-  chip: string;
   /** Tailwind class for the small category dot. */
   dot: string;
 }
@@ -20,43 +18,36 @@ export const TECH_CATEGORIES: Record<TechCategoryKey, TechCategory> = {
   frontend: {
     key: 'frontend',
     label: '프론트엔드',
-    chip: 'text-sky-800 bg-sky-50 border-sky-200 hover:bg-sky-100',
     dot: 'bg-sky-500',
   },
   backend: {
     key: 'backend',
     label: '백엔드',
-    chip: 'text-violet-800 bg-violet-50 border-violet-200 hover:bg-violet-100',
     dot: 'bg-violet-500',
   },
   data: {
     key: 'data',
     label: '데이터',
-    chip: 'text-emerald-800 bg-emerald-50 border-emerald-200 hover:bg-emerald-100',
     dot: 'bg-emerald-500',
   },
   infra: {
     key: 'infra',
     label: '인프라',
-    chip: 'text-amber-800 bg-amber-50 border-amber-200 hover:bg-amber-100',
     dot: 'bg-amber-500',
   },
   mobile: {
     key: 'mobile',
     label: '모바일',
-    chip: 'text-rose-800 bg-rose-50 border-rose-200 hover:bg-rose-100',
     dot: 'bg-rose-500',
   },
   ai: {
     key: 'ai',
     label: 'AI·외부 API',
-    chip: 'text-cyan-800 bg-cyan-50 border-cyan-200 hover:bg-cyan-100',
     dot: 'bg-cyan-500',
   },
   lang: {
     key: 'lang',
     label: '언어·도구',
-    chip: 'text-slate-700 bg-slate-100 border-slate-200 hover:bg-slate-200',
     dot: 'bg-slate-500',
   },
 };

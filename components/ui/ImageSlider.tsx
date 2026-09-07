@@ -64,7 +64,7 @@ export default function ImageSlider({ screenshots, alt }: ImageSliderProps) {
           alt={`${alt} 스크린샷 ${currentIndex + 1}`}
           fill
           className="object-contain"
-          sizes="(max-width: 672px) 100vw, 600px"
+          sizes="(max-width: 768px) 100vw, 900px"
         />
       </div>
 

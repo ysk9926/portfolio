@@ -1,7 +1,6 @@
 'use client';
 
 import { useMemo, useState, type ReactNode } from 'react';
-import Image from 'next/image';
 import Link from 'next/link';
 import {
   AlertCircle,
@@ -10,7 +9,6 @@ import {
   Building2,
   CalendarDays,
   ExternalLink,
-  FolderCode,
   Github,
   Images,
   Layers,
@@ -134,6 +132,11 @@ function ProjectSplitModal({ project, onClose }: { project: Project; onClose: ()
   const eyebrow =
     present(project.portfolioSync?.status) ?? (project.isMain ? '주요 프로젝트' : '프로젝트');
   const techGroups = useMemo(() => groupTechByCategory(project.techStack), [project.techStack]);
+  // Thumbnail leads the gallery; skip it when it duplicates a screenshot.
+  const images = useMemo(() => {
+    const list = [project.thumbnail, ...(project.screenshots ?? [])].filter(Boolean);
+    return Array.from(new Set(list));
+  }, [project.thumbnail, project.screenshots]);
 
   return (
     <SplitModal<TabKey>
@@ -210,33 +213,14 @@ function ProjectSplitModal({ project, onClose }: { project: Project; onClose: ()
     >
       {tab === 'overview' && (
         <>
-          <div className="pds-thumb relative aspect-[21/9] w-full">
-            {project.thumbnail ? (
-              <Image
-                src={project.thumbnail}
-                alt={project.title}
-                fill
-                className="object-cover"
-                sizes="(max-width: 1180px) 100vw, 940px"
-              />
-            ) : (
-              <div className="absolute inset-0 flex flex-col items-center justify-center gap-3">
-                <FolderCode size={48} className="text-white/15" strokeWidth={1.5} />
-                <span className="text-base font-semibold tracking-wide text-white/20">
-                  {project.title}
-                </span>
-              </div>
-            )}
-          </div>
-
-          {project.screenshots?.length > 0 && (
+          {images.length > 0 && (
             <SplitModalSection
               icon={<Images />}
               title="스크린샷"
-              note={`${project.screenshots.length}장`}
+              note={`${images.length}장`}
             >
               <div className="px-4 py-4 md:px-5">
-                <ImageSlider screenshots={project.screenshots} alt={project.title} />
+                <ImageSlider screenshots={images} alt={project.title} />
               </div>
             </SplitModalSection>
           )}
