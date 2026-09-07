@@ -106,7 +106,22 @@ body {
   animation: modal-content-out 0.2s ease-in forwards;
 }
 
-/* Carousel scrollbar hide */
+/* Hide scrollbars everywhere (page, modal, carousels, code blocks); scrolling still works */
+html,
+body,
+* {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+html::-webkit-scrollbar,
+body::-webkit-scrollbar,
+*::-webkit-scrollbar {
+  display: none;
+  width: 0;
+  height: 0;
+}
+
+/* Kept for existing markup; behavior now covered by the global rule above */
 .carousel-scrollbar-hide {
   -ms-overflow-style: none;
   scrollbar-width: none;

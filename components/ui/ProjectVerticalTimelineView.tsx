@@ -1,11 +1,11 @@
 'use client';
 
 import { useMemo } from 'react';
-import Link from 'next/link';
 import { Project } from '@/lib/types';
-import { projectPath } from '@/lib/projects/portfolio';
 import { parsePeriod, sortProjectsByStartDate } from '@/lib/timeline';
+import { useScrollSpotlight } from '@/lib/hooks/useScrollSpotlight';
 import AnimateOnScroll from './AnimateOnScroll';
+import TimelineProjectChip from './TimelineProjectChip';
 
 interface ProjectVerticalTimelineViewProps {
   projects: Project[];
@@ -36,6 +36,9 @@ export default function ProjectVerticalTimelineView({
     return groups;
   }, [sorted]);
 
+  const keys = useMemo(() => sorted.map((p) => String(p.id)), [sorted]);
+  const { activeKey, register } = useScrollSpotlight(keys);
+
   if (sorted.length === 0) return null;
 
   let globalIndex = -1;
@@ -63,106 +66,55 @@ export default function ProjectVerticalTimelineView({
                 globalIndex++;
                 const parsed = parsePeriod(project.period);
                 const isLeft = globalIndex % 2 === 0;
+                const isActive = activeKey === String(project.id);
 
                 return (
                   <AnimateOnScroll key={project.id}>
                     <div className="relative md:grid md:grid-cols-2 md:gap-12 items-center">
+                      {/* Timeline dot: grows and gains a halo while spotlighted */}
                       <div
                         aria-hidden
                         className="absolute z-10 left-4 md:left-1/2 -translate-x-1/2 top-5 md:top-1/2 md:-translate-y-1/2"
                       >
                         <div
-                          className={`w-4 h-4 rounded-full border-[3px] border-white shadow ${
+                          className={`rounded-full border-[3px] border-white shadow transition-all duration-300 ease-out ${
+                            isActive
+                              ? 'w-5 h-5 ring-4 ring-neutral-900/15'
+                              : 'w-4 h-4'
+                          } ${
                             parsed.isOngoing
                               ? 'bg-green-500 animate-pulse-dot'
-                              : project.isMain
+                              : project.isMain || isActive
                                 ? 'bg-neutral-900'
                                 : 'bg-neutral-400'
                           }`}
                         />
                       </div>
 
+                      {/* Connector from the spine to the chip: lights up while spotlighted */}
+                      <div
+                        aria-hidden
+                        className={`absolute h-px top-[27px] left-4 w-8 origin-left transition-all duration-500 ease-out md:top-1/2 md:w-8 ${
+                          isLeft
+                            ? 'md:left-auto md:right-1/2 md:origin-right'
+                            : 'md:left-1/2'
+                        } ${isActive ? 'bg-neutral-900 scale-x-100' : 'bg-neutral-300 scale-x-0'}`}
+                      />
+
                       <div
                         className={`pl-12 md:pl-0 ${
                           isLeft
-                            ? 'md:col-start-1 md:pr-8 md:text-right'
+                            ? 'md:col-start-1 md:pr-8'
                             : 'md:col-start-2 md:pl-8'
                         }`}
                       >
-                        <article className="w-full rounded-xl border border-neutral-200 bg-white p-4 text-left transition-all hover:border-neutral-300 hover:shadow-md md:p-5">
-                          <div
-                            className={`flex flex-wrap items-center gap-2 mb-2 ${
-                              isLeft ? 'md:justify-end' : ''
-                            }`}
-                          >
-                            {project.portfolioSync?.status && (
-                              <span className="text-[10px] md:text-xs px-2 py-0.5 rounded-full bg-neutral-100 text-neutral-600 border border-neutral-200">
-                                {project.portfolioSync.status}
-                              </span>
-                            )}
-                            <span className="text-[11px] md:text-xs text-neutral-500">
-                              {project.period}
-                            </span>
-                            {parsed.isOngoing && (
-                              <span className="inline-block w-2 h-2 rounded-full bg-green-500 animate-pulse-dot" />
-                            )}
-                          </div>
-
-                          <h3 className="font-semibold text-sm md:text-base text-neutral-900 mb-1.5">
-                            {project.title}
-                          </h3>
-
-                          {(project.portfolioSync?.summary ||
-                            project.shortDescription) && (
-                            <p
-                              className={`text-xs md:text-sm text-neutral-600 mb-3 line-clamp-2 ${
-                                isLeft ? 'md:text-right' : ''
-                              }`}
-                            >
-                              {project.portfolioSync?.summary ||
-                                project.shortDescription}
-                            </p>
-                          )}
-
-                          <div
-                            className={`flex flex-wrap gap-1 ${
-                              isLeft ? 'md:justify-end' : ''
-                            }`}
-                          >
-                            {project.techStack.slice(0, 4).map((tech) => (
-                              <span
-                                key={tech}
-                                className="text-[10px] md:text-xs px-2 py-0.5 rounded-full bg-neutral-100 text-neutral-600"
-                              >
-                                {tech}
-                              </span>
-                            ))}
-                            {project.techStack.length > 4 && (
-                              <span className="text-[10px] md:text-xs px-2 py-0.5 rounded-full bg-neutral-50 text-neutral-400">
-                                +{project.techStack.length - 4}
-                              </span>
-                            )}
-                          </div>
-                          <div
-                            className={`mt-4 flex flex-wrap gap-2 ${
-                              isLeft ? 'md:justify-end' : ''
-                            }`}
-                          >
-                            <button
-                              type="button"
-                              onClick={() => onDetailClick(project)}
-                              className="rounded-md bg-neutral-900 px-3 py-1.5 text-xs font-medium text-white transition hover:bg-neutral-700"
-                            >
-                              빠른 보기
-                            </button>
-                            <Link
-                              href={projectPath(project)}
-                              className="rounded-md border border-neutral-300 px-3 py-1.5 text-xs font-medium text-neutral-700 transition hover:border-neutral-900 hover:text-neutral-950"
-                            >
-                              {project.title} 상세 보기
-                            </Link>
-                          </div>
-                        </article>
+                        <TimelineProjectChip
+                          ref={register(String(project.id))}
+                          project={project}
+                          onOpen={onDetailClick}
+                          isActive={isActive}
+                          alignEnd={isLeft}
+                        />
                       </div>
 
                       <div

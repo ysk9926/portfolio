@@ -66,7 +66,7 @@ test("company link, section activity and revocation reach real isolated database
         ),
       )
       .toBeGreaterThan(0);
-    await page.getByRole("button", { name: "빠른 보기", exact: true }).first().click();
+    await page.getByRole("button", { name: /프로젝트 열기$/ }).first().click();
     const modal = page.locator('[data-analytics-surface="modal"]');
     await expect(modal).toBeVisible();
     await page.waitForTimeout(1200);

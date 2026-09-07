@@ -1,16 +1,17 @@
 'use client';
 
 import { useMemo } from 'react';
-import Link from 'next/link';
+import { ArrowUpRight } from 'lucide-react';
 import { Project } from '@/lib/types';
-import { projectPath } from '@/lib/projects/portfolio';
 import {
   parsePeriod,
   generateTimelineMonths,
   getProjectSpan,
   sortProjectsByStartDate,
 } from '@/lib/timeline';
+import { useScrollSpotlight } from '@/lib/hooks/useScrollSpotlight';
 import AnimateOnScroll from './AnimateOnScroll';
+import TimelineProjectChip from './TimelineProjectChip';
 
 interface ProjectTimelineViewProps {
   projects: Project[];
@@ -38,6 +39,9 @@ export default function ProjectTimelineView({
     }
     return breaks;
   }, [months]);
+
+  const keys = useMemo(() => sorted.map((p) => String(p.id)), [sorted]);
+  const { activeKey, register } = useScrollSpotlight(keys);
 
   if (sorted.length === 0) return null;
 
@@ -111,7 +115,7 @@ export default function ProjectTimelineView({
                       {/* Render bar segment */}
                       {isInSpan && i === startIndex && (
                         <div
-                          className={`absolute top-2 bottom-2 left-0.5 flex items-center overflow-hidden rounded-md text-xs font-medium transition-all hover:scale-[1.02] hover:shadow-md ${
+                          className={`absolute z-10 top-2 bottom-2 left-0.5 flex items-center overflow-hidden rounded-md text-xs font-medium transition-all hover:scale-[1.02] hover:shadow-md ${
                             project.isMain
                               ? 'bg-neutral-800 text-white'
                               : 'bg-neutral-200 text-neutral-700'
@@ -124,7 +128,8 @@ export default function ProjectTimelineView({
                           <button
                             type="button"
                             onClick={() => onDetailClick(project)}
-                            className={`flex min-w-0 flex-1 items-center gap-1.5 self-stretch px-3 text-left transition-colors ${
+                            aria-label={`${project.title} 프로젝트 열기`}
+                            className={`group/bar flex min-w-0 flex-1 items-center gap-1.5 self-stretch px-3 text-left transition-colors ${
                               project.isMain
                                 ? 'hover:bg-neutral-700'
                                 : 'hover:bg-neutral-300'
@@ -140,17 +145,12 @@ export default function ProjectTimelineView({
                                 }`}
                               />
                             )}
+                            <ArrowUpRight
+                              size={12}
+                              strokeWidth={2.5}
+                              className="ml-auto shrink-0 -translate-x-1 opacity-0 transition-all duration-300 group-hover/bar:translate-x-0 group-hover/bar:opacity-100"
+                            />
                           </button>
-                          <Link
-                            href={projectPath(project)}
-                            className={`shrink-0 self-stretch px-2 py-2 text-[10px] leading-none transition-colors ${
-                              project.isMain
-                                ? 'border-l border-white/15 hover:bg-white/10'
-                                : 'border-l border-neutral-300 hover:bg-neutral-300'
-                            }`}
-                          >
-                            상세
-                          </Link>
                         </div>
                       )}
                     </div>
@@ -172,52 +172,27 @@ export default function ProjectTimelineView({
                 <div className="relative pl-6 pb-6 last:pb-0">
                   {/* Dot */}
                   <div
-                    className={`absolute -left-[9px] top-1 w-4 h-4 rounded-full border-2 border-white ${
+                    className={`absolute top-1 rounded-full border-2 border-white transition-all duration-300 ${
+                      activeKey === String(project.id)
+                        ? '-left-[11px] w-5 h-5 ring-4 ring-neutral-900/15'
+                        : '-left-[9px] w-4 h-4'
+                    } ${
                       parsed.isOngoing
                         ? 'bg-green-500 animate-pulse-dot'
-                        : project.isMain
+                        : project.isMain || activeKey === String(project.id)
                           ? 'bg-neutral-800'
                           : 'bg-neutral-300'
                     }`}
                   />
 
-                  {/* Card */}
-                  <article className="w-full rounded-xl border border-neutral-200 bg-white p-4 text-left transition-all hover:border-neutral-300 hover:shadow-sm">
-                    <h3 className="font-semibold text-sm text-neutral-900 mb-1">
-                      {project.title}
-                      {parsed.isOngoing && (
-                        <span className="ml-2 inline-block w-2 h-2 rounded-full bg-green-500 animate-pulse-dot" />
-                      )}
-                    </h3>
-                    <p className="text-xs text-neutral-500 mb-2">
-                      {project.period}
-                    </p>
-                    <div className="flex flex-wrap gap-1">
-                      {project.techStack.slice(0, 3).map((tech) => (
-                        <span
-                          key={tech}
-                          className="text-[10px] px-2 py-0.5 rounded-full bg-neutral-100 text-neutral-600"
-                        >
-                          {tech}
-                        </span>
-                      ))}
-                    </div>
-                    <div className="mt-4 flex flex-wrap gap-2">
-                      <button
-                        type="button"
-                        onClick={() => onDetailClick(project)}
-                        className="rounded-md bg-neutral-900 px-3 py-1.5 text-xs font-medium text-white transition hover:bg-neutral-700"
-                      >
-                        빠른 보기
-                      </button>
-                      <Link
-                        href={projectPath(project)}
-                        className="rounded-md border border-neutral-300 px-3 py-1.5 text-xs font-medium text-neutral-700 transition hover:border-neutral-900 hover:text-neutral-950"
-                      >
-                        {project.title} 상세 보기
-                      </Link>
-                    </div>
-                  </article>
+                  {/* Chip */}
+                  <TimelineProjectChip
+                    ref={register(String(project.id))}
+                    project={project}
+                    onOpen={onDetailClick}
+                    isActive={activeKey === String(project.id)}
+                    compact
+                  />
                 </div>
               </AnimateOnScroll>
             );

@@ -4,7 +4,7 @@ import { useState, useEffect, useRef, useCallback } from 'react';
 import { createPortal } from 'react-dom';
 import Image from 'next/image';
 import Link from 'next/link';
-import { X, ChevronRight, AlertCircle, Lightbulb, TrendingUp, Wrench, FolderCode } from 'lucide-react';
+import { X, ChevronRight, ArrowRight, AlertCircle, Lightbulb, TrendingUp, Wrench, FolderCode } from 'lucide-react';
 import { Project } from '@/lib/types';
 import { projectPath } from '@/lib/projects/portfolio';
 import ImageSlider from './ImageSlider';
@@ -270,9 +270,14 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
           <div className="flex gap-3">
             <Link
               href={projectPath(project)}
-              className="flex-1 bg-neutral-900 hover:bg-neutral-800 text-white font-medium py-2.5 px-4 rounded-xl text-center transition-colors"
+              className="group/detail flex flex-1 items-center justify-center gap-1.5 bg-neutral-900 hover:bg-neutral-800 text-white font-medium py-2.5 px-4 rounded-xl text-center transition-colors"
             >
               {project.title} 상세 보기
+              <ArrowRight
+                size={16}
+                strokeWidth={2.5}
+                className="transition-transform duration-300 group-hover/detail:translate-x-1"
+              />
             </Link>
             {project.deployUrl && (
               <a
