@@ -23,7 +23,6 @@ import {
 } from 'lucide-react';
 import { Project } from '@/lib/types';
 import { projectPath } from '@/lib/projects/portfolio';
-import { groupTechByCategory } from '@/lib/projects/tech-category';
 import TechChip from './TechChip';
 import {
   SplitModal,
@@ -54,7 +53,7 @@ function buildTabs(project: Project): SplitModalTab<TabKey>[] {
   const tabs: SplitModalTab<TabKey>[] = [
     { key: 'overview', label: '개요', icon: <Images /> },
     { key: 'star', label: project.star ? '배경·STAR' : '설명', icon: <Sparkles /> },
-    { key: 'features', label: '기능·기술', icon: <ListChecks /> },
+    { key: 'features', label: '주요 기능', icon: <ListChecks /> },
   ];
   if (project.star?.troubleshooting) {
     tabs.push({ key: 'troubleshooting', label: '트러블슈팅', icon: <Wrench /> });
@@ -131,7 +130,6 @@ function ProjectSplitModal({ project, onClose }: { project: Project; onClose: ()
   const tone = present(project.portfolioSync?.company) ? 'company' : 'personal';
   const eyebrow =
     present(project.portfolioSync?.status) ?? (project.isMain ? '주요 프로젝트' : '프로젝트');
-  const techGroups = useMemo(() => groupTechByCategory(project.techStack), [project.techStack]);
   // Thumbnail leads the gallery; skip it when it duplicates a screenshot.
   const images = useMemo(() => {
     const list = [project.thumbnail, ...(project.screenshots ?? [])].filter(Boolean);
@@ -280,30 +278,6 @@ function ProjectSplitModal({ project, onClose }: { project: Project; onClose: ()
                 </li>
               ))}
             </ul>
-          </SplitModalSection>
-          <SplitModalSection
-            icon={<Layers />}
-            title="기술 스택"
-            note={`${project.techStack.length}개`}
-          >
-            <div className="grid gap-4 px-4 py-4 md:grid-cols-2 md:px-5">
-              {techGroups.map(({ category, items }) => (
-                <div key={category.key}>
-                  <p className="mb-2 flex items-center gap-1.5 text-[11px] font-bold uppercase tracking-[.07em] text-neutral-500">
-                    <span aria-hidden className={`h-1.5 w-1.5 rounded-full ${category.dot}`} />
-                    {category.label}
-                    <span className="font-medium normal-case tracking-normal text-neutral-400">
-                      {items.length}
-                    </span>
-                  </p>
-                  <div className="flex flex-wrap gap-1.5">
-                    {items.map((tech) => (
-                      <TechChip key={tech} name={tech} size="md" />
-                    ))}
-                  </div>
-                </div>
-              ))}
-            </div>
           </SplitModalSection>
         </>
       )}

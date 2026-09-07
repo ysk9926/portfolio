@@ -52,17 +52,6 @@ export const TECH_CATEGORIES: Record<TechCategoryKey, TechCategory> = {
   },
 };
 
-/** Order used when grouping chips by category. */
-export const TECH_CATEGORY_ORDER: TechCategoryKey[] = [
-  'frontend',
-  'backend',
-  'data',
-  'infra',
-  'mobile',
-  'ai',
-  'lang',
-];
-
 const RULES: Array<[TechCategoryKey, RegExp]> = [
   // Mobile before frontend so "React Native" and "Flutter WebView" land here.
   ['mobile', /react native|flutter|dart|swift|swiftui|kotlin|android|ios|expo|webview/],
@@ -80,18 +69,4 @@ export function classifyTech(name: string): TechCategory {
     if (pattern.test(needle)) return TECH_CATEGORIES[key];
   }
   return TECH_CATEGORIES.lang;
-}
-
-export function groupTechByCategory(techStack: string[]) {
-  const groups = new Map<TechCategoryKey, string[]>();
-  for (const tech of techStack) {
-    const { key } = classifyTech(tech);
-    const list = groups.get(key) ?? [];
-    list.push(tech);
-    groups.set(key, list);
-  }
-  return TECH_CATEGORY_ORDER.filter((key) => groups.has(key)).map((key) => ({
-    category: TECH_CATEGORIES[key],
-    items: groups.get(key)!,
-  }));
 }
