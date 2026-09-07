@@ -9,6 +9,7 @@ const empty: LinkInput = {
   note: "",
 };
 export default function TrackingLinks() {
+  const [siteOrigin, setSiteOrigin] = useState("");
   const [links, setLinks] = useState<TrackingLink[]>([]);
   const [form, setForm] = useState<LinkInput>(empty);
   const [editing, setEditing] = useState<string | null>(null);
@@ -18,17 +19,20 @@ export default function TrackingLinks() {
   const [loading, setLoading] = useState(true);
   const [cursor, setCursor] = useState<string | null>(null);
   const [copied, setCopied] = useState(false);
+  const [copiedId, setCopiedId] = useState<string | null>(null);
   const load = useCallback(async (nextCursor?: string | null) => {
     setError("");
     setLoading(true);
     try {
       const data = await analyticsFetch<{
         links: TrackingLink[];
+        siteOrigin: string;
         nextCursor: string | null;
       }>(
         "/api/admin/analytics/links" +
           (nextCursor ? "?cursor=" + encodeURIComponent(nextCursor) : ""),
       );
+      setSiteOrigin(data.siteOrigin);
       setLinks((prev) => (nextCursor ? [...prev, ...data.links] : data.links));
       setCursor(data.nextCursor);
     } catch (e) {
@@ -182,7 +186,7 @@ export default function TrackingLinks() {
               />
             </label>
             <p className="mt-2 text-xs text-neutral-500">
-              링크는 지금 복사해 주세요. 다시 필요하면 새 링크를 발급합니다.
+              목록에서 언제든 같은 링크를 다시 확인하고 복사할 수 있습니다.
             </p>
             <button
               type="button"
@@ -242,6 +246,19 @@ export default function TrackingLinks() {
                   <div className="flex flex-wrap items-start gap-2">
                     <button
                       className={buttonClass}
+                      onClick={async () => {
+                        try {
+                          await navigator.clipboard.writeText(new URL(`/?ref=${link.shareToken}`, siteOrigin).toString());
+                          setCopiedId(link.id);
+                        } catch {
+                          setError("링크 입력란을 선택해 직접 복사해 주세요.");
+                        }
+                      }}
+                    >
+                      {copiedId === link.id ? "복사됨" : "링크 복사"}
+                    </button>
+                    <button
+                      className={buttonClass}
                       disabled={busy}
                       onClick={() => {
                         setEditing(link.id);
@@ -271,6 +288,13 @@ export default function TrackingLinks() {
                     </button>
                   </div>
                 </div>
+                <input
+                  aria-label={`${link.companyLabel} 제출 링크`}
+                  className={inputClass + " mt-3"}
+                  readOnly
+                  value={new URL(`/?ref=${link.shareToken}`, siteOrigin).toString()}
+                  onFocus={(event) => event.target.select()}
+                />
               </article>
             ))}
           </div>

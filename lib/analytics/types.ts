@@ -72,6 +72,7 @@ export interface LinkInput {
   note: string;
 }
 export interface TrackingLink extends LinkInput {
+  shareToken: string;
   id: string;
   createdAt: string;
   disabledAt: string | null;

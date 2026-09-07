@@ -34,7 +34,7 @@ export interface AnalyticsRepository {
   deleteSession(id: string, now: Date): Promise<boolean>;
   takeRateLimit(key: string, limit: number, now: Date): Promise<boolean>;
   resolveActiveLink(tokenHash: string): Promise<{ id: string } | null>;
-  createLink(input: LinkInput, tokenHash: string, now: Date): Promise<TrackingLink>;
+  createLink(input: LinkInput, tokenHash: string, now: Date, shareToken?: string): Promise<TrackingLink>;
   listLinks(options?: LinkListOptions): Promise<{ links: TrackingLink[]; nextCursor: string | null }>;
   updateLink(id: string, input: LinkPatch, now: Date): Promise<TrackingLink | null>;
   deleteLink(id: string): Promise<boolean>;
@@ -105,6 +105,7 @@ const storedSession = (row: SessionDbRow): StoredSession => ({
 });
 
 type LinkDbRow = {
+  share_token: string;
   id: string;
   company_label: string;
   position: string;
@@ -115,6 +116,7 @@ type LinkDbRow = {
 };
 
 const trackingLink = (row: LinkDbRow): TrackingLink => ({
+  shareToken: row.share_token,
   id: row.id,
   companyLabel: row.company_label,
   position: row.position,
@@ -172,7 +174,7 @@ export const createAnalyticsRepository = (pool: Pool): AnalyticsRepository => ({
 
       const linkId = input.ref
         ? (await client.query<{ id: string }>(
-          'select id from analytics_links where token_hash = $1 and disabled_at is null',
+          "select id from analytics_links where (token_hash = $1 or encode(digest(share_token, 'sha256'), 'hex') = $1) and disabled_at is null",
           [hash(input.ref)],
         )).rows[0]?.id ?? null
         : null;
@@ -349,20 +351,20 @@ export const createAnalyticsRepository = (pool: Pool): AnalyticsRepository => ({
 
   async resolveActiveLink(tokenHash) {
     const result = await pool.query<{ id: string }>(
-      'select id from analytics_links where token_hash = $1 and disabled_at is null',
+      "select id from analytics_links where (token_hash = $1 or encode(digest(share_token, 'sha256'), 'hex') = $1) and disabled_at is null",
       [tokenHash],
     );
     return result.rows[0] ?? null;
   },
 
-  async createLink(input, tokenHash, now) {
+  async createLink(input, tokenHash, now, shareToken) {
     try {
       const result = await pool.query<LinkDbRow>(
         `insert into analytics_links
-          (id, token_hash, company_label, position, submitted_at, note, created_at)
-         values ($1,$2,$3,$4,$5,$6,$7)
-         returning id, company_label, position, submitted_at, note, created_at, disabled_at`,
-        [randomUUID(), tokenHash, input.companyLabel, input.position, input.submittedAt, input.note, now],
+          (id, token_hash, company_label, position, submitted_at, note, created_at, share_token)
+         values ($1,$2,$3,$4,$5,$6,$7,coalesce($8, encode(gen_random_bytes(16), 'hex')))
+         returning id, company_label, position, submitted_at, note, created_at, disabled_at, share_token`,
+        [randomUUID(), tokenHash, input.companyLabel, input.position, input.submittedAt, input.note, now, shareToken ?? null],
       );
       return trackingLink(result.rows[0]!);
     } catch (error) {
@@ -380,7 +382,7 @@ export const createAnalyticsRepository = (pool: Pool): AnalyticsRepository => ({
     }
     const cursor = options.cursor ? decodeLinkCursor(options.cursor) : null;
     const result = await pool.query<LinkDbRow>(
-      `select id, company_label, position, submitted_at, note, created_at, disabled_at
+      `select id, company_label, position, submitted_at, note, created_at, disabled_at, share_token
        from analytics_links
        where ($1::timestamptz is null or (created_at, id) < ($1::timestamptz, $2::uuid))
        order by created_at desc, id desc
@@ -411,7 +413,7 @@ export const createAnalyticsRepository = (pool: Pool): AnalyticsRepository => ({
            else null
          end
        where id = $1
-       returning id, company_label, position, submitted_at, note, created_at, disabled_at`,
+       returning id, company_label, position, submitted_at, note, created_at, disabled_at, share_token`,
       [
         id, input.companyLabel ?? null, input.position ?? null,
         Object.hasOwn(input, 'submittedAt'), input.submittedAt ?? null,

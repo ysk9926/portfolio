@@ -18,9 +18,12 @@ export async function GET(request: Request) {
     const params = new URL(request.url).searchParams;
     return analyticsResponse(
       200,
-      await analyticsRepository().listLinks({
-        cursor: params.get("cursor") ?? undefined,
-      }),
+      {
+        ...await analyticsRepository().listLinks({
+          cursor: params.get("cursor") ?? undefined,
+        }),
+        siteOrigin: analyticsSettings().origin,
+      },
     );
   } catch (e) {
     return errorResponse(e);
@@ -37,10 +40,11 @@ export async function POST(request: Request) {
       input.data,
       createHash("sha256").update(token).digest("hex"),
       new Date(),
+      token,
     );
     return analyticsResponse(201, {
       link,
-      url: new URL(`/?ref=${token}`, analyticsSettings().origin).toString(),
+      url: new URL(`/?ref=${link.shareToken}`, analyticsSettings().origin).toString(),
     });
   } catch (e) {
     return errorResponse(e);
