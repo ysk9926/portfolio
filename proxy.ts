@@ -31,6 +31,7 @@ export async function proxy(request: NextRequest) {
     }
   }
 
+  if (request.nextUrl.pathname === '/api/analytics/events') return NextResponse.next();
   return updateSession(request);
 }
 

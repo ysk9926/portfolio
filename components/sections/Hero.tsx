@@ -11,6 +11,7 @@ export default function Hero({ heroData, publicEmail }: HeroProps) {
   return (
     <section
       id="hero"
+      data-analytics-section="hero"
       className="relative min-h-screen bg-neutral-950 flex flex-col items-center justify-center text-white px-4"
     >
       <div className="text-center space-y-6">
@@ -34,6 +35,7 @@ export default function Hero({ heroData, publicEmail }: HeroProps) {
         <div className="flex flex-col items-center justify-center gap-3 pt-8 sm:flex-row">
           <a
             href="/resume/portfolio.pdf"
+            data-analytics-target="resume"
             download="윤승규-포트폴리오.pdf"
             className="inline-flex min-h-11 items-center justify-center gap-2 rounded-full bg-white px-7 py-3 font-semibold text-gray-900 transition-colors hover:bg-gray-100 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white"
           >
@@ -43,6 +45,7 @@ export default function Hero({ heroData, publicEmail }: HeroProps) {
           {publicEmail && (
             <a
               href={`mailto:${publicEmail}`}
+              data-analytics-target="email"
               className="inline-flex min-h-11 items-center justify-center gap-2 rounded-full border border-white/30 bg-white/5 px-7 py-3 font-semibold text-white transition-colors hover:bg-white/10 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white"
             >
               <Mail aria-hidden size={18} />
@@ -53,6 +56,7 @@ export default function Hero({ heroData, publicEmail }: HeroProps) {
         <div className="flex items-center justify-center gap-5 text-sm font-medium text-neutral-300">
           <a
             href="https://github.com/ysk9926"
+            data-analytics-target="github"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex min-h-11 items-center gap-1.5 underline decoration-white/30 underline-offset-4 transition-colors hover:text-white focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white"

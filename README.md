@@ -98,3 +98,15 @@ After deployment:
 4. Link to the portfolio from indexed profiles such as GitHub, Velog, YouTube, and RocketPunch using anchor text like `ysk9926 포트폴리오`.
 
 See `docs/seo/google-indexing-checklist.md` for the full post-deploy checklist.
+
+## Visitor analytics
+
+The admin dashboard at `/admin/analytics` manages company-specific submission links,
+visits, section/project exposure and active time, scroll depth, and outbound clicks.
+Visitors can allow or decline collection and change their choice from the footer.
+A tracked link identifies a submission, not an individual recruiter's identity.
+
+Apply the two `20260907` analytics migrations, enable Supabase Cron, and configure
+server-only analytics secrets before enabling collection. See
+[analytics operations](docs/analytics-operations.md) for environment variables,
+retention, testing, and rollout instructions.

@@ -109,6 +109,8 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
     >
       <div
         ref={modalRef}
+        data-analytics-project={project.id}
+        data-analytics-surface="modal"
         tabIndex={-1}
         className={`relative w-full ${project.star ? 'max-w-3xl' : 'max-w-2xl'} max-h-[85vh] bg-white rounded-3xl overflow-y-auto shadow-2xl outline-none ${
           isClosing ? 'modal-content-exit' : 'modal-content-enter'
@@ -274,7 +276,7 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
             </Link>
             {project.deployUrl && (
               <a
-                href={project.deployUrl}
+                href={project.deployUrl} data-analytics-target="demo" data-analytics-project-id={project.id}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex-1 bg-neutral-900 hover:bg-neutral-800 text-white font-medium py-2.5 px-4 rounded-xl text-center transition-colors"
@@ -284,7 +286,7 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
             )}
             {project.githubUrl && (
               <a
-                href={project.githubUrl}
+                href={project.githubUrl} data-analytics-target="github" data-analytics-project-id={project.id}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex-1 bg-gray-800 hover:bg-gray-900 text-white font-medium py-2.5 px-4 rounded-xl text-center transition-colors"

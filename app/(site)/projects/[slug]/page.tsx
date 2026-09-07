@@ -160,7 +160,7 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
   ];
 
   return (
-    <article className="min-h-screen bg-white pt-24 pb-20">
+    <article data-analytics-project={project.id} data-analytics-surface="detail" className="min-h-screen bg-white pt-24 pb-20">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
@@ -230,7 +230,7 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
           <div className="mt-6 flex flex-wrap gap-3">
             {project.githubUrl && (
               <a
-                href={project.githubUrl}
+                href={project.githubUrl} data-analytics-target="github" data-analytics-project-id={project.id}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 rounded-md bg-neutral-900 px-4 py-2 text-sm font-medium text-white transition hover:bg-neutral-700"
@@ -241,7 +241,7 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
             )}
             {project.deployUrl && (
               <a
-                href={project.deployUrl}
+                href={project.deployUrl} data-analytics-target="demo" data-analytics-project-id={project.id}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 rounded-md border border-neutral-300 px-4 py-2 text-sm font-medium text-neutral-800 transition hover:border-neutral-900"

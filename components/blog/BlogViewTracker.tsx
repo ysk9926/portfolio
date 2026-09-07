@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect } from 'react';
+import { useAnalytics } from '@/components/analytics/AnalyticsProvider';
 
 interface BlogViewTrackerProps {
   slug: string;
@@ -10,7 +11,9 @@ const VIEW_KEY = (slug: string) => `blog:view:${slug}`;
 const ONE_DAY_MS = 24 * 60 * 60 * 1000;
 
 export default function BlogViewTracker({ slug }: BlogViewTrackerProps) {
+  const { consent, enabled } = useAnalytics();
   useEffect(() => {
+    if (consent !== 'granted' || !enabled) return;
     if (typeof window === 'undefined') return;
     let key: string;
     try {
@@ -25,11 +28,13 @@ export default function BlogViewTracker({ slug }: BlogViewTrackerProps) {
     } catch {
       return;
     }
+    const controller = new AbortController();
     fetch(`/api/blog/posts/${encodeURIComponent(slug)}/view`, {
       method: 'POST',
+      signal: controller.signal,
     })
       .then((res) => {
-        if (res.ok) {
+        if (res.ok && !controller.signal.aborted) {
           try {
             window.localStorage.setItem(VIEW_KEY(slug), Date.now().toString());
           } catch {
@@ -38,7 +43,8 @@ export default function BlogViewTracker({ slug }: BlogViewTrackerProps) {
         }
       })
       .catch(() => {});
-  }, [slug]);
+    return () => controller.abort();
+  }, [slug, consent, enabled]);
 
   return null;
 }

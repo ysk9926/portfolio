@@ -23,19 +23,19 @@ const createBootstrapClient = (): {
   return {
     calls,
     client: {
-      async query(text, params = []) {
+      async query<T = Record<string, unknown>>(text: string, params: readonly unknown[] = []) {
         calls.push({ text, params });
 
         const sectionKey = params[0];
         if (text.includes('export_section_payload') && sectionKey === 'projects') {
-          return { rows: [{ payload: payloads.projects }] };
+          return { rows: [{ payload: payloads.projects }] as T[] };
         }
 
         if (
           text.includes('export_section_payload') &&
           sectionKey === 'project-portfolio-sync'
         ) {
-          return { rows: [{ payload: payloads['project-portfolio-sync'] }] };
+          return { rows: [{ payload: payloads['project-portfolio-sync'] }] as T[] };
         }
 
         throw new Error(`Unexpected query: ${text}`);
@@ -59,7 +59,7 @@ test('syncPortfolioSectionsWithClient writes in one transaction', async () => {
   const calls: Array<{ text: string; params: readonly unknown[] }> = [];
   const payloads = makePortfolioSyncPayloads();
   const client: PortfolioDbClient = {
-    async query(text, params = []) {
+    async query<T = Record<string, unknown>>(text: string, params: readonly unknown[] = []) {
       calls.push({ text, params });
 
       if (text === 'begin' || text === 'commit' || text === 'rollback') {
@@ -67,7 +67,7 @@ test('syncPortfolioSectionsWithClient writes in one transaction', async () => {
       }
 
       if (text.includes('admin_replace_section')) {
-        return { rows: [{ updated_at: '2026-04-22T08:40:11.123Z' }] };
+        return { rows: [{ updated_at: '2026-04-22T08:40:11.123Z' }] as T[] };
       }
 
       throw new Error(`Unexpected query: ${text}`);
@@ -106,7 +106,7 @@ test('syncPortfolioSectionsWithClient rolls back on failure', async () => {
   const calls: Array<{ text: string; params: readonly unknown[] }> = [];
   const payloads = makePortfolioSyncPayloads();
   const client: PortfolioDbClient = {
-    async query(text, params = []) {
+    async query<T = Record<string, unknown>>(text: string, params: readonly unknown[] = []) {
       calls.push({ text, params });
 
       if (text === 'begin' || text === 'rollback') {
@@ -118,7 +118,7 @@ test('syncPortfolioSectionsWithClient rolls back on failure', async () => {
           throw new Error('boom');
         }
 
-        return { rows: [{ updated_at: '2026-04-22T08:40:11.123Z' }] };
+        return { rows: [{ updated_at: '2026-04-22T08:40:11.123Z' }] as T[] };
       }
 
       throw new Error(`Unexpected query: ${text}`);

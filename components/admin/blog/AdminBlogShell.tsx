@@ -104,6 +104,7 @@ export default function AdminBlogShell({ adminEmail, children }: AdminBlogShellP
         </aside>
 
         <div className="flex min-w-0 flex-1 flex-col">
+          <div className="border-b bg-white px-5 py-2 text-right text-sm"><Link href="/admin/analytics" className="text-neutral-600 hover:text-neutral-900">방문 분석 →</Link></div>
           <header className="flex items-center justify-between gap-3 border-b border-neutral-200 bg-white px-5 py-3 md:hidden">
             <div>
               <p className="text-[11px] font-semibold uppercase tracking-wider text-neutral-400">

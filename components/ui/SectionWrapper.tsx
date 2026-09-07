@@ -20,6 +20,7 @@ export default function SectionWrapper({
   return (
     <section
       id={id}
+      data-analytics-section={id}
       className={`${contentVisibility ? 'cv-auto' : ''} ${className}`}
     >
       <div className={`py-16 md:py-24 ${fullWidthContent ? '' : 'max-w-6xl mx-auto px-4'}`}>

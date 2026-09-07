@@ -53,3 +53,13 @@ output/
 /이력서.html
 /포트폴리오.html
 docs/resume/
+
+# Isolated work and local verification
+.worktrees/
+.superpowers/
+playwright-report/
+test-results/
+tests/e2e/.auth/
+
+**/.next/
+**/next-env.d.ts

@@ -1,5 +1,4 @@
 import type { Metadata, Viewport } from 'next';
-import { GoogleAnalytics } from '@next/third-parties/google';
 import { getSiteUrl } from '@/lib/seo/url';
 import './globals.css';
 
@@ -18,14 +17,12 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const gaId = process.env.GA_MEASUREMENT_ID;
 
   return (
     <html lang="ko">
       <body className="antialiased">
         {children}
       </body>
-      {gaId && <GoogleAnalytics gaId={gaId} />}
     </html>
   );
 }

@@ -16,6 +16,7 @@ export default function ArchiveCard({
   return (
     <a
       href={url}
+      data-analytics-target="archive"
       target={isExternal ? '_blank' : undefined}
       rel={isExternal ? 'noopener noreferrer' : undefined}
       className={`rounded-2xl p-8 md:p-10 flex flex-col gap-4 hover:scale-[1.02] transition-transform duration-300 ${cardClass}`}

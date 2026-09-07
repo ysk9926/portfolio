@@ -1,3 +1,4 @@
+import AnalyticsProvider from '@/components/analytics/AnalyticsProvider';
 import type { Metadata } from 'next';
 import {
   PersonJsonLd,
@@ -90,7 +91,7 @@ export default async function SiteLayout({
   const site = await getSiteData();
 
   return (
-    <>
+    <AnalyticsProvider>
       <PersonJsonLd siteConfig={site.config} heroData={site.hero} />
       <ProfilePageJsonLd siteConfig={site.config} heroData={site.hero} />
       <WebSiteJsonLd siteConfig={site.config} />
@@ -104,6 +105,6 @@ export default async function SiteLayout({
       <main id="main-content" tabIndex={-1}>{children}</main>
       <Footer footerData={site.footer} />
       <ScrollToTop />
-    </>
+    </AnalyticsProvider>
   );
 }
