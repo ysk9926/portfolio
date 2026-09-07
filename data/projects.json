@@ -343,5 +343,50 @@
       "troubleshooting": "> [!important] 면접용 STAR 기법\n\n### 사례 1: 카페24 위에 구독 서비스 전체 설계/구현\n\n**상황 (Situation)**\n카페24 쇼핑몰 플랫폼은 정기 구독 기능을 기본 제공하지 않았다. 베몽테스는 스킨케어 제품의 정기배송 + 회차별 등급/선물/적립금 시스템이 핵심 비즈니스 모델이었다.\n\n**과제 (Task)**\n카페24 API 위에 자체 구독 엔진을 설계하고, 결제/등급변경/선물/알림까지 자동화해야 했다. 특히 기존 카페24 주문 흐름을 깨뜨리지 않으면서 구독 로직을 얹어야 하는 제약이 있었다.\n\n**행동 (Action)**\n- `SubscriptionProduct` → `GradeRule` → `GiftItem` 계층 구조로 구독 상품 모델 설계\n- `SubscriptionUserProduct`에 회원별 구독 상태(ACTIVE/PAUSED/CANCELLED), 회차, 결제일 관리\n- 카페24 주문 웹훅을 받아 구독 상태를 자동 업데이트하는 플로우 구현\n- 회차별 등급 자동 변경, 선물 할당, 적립금 지급 로직을 스케줄러로 자동화\n- 레거시(Boolean) → 신규(Enum 상태) 시스템으로 점진적 마이그레이션\n\n**결과 (Result)**\n- 관리자가 구독 상품/등급규칙/선물을 대시보드에서 직접 설정 가능\n- 수동으로 처리하던 구독 관리 업무가 완전 자동화\n- 회원별 다중 구독, 일시정지/재활성화 등 세밀한 상태 관리 가능\n\n### 사례 2: 70+ 결제 앱 딥링크 처리 (Flutter)\n\n**상황 (Situation)**\nWebView 기반 Flutter 앱에서 카페24 결제 시 카카오페이, 토스, KB페이 등 외부 결제 앱을 호출해야 했다. 각 카드사/은행/간편결제마다 URL 스킴이 다르고, iOS/Android 동작도 달랐다.\n\n**과제 (Task)**\n70개 이상의 결제 앱 스킴을 지원하면서, 앱 미설치 시 스토어 이동, 에러 복구까지 안정적으로 처리해야 했다.\n\n**행동 (Action)**\n- `PaymentAppInfo` 클래스에 Android 패키지명/iOS App Store ID 매핑 테이블 구축\n- Android는 `MethodChannel` + `Intent.parseUri()`로 네이티브 처리, iOS는 `url_launcher` + `LSApplicationQueriesSchemes` 80개 등록\n- 앱 미설치 시 `browser_fallback_url` → Play Store/App Store 자동 이동\n- `_lastSuccessUrl` 저장으로 결제 실패 시 마지막 정상 페이지로 복구\n- 1.5초 TTL 중복 처리 방지 로직 추가\n\n**결과 (Result)**\n- KB, 신한, 현대, 하나, 농협, 삼성, 롯데, 씨티, 우리 등 전 카드사 + 카카오페이, 토스, 페이코 등 간편결제 앱 완벽 지원\n- 앱 미설치/에러 상황에서도 안정적인 사용자 경험 제공\n\n---"
     },
     "deployUrl": "https://vemonteskorea.com"
+  },
+  {
+    "id": 1249036579,
+    "star": {
+      "summary": "프로젝트의 문제 해결 과정과 개발 지식을 한곳에서 보여주는 포트폴리오·기술 블로그. Next.js와 Supabase로 프로젝트 상세, Markdown 발행, 문서 동기화를 구현했습니다.",
+      "role": "포트폴리오·블로그 설계, 프론트엔드·서버 API 구현 및 운영",
+      "background": "### S · 상황\n\n이력서와 종합 포트폴리오는 여러 프로젝트의 경력을 요약하는 문서여서, 사이트 자체에서 구현한 기능과 기술적 의사결정을 설명하기에는 한계가 있었습니다. 개발 경험을 더 깊게 전달하려면 프로젝트의 문제 해결 과정뿐 아니라 RAG·인프라·개발 도구에 관한 기술 글도 함께 탐색할 수 있어야 했습니다.\n\n### T · 과제\n\n제가 구현할 범위는 경력 소개에서 프로젝트 상세와 기술 글까지 이어지는 개인 웹사이트였습니다. 프로젝트에는 역할·문제·해결·결과와 화면 근거를 담고, 블로그에는 기술 글을 읽고 발행하는 기능을 구성했습니다. 문서와 개발 활동을 갱신할 수 있는 데이터 경로도 마련했습니다.",
+      "solutions": "### A · 행동\n\n**1. 프로젝트를 문제 해결 과정으로 설명했습니다.** Next.js App Router로 소개 페이지와 개별 프로젝트 URL을 구성하고, 요약·역할·배경·해결·성과를 구조화했습니다. 상세 화면에는 스크린샷과 기술 스택, 배포·저장소 링크를 연결해 설명과 근거를 함께 볼 수 있게 했습니다.\n\n**2. 기술 글을 직접 발행하는 블로그를 구현했습니다.** Supabase에 글·태그·댓글을 저장하고 공개 글만 목록과 상세에 노출했습니다. Markdown 본문에 Shiki 코드 하이라이팅, Mermaid 다이어그램, 제목 기반 목차와 예상 읽기 시간을 적용했습니다. 태그 탐색, 댓글·답글·좋아요를 구성하고 관리자 화면에서는 글 작성·수정과 초안/발행 상태를 관리하도록 했습니다.\n\n**3. 프로젝트 문서와 사이트 데이터의 연결을 만들었습니다.** 섹션별 데이터 스키마를 Zod로 검증하고, 내부 동기화 API에서 프로젝트·문서 메타데이터·Git 활동을 PostgreSQL 트랜잭션으로 함께 반영하도록 구현했습니다. Git 활동은 회사·개인 프로젝트로 나누어 히트맵에 표시했습니다.\n\n**4. 공유와 검색에 필요한 정보를 구성했습니다.** 프로젝트와 글마다 canonical·Open Graph·JSON-LD를 제공하고 Sitemap과 블로그 RSS를 구성했습니다. 데스크톱과 모바일에서 같은 프로젝트·글을 읽을 수 있도록 반응형 화면을 만들었습니다.",
+      "results": "### R · 결과\n\n- 소개 → 프로젝트 상세 → 기술 블로그를 하나의 공개 사이트에서 탐색할 수 있는 결과물을 구축했습니다.\n- 2026년 9월 8일 공개 데이터 기준 기술 글 **9편**을 발행했으며, 이 중 **RAG 시리즈 4편**에서 파이프라인·청킹/임베딩·Tool Calling·운영 경험을 정리했습니다.\n- 프로젝트 경험은 STAR 상세와 스크린샷으로, 기술 지식은 태그와 목차를 갖춘 글로 전달할 수 있는 구조를 마련했습니다.\n- 홈·블로그 목록·글 상세 및 모바일 글 화면에서 공개 서비스의 동작을 확인했습니다."
+    },
+    "title": "개발자 포트폴리오 & 기술 블로그",
+    "isMain": true,
+    "period": "2026.02 ~ 현재",
+    "features": [
+      "STAR 기반 프로젝트 상세와 스크린샷 갤러리",
+      "태그별 기술 글 탐색과 Markdown 블로그",
+      "코드 하이라이팅·Mermaid·목차·예상 읽기 시간",
+      "관리자 글 작성·수정·초안/발행 관리",
+      "댓글·답글·좋아요",
+      "Obsidian 프로젝트 문서와 Git 활동 동기화",
+      "프로젝트·블로그 메타데이터, Sitemap, RSS"
+    ],
+    "githubUrl": "https://github.com/ysk9926/portfolio",
+    "techStack": [
+      "Next.js 16",
+      "React 19",
+      "TypeScript",
+      "Tailwind CSS 4",
+      "Supabase / PostgreSQL",
+      "Zod",
+      "react-markdown",
+      "Shiki",
+      "Mermaid",
+      "Vercel"
+    ],
+    "thumbnail": "https://portfolio-project-images-167217328107.s3.ap-northeast-2.amazonaws.com/images/projects/portfolio-20260908/01-home.png",
+    "description": "프로젝트의 문제 해결 과정과 개발 지식을 한곳에서 보여주는 포트폴리오·기술 블로그. Next.js와 Supabase로 프로젝트 상세, Markdown 발행, 문서 동기화를 구현했습니다.",
+    "screenshots": [
+      "https://portfolio-project-images-167217328107.s3.ap-northeast-2.amazonaws.com/images/projects/portfolio-20260908/01-home.png",
+      "https://portfolio-project-images-167217328107.s3.ap-northeast-2.amazonaws.com/images/projects/portfolio-20260908/02-blog.png",
+      "https://portfolio-project-images-167217328107.s3.ap-northeast-2.amazonaws.com/images/projects/portfolio-20260908/03-blog-article.png",
+      "https://portfolio-project-images-167217328107.s3.ap-northeast-2.amazonaws.com/images/projects/portfolio-20260908/04-blog-mobile.png"
+    ],
+    "shortDescription": "프로젝트의 문제 해결 과정과 개발 지식을 한곳에서 보여주는 포트폴리오·기술 블로그. Next.js와 Supabase로 프로젝트 상세, Markdown 발행, 문서 동기화를 구현했습니다.",
+    "deployUrl": "https://portfolio-pink-two-vymvu56oaw.vercel.app/"
   }
 ]

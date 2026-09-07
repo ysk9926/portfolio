@@ -3,6 +3,7 @@ import type {
   ProjectPortfolioSync,
   ProjectPortfolioSyncEntry,
 } from '@/lib/types';
+import { projectImageUrl } from './images';
 
 export const normalizeProjectKey = (value: string): string =>
   value.replace(/[^\p{L}\p{N}]/gu, '').toLowerCase();
@@ -88,10 +89,10 @@ export const mergePortfolioProjects = (
       ...project,
       period: portfolioSync?.period || project.period,
       shortDescription: portfolioSync?.summary || project.shortDescription,
-      thumbnail: portfolioSync?.thumbnail || project.thumbnail,
-      screenshots: portfolioSync?.screenshots.length
+      thumbnail: projectImageUrl(portfolioSync?.thumbnail || project.thumbnail),
+      screenshots: (portfolioSync?.screenshots.length
         ? portfolioSync.screenshots
-        : project.screenshots,
+        : project.screenshots).map(projectImageUrl),
       portfolioSync,
     };
   });

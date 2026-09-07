@@ -1,12 +1,19 @@
 import type { NextConfig } from 'next';
+import { PROJECT_IMAGE_ORIGIN } from './lib/projects/images';
 
 const nextConfig: NextConfig = {
   poweredByHeader: false,
   turbopack: { root: process.cwd() },
   images: {
     formats: ['image/avif', 'image/webp'],
+    remotePatterns: [new URL(`${PROJECT_IMAGE_ORIGIN}/images/projects/**`)],
   },
   redirects: async () => [
+    {
+      source: '/images/projects/:path*',
+      destination: `${PROJECT_IMAGE_ORIGIN}/images/projects/:path*`,
+      permanent: false,
+    },
     {
       source: '/og-image.png',
       destination: '/opengraph-image',

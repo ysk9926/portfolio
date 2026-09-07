@@ -330,6 +330,48 @@
       "thumbnail": "",
       "screenshots": [],
       "screenshotCount": 0
+    },
+    {
+      "role": "포트폴리오·블로그 설계, 프론트엔드·서버 API 구현 및 운영",
+      "tech": [
+        "Next.js 16",
+        "React 19",
+        "TypeScript",
+        "Tailwind CSS 4",
+        "Supabase / PostgreSQL",
+        "Zod",
+        "react-markdown",
+        "Shiki",
+        "Mermaid",
+        "Vercel"
+      ],
+      "track": "개인",
+      "period": "2026.02 ~ 현재",
+      "status": "운영 중",
+      "company": "개인 프로젝트",
+      "summary": "프로젝트의 문제 해결 과정과 개발 지식을 한곳에서 보여주는 포트폴리오·기술 블로그. Next.js와 Supabase로 프로젝트 상세, Markdown 발행, 문서 동기화를 구현했습니다.",
+      "updated": "2026-09-08",
+      "headline": "개발자 포트폴리오 & 기술 블로그",
+      "teamSize": "",
+      "sourceDoc": "/Users/seung-gyu/Workspace/Documents/30-Knowledge/Obsidian Vault/02-Projects/portfolio/portfolio.md",
+      "thumbnail": "https://portfolio-project-images-167217328107.s3.ap-northeast-2.amazonaws.com/images/projects/portfolio-20260908/01-home.png",
+      "projectKey": "portfolio",
+      "linkedRepos": [
+        "portfolio"
+      ],
+      "screenshots": [
+        "https://portfolio-project-images-167217328107.s3.ap-northeast-2.amazonaws.com/images/projects/portfolio-20260908/01-home.png",
+        "https://portfolio-project-images-167217328107.s3.ap-northeast-2.amazonaws.com/images/projects/portfolio-20260908/02-blog.png",
+        "https://portfolio-project-images-167217328107.s3.ap-northeast-2.amazonaws.com/images/projects/portfolio-20260908/03-blog-article.png",
+        "https://portfolio-project-images-167217328107.s3.ap-northeast-2.amazonaws.com/images/projects/portfolio-20260908/04-blog-mobile.png"
+      ],
+      "projectTitle": "개발자 포트폴리오 & 기술 블로그",
+      "recentUpdates": "",
+      "portfolioNotes": "경력 요약 2건을 사이트 개발 프로젝트 1건으로 통합. 블로그 포함 STAR 및 실화면 근거 반영.",
+      "screenshotCount": 4,
+      "todayCommitCount": 0,
+      "sourceDocRelative": "portfolio.md",
+      "lastAuthoredCommitAt": ""
     }
   ]
 }

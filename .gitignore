@@ -63,3 +63,6 @@ tests/e2e/.auth/
 
 **/.next/
 **/next-env.d.ts
+
+# playwright-cli session logs
+.playwright-cli/
