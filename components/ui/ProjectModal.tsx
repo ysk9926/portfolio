@@ -1,6 +1,6 @@
 'use client';
 
-import { useMemo, useState } from 'react';
+import { useMemo, useState, type ReactNode } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import {
@@ -17,6 +17,7 @@ import {
   Lightbulb,
   ListChecks,
   Route,
+  Sparkles,
   TrendingUp,
   UserRound,
   Users,
@@ -24,6 +25,8 @@ import {
 } from 'lucide-react';
 import { Project } from '@/lib/types';
 import { projectPath } from '@/lib/projects/portfolio';
+import { groupTechByCategory } from '@/lib/projects/tech-category';
+import TechChip from './TechChip';
 import {
   SplitModal,
   SplitModalSection,
@@ -40,7 +43,7 @@ interface ProjectModalProps {
   onClose: () => void;
 }
 
-type TabKey = 'overview' | 'features' | 'screenshots' | 'troubleshooting';
+type TabKey = 'overview' | 'star' | 'features' | 'troubleshooting';
 
 /** Sync data may carry placeholders such as "[확인 필요]" or "-"; treat those as absent. */
 function present(value?: string): string | undefined {
@@ -51,12 +54,10 @@ function present(value?: string): string | undefined {
 
 function buildTabs(project: Project): SplitModalTab<TabKey>[] {
   const tabs: SplitModalTab<TabKey>[] = [
-    { key: 'overview', label: '개요', icon: <AlertCircle /> },
+    { key: 'overview', label: '개요', icon: <Images /> },
+    { key: 'star', label: project.star ? '배경·STAR' : '설명', icon: <Sparkles /> },
     { key: 'features', label: '기능·기술', icon: <ListChecks /> },
   ];
-  if (project.screenshots?.length) {
-    tabs.push({ key: 'screenshots', label: '스크린샷', icon: <Images /> });
-  }
   if (project.star?.troubleshooting) {
     tabs.push({ key: 'troubleshooting', label: '트러블슈팅', icon: <Wrench /> });
   }
@@ -86,22 +87,26 @@ function buildFactGroups(project: Project): SplitModalFactGroup[] {
   return groups;
 }
 
+function StatIcon({ children }: { children: ReactNode }) {
+  return <span className="pds-stat-icon">{children}</span>;
+}
+
 function buildStats(project: Project): SplitModalStat[] {
   const stats: SplitModalStat[] = [
     {
-      icon: <Briefcase />,
+      icon: <StatIcon><Briefcase /></StatIcon>,
       label: '역할',
       value: present(project.star?.role) || present(project.portfolioSync?.role) || '개발',
       note: present(project.portfolioSync?.company),
     },
     {
-      icon: <ListChecks />,
+      icon: <StatIcon><ListChecks /></StatIcon>,
       label: '주요 기능',
       value: `${project.features.length}개`,
       note: project.features[0],
     },
     {
-      icon: <Layers />,
+      icon: <StatIcon><Layers /></StatIcon>,
       label: '기술 스택',
       value: `${project.techStack.length}개`,
       note: project.techStack.slice(0, 3).join(' · '),
@@ -124,6 +129,11 @@ function ProjectSplitModal({ project, onClose }: { project: Project; onClose: ()
 
   const summary =
     project.star?.summary || project.portfolioSync?.summary || project.shortDescription;
+  // Accent follows the site's heatmap legend: amber for company work, emerald for personal projects.
+  const tone = present(project.portfolioSync?.company) ? 'company' : 'personal';
+  const eyebrow =
+    present(project.portfolioSync?.status) ?? (project.isMain ? '주요 프로젝트' : '프로젝트');
+  const techGroups = useMemo(() => groupTechByCategory(project.techStack), [project.techStack]);
 
   return (
     <SplitModal<TabKey>
@@ -131,17 +141,35 @@ function ProjectSplitModal({ project, onClose }: { project: Project; onClose: ()
       onClose={onClose}
       ariaLabel={project.title}
       closeLabel="닫기"
+      rootClassName={`pds-tone-${tone}`}
       dialogProps={{
         'data-analytics-project': project.id,
         'data-analytics-surface': 'modal',
       }}
       profile={{
-        eyebrow: present(project.portfolioSync?.status) ?? (project.isMain ? '주요 프로젝트' : '프로젝트'),
+        eyebrow: (
+          <span className="pds-eyebrow-pill">
+            <span aria-hidden className="pds-eyebrow-pill__dot" />
+            {eyebrow}
+          </span>
+        ),
         title: project.title,
       }}
       factGroups={factGroups}
-      railActions={
-        <>
+      rail={
+        <div>
+          <p className="mb-2 text-[11px] font-bold uppercase tracking-[.07em] text-neutral-500">
+            기술 스택
+          </p>
+          <div className="flex flex-wrap gap-1.5">
+            {project.techStack.map((tech) => (
+              <TechChip key={tech} name={tech} />
+            ))}
+          </div>
+        </div>
+      }
+      railFooter={
+        <div className="pds-split-modal__actions">
           <Link href={projectPath(project)} className="is-primary is-wide">
             <ArrowUpRight />
             상세 페이지
@@ -172,23 +200,6 @@ function ProjectSplitModal({ project, onClose }: { project: Project; onClose: ()
               GitHub
             </a>
           )}
-        </>
-      }
-      railFooter={
-        <div>
-          <p className="mb-2 text-[11px] font-bold uppercase tracking-[.07em] text-neutral-500">
-            기술 스택
-          </p>
-          <div className="flex flex-wrap gap-1">
-            {project.techStack.map((tech) => (
-              <span
-                key={tech}
-                className="rounded-full border border-neutral-200 bg-white px-2 py-0.5 text-[11px] font-medium text-neutral-700"
-              >
-                {tech}
-              </span>
-            ))}
-          </div>
         </div>
       }
       tabs={tabs}
@@ -199,7 +210,7 @@ function ProjectSplitModal({ project, onClose }: { project: Project; onClose: ()
     >
       {tab === 'overview' && (
         <>
-          <div className="relative aspect-[21/9] w-full bg-gradient-to-br from-neutral-700 via-neutral-800 to-neutral-900">
+          <div className="pds-thumb relative aspect-[21/9] w-full">
             {project.thumbnail ? (
               <Image
                 src={project.thumbnail}
@@ -218,6 +229,18 @@ function ProjectSplitModal({ project, onClose }: { project: Project; onClose: ()
             )}
           </div>
 
+          {project.screenshots?.length > 0 && (
+            <SplitModalSection
+              icon={<Images />}
+              title="스크린샷"
+              note={`${project.screenshots.length}장`}
+            >
+              <div className="px-4 py-4 md:px-5">
+                <ImageSlider screenshots={project.screenshots} alt={project.title} />
+              </div>
+            </SplitModalSection>
+          )}
+
           {summary && (
             <SplitModalSection icon={<AlertCircle />} title="요약">
               <p className="px-4 py-4 text-sm leading-relaxed text-neutral-700 md:px-5">
@@ -225,34 +248,35 @@ function ProjectSplitModal({ project, onClose }: { project: Project; onClose: ()
               </p>
             </SplitModalSection>
           )}
-
-          {project.star ? (
-            <>
-              <SplitModalSection icon={<AlertCircle />} title="프로젝트 배경">
-                <div className="px-4 py-4 md:px-5">
-                  <MarkdownRenderer content={project.star.background} />
-                </div>
-              </SplitModalSection>
-              <SplitModalSection icon={<Lightbulb />} title="핵심 구현">
-                <div className="px-4 py-4 md:px-5">
-                  <MarkdownRenderer content={project.star.solutions} />
-                </div>
-              </SplitModalSection>
-              <SplitModalSection icon={<TrendingUp />} title="성과">
-                <div className="px-4 py-4 md:px-5">
-                  <MarkdownRenderer content={project.star.results} />
-                </div>
-              </SplitModalSection>
-            </>
-          ) : (
-            <SplitModalSection icon={<Lightbulb />} title="설명">
-              <p className="px-4 py-4 text-sm leading-relaxed text-neutral-700 md:px-5">
-                {project.description}
-              </p>
-            </SplitModalSection>
-          )}
         </>
       )}
+
+      {tab === 'star' &&
+        (project.star ? (
+          <>
+            <SplitModalSection icon={<AlertCircle />} title="프로젝트 배경">
+              <div className="px-4 py-4 md:px-5">
+                <MarkdownRenderer content={project.star.background} />
+              </div>
+            </SplitModalSection>
+            <SplitModalSection icon={<Lightbulb />} title="핵심 구현">
+              <div className="px-4 py-4 md:px-5">
+                <MarkdownRenderer content={project.star.solutions} />
+              </div>
+            </SplitModalSection>
+            <SplitModalSection icon={<TrendingUp />} title="성과">
+              <div className="px-4 py-4 md:px-5">
+                <MarkdownRenderer content={project.star.results} />
+              </div>
+            </SplitModalSection>
+          </>
+        ) : (
+          <SplitModalSection icon={<Lightbulb />} title="설명">
+            <p className="px-4 py-4 text-sm leading-relaxed text-neutral-700 md:px-5">
+              {project.description}
+            </p>
+          </SplitModalSection>
+        ))}
 
       {tab === 'features' && (
         <>
@@ -267,9 +291,7 @@ function ProjectSplitModal({ project, onClose }: { project: Project; onClose: ()
                   key={i}
                   className="flex items-start gap-3 px-4 py-3 text-sm text-neutral-700 md:px-5"
                 >
-                  <span className="mt-0.5 inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-neutral-900 text-[10px] font-bold text-white">
-                    {i + 1}
-                  </span>
+                  <span className="pds-feature-index">{i + 1}</span>
                   <span>{feature}</span>
                 </li>
               ))}
@@ -280,30 +302,26 @@ function ProjectSplitModal({ project, onClose }: { project: Project; onClose: ()
             title="기술 스택"
             note={`${project.techStack.length}개`}
           >
-            <div className="flex flex-wrap gap-2 px-4 py-4 md:px-5">
-              {project.techStack.map((tech) => (
-                <span
-                  key={tech}
-                  className="rounded-full bg-neutral-100 px-3 py-1 text-xs font-medium text-neutral-700"
-                >
-                  {tech}
-                </span>
+            <div className="grid gap-4 px-4 py-4 md:grid-cols-2 md:px-5">
+              {techGroups.map(({ category, items }) => (
+                <div key={category.key}>
+                  <p className="mb-2 flex items-center gap-1.5 text-[11px] font-bold uppercase tracking-[.07em] text-neutral-500">
+                    <span aria-hidden className={`h-1.5 w-1.5 rounded-full ${category.dot}`} />
+                    {category.label}
+                    <span className="font-medium normal-case tracking-normal text-neutral-400">
+                      {items.length}
+                    </span>
+                  </p>
+                  <div className="flex flex-wrap gap-1.5">
+                    {items.map((tech) => (
+                      <TechChip key={tech} name={tech} size="md" />
+                    ))}
+                  </div>
+                </div>
               ))}
             </div>
           </SplitModalSection>
         </>
-      )}
-
-      {tab === 'screenshots' && project.screenshots?.length > 0 && (
-        <SplitModalSection
-          icon={<Images />}
-          title="스크린샷"
-          note={`${project.screenshots.length}장`}
-        >
-          <div className="px-4 py-4 md:px-5">
-            <ImageSlider screenshots={project.screenshots} alt={project.title} />
-          </div>
-        </SplitModalSection>
       )}
 
       {tab === 'troubleshooting' && project.star?.troubleshooting && (

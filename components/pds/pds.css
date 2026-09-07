@@ -335,3 +335,92 @@
     box-shadow: 0 2px 8px rgb(15 23 42 / 12%);
   }
 }
+
+/* ── portfolio: accent tones and colored details inside the project modal ──── */
+/* Tone follows the site's heatmap legend: amber = company work, emerald = personal. */
+/* Nested .pds nodes (layout, tabs) re-declare the base tokens, so the tone must also target them. */
+.pds.pds-tone-company,
+.pds-tone-company .pds {
+  --pds-accent: #b45309;
+  --pds-accent-light: #fef3c7;
+  --pds-accent-soft: #fffbeb;
+  --pds-accent-strong: #92400e;
+}
+.pds.pds-tone-personal,
+.pds-tone-personal .pds {
+  --pds-accent: #047857;
+  --pds-accent-light: #d1fae5;
+  --pds-accent-soft: #ecfdf5;
+  --pds-accent-strong: #065f46;
+}
+.pds { --pds-accent-soft: #f5f5f5; --pds-accent-strong: #404040; }
+
+/* rail header: soft accent wash fading into the rail */
+.pds-split-modal__profile {
+  background: linear-gradient(180deg, var(--pds-accent-soft) 0%, var(--pds-sidebar-bg) 100%);
+}
+.pds-eyebrow-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 3px 9px 3px 7px;
+  border: 1px solid var(--pds-accent-light);
+  border-radius: 999px;
+  background: var(--pds-card-bg);
+  color: var(--pds-accent);
+  font-size: 11px;
+  font-weight: 700;
+}
+.pds-eyebrow-pill__dot { width: 6px; height: 6px; border-radius: 999px; background: var(--pds-accent); }
+
+/* actions rendered inside the rail footer: footer already pads, keep the grid flush;
+   the footer sticks to the rail bottom so the links stay visible while the rail scrolls */
+.pds-split-modal__rail-footer > .pds-split-modal__actions { padding: 0; }
+.pds-split-modal__rail-footer { position: sticky; bottom: 0; background: var(--pds-sidebar-bg); }
+@media (max-width: 680px) {
+  .pds-split-modal__rail-footer { position: static; }
+}
+
+/* primary rail action uses the tone */
+.pds-split-modal__actions .is-primary:hover { background: var(--pds-accent-strong); border-color: var(--pds-accent-strong); }
+
+/* stats: icon sits in a tinted square */
+.pds-stat-icon {
+  display: inline-grid;
+  place-items: center;
+  width: 22px;
+  height: 22px;
+  border-radius: 6px;
+  background: var(--pds-accent-light);
+  color: var(--pds-accent);
+}
+.pds-split-modal__stats > div > span .pds-stat-icon svg { width: 12px; height: 12px; }
+.pds-split-modal__stats > div > span { gap: 8px; }
+.pds-split-modal__stats strong { font-size: 13px; }
+
+/* section headers: accent icon and a short accent rule under the title */
+.pds-split-modal-section__icon { color: var(--pds-accent); }
+.pds-split-modal-section > header { box-shadow: inset 3px 0 0 var(--pds-accent); }
+
+/* numbered feature bullets */
+.pds-feature-index {
+  margin-top: 1px;
+  display: inline-flex;
+  width: 20px;
+  height: 20px;
+  flex: 0 0 20px;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  background: var(--pds-accent-light);
+  color: var(--pds-accent);
+  font-size: 10px;
+  font-weight: 700;
+}
+
+/* thumbnail fallback: dark surface with a tone-colored glow */
+.pds-thumb {
+  background:
+    radial-gradient(120% 90% at 0% 100%, color-mix(in srgb, var(--pds-accent) 55%, transparent) 0%, transparent 60%),
+    linear-gradient(135deg, #262626 0%, #171717 60%, #0a0a0a 100%);
+}
