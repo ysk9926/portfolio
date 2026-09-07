@@ -142,6 +142,45 @@ export const getAnalyticsDashboard = async (
     params,
   );
 
+  const projectsResult = await client.query<{
+    project_id: string | number;
+    title: string | null;
+    sessions: number;
+    views: number;
+    modal_views: number;
+    detail_views: number;
+    active_ms: string | number;
+    github_clicks: number;
+    demo_clicks: number;
+  }>(
+    `${filteredMetricsCte}, project_events as (
+       select p.session_id, e.type, e.payload,
+         case when e.type = 'exposure_delta'
+           then (e.payload->'region'->>'projectId')::bigint
+           else (e.payload->>'projectId')::bigint end as project_id
+       from analytics_page_views p
+       join filtered_sessions s on s.id = p.session_id
+       join analytics_batches b on b.page_view_id = p.id
+       join analytics_events e on e.batch_id = b.id
+       where e.type in ('project_open', 'outbound_click')
+          or (e.type = 'exposure_delta' and e.payload->'region'->>'kind' = 'project')
+     )
+     select e.project_id, pr.title,
+       count(distinct e.session_id) filter (where e.type in ('project_open', 'exposure_delta'))::int as sessions,
+       count(*) filter (where e.type = 'project_open')::int as views,
+       count(*) filter (where e.type = 'project_open' and e.payload->>'surface' = 'modal')::int as modal_views,
+       count(*) filter (where e.type = 'project_open' and e.payload->>'surface' = 'detail')::int as detail_views,
+       coalesce(sum((e.payload->>'activeMs')::bigint) filter (where e.type = 'exposure_delta'), 0)::bigint as active_ms,
+       count(*) filter (where e.type = 'outbound_click' and e.payload->>'target' = 'github')::int as github_clicks,
+       count(*) filter (where e.type = 'outbound_click' and e.payload->>'target' = 'demo')::int as demo_clicks
+     from project_events e
+     left join public.projects pr on pr.id = e.project_id
+     where e.project_id is not null
+     group by e.project_id, pr.title
+     order by sessions desc, active_ms desc, views desc, e.project_id`,
+    params,
+  );
+
   const cursor = filter.cursor ? decodeSessionCursor(filter.cursor) : null;
   const sessionsResult = await client.query<MetricRow>(
     `${filteredMetricsCte}
@@ -171,6 +210,18 @@ export const getAnalyticsDashboard = async (
       companyLabel: row.company_label,
       sessions: numberValue(row.sessions),
       observedSessions: numberValue(row.observed_sessions),
+    })),
+    projects: projectsResult.rows.map((row) => ({
+      projectId: numberValue(row.project_id),
+      title: row.title ?? `프로젝트 #${row.project_id}`,
+      sessions: numberValue(row.sessions),
+      views: numberValue(row.views),
+      modalViews: numberValue(row.modal_views),
+      detailViews: numberValue(row.detail_views),
+      activeMs: numberValue(row.active_ms),
+      averageActiveMs: row.sessions ? Math.round(numberValue(row.active_ms) / row.sessions) : 0,
+      githubClicks: numberValue(row.github_clicks),
+      demoClicks: numberValue(row.demo_clicks),
     })),
     sessions: sessionRows.map(sessionRow),
     nextCursor: hasMore && last

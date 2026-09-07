@@ -100,7 +100,20 @@ export interface SessionRow {
   suspectedBot: boolean;
   isTest: boolean;
 }
+export interface ProjectAnalytics {
+  projectId: number;
+  title: string;
+  sessions: number;
+  views: number;
+  modalViews: number;
+  detailViews: number;
+  activeMs: number;
+  averageActiveMs: number;
+  githubClicks: number;
+  demoClicks: number;
+}
 export interface DashboardData {
+  projects: ProjectAnalytics[];
   summary: {
     sessions: number;
     browsers: number;

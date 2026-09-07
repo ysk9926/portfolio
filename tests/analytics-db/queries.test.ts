@@ -30,6 +30,7 @@ test('대시보드는 page 노출만 합산하고 세션별 합계의 중앙값�
   const sessionIds: string[] = [];
   let linkId: string | undefined;
   try {
+    await db.pool.query("insert into projects(id,title) values(1,'분석 대상 프로젝트') on conflict(id) do update set title=excluded.title");
     const rawRef = crypto.randomUUID().replaceAll('-', '');
     const link = await db.repository.createLink({
       companyLabel: 'A사', position: 'Backend', submittedAt: null, note: '',
@@ -60,7 +61,7 @@ test('대시보드는 page 노출만 합산하고 세션별 합계의 중앙값�
       pageViewId: crypto.randomUUID(),
       path: '/blog',
       pageStartedAt: '2026-09-07T00:01:00.000Z',
-      events: [exposure({ kind: 'page' }, 10_000)],
+      events: [exposure({ kind: 'page' }, 10_000), exposure({kind:'project',projectId:1,surface:'detail'},10_000), {type:'project_open',projectId:1,surface:'detail',atMs:0}, {type:'project_open',projectId:1,surface:'detail',atMs:1_000}, {type:'outbound_click',projectId:1,target:'demo',atMs:5_000}],
     }), new Date(+now + 70_000));
 
     const second = await db.repository.createSession(makeSessionInput({ browserId: crypto.randomUUID() }), {
@@ -80,8 +81,14 @@ test('대시보드는 page 노출만 합산하고 세션별 합계의 중앙값�
       observedSessions: 2,
     });
     assert.equal(dashboard.sessions.find((row) => row.id === first.id)?.activeMs, 60_000);
-    assert.equal(dashboard.sessions.find((row) => row.id === first.id)?.projectViews, 1);
+    assert.equal(dashboard.sessions.find((row) => row.id === first.id)?.projectViews, 3);
     assert.equal(dashboard.sessions.find((row) => row.id === first.id)?.maxDepth, 75);
+    assert.deepEqual(dashboard.projects, [{projectId:1,title:'분석 대상 프로젝트',sessions:1,views:3,modalViews:1,detailViews:2,activeMs:40_000,averageActiveMs:40_000,githubClicks:1,demoClicks:1}]);
+    assert.deepEqual((await getAnalyticsDashboard(filter({device:'mobile'}), db.pool)).projects, []);
+    assert.deepEqual((await getAnalyticsDashboard(filter({linkId:link.id}), db.pool)).projects, dashboard.projects);
+    const firstPage = await getAnalyticsDashboard(filter({limit:1}), db.pool);
+    assert.ok(firstPage.nextCursor);
+    assert.deepEqual((await getAnalyticsDashboard(filter({limit:1,cursor:firstPage.nextCursor}), db.pool)).projects, dashboard.projects);
     assert.deepEqual(
       dashboard.links.find((row) => row.linkId === link.id),
       { linkId: link.id, companyLabel: 'A사', sessions: 1, observedSessions: 1 },
@@ -98,6 +105,7 @@ test('대시보드는 page 노출만 합산하고 세션별 합계의 중앙값�
     assert.equal(detail.droppedEvents, 2);
     assert.equal(detail.timeline.at(-1)?.pageViewId, detail.pages[1]?.id);
   } finally {
+    await db.pool.query('delete from projects where id=1');
     for (const id of sessionIds) await db.repository.deleteSession(id, now);
     if (linkId) await db.repository.deleteLink(linkId);
     await db.close();
@@ -122,6 +130,17 @@ test('자동화 의심·테스트 세션은 기본 제외하고 플래그로 포
       device: 'unknown', browserFamily: 'QA', suspectedBot: false, isTest: true,
     }, new Date(+now + 1_000));
     ids.push(bot.id, qa.id);
+    for (const id of ids) await db.repository.insertBatch(makeBatch(id, {events:[{type:'project_open',projectId:998,surface:'modal',atMs:0}]}),new Date(+now+2_000));
+    await db.repository.insertBatch(makeBatch(qa.id, {events:[{type:'outbound_click',projectId:999,target:'demo',atMs:0}, {type:'outbound_click',target:'github',atMs:1}]}),new Date(+now+2_000));
+    assert.deepEqual((await getAnalyticsDashboard(filter({linkId}),db.pool)).projects, []);
+    const includedProjects = (await getAnalyticsDashboard(filter({linkId,includeSuspectedBots:true,includeTest:true}),db.pool)).projects;
+    assert.equal(includedProjects[0]?.projectId,998);
+    assert.equal(includedProjects[0]?.sessions,2);
+    assert.equal(includedProjects[0]?.title,'프로젝트 #998');
+    assert.equal(includedProjects[1]?.sessions,0);
+    assert.equal(includedProjects[1]?.averageActiveMs,0);
+    assert.equal(includedProjects[1]?.demoClicks,1);
+    assert.equal(includedProjects.length,2);
 
     assert.equal((await getAnalyticsDashboard(filter({ linkId }), db.pool)).summary.sessions, 0);
     assert.equal((await getAnalyticsDashboard(filter({ linkId, includeSuspectedBots: true }), db.pool)).summary.sessions, 1);
@@ -184,6 +203,7 @@ test('방문 시작 시각은 UTC 반열린 경계를 따르고 빈 결과 중�
     });
     assert.deepEqual(empty.sessions, []);
     assert.deepEqual(empty.links, []);
+    assert.deepEqual(empty.projects, []);
     assert.equal(empty.nextCursor, null);
   } finally {
     for (const id of ids) await db.repository.deleteSession(id, upper);

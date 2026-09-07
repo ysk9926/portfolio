@@ -25,6 +25,7 @@ test("dashboard renders aggregate values and link issuing form", async ({
           medianActiveMs: 20000,
           observedSessions: 2,
         },
+        projects: [{projectId:1,title:"관심 프로젝트",sessions:2,views:5,modalViews:3,detailViews:2,activeMs:90_000,averageActiveMs:45_000,githubClicks:4,demoClicks:1}],
         links: [],
         sessions: [],
         nextCursor: null,
@@ -33,6 +34,11 @@ test("dashboard renders aggregate values and link issuing form", async ({
   );
   await page.goto("/");
   await expect(page.getByText("20초", { exact: true })).toBeVisible();
+  await expect(page.getByRole("heading", {name:"프로젝트별 관심도"})).toBeVisible();
+  const projectRow = page.getByRole("row").filter({hasText:"관심 프로젝트"});
+  await expect(projectRow).toContainText("1분 30초");
+  await expect(projectRow).toContainText("45초");
+  await expect(projectRow).toContainText("4회");
   await page.getByRole("tab", { name: "제출 링크" }).click();
   await page.getByLabel("회사명").fill("테스트 A사");
   await page.getByLabel("지원 직무").fill("프론트엔드");

@@ -288,6 +288,39 @@ export default function AnalyticsDashboard({
                     ))}
                   </div>
                 )}
+                <section aria-labelledby="project-analytics-title" className="mb-5 overflow-hidden rounded-xl border bg-white">
+                  <div className="border-b px-5 py-4">
+                    <h2 id="project-analytics-title" className="font-semibold">프로젝트별 관심도</h2>
+                    <p className="mt-2 text-xs leading-5 text-neutral-500">
+                      열람한 방문 수가 많은 순서입니다. 같은 방문에서 여러 번 열어도 방문 수는 1회이며, 모달·상세 열람 횟수는 각각 누적합니다. 체류 시간은 화면 노출과 최근 활동을 기준으로 계산합니다.
+                    </p>
+                  </div>
+                  {!data.projects.length ? (
+                    <p className="px-5 py-8 text-center text-sm text-neutral-500">선택한 조건에 프로젝트 열람·클릭 기록이 없습니다.</p>
+                  ) : (
+                    <div className="overflow-x-auto">
+                      <table className="w-full text-left text-sm">
+                        <thead className="bg-neutral-50 text-xs text-neutral-500">
+                          <tr>{["프로젝트", "열람 방문", "모달 열람", "상세 페이지", "활성 시간 합계", "방문당 활성", "GitHub 클릭", "데모 클릭"].map(label => <th key={label} className="whitespace-nowrap px-4 py-3 font-medium">{label}</th>)}</tr>
+                        </thead>
+                        <tbody>
+                          {data.projects.map(project => (
+                            <tr key={project.projectId} className="border-t">
+                              <td className="min-w-48 px-4 py-4 font-medium">{project.title}</td>
+                              <td className="px-4">{project.sessions.toLocaleString()}회</td>
+                              <td className="px-4">{project.modalViews.toLocaleString()}회</td>
+                              <td className="px-4">{project.detailViews.toLocaleString()}회</td>
+                              <td className="whitespace-nowrap px-4">{duration(project.activeMs)}</td>
+                              <td className="whitespace-nowrap px-4">{duration(project.averageActiveMs)}</td>
+                              <td className="px-4">{project.githubClicks.toLocaleString()}회</td>
+                              <td className="px-4">{project.demoClicks.toLocaleString()}회</td>
+                            </tr>
+                          ))}
+                        </tbody>
+                      </table>
+                    </div>
+                  )}
+                </section>
                 <section className="overflow-hidden rounded-xl border bg-white">
                   <h2 className="border-b px-5 py-4 font-semibold">
                     방문 기록

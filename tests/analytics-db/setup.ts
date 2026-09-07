@@ -27,6 +27,8 @@ export const openAnalyticsTestDatabase = async () => {
   );
   assert.equal(identity.rows[0]?.database, 'portfolio_analytics_test');
   assert.equal(identity.rows[0]?.port, 54329);
+  // Minimal local fixture for the existing production projects catalog.
+  await pool.query('create table if not exists public.projects (id integer primary key, title text not null)');
 
   return {
     pool,
