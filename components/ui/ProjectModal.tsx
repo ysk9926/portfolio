@@ -1,12 +1,37 @@
 'use client';
 
-import { useState, useEffect, useRef, useCallback } from 'react';
-import { createPortal } from 'react-dom';
+import { useMemo, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { X, ChevronRight, ArrowRight, AlertCircle, Lightbulb, TrendingUp, Wrench, FolderCode } from 'lucide-react';
+import {
+  AlertCircle,
+  ArrowUpRight,
+  Briefcase,
+  Building2,
+  CalendarDays,
+  ExternalLink,
+  FolderCode,
+  Github,
+  Images,
+  Layers,
+  Lightbulb,
+  ListChecks,
+  Route,
+  TrendingUp,
+  UserRound,
+  Users,
+  Wrench,
+} from 'lucide-react';
 import { Project } from '@/lib/types';
 import { projectPath } from '@/lib/projects/portfolio';
+import {
+  SplitModal,
+  SplitModalSection,
+  type SplitModalFact,
+  type SplitModalFactGroup,
+  type SplitModalStat,
+  type SplitModalTab,
+} from '../pds/split-modal';
 import ImageSlider from './ImageSlider';
 import MarkdownRenderer from './MarkdownRenderer';
 
@@ -15,295 +40,279 @@ interface ProjectModalProps {
   onClose: () => void;
 }
 
-export default function ProjectModal({ project, onClose }: ProjectModalProps) {
-  const [isClosing, setIsClosing] = useState(false);
-  const overlayRef = useRef<HTMLDivElement>(null);
-  const modalRef = useRef<HTMLDivElement>(null);
-  const previousFocusRef = useRef<HTMLElement | null>(null);
+type TabKey = 'overview' | 'features' | 'screenshots' | 'troubleshooting';
 
-  const handleClose = useCallback(() => {
-    if (isClosing) return;
-    setIsClosing(true);
-  }, [isClosing]);
+/** Sync data may carry placeholders such as "[확인 필요]" or "-"; treat those as absent. */
+function present(value?: string): string | undefined {
+  const trimmed = value?.trim();
+  if (!trimmed || trimmed === '-' || /^\[.*\]$/.test(trimmed)) return undefined;
+  return trimmed;
+}
 
-  // Body scroll lock + focus management
-  useEffect(() => {
-    if (!project) return;
+function buildTabs(project: Project): SplitModalTab<TabKey>[] {
+  const tabs: SplitModalTab<TabKey>[] = [
+    { key: 'overview', label: '개요', icon: <AlertCircle /> },
+    { key: 'features', label: '기능·기술', icon: <ListChecks /> },
+  ];
+  if (project.screenshots?.length) {
+    tabs.push({ key: 'screenshots', label: '스크린샷', icon: <Images /> });
+  }
+  if (project.star?.troubleshooting) {
+    tabs.push({ key: 'troubleshooting', label: '트러블슈팅', icon: <Wrench /> });
+  }
+  return tabs;
+}
 
-    previousFocusRef.current = document.activeElement as HTMLElement;
-    document.body.style.overflow = 'hidden';
+function buildFactGroups(project: Project): SplitModalFactGroup[] {
+  const sync = project.portfolioSync;
+  const basic: SplitModalFact[] = [
+    { icon: <CalendarDays />, label: '기간', value: project.period },
+  ];
+  const status = present(sync?.status);
+  const track = present(sync?.track);
+  if (status) basic.push({ icon: <Route />, label: '상태', value: status, tone: 'accent' });
+  if (track) basic.push({ icon: <Layers />, label: '트랙', value: track });
 
-    // Focus modal on open
-    const timer = setTimeout(() => {
-      modalRef.current?.focus();
-    }, 50);
+  const people: SplitModalFact[] = [];
+  const company = present(sync?.company);
+  const role = present(sync?.role) || present(project.star?.role);
+  const teamSize = present(sync?.teamSize);
+  if (company) people.push({ icon: <Building2 />, label: '회사', value: company });
+  if (role) people.push({ icon: <UserRound />, label: '역할', value: role });
+  if (teamSize) people.push({ icon: <Users />, label: '팀 규모', value: teamSize });
 
-    return () => {
-      clearTimeout(timer);
-      document.body.style.overflow = '';
-      previousFocusRef.current?.focus();
-    };
-  }, [project]);
+  const groups: SplitModalFactGroup[] = [{ label: '기본 정보', facts: basic }];
+  if (people.length) groups.push({ label: '참여', facts: people });
+  return groups;
+}
 
-  // ESC key handler
-  useEffect(() => {
-    if (!project) return;
-
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') {
-        handleClose();
-      }
-
-      // Focus trap
-      if (e.key === 'Tab' && modalRef.current) {
-        const focusable = modalRef.current.querySelectorAll<HTMLElement>(
-          'button, a[href], [tabindex]:not([tabindex="-1"])',
-        );
-        if (focusable.length === 0) return;
-
-        const first = focusable[0];
-        const last = focusable[focusable.length - 1];
-
-        if (e.shiftKey && document.activeElement === first) {
-          e.preventDefault();
-          last.focus();
-        } else if (!e.shiftKey && document.activeElement === last) {
-          e.preventDefault();
-          first.focus();
-        }
-      }
-    };
-
-    window.addEventListener('keydown', handleKeyDown);
-    return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [project, handleClose]);
-
-  const handleAnimationEnd = useCallback(() => {
-    if (isClosing) {
-      setIsClosing(false);
-      onClose();
-    }
-  }, [isClosing, onClose]);
-
-  const handleOverlayClick = useCallback(
-    (e: React.MouseEvent) => {
-      if (e.target === overlayRef.current) {
-        handleClose();
-      }
+function buildStats(project: Project): SplitModalStat[] {
+  const stats: SplitModalStat[] = [
+    {
+      icon: <Briefcase />,
+      label: '역할',
+      value: present(project.star?.role) || present(project.portfolioSync?.role) || '개발',
+      note: present(project.portfolioSync?.company),
     },
-    [handleClose],
-  );
+    {
+      icon: <ListChecks />,
+      label: '주요 기능',
+      value: `${project.features.length}개`,
+      note: project.features[0],
+    },
+    {
+      icon: <Layers />,
+      label: '기술 스택',
+      value: `${project.techStack.length}개`,
+      note: project.techStack.slice(0, 3).join(' · '),
+    },
+  ];
+  return stats;
+}
 
+export default function ProjectModal({ project, onClose }: ProjectModalProps) {
   if (!project) return null;
+  // Keyed by project so the tab state resets whenever a different project opens.
+  return <ProjectSplitModal key={project.id} project={project} onClose={onClose} />;
+}
 
-  const modalContent = (
-    <div
-      ref={overlayRef}
-      className={`fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm ${
-        isClosing ? 'modal-overlay-exit' : 'modal-overlay-enter'
-      }`}
-      onClick={handleOverlayClick}
-      role="dialog"
-      aria-modal="true"
-      aria-label={project.title}
-    >
-      <div
-        ref={modalRef}
-        data-analytics-project={project.id}
-        data-analytics-surface="modal"
-        tabIndex={-1}
-        className={`relative w-full ${project.star ? 'max-w-3xl' : 'max-w-2xl'} max-h-[85vh] bg-white rounded-3xl overflow-y-auto shadow-2xl outline-none ${
-          isClosing ? 'modal-content-exit' : 'modal-content-enter'
-        }`}
-        onAnimationEnd={handleAnimationEnd}
-        onClick={(e) => e.stopPropagation()}
-      >
-        {/* Close button */}
-        <button
-          onClick={handleClose}
-          className="absolute top-4 right-4 z-10 w-9 h-9 flex items-center justify-center rounded-full bg-black/40 hover:bg-black/60 text-white transition-colors cursor-pointer"
-          aria-label="닫기"
-        >
-          <X size={16} strokeWidth={2} />
-        </button>
+function ProjectSplitModal({ project, onClose }: { project: Project; onClose: () => void }) {
+  const [tab, setTab] = useState<TabKey>('overview');
+  const tabs = useMemo(() => buildTabs(project), [project]);
+  const factGroups = useMemo(() => buildFactGroups(project), [project]);
+  const stats = useMemo(() => buildStats(project), [project]);
 
-        {/* Hero image */}
-        <div className="relative aspect-video w-full bg-gradient-to-br from-neutral-700 via-neutral-800 to-neutral-900">
-          {project.thumbnail ? (
-            <Image
-              src={project.thumbnail}
-              alt={project.title}
-              fill
-              className="object-cover"
-              sizes={project.star ? '(max-width: 768px) 100vw, 768px' : '(max-width: 672px) 100vw, 672px'}
-            />
-          ) : (
-            <div className="absolute inset-0 flex flex-col items-center justify-center gap-3">
-              <FolderCode size={56} className="text-white/15" strokeWidth={1.5} />
-              <span className="text-lg font-semibold text-white/20 tracking-wide">{project.title}</span>
-            </div>
+  const summary =
+    project.star?.summary || project.portfolioSync?.summary || project.shortDescription;
+
+  return (
+    <SplitModal<TabKey>
+      open
+      onClose={onClose}
+      ariaLabel={project.title}
+      closeLabel="닫기"
+      dialogProps={{
+        'data-analytics-project': project.id,
+        'data-analytics-surface': 'modal',
+      }}
+      profile={{
+        eyebrow: present(project.portfolioSync?.status) ?? (project.isMain ? '주요 프로젝트' : '프로젝트'),
+        title: project.title,
+      }}
+      factGroups={factGroups}
+      railActions={
+        <>
+          <Link href={projectPath(project)} className="is-primary is-wide">
+            <ArrowUpRight />
+            상세 페이지
+          </Link>
+          {project.deployUrl && (
+            <a
+              href={project.deployUrl}
+              data-analytics-target="demo"
+              data-analytics-project-id={project.id}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={project.githubUrl ? undefined : 'is-wide'}
+            >
+              <ExternalLink />
+              배포 사이트
+            </a>
           )}
-        </div>
-
-        {/* Screenshots */}
-        {project.screenshots && project.screenshots.length > 0 && (
-          <div className="px-6 md:px-8 pt-6">
-            <h3 className="font-semibold text-gray-900 mb-3">스크린샷</h3>
-            <ImageSlider screenshots={project.screenshots} alt={project.title} />
+          {project.githubUrl && (
+            <a
+              href={project.githubUrl}
+              data-analytics-target="github"
+              data-analytics-project-id={project.id}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={project.deployUrl ? undefined : 'is-wide'}
+            >
+              <Github />
+              GitHub
+            </a>
+          )}
+        </>
+      }
+      railFooter={
+        <div>
+          <p className="mb-2 text-[11px] font-bold uppercase tracking-[.07em] text-neutral-500">
+            기술 스택
+          </p>
+          <div className="flex flex-wrap gap-1">
+            {project.techStack.map((tech) => (
+              <span
+                key={tech}
+                className="rounded-full border border-neutral-200 bg-white px-2 py-0.5 text-[11px] font-medium text-neutral-700"
+              >
+                {tech}
+              </span>
+            ))}
           </div>
-        )}
-
-        {/* Content */}
-        <div className="p-6 md:p-8">
-          {/* Title + Period */}
-          <h2 className="text-2xl font-bold text-gray-900">{project.title}</h2>
-          {project.star && (
-            <span className="inline-block mt-2 bg-neutral-200 text-neutral-800 text-xs font-medium px-2.5 py-1 rounded-full">
-              {project.star.role}
-            </span>
-          )}
-          <p className="text-sm text-gray-500 mt-1 mb-3">{project.period}</p>
-          {project.portfolioSync && (
-            <div className="mb-5 rounded-2xl border border-neutral-200 bg-neutral-50 p-4">
-              <div className="flex flex-wrap items-center gap-2">
-                {project.portfolioSync.status && (
-                  <span className="rounded-full bg-neutral-900 px-3 py-1 text-xs font-medium text-white">
-                    {project.portfolioSync.status}
-                  </span>
-                )}
-                {project.portfolioSync.track && project.portfolioSync.track !== '-' && (
-                  <span className="rounded-full bg-amber-100 px-3 py-1 text-xs font-medium text-amber-900">
-                    {project.portfolioSync.track}
-                  </span>
-                )}
-                {project.portfolioSync.company && (
-                  <span className="rounded-full bg-neutral-200 px-3 py-1 text-xs font-medium text-neutral-700">
-                    {project.portfolioSync.company}
-                  </span>
-                )}
-                {project.portfolioSync.role && (
-                  <span className="rounded-full bg-neutral-200 px-3 py-1 text-xs font-medium text-neutral-700">
-                    {project.portfolioSync.role}
-                  </span>
-                )}
+        </div>
+      }
+      tabs={tabs}
+      tab={tab}
+      onTabChange={setTab}
+      tabsAriaLabel={`${project.title} 상세`}
+      stats={stats}
+    >
+      {tab === 'overview' && (
+        <>
+          <div className="relative aspect-[21/9] w-full bg-gradient-to-br from-neutral-700 via-neutral-800 to-neutral-900">
+            {project.thumbnail ? (
+              <Image
+                src={project.thumbnail}
+                alt={project.title}
+                fill
+                className="object-cover"
+                sizes="(max-width: 1180px) 100vw, 940px"
+              />
+            ) : (
+              <div className="absolute inset-0 flex flex-col items-center justify-center gap-3">
+                <FolderCode size={48} className="text-white/15" strokeWidth={1.5} />
+                <span className="text-base font-semibold tracking-wide text-white/20">
+                  {project.title}
+                </span>
               </div>
-            </div>
+            )}
+          </div>
+
+          {summary && (
+            <SplitModalSection icon={<AlertCircle />} title="요약">
+              <p className="px-4 py-4 text-sm leading-relaxed text-neutral-700 md:px-5">
+                {summary}
+              </p>
+            </SplitModalSection>
           )}
 
           {project.star ? (
             <>
-              {/* STAR Layout */}
-              <p className="text-gray-700 leading-relaxed mb-6">{project.star.summary}</p>
-
-              {/* Background */}
-              <div className="bg-neutral-100/70 rounded-2xl p-4 md:p-5 mb-4">
-                <div className="flex items-center gap-2 mb-3">
-                  <AlertCircle className="text-neutral-600 shrink-0" size={18} />
-                  <h3 className="font-semibold text-gray-900">프로젝트 배경</h3>
+              <SplitModalSection icon={<AlertCircle />} title="프로젝트 배경">
+                <div className="px-4 py-4 md:px-5">
+                  <MarkdownRenderer content={project.star.background} />
                 </div>
-                <MarkdownRenderer content={project.star.background} />
-              </div>
-
-              {/* Solutions */}
-              <div className="border-l-3 border-neutral-400 pl-4 md:pl-5 mb-4">
-                <div className="flex items-center gap-2 mb-3">
-                  <Lightbulb className="text-neutral-600 shrink-0" size={18} />
-                  <h3 className="font-semibold text-gray-900">핵심 구현</h3>
+              </SplitModalSection>
+              <SplitModalSection icon={<Lightbulb />} title="핵심 구현">
+                <div className="px-4 py-4 md:px-5">
+                  <MarkdownRenderer content={project.star.solutions} />
                 </div>
-                <MarkdownRenderer content={project.star.solutions} />
-              </div>
-
-              {/* Results */}
-              <div className="bg-neutral-50 rounded-2xl p-4 md:p-5 mb-4">
-                <div className="flex items-center gap-2 mb-3">
-                  <TrendingUp className="text-neutral-600 shrink-0" size={18} />
-                  <h3 className="font-semibold text-gray-900">성과</h3>
+              </SplitModalSection>
+              <SplitModalSection icon={<TrendingUp />} title="성과">
+                <div className="px-4 py-4 md:px-5">
+                  <MarkdownRenderer content={project.star.results} />
                 </div>
-                <MarkdownRenderer content={project.star.results} />
-              </div>
-
-              {/* Troubleshooting (optional) */}
-              {project.star.troubleshooting && (
-                <div className="bg-neutral-100 rounded-2xl p-4 md:p-5 mb-4">
-                  <div className="flex items-center gap-2 mb-3">
-                    <Wrench className="text-neutral-600 shrink-0" size={18} />
-                    <h3 className="font-semibold text-gray-900">트러블슈팅</h3>
-                  </div>
-                  <MarkdownRenderer content={project.star.troubleshooting} />
-                </div>
-              )}
+              </SplitModalSection>
             </>
           ) : (
-            /* Legacy Layout */
-            <p className="text-gray-700 leading-relaxed mb-6">{project.description}</p>
+            <SplitModalSection icon={<Lightbulb />} title="설명">
+              <p className="px-4 py-4 text-sm leading-relaxed text-neutral-700 md:px-5">
+                {project.description}
+              </p>
+            </SplitModalSection>
           )}
+        </>
+      )}
 
-          {/* Features */}
-          <div className="mb-6">
-            <h3 className="font-semibold text-gray-900 mb-3">주요 기능</h3>
-            <ul className="space-y-2">
+      {tab === 'features' && (
+        <>
+          <SplitModalSection
+            icon={<ListChecks />}
+            title="주요 기능"
+            note={`${project.features.length}개`}
+          >
+            <ul className="divide-y divide-neutral-100">
               {project.features.map((feature, i) => (
-                <li key={i} className="flex items-start gap-2 text-gray-600">
-                  <ChevronRight className="text-neutral-600 mt-1 shrink-0" size={16} strokeWidth={2.5} />
+                <li
+                  key={i}
+                  className="flex items-start gap-3 px-4 py-3 text-sm text-neutral-700 md:px-5"
+                >
+                  <span className="mt-0.5 inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-neutral-900 text-[10px] font-bold text-white">
+                    {i + 1}
+                  </span>
                   <span>{feature}</span>
                 </li>
               ))}
             </ul>
-          </div>
-
-          {/* Tech Stack */}
-          <div className="mb-6">
-            <h3 className="font-semibold text-gray-900 mb-3">기술 스택</h3>
-            <div className="flex flex-wrap gap-2">
-              {project.techStack.map((tech, i) => (
+          </SplitModalSection>
+          <SplitModalSection
+            icon={<Layers />}
+            title="기술 스택"
+            note={`${project.techStack.length}개`}
+          >
+            <div className="flex flex-wrap gap-2 px-4 py-4 md:px-5">
+              {project.techStack.map((tech) => (
                 <span
-                  key={i}
-                  className="bg-neutral-100 text-neutral-700 text-xs font-medium px-3 py-1 rounded-full"
+                  key={tech}
+                  className="rounded-full bg-neutral-100 px-3 py-1 text-xs font-medium text-neutral-700"
                 >
                   {tech}
                 </span>
               ))}
             </div>
-          </div>
+          </SplitModalSection>
+        </>
+      )}
 
-          {/* Links */}
-          <div className="flex gap-3">
-            <Link
-              href={projectPath(project)}
-              className="group/detail flex flex-1 items-center justify-center gap-1.5 bg-neutral-900 hover:bg-neutral-800 text-white font-medium py-2.5 px-4 rounded-xl text-center transition-colors"
-            >
-              {project.title} 상세 보기
-              <ArrowRight
-                size={16}
-                strokeWidth={2.5}
-                className="transition-transform duration-300 group-hover/detail:translate-x-1"
-              />
-            </Link>
-            {project.deployUrl && (
-              <a
-                href={project.deployUrl} data-analytics-target="demo" data-analytics-project-id={project.id}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex-1 bg-neutral-900 hover:bg-neutral-800 text-white font-medium py-2.5 px-4 rounded-xl text-center transition-colors"
-              >
-                배포 사이트
-              </a>
-            )}
-            {project.githubUrl && (
-              <a
-                href={project.githubUrl} data-analytics-target="github" data-analytics-project-id={project.id}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex-1 bg-gray-800 hover:bg-gray-900 text-white font-medium py-2.5 px-4 rounded-xl text-center transition-colors"
-              >
-                GitHub
-              </a>
-            )}
+      {tab === 'screenshots' && project.screenshots?.length > 0 && (
+        <SplitModalSection
+          icon={<Images />}
+          title="스크린샷"
+          note={`${project.screenshots.length}장`}
+        >
+          <div className="px-4 py-4 md:px-5">
+            <ImageSlider screenshots={project.screenshots} alt={project.title} />
           </div>
-        </div>
-      </div>
-    </div>
+        </SplitModalSection>
+      )}
+
+      {tab === 'troubleshooting' && project.star?.troubleshooting && (
+        <SplitModalSection icon={<Wrench />} title="트러블슈팅">
+          <div className="px-4 py-4 md:px-5">
+            <MarkdownRenderer content={project.star.troubleshooting} />
+          </div>
+        </SplitModalSection>
+      )}
+    </SplitModal>
   );
-
-  return createPortal(modalContent, document.body);
 }

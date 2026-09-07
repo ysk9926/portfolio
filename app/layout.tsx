@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from 'next';
 import { getSiteUrl } from '@/lib/seo/url';
 import './globals.css';
+import '@/components/pds/pds.css';
 
 export const viewport: Viewport = {
   themeColor: '#0a0a0a',
