@@ -252,17 +252,17 @@
     },
     {
       "projectKey": "vemontes",
-      "projectTitle": "VEMONTES - 스킨케어 구독 커머스 플랫폼",
+      "projectTitle": "베몽테스",
       "sourceDoc": "/Users/seungkyu/Documents/Obsidian Vault/02-Projects/portfolio/vemontes.md",
       "sourceDocRelative": "vemontes.md",
-      "headline": "VEMONTES - 스킨케어 구독 커머스 플랫폼",
-      "summary": "카페24 기반 스킨케어 쇼핑몰에 구독 서비스, 추천인 보상, 영업대리/지사 관리 등 카페24에 없는 기능을 추가 구현한 풀스택 커머스 플랫폼",
+      "headline": "베몽테스",
+      "summary": "카페24 쇼핑몰에 구독·등급·선물 관리, 추천인 보상, Ecount ERP 연동과 Flutter 앱을 연결한 베몽테스 커머스 플랫폼. 주문 연동의 부분 실패 처리와 운영 화면 개선까지 담당했습니다.",
       "status": "✅ 완료",
       "period": "2025.05 ~ 2025.11",
       "company": "베몽테스 (외주)",
       "role": "풀스택 개발 (메인)",
       "teamSize": "2",
-      "updated": "2026-04-07",
+      "updated": "2026-09-08",
       "tech": [
         "Spring Boot 3.4",
         "Kotlin",
@@ -276,21 +276,21 @@
       ],
       "track": "회사",
       "todayCommitCount": 0,
-      "lastAuthoredCommitAt": "2026-01-26 18:52",
+      "lastAuthoredCommitAt": "2025-11-05 10:11",
       "linkedRepos": [
         "vemontes-app",
         "vemontes-client",
         "vemontes-server"
       ],
-      "recentUpdates": "",
-      "portfolioNotes": "",
-      "thumbnail": "/images/projects/generated/vemontes/01-item.png",
+      "recentUpdates": "- 2025-11-05: 인쇄물 API를 ID 기준으로 변경하고 상품명 POST 검색·중복 검사 추가. 관리자 화면 API 호출 수정과 Docker 빌드 설정 추가. (server d265c7e / client 24327d0)\n- 2025-09-02: 로그인 시 토큰 신규 발급 및 매일 갱신하도록 인증 처리 변경. 멤버십 관리 HTML 추가. (server d1327a1, 41d46c6)\n- 2025-08-28~29: ERP 처리 대상을 전체 사용자로 확장. 추천인 요약·목록 조회 분리, 상세 무한 스크롤 및 인쇄물 검색 500ms 디바운스 추가. (server bc53473 / client fd11964)\n- 2025-07-31: Flutter WebView 쿠키 처리·로딩 표시·종료 정리 개선. (app 4bced02)\n- 2025-07-25: ERP 품목별 부분 실패 처리와 성공·실패 결과 집계 추가. (server 2b7d151)",
+      "portfolioNotes": "2026-09-08 로컬 Git 이력과 변경 코드를 확인했습니다. 확인 가능한 최신 커밋은 서버 d265c7e·웹 24327d0(2025-11-05), 앱 4bced02(2025-07-31)입니다. 원격 fetch는 Repository not found로 실패하여 이후 변경 여부는 확인하지 못했습니다. 커밋 메시지만으로 기능을 단정하지 않고 diff를 대조했습니다. 정량 운영 성과와 전체 기기 검증 결과는 확보하지 못했으며, 기존의 완전 자동화·모든 결제 앱 완벽 지원 표현과 과거 커밋 기여율은 제외했습니다.",
+      "thumbnail": "https://portfolio-project-images-167217328107.s3.ap-northeast-2.amazonaws.com/images/projects/generated/vemontes/01-item.png",
       "screenshots": [
-        "/images/projects/generated/vemontes/01-item.png",
-        "/images/projects/generated/vemontes/02-item.png",
-        "/images/projects/generated/vemontes/03-item.png",
-        "/images/projects/generated/vemontes/04-item.png",
-        "/images/projects/generated/vemontes/05-item.png"
+        "https://portfolio-project-images-167217328107.s3.ap-northeast-2.amazonaws.com/images/projects/generated/vemontes/01-item.png",
+        "https://portfolio-project-images-167217328107.s3.ap-northeast-2.amazonaws.com/images/projects/generated/vemontes/02-item.png",
+        "https://portfolio-project-images-167217328107.s3.ap-northeast-2.amazonaws.com/images/projects/generated/vemontes/03-item.png",
+        "https://portfolio-project-images-167217328107.s3.ap-northeast-2.amazonaws.com/images/projects/generated/vemontes/04-item.png",
+        "https://portfolio-project-images-167217328107.s3.ap-northeast-2.amazonaws.com/images/projects/generated/vemontes/05-item.png"
       ],
       "screenshotCount": 5
     },
