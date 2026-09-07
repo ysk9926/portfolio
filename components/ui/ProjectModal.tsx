@@ -143,6 +143,7 @@ function ProjectSplitModal({ project, onClose }: { project: Project; onClose: ()
       ariaLabel={project.title}
       closeLabel="닫기"
       rootClassName={`pds-tone-${tone}`}
+      railWidth={260}
       dialogProps={{
         'data-analytics-project': project.id,
         'data-analytics-surface': 'modal',

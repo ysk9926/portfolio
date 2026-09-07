@@ -408,3 +408,23 @@
   font-size: 10px;
   font-weight: 700;
 }
+
+/* portfolio: rail facts stack label over value so long periods and roles wrap instead of truncating */
+.pds-split-modal__facts div {
+  min-height: 0;
+  grid-template-columns: minmax(0, 1fr);
+  align-items: start;
+  gap: 3px;
+  padding: 6px 0;
+}
+.pds-split-modal__facts div + div { border-top: 1px dashed var(--pds-border); }
+.pds-split-modal__facts dd {
+  overflow: visible;
+  font-size: 12px;
+  line-height: 1.45;
+  text-align: left;
+  text-overflow: clip;
+  white-space: normal;
+  overflow-wrap: anywhere;
+}
+.pds-split-modal__fact-group .pds-split-modal__facts { padding: 2px 16px 8px; }
