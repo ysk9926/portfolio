@@ -201,6 +201,11 @@ export const aiSkillClientSchema = z.union([
   z.literal('Codex'),
 ]);
 
+export const aiSkillOriginSchema = z.union([
+  z.literal('직접 제작'),
+  z.literal('팀 공용'),
+]);
+
 export const aiCommandKindSchema = z.union([
   z.literal('slash'),
   z.literal('hook'),
@@ -242,6 +247,8 @@ export const aiWorkflowPayloadSchema = z.object({
     z.object({
       title: requiredString,
       client: aiSkillClientSchema,
+      // 기존 DB 페이로드에는 없는 필드 — 없으면 직접 제작으로 본다
+      origin: aiSkillOriginSchema.default('직접 제작'),
       description: requiredString,
       skills: z.array(
         z.object({

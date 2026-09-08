@@ -1,13 +1,35 @@
 {
   "eyebrow": "How I work with AI",
   "headline": "AI 에이전트를 팀원처럼 씁니다",
-  "intro": "코드를 대신 쳐주는 도구가 아니라, 기획·설계·구현·검증을 함께 도는 팀원으로 씁니다. 반복되는 일은 스킬과 슬래시 커맨드로 만들어 Claude Code와 Codex 양쪽에 연결하고, 매일 도는 일은 자동화 파이프라인으로 넘깁니다.",
-  "highlights": ["Claude Code", "Codex CLI", "스킬 38개", "슬래시 커맨드 3개", "자동화 파이프라인 3개"],
+  "intro": "코드를 대신 쳐주는 도구가 아니라, 기획·설계·구현·검증을 함께 도는 팀원으로 씁니다. 반복되는 일은 스킬과 슬래시 커맨드로 만들어 Claude Code와 Codex 양쪽에 연결하고, 회사에서는 사내 프로젝트 관리 플랫폼을 CLI로 물려 산출물 작업까지 대화로 처리합니다. 매일 도는 일은 자동화 파이프라인으로 넘깁니다.",
+  "highlights": [
+    "Claude Code",
+    "Codex CLI",
+    "직접 만든 스킬 38개",
+    "팀 공용 스킬 21개",
+    "자동화 파이프라인 3개"
+  ],
   "stats": [
-    { "label": "직접 관리하는 스킬", "value": "38", "note": "Claude · Codex 공용 심링크" },
-    { "label": "슬래시 커맨드", "value": "3", "note": "프로젝트 등록 · 레포 초기화" },
-    { "label": "자동화 파이프라인", "value": "3", "note": "매일 실행 · 문서 동기화 · 발행" },
-    { "label": "AI 코딩 CLI", "value": "2", "note": "메인 + 세컨드 오피니언" }
+    {
+      "label": "직접 만든 스킬",
+      "value": "38",
+      "note": "Claude · Codex 공용 심링크"
+    },
+    {
+      "label": "팀에서 쓰는 스킬",
+      "value": "21",
+      "note": "SI 수행 · 개발 표준 · QA"
+    },
+    {
+      "label": "자동화 파이프라인",
+      "value": "3",
+      "note": "매일 실행 · 문서 동기화 · 발행"
+    },
+    {
+      "label": "AI 코딩 CLI",
+      "value": "2",
+      "note": "메인 + 세컨드 오피니언"
+    }
   ],
   "tools": [
     {
@@ -52,31 +74,51 @@
       "step": "01",
       "title": "컨텍스트 주입",
       "description": "글로벌·프로젝트 CLAUDE.md, DESIGN.md, Obsidian 프로젝트 노트를 먼저 읽게 합니다. 규칙이 코드 밖에 있으면 에이전트가 매번 다시 배우게 되므로 문서로 고정합니다.",
-      "skills": ["CLAUDE.md", "obsidian-cli", "design-init"]
+      "skills": [
+        "CLAUDE.md",
+        "obsidian-cli",
+        "design-init"
+      ]
     },
     {
       "step": "02",
       "title": "브레인스토밍 → 스펙",
       "description": "요구사항을 질문으로 좁히고, 합의된 설계를 docs/superpowers/specs에 커밋합니다. 이 포트폴리오도 REST 동기화·익명화·방문자 분석 세 기능을 스펙 먼저 쓰고 만들었습니다.",
-      "skills": ["brainstorming", "grilling", "handover-doc"]
+      "skills": [
+        "brainstorming",
+        "grilling",
+        "handover-doc"
+      ]
     },
     {
       "step": "03",
       "title": "플랜 → 서브에이전트 구현",
       "description": "스펙을 작업 단위 플랜으로 쪼개고 독립 작업은 서브에이전트에 분배합니다. 막히면 Codex에 같은 문제를 넘겨 교차 검증합니다.",
-      "skills": ["writing-plans", "subagent-driven-development", "codex:rescue"]
+      "skills": [
+        "writing-plans",
+        "subagent-driven-development",
+        "codex:rescue"
+      ]
     },
     {
       "step": "04",
       "title": "검증 후 완료 선언",
       "description": "타입 체크·테스트·브라우저 확인을 거친 뒤에만 완료로 봅니다. 산출물 검토는 근거 대조 스킬로 한 번 더 감사합니다.",
-      "skills": ["verification-before-completion", "playwright", "audit-verify-explain-grade-5"]
+      "skills": [
+        "verification-before-completion",
+        "playwright",
+        "audit-verify-explain-grade-5"
+      ]
     },
     {
       "step": "05",
       "title": "기록과 자동화",
       "description": "프로젝트 문서는 STAR 노트로 생성해 포트폴리오 DB에 동기화하고, 기술 글은 스킬로 초안을 잡아 발행합니다. 매일 도는 일은 LaunchAgent가 대신합니다.",
-      "skills": ["portfolio-generator", "portfolio-blog-post", "humanize-korean"]
+      "skills": [
+        "portfolio-generator",
+        "portfolio-blog-post",
+        "humanize-korean"
+      ]
     }
   ],
   "skillGroups": [
@@ -85,90 +127,350 @@
       "client": "공용",
       "description": "회사별 채용 프로세스를 재현해 이력서·포트폴리오·면접·코테를 면접관 관점으로 검증",
       "skills": [
-        { "name": "hiring-sim-pipeline", "summary": "공고 분석 → 서류·코테·면접 단계별 PASS/REJECT 시뮬레이션" },
-        { "name": "hiring-sim-resume-redteam", "summary": "이력서 수치·GitHub 코드·블로그를 대조해 감점 포인트 적발" },
-        { "name": "hiring-sim-portfolio-redteam", "summary": "표·대시보드·캡션 수치 정합성과 과장 서사 검증" },
-        { "name": "hiring-sim-interview", "summary": "면접 후기 리서치 기반 기술·인성·임원 면접 재현" },
-        { "name": "hiring-sim-coding-test", "summary": "회사 스타일 문제 출제와 정확성·복잡도·품질 채점" },
-        { "name": "hiring-prep-interview", "summary": "병렬 리서치 에이전트로 직무별 예상 질문 문서 생성" },
-        { "name": "hiring-prep-coding-test", "summary": "플랫폼·빈출 유형 리서치와 맞춤 학습 플랜" },
-        { "name": "hiring-prep-doc-feedback", "summary": "이력서·자소서·포트폴리오 구조화 피드백" },
-        { "name": "hiring-sim-resume-review", "summary": "ATS 시뮬레이션과 리크루터 스크리닝" },
-        { "name": "hiring-sim-portfolio-review", "summary": "프로젝트 품질·기술 의사결정 실전 평가" }
-      ]
+        {
+          "name": "hiring-sim-pipeline",
+          "summary": "공고 분석 → 서류·코테·면접 단계별 PASS/REJECT 시뮬레이션"
+        },
+        {
+          "name": "hiring-sim-resume-redteam",
+          "summary": "이력서 수치·GitHub 코드·블로그를 대조해 감점 포인트 적발"
+        },
+        {
+          "name": "hiring-sim-portfolio-redteam",
+          "summary": "표·대시보드·캡션 수치 정합성과 과장 서사 검증"
+        },
+        {
+          "name": "hiring-sim-interview",
+          "summary": "면접 후기 리서치 기반 기술·인성·임원 면접 재현"
+        },
+        {
+          "name": "hiring-sim-coding-test",
+          "summary": "회사 스타일 문제 출제와 정확성·복잡도·품질 채점"
+        },
+        {
+          "name": "hiring-prep-interview",
+          "summary": "병렬 리서치 에이전트로 직무별 예상 질문 문서 생성"
+        },
+        {
+          "name": "hiring-prep-coding-test",
+          "summary": "플랫폼·빈출 유형 리서치와 맞춤 학습 플랜"
+        },
+        {
+          "name": "hiring-prep-doc-feedback",
+          "summary": "이력서·자소서·포트폴리오 구조화 피드백"
+        },
+        {
+          "name": "hiring-sim-resume-review",
+          "summary": "ATS 시뮬레이션과 리크루터 스크리닝"
+        },
+        {
+          "name": "hiring-sim-portfolio-review",
+          "summary": "프로젝트 품질·기술 의사결정 실전 평가"
+        }
+      ],
+      "origin": "직접 제작"
     },
     {
       "title": "문서 · 다이어그램",
       "client": "공용",
       "description": "ERP·SI 프로젝트 산출물을 코드베이스에서 자동 생성",
       "skills": [
-        { "name": "erd-diagram", "summary": "마이그레이션 SQL → React Flow 인터랙티브 ERD" },
-        { "name": "erp-flowchart", "summary": "코드베이스를 읽어 프로젝트 플로우차트 작성" },
-        { "name": "kickoff-deck", "summary": "프로젝트 문서·개발범위로 킥오프 슬라이드 덱 생성" },
-        { "name": "docs-init", "summary": "Next.js 앱에 사용자 매뉴얼(/docs) 영역 셋업" },
-        { "name": "docs-update", "summary": "화면 변경을 감지해 매뉴얼 페이지 동기화" },
-        { "name": "distribution-erp-erd", "summary": "유통 ERP 마스터데이터 설계 원칙·체크리스트" },
-        { "name": "diagram-design", "summary": "브랜드 토큰 적용 아키텍처·시퀀스·간트 다이어그램" },
-        { "name": "handover-doc", "summary": "스펙·플랜을 Obsidian 인수인계 문서로 정리" }
-      ]
+        {
+          "name": "erd-diagram",
+          "summary": "마이그레이션 SQL → React Flow 인터랙티브 ERD"
+        },
+        {
+          "name": "erp-flowchart",
+          "summary": "코드베이스를 읽어 프로젝트 플로우차트 작성"
+        },
+        {
+          "name": "kickoff-deck",
+          "summary": "프로젝트 문서·개발범위로 킥오프 슬라이드 덱 생성"
+        },
+        {
+          "name": "docs-init",
+          "summary": "Next.js 앱에 사용자 매뉴얼(/docs) 영역 셋업"
+        },
+        {
+          "name": "docs-update",
+          "summary": "화면 변경을 감지해 매뉴얼 페이지 동기화"
+        },
+        {
+          "name": "distribution-erp-erd",
+          "summary": "유통 ERP 마스터데이터 설계 원칙·체크리스트"
+        },
+        {
+          "name": "diagram-design",
+          "summary": "브랜드 토큰 적용 아키텍처·시퀀스·간트 다이어그램"
+        },
+        {
+          "name": "handover-doc",
+          "summary": "스펙·플랜을 Obsidian 인수인계 문서로 정리"
+        }
+      ],
+      "origin": "직접 제작"
     },
     {
       "title": "포트폴리오 · 기록",
       "client": "공용",
       "description": "소스코드와 Obsidian 노트에서 이 사이트의 콘텐츠를 만드는 스킬",
       "skills": [
-        { "name": "portfolio-generator", "summary": "로컬 소스코드 분석 → STAR 기반 프로젝트 노트" },
-        { "name": "portfolio-blog-post", "summary": "Obsidian 컨텍스트로 기술 글 초안 → 발행 스크립트" },
-        { "name": "star-portfolio", "summary": "프로젝트 경험을 자소서·면접 답변용 STAR 문단으로" },
-        { "name": "portfolio-build", "summary": "이력서·PDF·레포에서 슬라이드 포트폴리오 덱 제작" },
-        { "name": "audit-verify-explain-grade-5", "summary": "작업 결과를 근거로 검증하고 쉬운 말로 설명" }
-      ]
+        {
+          "name": "portfolio-generator",
+          "summary": "로컬 소스코드 분석 → STAR 기반 프로젝트 노트"
+        },
+        {
+          "name": "portfolio-blog-post",
+          "summary": "Obsidian 컨텍스트로 기술 글 초안 → 발행 스크립트"
+        },
+        {
+          "name": "star-portfolio",
+          "summary": "프로젝트 경험을 자소서·면접 답변용 STAR 문단으로"
+        },
+        {
+          "name": "portfolio-build",
+          "summary": "이력서·PDF·레포에서 슬라이드 포트폴리오 덱 제작"
+        },
+        {
+          "name": "audit-verify-explain-grade-5",
+          "summary": "작업 결과를 근거로 검증하고 쉬운 말로 설명"
+        }
+      ],
+      "origin": "직접 제작"
     },
     {
       "title": "콘텐츠 파이프라인",
       "client": "Codex",
       "description": "Instagram 카드뉴스 브랜드 3개를 리서치부터 발행 큐까지 자동화",
       "skills": [
-        { "name": "run-daily-carousel-pipeline", "summary": "경제 소스 크롤링 → 원고 → 1080×1350 렌더링 → 발행 큐" },
-        { "name": "weekly-instagram-topic-research", "summary": "성과 분석 후 주간 21개 토픽 리서치·스케줄링" },
-        { "name": "develop-obsidian-carousel", "summary": "Obsidian 소스를 근거 기반 카드뉴스 원고로" },
-        { "name": "career-instagram-carousel", "summary": "채용·면접 소재를 카드뉴스 원고와 아카이브로" },
-        { "name": "ss-reel", "summary": "공개 릴스 다운로드·전사·분석 → 카드뉴스 1편" },
-        { "name": "jango-recipe", "summary": "한글 레시피 초안 → 영문 레시피 캐러셀" }
-      ]
+        {
+          "name": "run-daily-carousel-pipeline",
+          "summary": "경제 소스 크롤링 → 원고 → 1080×1350 렌더링 → 발행 큐"
+        },
+        {
+          "name": "weekly-instagram-topic-research",
+          "summary": "성과 분석 후 주간 21개 토픽 리서치·스케줄링"
+        },
+        {
+          "name": "develop-obsidian-carousel",
+          "summary": "Obsidian 소스를 근거 기반 카드뉴스 원고로"
+        },
+        {
+          "name": "career-instagram-carousel",
+          "summary": "채용·면접 소재를 카드뉴스 원고와 아카이브로"
+        },
+        {
+          "name": "ss-reel",
+          "summary": "공개 릴스 다운로드·전사·분석 → 카드뉴스 1편"
+        },
+        {
+          "name": "jango-recipe",
+          "summary": "한글 레시피 초안 → 영문 레시피 캐러셀"
+        }
+      ],
+      "origin": "직접 제작"
     },
     {
       "title": "개발 환경 · DevOps",
       "client": "공용",
       "description": "빌드·배포·자격증명·디스크를 대화로 관리",
       "skills": [
-        { "name": "build-script", "summary": "Flutter·iOS·Android·Docker·Tauri 빌드 스크립트 scaffold" },
-        { "name": "env-sync", "summary": "프로젝트 .env와 AWS 자격증명·PEM 백업·복원" },
-        { "name": "clean-developer-storage", "summary": "node_modules·캐시·시뮬레이터 안전 정리" },
-        { "name": "security-best-practices", "summary": "언어·프레임워크별 보안 리뷰" }
-      ]
+        {
+          "name": "build-script",
+          "summary": "Flutter·iOS·Android·Docker·Tauri 빌드 스크립트 scaffold"
+        },
+        {
+          "name": "env-sync",
+          "summary": "프로젝트 .env와 AWS 자격증명·PEM 백업·복원"
+        },
+        {
+          "name": "clean-developer-storage",
+          "summary": "node_modules·캐시·시뮬레이터 안전 정리"
+        },
+        {
+          "name": "security-best-practices",
+          "summary": "언어·프레임워크별 보안 리뷰"
+        }
+      ],
+      "origin": "직접 제작"
     },
     {
       "title": "프론트 · QA · 미디어",
       "client": "공용",
       "description": "UI 구현과 검증에 쓰는 도구 스킬",
       "skills": [
-        { "name": "frontend-design", "summary": "제네릭하지 않은 프로덕션급 UI 구현 가이드" },
-        { "name": "copywriting", "summary": "페이지 카피·헤드라인·CTA 작성" },
-        { "name": "playwright", "summary": "터미널에서 실제 브라우저 자동화·스크린샷" },
-        { "name": "pdf", "summary": "PDF 렌더링 확인·생성·추출" },
-        { "name": "screenshot", "summary": "macOS 화면·창·영역 캡처" }
+        {
+          "name": "frontend-design",
+          "summary": "제네릭하지 않은 프로덕션급 UI 구현 가이드"
+        },
+        {
+          "name": "copywriting",
+          "summary": "페이지 카피·헤드라인·CTA 작성"
+        },
+        {
+          "name": "playwright",
+          "summary": "터미널에서 실제 브라우저 자동화·스크린샷"
+        },
+        {
+          "name": "pdf",
+          "summary": "PDF 렌더링 확인·생성·추출"
+        },
+        {
+          "name": "screenshot",
+          "summary": "macOS 화면·창·영역 캡처"
+        }
+      ],
+      "origin": "직접 제작"
+    },
+    {
+      "title": "SI 프로젝트 수행",
+      "client": "공용",
+      "origin": "팀 공용",
+      "description": "사내 프로젝트 관리 플랫폼(P-Grid)을 CLI로 연결해 산출물 작업을 대화로 처리",
+      "skills": [
+        {
+          "name": "pgrid-cli",
+          "summary": "P-Grid 작업의 진입점 — 프로젝트·모듈·정책 조회 라우터"
+        },
+        {
+          "name": "pgrid-project",
+          "summary": "프로젝트 컨텍스트·멤버·레포·도메인 조회와 산출물 PDF 생성"
+        },
+        {
+          "name": "pgrid-wbs",
+          "summary": "WBS 버전·항목 생성·수정·내보내기로 일정 관리"
+        },
+        {
+          "name": "pgrid-defect-requirement",
+          "summary": "결함·기능 요청·요구사항과 개발범위 매핑 관리"
+        },
+        {
+          "name": "pgrid-scenario-review",
+          "summary": "고객 시나리오 테스트 검수 세트 작성·관리"
+        },
+        {
+          "name": "pgrid-data-request",
+          "summary": "고객 자료요청 작성·조회를 고객 친화 문장 기준으로"
+        },
+        {
+          "name": "pgrid-material-account",
+          "summary": "프로젝트 자료실·회의 녹화·요구사항 녹음 연계"
+        },
+        {
+          "name": "pgrid-manual",
+          "summary": "사내 정책 매뉴얼 DB 조회와 이력 관리"
+        },
+        {
+          "name": "pgrid-release",
+          "summary": "앱 릴리스 업로드·목록 조회·확인 워크플로"
+        },
+        {
+          "name": "pgrid-project-skill-registry",
+          "summary": "프로젝트 수행 스킬을 중앙 레지스트리에 등록·버전 관리"
+        },
+        {
+          "name": "pgrid-shared",
+          "summary": "인증·출력·검증 등 모든 P-Grid 작업의 공통 규칙"
+        }
+      ]
+    },
+    {
+      "title": "회사 개발 표준",
+      "client": "공용",
+      "origin": "팀 공용",
+      "description": "고객사 프로젝트에 DB·보안·스캐폴딩 기준을 코드 작성 시점에 강제",
+      "skills": [
+        {
+          "name": "poooling-database-design-principles",
+          "summary": "스키마·Prisma 모델·마이그레이션 설계 규칙과 리뷰 기준"
+        },
+        {
+          "name": "poooling-security-principles",
+          "summary": "시크릿·인증·권한·배포 보안 기준 자가 검증"
+        },
+        {
+          "name": "poooling-repo-creator",
+          "summary": "회사 정책이 적용된 고객 프로젝트 스타터 코드베이스 생성"
+        },
+        {
+          "name": "erp-ux-design",
+          "summary": "고객 ERP의 정보구조·업무 흐름·공통 컴포넌트 설계 기준"
+        }
+      ]
+    },
+    {
+      "title": "QA · 산출물 자동화",
+      "client": "공용",
+      "origin": "팀 공용",
+      "description": "테스트와 고객 전달 산출물을 코드베이스에서 자동 생성",
+      "skills": [
+        {
+          "name": "pgrid-erd",
+          "summary": "프로젝트별 ERD 다이어그램 조회·생성·저장"
+        },
+        {
+          "name": "pgrid-testcase",
+          "summary": "코드베이스에서 테스트케이스를 추출해 플랫폼에 저장"
+        },
+        {
+          "name": "pgrid-test-logger",
+          "summary": "대상 프로젝트에 브라우저 로그 수집 패키지 설치·제거"
+        },
+        {
+          "name": "screencast-demo-video",
+          "summary": "화면 녹화 후 Remotion 편집으로 데모·실습 영상 제작"
+        },
+        {
+          "name": "hwpx",
+          "summary": "한글(HWPX) 문서 구조 분석·텍스트 교체·이미지 삽입"
+        },
+        {
+          "name": "better-icons",
+          "summary": "Iconify 기반 아이콘 검색과 SVG 반입"
+        }
       ]
     }
   ],
   "commands": [
-    { "name": "/add-project", "kind": "slash", "description": "프로젝트 디렉터리를 Explore 서브에이전트로 분석해 projects.json·skills.json에 자동 등록" },
-    { "name": "/gitinit-personal", "kind": "slash", "description": "개인 GitHub SSH 계정으로 레포 초기화·원격 연결" },
-    { "name": "/gitinit-poooling", "kind": "slash", "description": "회사 GitHub SSH 계정으로 레포 초기화·원격 연결" },
-    { "name": "session hooks ×10", "kind": "hook", "description": "프롬프트 제출·도구 호출·서브에이전트 시작/종료·완료 이벤트를 에이전트 트래커로 전달" },
-    { "name": "git-activity LaunchAgent", "kind": "automation", "description": "매일 18:30 회사·개인 레포 커밋을 집계해 활동 히트맵 갱신" },
-    { "name": "portfolio sync API", "kind": "automation", "description": "Obsidian 프로젝트 문서·스크린샷을 한 트랜잭션으로 포트폴리오 DB에 반영" },
-    { "name": "post-blog script", "kind": "automation", "description": "Markdown 초안을 블로그 DB에 발행하고 이미지 업로드" },
-    { "name": "skills usage-report", "kind": "script", "description": "세션 로그로 스킬 사용량을 집계해 미사용 스킬을 아카이브·복원" }
+    {
+      "name": "/add-project",
+      "kind": "slash",
+      "description": "프로젝트 디렉터리를 Explore 서브에이전트로 분석해 projects.json·skills.json에 자동 등록"
+    },
+    {
+      "name": "/gitinit-personal",
+      "kind": "slash",
+      "description": "개인 GitHub SSH 계정으로 레포 초기화·원격 연결"
+    },
+    {
+      "name": "/gitinit-poooling",
+      "kind": "slash",
+      "description": "회사 GitHub SSH 계정으로 레포 초기화·원격 연결"
+    },
+    {
+      "name": "session hooks ×10",
+      "kind": "hook",
+      "description": "프롬프트 제출·도구 호출·서브에이전트 시작/종료·완료 이벤트를 에이전트 트래커로 전달"
+    },
+    {
+      "name": "git-activity LaunchAgent",
+      "kind": "automation",
+      "description": "매일 18:30 회사·개인 레포 커밋을 집계해 활동 히트맵 갱신"
+    },
+    {
+      "name": "portfolio sync API",
+      "kind": "automation",
+      "description": "Obsidian 프로젝트 문서·스크린샷을 한 트랜잭션으로 포트폴리오 DB에 반영"
+    },
+    {
+      "name": "post-blog script",
+      "kind": "automation",
+      "description": "Markdown 초안을 블로그 DB에 발행하고 이미지 업로드"
+    },
+    {
+      "name": "skills usage-report",
+      "kind": "script",
+      "description": "세션 로그로 스킬 사용량을 집계해 미사용 스킬을 아카이브·복원"
+    }
   ]
 }

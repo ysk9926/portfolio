@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import { ChevronDown } from 'lucide-react';
 import type { AiSkillGroup } from '@/lib/types/view';
-import { CLIENT_BADGES } from './accent';
+import { CLIENT_BADGES, ORIGIN_BADGES } from './accent';
 
 interface AiSkillRegistryProps {
   groups: AiSkillGroup[];
@@ -36,9 +36,9 @@ export default function AiSkillRegistry({ groups }: AiSkillRegistryProps) {
               <p className="truncate font-mono text-[11px] text-neutral-500">
                 ~/skills/<span className="text-ai-ink">{toPath(group.title)}</span>
               </p>
-              <div className="mt-1.5 flex items-center justify-between gap-2">
+              <div className="mt-1.5 flex items-start justify-between gap-2">
                 <h4 className="text-base font-bold text-ai-ink">{group.title}</h4>
-                <span className="flex items-center gap-1.5">
+                <span className="flex shrink-0 items-center gap-1.5">
                   <span className="font-mono text-[11px] text-neutral-500">{group.skills.length}</span>
                   <span
                     className={`rounded-full px-2 py-0.5 font-mono text-[10px] ${CLIENT_BADGES[group.client]}`}
@@ -47,6 +47,11 @@ export default function AiSkillRegistry({ groups }: AiSkillRegistryProps) {
                   </span>
                 </span>
               </div>
+              <p
+                className={`mt-1.5 inline-block rounded-full border px-2 py-0.5 font-mono text-[10px] ${ORIGIN_BADGES[group.origin]}`}
+              >
+                {group.origin}
+              </p>
               <p className="mt-1.5 text-[13px] leading-relaxed text-neutral-600">{group.description}</p>
             </header>
 

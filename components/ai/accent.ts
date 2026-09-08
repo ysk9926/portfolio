@@ -1,4 +1,4 @@
-import type { AiCommandKind, AiSkillClient, AiToolAccent } from '@/lib/types/view';
+import type { AiCommandKind, AiSkillClient, AiSkillOrigin, AiToolAccent } from '@/lib/types/view';
 
 interface AccentStyle {
   /** Solid dot / caret color on dark panels. */
@@ -36,6 +36,11 @@ export const CLIENT_BADGES: Record<AiSkillClient, string> = {
   공용: 'bg-neutral-900 text-white',
   Claude: 'bg-ai-accent-soft text-[#8a3f22]',
   Codex: 'bg-ai-codex-soft text-[#0b5c47]',
+};
+
+export const ORIGIN_BADGES: Record<AiSkillOrigin, string> = {
+  '직접 제작': 'border-ai-ink/25 text-ai-ink',
+  '팀 공용': 'border-neutral-300 text-neutral-500',
 };
 
 export const COMMAND_KINDS: Record<AiCommandKind, { label: string; className: string }> = {

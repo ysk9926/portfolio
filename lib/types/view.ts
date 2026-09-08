@@ -169,6 +169,7 @@ export interface Project {
 // AI workflow
 export type AiToolAccent = 'claude' | 'codex' | 'product';
 export type AiSkillClient = '공용' | 'Claude' | 'Codex';
+export type AiSkillOrigin = '직접 제작' | '팀 공용';
 export type AiCommandKind = 'slash' | 'hook' | 'automation' | 'script';
 
 export interface AiStat {
@@ -196,6 +197,7 @@ export interface AiWorkflowStep {
 export interface AiSkillGroup {
   title: string;
   client: AiSkillClient;
+  origin: AiSkillOrigin;
   description: string;
   skills: { name: string; summary: string }[];
 }
