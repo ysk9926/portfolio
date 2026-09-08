@@ -18,5 +18,15 @@
       "기술 학습 노트와 트러블슈팅 회고",
       "비회원도 댓글·좋아요로 참여 가능"
     ]
+  },
+  {
+    "title": "App Store",
+    "description": "MyDate — 친구와 약속·투두를 공유하는 소셜 캘린더 iOS 앱",
+    "url": "https://apps.apple.com/kr/app/mydate/id6760990280",
+    "details": [
+      "1인 사이드 프로젝트로 기획·디자인·풀스택·심사·출시까지 전 과정 수행",
+      "Next.js 웹앱을 Flutter WebView로 감싼 하이브리드 앱, JS 브릿지로 인증·FCM 푸시 연동",
+      "약 1개월 만에 MVP 완성 (45개 API, 75개 UI 컴포넌트) 후 App Store 출시"
+    ]
   }
 ]

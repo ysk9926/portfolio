@@ -15,7 +15,7 @@ export default function Archiving({ data }: ArchivingProps) {
       className="ai-ink text-white"
       contentVisibility
     >
-      <div className="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-6">
+      <div className="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-6 lg:grid-cols-3">
         {data.map((item) => (
           <AnimateOnScroll key={item.title}>
             <ArchiveCard

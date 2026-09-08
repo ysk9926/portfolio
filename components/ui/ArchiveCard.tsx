@@ -38,7 +38,7 @@ export default function ArchiveCard({
           </li>
         ))}
       </ul>
-      <p className="mt-auto pt-2 font-mono text-[11px] text-neutral-500 transition-colors group-hover:text-ai-accent">
+      <p className="mt-auto break-all pt-2 font-mono text-[11px] text-neutral-500 transition-colors group-hover:text-ai-accent">
         $ open {isExternal ? url.replace(/^https?:\/\//, '') : url}
       </p>
     </a>
