@@ -11,9 +11,9 @@ const VIEW_KEY = (slug: string) => `blog:view:${slug}`;
 const ONE_DAY_MS = 24 * 60 * 60 * 1000;
 
 export default function BlogViewTracker({ slug }: BlogViewTrackerProps) {
-  const { consent, enabled } = useAnalytics();
+  const { enabled } = useAnalytics();
   useEffect(() => {
-    if (consent !== 'granted' || !enabled) return;
+    if (!enabled) return;
     if (typeof window === 'undefined') return;
     let key: string;
     try {
@@ -44,7 +44,7 @@ export default function BlogViewTracker({ slug }: BlogViewTrackerProps) {
       })
       .catch(() => {});
     return () => controller.abort();
-  }, [slug, consent, enabled]);
+  }, [slug, enabled]);
 
   return null;
 }

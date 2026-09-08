@@ -1,7 +1,7 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
 import { usePathname, useSearchParams, useRouter } from "next/navigation";
-import { getBrowserId, type Consent } from "@/lib/analytics/consent";
+import { getBrowserId } from "@/lib/analytics/browser-id";
 import { startTracker } from "@/lib/analytics/tracker";
 import { createTransport, splitBatches } from "@/lib/analytics/transport";
 import { pathSchema } from "@/lib/analytics/schema";
@@ -11,10 +11,8 @@ import type {
   AnalyticsEvent,
 } from "@/lib/analytics/types";
 export default function PortfolioTracker({
-  consent,
   enabled,
 }: {
-  consent: Consent;
   enabled: boolean;
 }) {
   const pathname = usePathname();
@@ -32,7 +30,7 @@ export default function PortfolioTracker({
   const transportAbort = useRef<AbortController | null>(null);
   const rolloverEvents = useRef<AnalyticsEvent[]>([]);
   const currentAllowed = useRef(false);
-  currentAllowed.current = consent === "granted" && enabled;
+  currentAllowed.current = enabled;
   useEffect(() => {
     const url = new URL(window.location.href);
     const ref = url.searchParams.get("ref");
@@ -267,6 +265,6 @@ export default function PortfolioTracker({
       window.removeEventListener("pagehide", beacon);
       window.removeEventListener("pageshow", restored);
     };
-  }, [pathname, search, consent, enabled, generation, router]);
+  }, [pathname, search, enabled, generation, router]);
   return null;
 }

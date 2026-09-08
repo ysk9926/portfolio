@@ -103,7 +103,7 @@ See `docs/seo/google-indexing-checklist.md` for the full post-deploy checklist.
 
 The admin dashboard at `/admin/analytics` manages company-specific submission links,
 visits, section/project exposure and active time, scroll depth, and outbound clicks.
-Visitors can allow or decline collection and change their choice from the footer.
+When analytics is enabled, collection starts automatically without a consent popup.
 A tracked link identifies a submission, not an individual recruiter's identity.
 
 Apply the two `20260907` analytics migrations, enable Supabase Cron, and configure

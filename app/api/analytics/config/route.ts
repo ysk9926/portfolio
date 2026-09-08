@@ -10,7 +10,6 @@ export async function GET() {
     return analyticsResponse(200, {
       enabled: settings.enabled && !excluded,
       excluded,
-      consentVersion: 1,
       retentionDays: 90,
       gaId:
         settings.enabled && !excluded
@@ -23,7 +22,6 @@ export async function GET() {
     return analyticsResponse(200, {
       enabled: false,
       excluded: true,
-      consentVersion: 1,
       retentionDays: 90,
       gaId: null,
     });

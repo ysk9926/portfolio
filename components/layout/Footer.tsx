@@ -1,4 +1,3 @@
-import ConsentSettingsButton from '@/components/analytics/ConsentSettingsButton';
 import { FooterData } from '@/lib/types/view';
 
 interface FooterProps {
@@ -10,7 +9,6 @@ export default function Footer({ footerData }: FooterProps) {
     <footer className="bg-neutral-950 text-white py-10 text-center">
       <p className="mb-2">{footerData.copyright}</p>
       <p className="text-sm">{footerData.builtWith}</p>
-      <ConsentSettingsButton />
     </footer>
   );
 }

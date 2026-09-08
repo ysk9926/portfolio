@@ -5,22 +5,29 @@ const dbUrl =
   "postgres://seung-gyu@127.0.0.1:54329/portfolio_analytics_test";
 if (!["127.0.0.1", "localhost"].includes(new URL(dbUrl).hostname))
   throw new Error("Browser tests require isolated local DB");
-test("no action data before choice, or after rejection", async ({ page }) => {
-  const sent: string[] = [];
-  page.on("request", (r) => {
-    if (/\/api\/analytics\/(session|events)$/.test(new URL(r.url()).pathname))
-      sent.push(r.url());
+test("starts collection without showing consent controls", async ({ page }) => {
+  let sessions = 0;
+  await page.route("**/api/analytics/session", async (route) => {
+    sessions += 1;
+    await route.fulfill({
+      status: 200,
+      contentType: "application/json",
+      body: JSON.stringify({
+        sessionId: crypto.randomUUID(),
+        ingestToken: "test-ingest-token",
+        expiresAt: new Date(Date.now() + 60_000).toISOString(),
+      }),
+    });
   });
+  await page.route("**/api/analytics/events", (route) =>
+    route.fulfill({ status: 202 }),
+  );
   await page.goto("/");
-  await page.getByRole("button", { name: "거절", exact: true }).click();
-  await page.evaluate(() => window.scrollBy(0, 1200));
-  await page.getByRole("button", { name: "방문 분석 설정" }).click();
-  await expect(
-    page.getByRole("dialog", { name: "방문 분석 설정" }),
-  ).toBeVisible();
-  expect(sent).toEqual([]);
+  await expect.poll(() => sessions).toBe(1);
+  await expect(page.getByRole("dialog", { name: "방문 분석 설정" })).toHaveCount(0);
+  await expect(page.getByRole("button", { name: "방문 분석 설정" })).toHaveCount(0);
 });
-test("company link, section activity and revocation reach real isolated database", async ({
+test("company link and section activity reach real isolated database automatically", async ({
   page,
 }) => {
   const pool = new Pool({ connectionString: dbUrl });
@@ -39,7 +46,6 @@ test("company link, section activity and revocation reach real isolated database
   );
   try {
     await page.goto("/?ref=" + token);
-    await page.getByRole("button", { name: "허용", exact: true }).click();
     await expect
       .poll(async () =>
         Number(
@@ -79,16 +85,6 @@ test("company link, section activity and revocation reach real isolated database
       )).rows[0].count)).toBeGreaterThan(0);
     }
     expect(new URL(page.url()).searchParams.has("ref")).toBe(false);
-    await page.getByRole("button", { name: "방문 분석 설정" }).click();
-    await page.getByRole("button", { name: "거절", exact: true }).click();
-    const after: string[] = [];
-    page.on("request", (r) => {
-      if (/\/api\/analytics\/(session|events)$/.test(new URL(r.url()).pathname))
-        after.push(r.url());
-    });
-    await page.evaluate(() => window.scrollBy(0, -500));
-    await page.waitForTimeout(16000);
-    expect(after).toEqual([]);
   } finally {
     await pool.query("delete from analytics_sessions where link_id=$1", [
       linkId,
