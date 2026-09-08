@@ -160,7 +160,7 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
   ];
 
   return (
-    <article data-analytics-project={project.id} data-analytics-surface="detail" className="min-h-screen bg-white pt-24 pb-20">
+    <article data-analytics-project={project.id} data-analytics-surface="detail" className="ai-cream min-h-screen pt-24 pb-20 text-ai-ink">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
@@ -169,7 +169,7 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
       <div className="mx-auto max-w-5xl px-4">
         <Link
           href="/#projects"
-          className="inline-flex items-center gap-1 text-sm text-neutral-500 hover:text-neutral-900"
+          className="inline-flex items-center gap-1 font-mono text-xs text-neutral-500 hover:text-ai-accent"
         >
           <ArrowLeft className="h-4 w-4" /> 프로젝트 목록
         </Link>
@@ -200,7 +200,7 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
             {summary}
           </p>
 
-          <dl className="mt-8 grid gap-3 rounded-lg border border-neutral-200 bg-neutral-50 p-4 text-sm text-neutral-700 md:grid-cols-2">
+          <dl className="paper-card mt-8 grid gap-3 rounded-2xl p-5 text-sm text-neutral-700 md:grid-cols-2">
             <div className="flex items-center gap-2">
               <Calendar className="h-4 w-4 text-neutral-500" />
               <dt className="font-medium text-neutral-900">기간</dt>
@@ -233,7 +233,7 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
                 href={project.githubUrl} data-analytics-target="github" data-analytics-project-id={project.id}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 rounded-md bg-neutral-900 px-4 py-2 text-sm font-medium text-white transition hover:bg-neutral-700"
+                className="inline-flex items-center gap-2 rounded-full bg-ai-ink px-5 py-2 text-sm font-medium text-white transition hover:bg-ai-accent"
               >
                 <Github className="h-4 w-4" />
                 GitHub
@@ -244,7 +244,7 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
                 href={project.deployUrl} data-analytics-target="demo" data-analytics-project-id={project.id}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 rounded-md border border-neutral-300 px-4 py-2 text-sm font-medium text-neutral-800 transition hover:border-neutral-900"
+                className="inline-flex items-center gap-2 rounded-full border border-ai-ink/20 px-5 py-2 text-sm font-medium text-ai-ink transition hover:border-ai-accent hover:text-ai-accent"
               >
                 <ExternalLink className="h-4 w-4" />
                 배포 사이트

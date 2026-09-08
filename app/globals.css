@@ -5,10 +5,11 @@
 @theme inline {
   --color-background: #ffffff;
   --color-foreground: #171717;
-  --color-section-skills: #fafafa;
-  --color-section-archiving: #111111;
-  --color-section-career: #fafafa;
-  --color-heatmap-empty: #212121;
+  --color-section-skills: #f6f3ee;
+  --color-section-archiving: #0c0b0a;
+  --color-section-career: #fbfaf7;
+  --color-section-cream: #fbfaf7;
+  --color-heatmap-empty: #2a2622;
   --color-heatmap-company-1: #fef3c7;
   --color-heatmap-company-2: #fcd34d;
   --color-heatmap-company-3: #f59e0b;
@@ -92,13 +93,34 @@ body {
   font-family: "Pretendard Variable", Pretendard, system-ui, -apple-system, sans-serif;
 }
 
-/* AI workflow section: paper grain + console panels */
+/* Editorial console tone shared by every home section */
 .ai-paper {
   background-color: var(--color-section-ai);
   background-image:
     radial-gradient(ellipse 60% 50% at 85% 0%, rgba(217, 119, 87, 0.14), transparent 70%),
     radial-gradient(ellipse 50% 40% at 0% 100%, rgba(217, 119, 87, 0.08), transparent 70%),
     repeating-linear-gradient(0deg, rgba(12, 11, 10, 0.028) 0 1px, transparent 1px 28px);
+}
+
+.ai-cream {
+  background-color: var(--color-section-cream);
+  background-image:
+    radial-gradient(ellipse 50% 40% at 100% 100%, rgba(217, 119, 87, 0.07), transparent 70%);
+}
+
+.ai-ink {
+  background-color: var(--color-ai-ink);
+  background-image:
+    radial-gradient(ellipse 55% 45% at 90% 0%, rgba(217, 119, 87, 0.16), transparent 70%),
+    radial-gradient(ellipse 45% 40% at 0% 100%, rgba(217, 119, 87, 0.07), transparent 70%),
+    repeating-linear-gradient(0deg, rgba(255, 255, 255, 0.022) 0 1px, transparent 1px 28px);
+}
+
+.paper-card {
+  border: 1px solid color-mix(in srgb, var(--color-ai-ink) 10%, transparent);
+  background: rgba(255, 255, 255, 0.7);
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.8) inset;
+  backdrop-filter: blur(4px);
 }
 
 .ai-console {

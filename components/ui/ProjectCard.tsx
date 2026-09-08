@@ -75,7 +75,7 @@ export default function ProjectCard({ project, onDetailClick }: ProjectCardProps
             </div>
           )}
           <h3 className="text-lg md:text-xl font-bold text-white">{project.title}</h3>
-          <p className="text-sm text-white/60 mt-0.5">{project.period}</p>
+          <p className="mt-1 font-mono text-xs text-white/60">{project.period}</p>
 
           {/* Tech tags — always visible, glassmorphism */}
           <div className="flex flex-wrap gap-1.5 mt-2">
@@ -125,8 +125,8 @@ export default function ProjectCard({ project, onDetailClick }: ProjectCardProps
                 href={projectPath(project)}
                 onClick={handleLinkClick}
                 className="mt-3 inline-flex items-center gap-1.5
-                           bg-white text-slate-900 font-medium text-sm
-                           px-5 py-2 rounded-full hover:bg-slate-100
+                           bg-white text-ai-ink font-medium text-sm
+                           px-5 py-2 rounded-full hover:bg-ai-accent-soft
                            transition-colors cursor-pointer"
               >
                 {project.title} 상세 보기

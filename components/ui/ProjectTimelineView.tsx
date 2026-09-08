@@ -60,7 +60,7 @@ export default function ProjectTimelineView({
           {yearBreaks.map((yb) => (
             <div
               key={yb.year}
-              className="text-xs font-semibold text-neutral-500 flex items-end pb-1 pl-1"
+              className="flex items-end pb-1 pl-1 font-mono text-xs font-semibold text-ai-accent"
               style={{ gridColumn: `${yb.startIndex + 2} / span ${yb.count}` }}
             >
               {yb.year}
@@ -72,9 +72,9 @@ export default function ProjectTimelineView({
           {months.map((m, i) => (
             <div
               key={`${m.year}-${m.month}`}
-              className={`text-xs text-neutral-400 flex items-center justify-center h-8 border-l ${
+              className={`flex h-8 items-center justify-center border-l font-mono text-[11px] text-neutral-500 ${
                 i === 0 ? 'border-l-0' : ''
-              } border-neutral-200`}
+              } border-ai-ink/15`}
             >
               {m.label}
             </div>
@@ -106,9 +106,9 @@ export default function ProjectTimelineView({
                       key={`${project.id}-${m.year}-${m.month}`}
                       className={`h-12 border-l ${
                         i === 0 ? 'border-l-0' : ''
-                      } border-neutral-100 ${
+                      } border-ai-ink/[0.07] ${
                         rowIndex < sorted.length - 1
-                          ? 'border-b border-b-neutral-100'
+                          ? 'border-b border-b-ai-ink/[0.07]'
                           : ''
                       } relative`}
                     >
@@ -117,8 +117,8 @@ export default function ProjectTimelineView({
                         <div
                           className={`absolute z-10 top-2 bottom-2 left-0.5 flex items-center overflow-hidden rounded-md text-xs font-medium transition-all hover:scale-[1.02] hover:shadow-md ${
                             project.isMain
-                              ? 'bg-neutral-800 text-white'
-                              : 'bg-neutral-200 text-neutral-700'
+                              ? 'bg-ai-ink text-white'
+                              : 'bg-ai-accent-soft text-[#8a3f22]'
                           }`}
                           style={{
                             width: `calc(${spanCount} * 100% + ${spanCount - 1} * 0px - 4px)`,
@@ -131,8 +131,8 @@ export default function ProjectTimelineView({
                             aria-label={`${project.title} 프로젝트 열기`}
                             className={`group/bar flex min-w-0 flex-1 items-center gap-1.5 self-stretch px-3 text-left transition-colors ${
                               project.isMain
-                                ? 'hover:bg-neutral-700'
-                                : 'hover:bg-neutral-300'
+                                ? 'hover:bg-ai-accent'
+                                : 'hover:bg-[#ecc9b6]'
                             }`}
                           >
                             <span className="truncate">{project.title}</span>
@@ -140,8 +140,8 @@ export default function ProjectTimelineView({
                               <span
                                 className={`shrink-0 w-2 h-2 rounded-full animate-pulse-dot ${
                                   project.isMain
-                                    ? 'bg-green-400'
-                                    : 'bg-green-500'
+                                    ? 'bg-ai-codex'
+                                    : 'bg-ai-codex'
                                 }`}
                               />
                             )}
@@ -164,7 +164,7 @@ export default function ProjectTimelineView({
 
       {/* Mobile: Vertical timeline */}
       <div className="md:hidden pl-4">
-        <div className="relative border-l-2 border-neutral-300 ml-2">
+        <div className="relative ml-2 border-l border-ai-ink/15">
           {sorted.map((project) => {
             const parsed = parsePeriod(project.period);
             return (
@@ -172,16 +172,18 @@ export default function ProjectTimelineView({
                 <div className="relative pl-6 pb-6 last:pb-0">
                   {/* Dot */}
                   <div
-                    className={`absolute top-1 rounded-full border-2 border-white transition-all duration-300 ${
+                    className={`absolute top-1 rounded-full border-2 border-[#f6f3ee] transition-all duration-300 ${
                       activeKey === String(project.id)
-                        ? '-left-[11px] w-5 h-5 ring-4 ring-neutral-900/15'
+                        ? '-left-[11px] w-5 h-5 ring-4 ring-ai-accent/25'
                         : '-left-[9px] w-4 h-4'
                     } ${
                       parsed.isOngoing
-                        ? 'bg-green-500 animate-pulse-dot'
-                        : project.isMain || activeKey === String(project.id)
-                          ? 'bg-neutral-800'
-                          : 'bg-neutral-300'
+                        ? 'bg-ai-codex animate-pulse-dot'
+                        : activeKey === String(project.id)
+                          ? 'bg-ai-accent'
+                          : project.isMain
+                            ? 'bg-ai-ink'
+                            : 'bg-ai-ink/30'
                     }`}
                   />
 

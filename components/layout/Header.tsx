@@ -97,7 +97,7 @@ export default function Header({ navItems, heroName }: HeaderProps) {
       <header
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
           isScrolled
-            ? 'backdrop-blur-md bg-white/80 shadow-sm'
+            ? 'border-b border-ai-ink/10 bg-[#f6f3ee]/85 backdrop-blur-md'
             : 'bg-transparent'
         }`}
       >
@@ -108,12 +108,13 @@ export default function Header({ navItems, heroName }: HeaderProps) {
               e.preventDefault();
               handleNavClick(onHome ? '#hero' : '/');
             }}
-            className={`text-xl font-bold transition-colors ${
+            className={`inline-flex items-center gap-2 text-xl font-bold tracking-tight transition-colors ${
               isScrolled
-                ? 'text-gray-900 hover:text-neutral-500'
-                : 'text-white hover:text-neutral-300'
+                ? 'text-ai-ink hover:text-ai-accent'
+                : 'text-white hover:text-ai-accent'
             }`}
           >
+            <span aria-hidden className="font-mono text-base text-ai-accent">~</span>
             {heroName}
           </a>
 
@@ -126,14 +127,14 @@ export default function Header({ navItems, heroName }: HeaderProps) {
                   e.preventDefault();
                   handleNavClick(item.href);
                 }}
-                className={`transition-colors ${
+                className={`relative py-1 text-sm font-medium transition-colors after:absolute after:inset-x-0 after:-bottom-0.5 after:h-0.5 after:origin-left after:rounded-full after:bg-ai-accent after:transition-transform after:duration-300 ${
                   isActive(item.href)
-                    ? isScrolled
-                      ? 'text-neutral-900 font-semibold'
-                      : 'text-white font-semibold'
-                    : isScrolled
-                      ? 'text-gray-600 hover:text-neutral-900'
-                      : 'text-gray-300 hover:text-white'
+                    ? `after:scale-x-100 ${isScrolled ? 'text-ai-ink' : 'text-white'}`
+                    : `after:scale-x-0 hover:after:scale-x-100 ${
+                        isScrolled
+                          ? 'text-neutral-600 hover:text-ai-ink'
+                          : 'text-neutral-300 hover:text-white'
+                      }`
                 }`}
               >
                 {item.label}
@@ -149,7 +150,7 @@ export default function Header({ navItems, heroName }: HeaderProps) {
             aria-expanded={isMobileMenuOpen}
             aria-controls="mobile-navigation"
           >
-            <Menu className={`w-6 h-6 transition-colors ${isScrolled ? 'text-gray-900' : 'text-white'}`} />
+            <Menu className={`w-6 h-6 transition-colors ${isScrolled ? 'text-ai-ink' : 'text-white'}`} />
           </button>
         </div>
       </header>
@@ -161,14 +162,14 @@ export default function Header({ navItems, heroName }: HeaderProps) {
         >
           <div
             id="mobile-navigation"
-            className="fixed inset-y-0 right-0 w-64 bg-white shadow-lg"
+            className="ai-cream fixed inset-y-0 right-0 w-64 border-l border-ai-ink/10 shadow-lg"
             onClick={(e) => e.stopPropagation()}
           >
             <nav className="flex flex-col p-8 gap-6">
               <button
                 ref={closeButtonRef}
                 onClick={() => setIsMobileMenuOpen(false)}
-                className="self-end flex h-11 w-11 items-center justify-center rounded-full text-gray-600 hover:text-gray-900 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-neutral-900"
+                className="self-end flex h-11 w-11 items-center justify-center rounded-full text-neutral-600 hover:text-ai-ink focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ai-accent"
                 aria-label="메뉴 닫기"
               >
                 <X className="w-6 h-6" />
@@ -181,12 +182,18 @@ export default function Header({ navItems, heroName }: HeaderProps) {
                     e.preventDefault();
                     handleNavClick(item.href);
                   }}
-                  className={`text-lg transition-colors ${
+                  className={`inline-flex items-center gap-2 text-lg transition-colors ${
                     isActive(item.href)
-                      ? 'text-neutral-900 font-semibold'
-                      : 'text-gray-600 hover:text-neutral-900'
+                      ? 'font-semibold text-ai-ink'
+                      : 'text-neutral-600 hover:text-ai-ink'
                   }`}
                 >
+                  <span
+                    aria-hidden
+                    className={`font-mono text-sm ${isActive(item.href) ? 'text-ai-accent' : 'text-neutral-400'}`}
+                  >
+                    {isAnchorHref(item.href) ? '~' : '/'}
+                  </span>
                   {item.label}
                 </a>
               ))}

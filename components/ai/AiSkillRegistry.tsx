@@ -30,7 +30,7 @@ export default function AiSkillRegistry({ groups }: AiSkillRegistryProps) {
         return (
           <section
             key={group.title}
-            className="flex flex-col rounded-2xl border border-ai-ink/10 bg-white/70 p-5 shadow-[0_1px_0_rgba(255,255,255,0.8)_inset] backdrop-blur-sm transition-colors hover:border-ai-ink/25"
+            className="paper-card flex flex-col rounded-2xl p-5 transition-colors hover:border-ai-ink/25"
           >
             <header>
               <p className="truncate font-mono text-[11px] text-neutral-500">

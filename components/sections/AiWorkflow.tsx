@@ -26,7 +26,7 @@ export default function AiWorkflow({ data }: AiWorkflowProps) {
       {/* Intro + stats */}
       <div className="grid gap-10 lg:grid-cols-[minmax(0,1.2fr)_minmax(0,1fr)] lg:gap-14">
         <AnimateOnScroll>
-          <p className="font-mono text-xs uppercase tracking-[0.2em] text-ai-accent">
+          <p className="font-mono text-xs uppercase tracking-[0.2em] text-neutral-500">
             {data.eyebrow}
           </p>
           <h3 className="mt-3 text-3xl font-bold leading-tight tracking-tight text-ai-ink md:text-4xl">
@@ -42,7 +42,7 @@ export default function AiWorkflow({ data }: AiWorkflowProps) {
             {data.stats.map((stat) => (
               <div
                 key={stat.label}
-                className="rounded-2xl border border-ai-ink/10 bg-white/70 p-5 backdrop-blur-sm"
+                className="paper-card rounded-2xl p-5"
               >
                 <dd className="font-mono text-4xl font-semibold leading-none tracking-tight text-ai-ink md:text-5xl">
                   {stat.value}

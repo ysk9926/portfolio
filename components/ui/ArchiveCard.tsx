@@ -1,4 +1,4 @@
-import { Check } from 'lucide-react';
+import { ArrowUpRight } from 'lucide-react';
 import { ArchiveItem } from '@/lib/types';
 
 export default function ArchiveCard({
@@ -7,11 +7,8 @@ export default function ArchiveCard({
   url,
   details,
 }: ArchiveItem) {
-  const isGitHub = title.toLowerCase().includes('github');
   const isExternal = /^https?:\/\//.test(url);
-  const cardClass = isGitHub
-    ? 'bg-neutral-900 text-white'
-    : 'bg-neutral-100 text-gray-900';
+  const path = title.toLowerCase().replace(/\s+/g, '-');
 
   return (
     <a
@@ -19,22 +16,31 @@ export default function ArchiveCard({
       data-analytics-target="archive"
       target={isExternal ? '_blank' : undefined}
       rel={isExternal ? 'noopener noreferrer' : undefined}
-      className={`rounded-2xl p-8 md:p-10 flex flex-col gap-4 hover:scale-[1.02] transition-transform duration-300 ${cardClass}`}
+      className="ai-console group flex h-full flex-col gap-5 rounded-2xl p-7 text-neutral-100 transition-colors duration-300 hover:border-ai-accent/60 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-ai-accent md:p-9"
     >
-      <h3 className="text-2xl md:text-3xl font-bold">{title}</h3>
-      <p className={`text-base ${isGitHub ? 'text-gray-300' : 'text-gray-600'}`}>
-        {description}
-      </p>
-      <ul className="space-y-2">
-        {details.map((detail, index) => (
-          <li key={index} className="flex items-start gap-2">
-            <Check className={`mt-1 shrink-0 ${isGitHub ? 'text-neutral-400' : 'text-neutral-600'}`} size={16} strokeWidth={2.5} />
-            <span className={isGitHub ? 'text-gray-200' : 'text-gray-700'}>
-              {detail}
-            </span>
+      <div className="flex items-start justify-between gap-3">
+        <div>
+          <p className="font-mono text-xs text-neutral-500">
+            ~/<span className="text-neutral-300">{path}</span>
+          </p>
+          <h3 className="mt-2 text-2xl font-bold tracking-tight text-white md:text-3xl">{title}</h3>
+        </div>
+        <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-white/10 text-neutral-400 transition-colors group-hover:border-ai-accent group-hover:text-ai-accent">
+          <ArrowUpRight aria-hidden size={16} strokeWidth={2.5} />
+        </span>
+      </div>
+      <p className="text-base text-neutral-400">{description}</p>
+      <ul className="space-y-2.5 border-t border-white/10 pt-5">
+        {details.map((detail) => (
+          <li key={detail} className="flex items-start gap-2.5 text-[15px] leading-relaxed text-neutral-200">
+            <span aria-hidden className="mt-0.5 font-mono text-ai-accent">›</span>
+            <span>{detail}</span>
           </li>
         ))}
       </ul>
+      <p className="mt-auto pt-2 font-mono text-[11px] text-neutral-500 transition-colors group-hover:text-ai-accent">
+        $ open {isExternal ? url.replace(/^https?:\/\//, '') : url}
+      </p>
     </a>
   );
 }

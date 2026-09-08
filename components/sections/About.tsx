@@ -13,38 +13,47 @@ interface AboutProps {
 
 export default function About({ data, aboutSummary, profileImage }: AboutProps) {
   return (
-    <SectionWrapper id="about" title="About Me" className="bg-white">
-      <div className="flex justify-center mb-10">
-        <div className="relative w-40 h-40 rounded-full overflow-hidden shadow-lg">
-          {profileImage ? (
-            <Image
-              src={profileImage}
-              alt="프로필 사진"
-              fill
-              className="object-cover"
-              sizes="160px"
-              priority
-            />
-          ) : (
-            <div className="w-full h-full bg-neutral-100 flex items-center justify-center">
-              <User size={64} className="text-gray-400" />
+    <SectionWrapper id="about" title="About Me" className="ai-cream text-ai-ink">
+      <div className="grid gap-10 lg:grid-cols-[minmax(0,1.2fr)_minmax(0,1fr)] lg:gap-14">
+        <AnimateOnScroll>
+          <div className="flex items-center gap-5">
+            <div className="relative h-24 w-24 shrink-0 overflow-hidden rounded-full ring-1 ring-ai-ink/10 md:h-28 md:w-28">
+              {profileImage ? (
+                <Image
+                  src={profileImage}
+                  alt="프로필 사진"
+                  fill
+                  className="object-cover"
+                  sizes="112px"
+                  priority
+                />
+              ) : (
+                <div className="flex h-full w-full items-center justify-center bg-neutral-100">
+                  <User size={40} className="text-neutral-400" />
+                </div>
+              )}
             </div>
-          )}
-        </div>
-      </div>
+            <div>
+              <p className="font-mono text-xs uppercase tracking-[0.2em] text-ai-accent">
+                whoami
+              </p>
+              <p className="mt-2 text-2xl font-bold tracking-tight md:text-3xl">
+                기획부터 배포까지, 끝까지 맡습니다
+              </p>
+            </div>
+          </div>
+          <p className="mt-6 max-w-xl text-base leading-relaxed text-neutral-700 md:text-lg">
+            {aboutSummary}
+          </p>
+        </AnimateOnScroll>
 
-      <AnimateOnScroll>
-        <p className="text-center text-gray-600 text-base md:text-lg leading-relaxed max-w-3xl mx-auto mb-10">
-          {aboutSummary}
-        </p>
-      </AnimateOnScroll>
-
-      <div className="grid grid-cols-2 md:grid-cols-3 gap-4 md:gap-6">
-        {data.map((item, index) => (
-          <AnimateOnScroll key={index}>
-            <InfoCard icon={item.icon} label={item.label} value={item.value} />
-          </AnimateOnScroll>
-        ))}
+        <AnimateOnScroll>
+          <div className="grid grid-cols-2 gap-3">
+            {data.map((item) => (
+              <InfoCard key={item.label} icon={item.icon} label={item.label} value={item.value} />
+            ))}
+          </div>
+        </AnimateOnScroll>
       </div>
     </SectionWrapper>
   );

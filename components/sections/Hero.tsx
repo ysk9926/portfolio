@@ -14,7 +14,7 @@ export default function Hero({ heroData, publicEmail, aiHighlights = [] }: HeroP
     <section
       id="hero"
       data-analytics-section="hero"
-      className="relative min-h-screen bg-neutral-950 flex flex-col items-center justify-center text-white px-4"
+      className="ai-ink relative flex min-h-screen flex-col items-center justify-center px-4 text-white"
     >
       <div className="text-center space-y-6">
         <p className="text-lg md:text-xl text-neutral-400">{heroData.greeting}</p>
@@ -25,7 +25,7 @@ export default function Hero({ heroData, publicEmail, aiHighlights = [] }: HeroP
             - {PROFILE_HANDLE} {heroData.role} 포트폴리오
           </span>
         </h1>
-        <p className="text-sm md:text-base font-medium tracking-normal text-neutral-400">
+        <p className="font-mono text-sm text-ai-accent md:text-base">
           @{PROFILE_HANDLE}
         </p>
         <p className="text-2xl md:text-3xl text-neutral-200 font-semibold">
@@ -59,7 +59,7 @@ export default function Hero({ heroData, publicEmail, aiHighlights = [] }: HeroP
             href="/resume/portfolio.pdf"
             data-analytics-target="resume"
             download="윤승규-포트폴리오.pdf"
-            className="inline-flex min-h-11 items-center justify-center gap-2 rounded-full bg-white px-7 py-3 font-semibold text-gray-900 transition-colors hover:bg-gray-100 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white"
+            className="inline-flex min-h-11 items-center justify-center gap-2 rounded-full bg-white px-7 py-3 font-semibold text-ai-ink transition-colors hover:bg-ai-accent-soft focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white"
           >
             <Download aria-hidden size={18} />
             포트폴리오 PDF 다운로드
@@ -68,7 +68,7 @@ export default function Hero({ heroData, publicEmail, aiHighlights = [] }: HeroP
             <a
               href={`mailto:${publicEmail}`}
               data-analytics-target="email"
-              className="inline-flex min-h-11 items-center justify-center gap-2 rounded-full border border-white/30 bg-white/5 px-7 py-3 font-semibold text-white transition-colors hover:bg-white/10 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white"
+              className="inline-flex min-h-11 items-center justify-center gap-2 rounded-full border border-white/20 bg-white/5 px-7 py-3 font-semibold text-white transition-colors hover:border-ai-accent hover:bg-white/10 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white"
             >
               <Mail aria-hidden size={18} />
               이메일로 연락하기
@@ -95,7 +95,7 @@ export default function Hero({ heroData, publicEmail, aiHighlights = [] }: HeroP
         </div>
       </div>
       <div className="absolute bottom-10 animate-bounce-arrow">
-        <ArrowDown className="w-6 h-6 text-white" strokeWidth={2} />
+        <ArrowDown className="h-6 w-6 text-ai-accent" strokeWidth={2} />
       </div>
     </section>
   );

@@ -193,7 +193,7 @@ function HeatmapGrid({
                       day.inRange
                         ? 'border-white/10 hover:scale-110 focus:scale-110'
                         : 'border-transparent opacity-30'
-                    } ${isActive ? 'ring-2 ring-white/70 ring-offset-1 ring-offset-neutral-950 sm:ring-offset-2' : ''}`}
+                    } ${isActive ? 'ring-2 ring-ai-accent ring-offset-1 ring-offset-[#141210] sm:ring-offset-2' : ''}`}
                   >
                     <span className={emptyClasses} />
                     {day.companyCommitCount > 0 && (
@@ -235,10 +235,10 @@ function ActivityList({
   accentClass: string;
 }) {
   return (
-    <div className="rounded-2xl border border-neutral-200 bg-white p-4">
+    <div className="rounded-xl border border-ai-ink/10 bg-white p-4">
       <div className="flex items-center gap-2 mb-3">
         <span className={`h-2.5 w-2.5 rounded-full ${accentClass}`} />
-        <h4 className="text-sm font-semibold text-neutral-900">{title}</h4>
+        <h4 className="text-sm font-semibold text-ai-ink">{title}</h4>
       </div>
       {projects.length ? (
         <ul className="space-y-2">
@@ -248,7 +248,7 @@ function ActivityList({
               className="flex items-center justify-between gap-3 text-sm"
             >
               <span className="text-neutral-700">{project.name}</span>
-              <span className="rounded-full bg-neutral-100 px-2 py-0.5 text-xs font-medium text-neutral-600">
+              <span className="rounded-full bg-ai-ink/5 px-2 py-0.5 font-mono text-[11px] text-neutral-600">
                 {project.count}
               </span>
             </li>
@@ -307,52 +307,52 @@ export default function ActivityHeatmap({ heatmap }: ActivityHeatmapProps) {
     <SectionWrapper
       id="activity"
       title="Activity"
-      className="bg-white"
+      className="ai-cream text-ai-ink"
       contentVisibility
     >
       <div className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_320px] lg:gap-8">
         <AnimateOnScroll className="space-y-6">
           <div className="grid gap-4 md:grid-cols-3">
-            <div className="rounded-3xl border border-neutral-200 bg-neutral-50 p-5">
-              <p className="text-xs font-medium uppercase tracking-[0.18em] text-neutral-400">
-                Active Days
-              </p>
-              <p className="mt-3 text-3xl font-bold text-neutral-950">
+            <div className="paper-card rounded-2xl p-5">
+              <p className="font-mono text-[11px] tracking-[0.16em] text-neutral-500">active days</p>
+              <p className="mt-3 font-mono text-4xl font-semibold leading-none tracking-tight text-ai-ink">
                 {heatmap.summary.activeDays}
               </p>
-              <p className="mt-2 text-sm text-neutral-500">최근 1년 기준 활동한 날짜</p>
+              <p className="mt-3 text-sm text-neutral-600">최근 1년 기준 활동한 날짜</p>
             </div>
-            <div className="rounded-3xl border border-amber-200 bg-amber-50 p-5">
-              <p className="text-xs font-medium uppercase tracking-[0.18em] text-amber-700">
-                Company
+            <div className="paper-card rounded-2xl p-5">
+              <p className="flex items-center gap-2 font-mono text-[11px] tracking-[0.16em] text-neutral-500">
+                <span aria-hidden className="h-2 w-2 rounded-full bg-[var(--color-heatmap-company-4)]" />
+                company
               </p>
-              <p className="mt-3 text-3xl font-bold text-amber-950">
+              <p className="mt-3 font-mono text-4xl font-semibold leading-none tracking-tight text-ai-ink">
                 {heatmap.summary.totalCompanyCommits}
               </p>
-              <p className="mt-2 text-sm text-amber-700/80">회사 프로젝트 authored commits</p>
+              <p className="mt-3 text-sm text-neutral-600">회사 프로젝트 authored commits</p>
             </div>
-            <div className="rounded-3xl border border-emerald-200 bg-emerald-50 p-5">
-              <p className="text-xs font-medium uppercase tracking-[0.18em] text-emerald-700">
-                Personal
+            <div className="paper-card rounded-2xl p-5">
+              <p className="flex items-center gap-2 font-mono text-[11px] tracking-[0.16em] text-neutral-500">
+                <span aria-hidden className="h-2 w-2 rounded-full bg-[var(--color-heatmap-personal-4)]" />
+                personal
               </p>
-              <p className="mt-3 text-3xl font-bold text-emerald-950">
+              <p className="mt-3 font-mono text-4xl font-semibold leading-none tracking-tight text-ai-ink">
                 {heatmap.summary.totalPersonalCommits}
               </p>
-              <p className="mt-2 text-sm text-emerald-700/80">개인 프로젝트 authored commits</p>
+              <p className="mt-3 text-sm text-neutral-600">개인 프로젝트 authored commits</p>
             </div>
           </div>
 
-          <div className="rounded-[28px] border border-neutral-200 bg-neutral-950 px-4 py-5 text-white sm:px-5 sm:py-6 md:px-6">
+          <div className="ai-console rounded-2xl px-4 py-5 text-white sm:px-5 sm:py-6 md:px-6">
             <div className="flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
               <div>
-                <p className="text-xs uppercase tracking-[0.22em] text-neutral-500 sm:text-sm sm:tracking-[0.24em]">
-                  Portfolio Activity
+                <p className="font-mono text-xs text-neutral-400">
+                  ~/activity <span className="text-neutral-600">—</span> {heatmap.weeks.length} weeks
                 </p>
                 <h3 className="mt-2 text-xl font-semibold sm:text-2xl">
                   GitHub 잔디처럼 보는 1년 작업 흐름
                 </h3>
               </div>
-              <div className="flex flex-wrap items-center gap-3 text-xs text-neutral-400">
+              <div className="flex flex-wrap items-center gap-3 font-mono text-[11px] text-neutral-400">
                 <span className="inline-flex items-center gap-2">
                   <span className="h-2.5 w-2.5 rounded-full bg-[var(--color-heatmap-company-4)]" />
                   회사
@@ -374,12 +374,12 @@ export default function ActivityHeatmap({ heatmap }: ActivityHeatmapProps) {
                   type="button"
                   onClick={() => setMobilePageIndex((current) => Math.max(current - 1, 0))}
                   disabled={mobilePageIndex === 0}
-                  className="rounded-full border border-white/10 px-3 py-2 text-xs font-medium text-neutral-200 transition disabled:opacity-30"
+                  className="cursor-pointer rounded-full border border-white/10 px-3 py-2 text-xs font-medium text-neutral-200 transition hover:border-ai-accent disabled:opacity-30"
                 >
                   이전
                 </button>
                 <div className="text-center">
-                  <p className="text-[11px] uppercase tracking-[0.22em] text-neutral-500">
+                  <p className="font-mono text-[11px] tracking-[0.16em] text-neutral-500">
                     {mobilePageIndex + 1} / {mobileWeekPages.length}
                   </p>
                   <p className="mt-1 text-sm font-medium text-white">
@@ -394,7 +394,7 @@ export default function ActivityHeatmap({ heatmap }: ActivityHeatmapProps) {
                     )
                   }
                   disabled={mobilePageIndex === mobileWeekPages.length - 1}
-                  className="rounded-full border border-white/10 px-3 py-2 text-xs font-medium text-neutral-200 transition disabled:opacity-30"
+                  className="cursor-pointer rounded-full border border-white/10 px-3 py-2 text-xs font-medium text-neutral-200 transition hover:border-ai-accent disabled:opacity-30"
                 >
                   다음
                 </button>
@@ -423,13 +423,13 @@ export default function ActivityHeatmap({ heatmap }: ActivityHeatmapProps) {
         </AnimateOnScroll>
 
         <AnimateOnScroll className="lg:sticky lg:top-24 h-fit">
-          <div className="rounded-[28px] border border-neutral-200 bg-neutral-50 p-5 md:p-6">
+          <div className="paper-card rounded-2xl p-5 md:p-6">
             {activeDay ? (
               <>
-                <p className="text-xs font-medium uppercase tracking-[0.2em] text-neutral-400">
-                  Selected Day
+                <p className="font-mono text-[11px] tracking-[0.16em] text-ai-accent">
+                  $ selected day
                 </p>
-                <h3 className="mt-2 text-xl font-semibold text-neutral-950">
+                <h3 className="mt-2 text-xl font-semibold text-ai-ink">
                   {formatActivityDateLabel(activeDay.date)}
                 </h3>
                 <p className="mt-3 text-sm text-neutral-500">

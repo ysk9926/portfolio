@@ -96,44 +96,44 @@ export default function Projects({
     <SectionWrapper
       id="projects"
       title="Projects"
-      className="bg-neutral-50"
+      className="ai-paper text-ai-ink"
       contentVisibility
       fullWidthContent
     >
       {/* Filter buttons + view toggle — constrained to max-w-6xl */}
       <div className="max-w-6xl mx-auto px-4">
-        <div className="flex items-center justify-between mb-8">
-          <div className="flex gap-3">
+        <div className="mb-8 flex items-center justify-between gap-3">
+          <div className="paper-card inline-flex rounded-full p-1">
             <button
               onClick={() => setFilter('all')}
-              className={`rounded-full px-6 py-2 font-medium transition-colors ${
+              className={`cursor-pointer rounded-full px-5 py-2 text-sm font-medium transition-colors ${
                 filter === 'all'
-                  ? 'bg-gray-900 text-white'
-                  : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
+                  ? 'bg-ai-ink text-white'
+                  : 'text-neutral-600 hover:text-ai-ink'
               }`}
             >
               전체
             </button>
             <button
               onClick={() => setFilter('main')}
-              className={`rounded-full px-6 py-2 font-medium transition-colors ${
+              className={`cursor-pointer rounded-full px-5 py-2 text-sm font-medium transition-colors ${
                 filter === 'main'
-                  ? 'bg-gray-900 text-white'
-                  : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
+                  ? 'bg-ai-ink text-white'
+                  : 'text-neutral-600 hover:text-ai-ink'
               }`}
             >
               주요 프로젝트
             </button>
           </div>
 
-          <div className="flex gap-1">
+          <div className="paper-card inline-flex rounded-full p-1">
             <button
               onClick={() => setView('vertical')}
               aria-label="세로 타임라인 뷰"
-              className={`p-2 rounded-full transition-colors ${
+              className={`cursor-pointer rounded-full p-2 transition-colors ${
                 view === 'vertical'
-                  ? 'bg-gray-900 text-white'
-                  : 'bg-gray-200 text-gray-600 hover:bg-gray-300'
+                  ? 'bg-ai-ink text-white'
+                  : 'text-neutral-500 hover:text-ai-ink'
               }`}
             >
               <AlignLeft size={16} />
@@ -141,10 +141,10 @@ export default function Projects({
             <button
               onClick={() => setView('timeline')}
               aria-label="간트 타임라인 뷰"
-              className={`p-2 rounded-full transition-colors ${
+              className={`cursor-pointer rounded-full p-2 transition-colors ${
                 view === 'timeline'
-                  ? 'bg-gray-900 text-white'
-                  : 'bg-gray-200 text-gray-600 hover:bg-gray-300'
+                  ? 'bg-ai-ink text-white'
+                  : 'text-neutral-500 hover:text-ai-ink'
               }`}
             >
               <GanttChart size={16} />
@@ -152,10 +152,10 @@ export default function Projects({
             <button
               onClick={() => setView('card')}
               aria-label="카드 뷰"
-              className={`p-2 rounded-full transition-colors ${
+              className={`cursor-pointer rounded-full p-2 transition-colors ${
                 view === 'card'
-                  ? 'bg-gray-900 text-white'
-                  : 'bg-gray-200 text-gray-600 hover:bg-gray-300'
+                  ? 'bg-ai-ink text-white'
+                  : 'text-neutral-500 hover:text-ai-ink'
               }`}
             >
               <LayoutGrid size={16} />
@@ -172,7 +172,7 @@ export default function Projects({
             onClick={handleScrollLeft}
             disabled={!canScrollLeft}
             aria-label="이전 프로젝트"
-            className="hidden md:flex absolute left-4 top-1/2 -translate-y-1/2 z-10 w-11 h-11 items-center justify-center rounded-full bg-white/90 shadow-lg backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-opacity disabled:opacity-0 cursor-pointer"
+            className="hidden md:flex absolute left-4 top-1/2 -translate-y-1/2 z-10 w-11 h-11 items-center justify-center rounded-full border border-ai-ink/10 bg-white/90 text-ai-ink shadow-lg backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-opacity hover:border-ai-accent hover:text-ai-accent disabled:opacity-0 cursor-pointer"
           >
             <ChevronLeft size={20} strokeWidth={2.5} />
           </button>
@@ -197,7 +197,7 @@ export default function Projects({
             onClick={handleScrollRight}
             disabled={!canScrollRight}
             aria-label="다음 프로젝트"
-            className="hidden md:flex absolute right-4 top-1/2 -translate-y-1/2 z-10 w-11 h-11 items-center justify-center rounded-full bg-white/90 shadow-lg backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-opacity disabled:opacity-0 cursor-pointer"
+            className="hidden md:flex absolute right-4 top-1/2 -translate-y-1/2 z-10 w-11 h-11 items-center justify-center rounded-full border border-ai-ink/10 bg-white/90 text-ai-ink shadow-lg backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-opacity hover:border-ai-accent hover:text-ai-accent disabled:opacity-0 cursor-pointer"
           >
             <ChevronRight size={20} strokeWidth={2.5} />
           </button>
@@ -215,7 +215,7 @@ export default function Projects({
                   el.scrollTo({ left: i * (cardWidth + 24), behavior: 'smooth' });
                 }}
                 className={`h-2 rounded-full transition-all ${
-                  i === activeIndex ? 'bg-gray-800 w-6' : 'bg-gray-300 w-2'
+                  i === activeIndex ? 'w-6 bg-ai-accent' : 'w-2 bg-ai-ink/20'
                 }`}
                 aria-label={`프로젝트 ${i + 1}`}
               />

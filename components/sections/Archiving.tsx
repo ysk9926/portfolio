@@ -12,12 +12,12 @@ export default function Archiving({ data }: ArchivingProps) {
     <SectionWrapper
       id="archiving"
       title="Archiving"
-      className="bg-section-archiving text-white [&_h2]:text-white"
+      className="ai-ink text-white"
       contentVisibility
     >
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
-        {data.map((item, index) => (
-          <AnimateOnScroll key={index}>
+      <div className="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-6">
+        {data.map((item) => (
+          <AnimateOnScroll key={item.title}>
             <ArchiveCard
               title={item.title}
               description={item.description}

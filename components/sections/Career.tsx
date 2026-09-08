@@ -12,12 +12,12 @@ export default function Career({ data }: CareerProps) {
     <SectionWrapper
       id="career"
       title="Career"
-      className="bg-section-career"
+      className="ai-cream text-ai-ink"
       contentVisibility
     >
-      <div className="space-y-8 max-w-3xl mx-auto">
-        {data.map((entry, index) => (
-          <AnimateOnScroll key={index}>
+      <div className="mx-auto max-w-3xl space-y-6">
+        {data.map((entry) => (
+          <AnimateOnScroll key={`${entry.company}-${entry.period}`}>
             <CareerItem {...entry} />
           </AnimateOnScroll>
         ))}

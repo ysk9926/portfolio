@@ -16,14 +16,14 @@ export default function Skills({ categories }: SkillsProps) {
     <SectionWrapper
       id="skills"
       title="Tech Stack"
-      className="bg-section-skills"
+      className="ai-paper text-ai-ink"
       contentVisibility
     >
       <p className="mx-auto -mt-6 mb-10 max-w-2xl text-center text-sm text-neutral-500 md:text-base">
         실무에서 쓴 스택입니다. 각 항목의 근거는 프로젝트 수와 운영 기간으로 적었습니다.
       </p>
 
-      <div className="divide-y divide-neutral-200 border-y border-neutral-200">
+      <div className="divide-y divide-ai-ink/10 border-y border-ai-ink/10">
         {categories.map((category) => (
           <AnimateOnScroll key={category.category}>
             <div className="grid gap-3 py-5 md:grid-cols-[180px_minmax(0,1fr)] md:gap-8 md:py-6">
@@ -34,11 +34,11 @@ export default function Skills({ categories }: SkillsProps) {
                 {category.skills.map((skill) => (
                   <li
                     key={skill.name}
-                    className="inline-flex items-baseline gap-2 rounded-full border border-neutral-200 bg-white px-3.5 py-1.5 transition-colors hover:border-neutral-400"
+                    className="inline-flex items-baseline gap-2 rounded-full border border-ai-ink/10 bg-white/80 px-3.5 py-1.5 transition-colors hover:border-ai-accent"
                   >
-                    <span className="text-sm font-semibold text-neutral-900">{skill.name}</span>
+                    <span className="text-sm font-semibold text-ai-ink">{skill.name}</span>
                     {skill.detail && (
-                      <span className="text-[11px] text-neutral-500">{skill.detail}</span>
+                      <span className="font-mono text-[10px] text-neutral-500">{skill.detail}</span>
                     )}
                   </li>
                 ))}

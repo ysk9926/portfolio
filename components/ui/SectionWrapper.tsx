@@ -3,6 +3,8 @@ import { ReactNode } from 'react';
 interface SectionWrapperProps {
   id: string;
   title: string;
+  /** Mono path-style label above the title, e.g. "~/about". Defaults to "~/{id}". */
+  eyebrow?: string;
   className?: string;
   children: ReactNode;
   contentVisibility?: boolean;
@@ -12,6 +14,7 @@ interface SectionWrapperProps {
 export default function SectionWrapper({
   id,
   title,
+  eyebrow,
   className = '',
   children,
   contentVisibility = false,
@@ -25,10 +28,15 @@ export default function SectionWrapper({
     >
       <div className={`py-16 md:py-24 ${fullWidthContent ? '' : 'max-w-6xl mx-auto px-4'}`}>
         <div className={fullWidthContent ? 'max-w-6xl mx-auto px-4' : ''}>
-          <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">
-            {title}
-            <span className="block w-12 h-1 bg-neutral-800 mx-auto mt-4 rounded-full" />
-          </h2>
+          <div className="mb-12 text-center">
+            <p className="font-mono text-xs tracking-[0.18em] text-ai-accent">
+              {eyebrow ?? `~/${id}`}
+            </p>
+            <h2 className="mt-2 text-3xl font-bold tracking-tight md:text-4xl">
+              {title}
+              <span className="mx-auto mt-4 block h-1 w-12 rounded-full bg-ai-accent" />
+            </h2>
+          </div>
         </div>
         {children}
       </div>
