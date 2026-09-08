@@ -9,6 +9,7 @@ export const sectionKeys = [
   'projects',
   'project-portfolio-sync',
   'activity-heatmap',
+  'ai-workflow',
 ] as const;
 
 export type SectionKey = (typeof sectionKeys)[number];
@@ -188,6 +189,77 @@ export const activityHeatmapPayloadSchema = z.object({
   ),
 });
 
+export const aiToolAccentSchema = z.union([
+  z.literal('claude'),
+  z.literal('codex'),
+  z.literal('product'),
+]);
+
+export const aiSkillClientSchema = z.union([
+  z.literal('공용'),
+  z.literal('Claude'),
+  z.literal('Codex'),
+]);
+
+export const aiCommandKindSchema = z.union([
+  z.literal('slash'),
+  z.literal('hook'),
+  z.literal('automation'),
+  z.literal('script'),
+]);
+
+export const aiWorkflowPayloadSchema = z.object({
+  eyebrow: requiredString,
+  headline: requiredString,
+  intro: requiredString,
+  highlights: z.array(requiredString),
+  stats: z.array(
+    z.object({
+      label: requiredString,
+      value: requiredString,
+      note: optionalString,
+    }),
+  ),
+  tools: z.array(
+    z.object({
+      name: requiredString,
+      kind: requiredString,
+      model: optionalString,
+      summary: requiredString,
+      points: z.array(requiredString),
+      accent: aiToolAccentSchema,
+    }),
+  ),
+  workflow: z.array(
+    z.object({
+      step: requiredString,
+      title: requiredString,
+      description: requiredString,
+      skills: z.array(requiredString),
+    }),
+  ),
+  skillGroups: z.array(
+    z.object({
+      title: requiredString,
+      client: aiSkillClientSchema,
+      description: requiredString,
+      skills: z.array(
+        z.object({
+          name: requiredString,
+          summary: requiredString,
+        }),
+      ),
+    }),
+  ),
+  commands: z.array(
+    z.object({
+      name: requiredString,
+      kind: aiCommandKindSchema,
+      description: requiredString,
+    }),
+  ),
+});
+
 export const sectionPayloadSchemaMap = {
   site: sitePayloadSchema,
   about: aboutPayloadSchema,
@@ -197,6 +269,7 @@ export const sectionPayloadSchemaMap = {
   projects: projectsPayloadSchema,
   'project-portfolio-sync': projectPortfolioSyncPayloadSchema,
   'activity-heatmap': activityHeatmapPayloadSchema,
+  'ai-workflow': aiWorkflowPayloadSchema,
 } as const;
 
 export type SitePayload = z.infer<typeof sitePayloadSchema>;
@@ -209,6 +282,7 @@ export type ProjectPortfolioSyncPayload = z.infer<
   typeof projectPortfolioSyncPayloadSchema
 >;
 export type ActivityHeatmapPayload = z.infer<typeof activityHeatmapPayloadSchema>;
+export type AiWorkflowPayload = z.infer<typeof aiWorkflowPayloadSchema>;
 
 export interface SectionPayloadMap {
   site: SitePayload;
@@ -219,4 +293,5 @@ export interface SectionPayloadMap {
   projects: ProjectsPayload;
   'project-portfolio-sync': ProjectPortfolioSyncPayload;
   'activity-heatmap': ActivityHeatmapPayload;
+  'ai-workflow': AiWorkflowPayload;
 }

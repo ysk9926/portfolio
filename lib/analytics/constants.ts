@@ -10,6 +10,7 @@ export const LIMITS = {
 } as const;
 export const SECTION_KEYS = [
   "hero",
+  "ai-workflow",
   "about",
   "skills",
   "archiving",
@@ -18,6 +19,7 @@ export const SECTION_KEYS = [
   "career",
 ] as const;
 export const TARGET_KEYS = [
+  "ai-workflow",
   "github",
   "blog",
   "email",

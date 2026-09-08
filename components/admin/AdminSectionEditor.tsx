@@ -39,6 +39,9 @@ const READ_ONLY_SECTIONS: ReadonlySet<SectionKey> = new Set([
   'activity-heatmap',
 ]);
 
+/** Sections without a form editor; edited as JSON only. */
+const JSON_ONLY_SECTIONS: ReadonlySet<SectionKey> = new Set(['ai-workflow']);
+
 export default function AdminSectionEditor({
   initialSection = 'site',
   adminEmail,
@@ -46,7 +49,7 @@ export default function AdminSectionEditor({
   const [sectionKey, setSectionKey] = useState<SectionKey>(initialSection);
   const [payload, setPayload] = useState<unknown>(null);
   const [jsonText, setJsonText] = useState('');
-  const [mode, setMode] = useState<Mode>('form');
+  const [preferredMode, setPreferredMode] = useState<Mode>('form');
   const [updatedAt, setUpdatedAt] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
   const [isSaving, setIsSaving] = useState(false);
@@ -56,6 +59,8 @@ export default function AdminSectionEditor({
   const loadedForSectionRef = useRef<SectionKey | null>(null);
 
   const isReadOnly = READ_ONLY_SECTIONS.has(sectionKey);
+  const isJsonOnly = JSON_ONLY_SECTIONS.has(sectionKey);
+  const mode: Mode = isJsonOnly ? 'json' : preferredMode;
 
   const prettyUpdatedAt = useMemo(() => {
     if (!updatedAt) return '—';
@@ -174,7 +179,7 @@ export default function AdminSectionEditor({
       setJsonText(JSON.stringify(payload, null, 2));
       setError(null);
     }
-    setMode(nextMode);
+    setPreferredMode(nextMode);
   };
 
   const handleReset = async () => {
@@ -241,7 +246,7 @@ export default function AdminSectionEditor({
           </div>
 
           <div className="flex items-center gap-2">
-            {!isReadOnly && (
+            {!isReadOnly && !isJsonOnly && (
               <div className="inline-flex overflow-hidden rounded-md border border-neutral-300 bg-white">
                 <button
                   type="button"
@@ -316,7 +321,9 @@ export default function AdminSectionEditor({
           ) : (
             <div className="rounded-xl border border-neutral-200 bg-white">
               <div className="flex items-center justify-between border-b border-neutral-200 px-4 py-2">
-                <p className="text-xs font-medium text-neutral-600">JSON 편집 (고급)</p>
+                <p className="text-xs font-medium text-neutral-600">
+                  {isJsonOnly ? 'JSON 편집 · 이 섹션은 폼 편집을 지원하지 않습니다' : 'JSON 편집 (고급)'}
+                </p>
                 <p className="text-[11px] text-neutral-400">{jsonText.length} chars</p>
               </div>
               <textarea

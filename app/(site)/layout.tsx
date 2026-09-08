@@ -16,23 +16,27 @@ import {
   withProfileHandle,
 } from '@/lib/seo/profile';
 
-const withBlogNav = (navItems: NavItem[]): NavItem[] => {
-  if (navItems.some((item) => item.href === '/blog')) {
+const insertBefore = (
+  navItems: NavItem[],
+  item: NavItem,
+  anchorHref: string,
+): NavItem[] => {
+  if (navItems.some((existing) => existing.href === item.href)) {
     return navItems;
   }
 
-  const careerIndex = navItems.findIndex((item) => item.href === '#career');
-  const blogNavItem: NavItem = { label: 'Blog', href: '/blog' };
-
-  if (careerIndex === -1) {
-    return [...navItems, blogNavItem];
+  const anchorIndex = navItems.findIndex((existing) => existing.href === anchorHref);
+  if (anchorIndex === -1) {
+    return [...navItems, item];
   }
 
-  return [
-    ...navItems.slice(0, careerIndex),
-    blogNavItem,
-    ...navItems.slice(careerIndex),
-  ];
+  return [...navItems.slice(0, anchorIndex), item, ...navItems.slice(anchorIndex)];
+};
+
+/** Guarantees the AI and Blog entries even when the stored nav predates them. */
+const withDefaultNav = (navItems: NavItem[]): NavItem[] => {
+  const withAi = insertBefore(navItems, { label: 'AI', href: '#ai-workflow' }, '#about');
+  return insertBefore(withAi, { label: 'Blog', href: '/blog' }, '#career');
 };
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -42,7 +46,7 @@ export async function generateMetadata(): Promise<Metadata> {
   const ogImage = absoluteImageUrl(null, siteConfig);
   const metadataBase = new URL(siteUrl);
   const title = withProfileHandle(siteConfig.title);
-  const description = `${site.hero.role} ${site.hero.name}(${PROFILE_HANDLE})의 포트폴리오입니다. ERP·커머스·RAG AI 프로젝트를 기획부터 배포까지 주도한 경험과 기술 기록을 소개합니다.`;
+  const description = `${site.hero.role} ${site.hero.name}(${PROFILE_HANDLE})의 포트폴리오입니다. Claude Code·Codex 기반 AI 워크플로우와 직접 만든 스킬, ERP·커머스·RAG AI 프로젝트를 기획부터 배포까지 주도한 경험을 소개합니다.`;
   const googleSiteVerification = process.env.GOOGLE_SITE_VERIFICATION;
 
   return {
@@ -56,6 +60,9 @@ export async function generateMetadata(): Promise<Metadata> {
       '프론트엔드',
       '풀스택 개발자',
       '개발자 포트폴리오',
+      'AI 활용 개발자',
+      'Claude Code',
+      'Codex CLI',
       'React',
       'Next.js',
       'TypeScript',
@@ -101,7 +108,7 @@ export default async function SiteLayout({
       >
         본문으로 건너뛰기
       </a>
-      <Header navItems={withBlogNav(site.nav)} heroName={site.hero.name} />
+      <Header navItems={withDefaultNav(site.nav)} heroName={site.hero.name} />
       <main id="main-content" tabIndex={-1}>{children}</main>
       <Footer footerData={site.footer} />
       <ScrollToTop />

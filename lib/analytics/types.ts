@@ -1,5 +1,6 @@
 export type SectionKey =
   | "hero"
+  | "ai-workflow"
   | "about"
   | "skills"
   | "archiving"
@@ -11,7 +12,13 @@ export type Region =
   | { kind: "section"; key: SectionKey }
   | { kind: "project"; projectId: number; surface: "modal" | "detail" };
 export type TargetKey =
-  "github" | "blog" | "email" | "resume" | "demo" | "archive";
+  | "ai-workflow"
+  | "github"
+  | "blog"
+  | "email"
+  | "resume"
+  | "demo"
+  | "archive";
 export type AnalyticsEvent = { atMs: number } & (
   | { type: "page_start" }
   | {

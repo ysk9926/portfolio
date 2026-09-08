@@ -1,7 +1,11 @@
 import { revalidatePath } from 'next/cache';
 import { NextResponse } from 'next/server';
 import { getAdminContext } from '@/lib/admin';
-import { getSectionPayload, getSectionUpdatedAt } from '@/lib/portfolio-data/server';
+import {
+  RAW_JSON_SECTIONS,
+  getSectionPayload,
+  getSectionUpdatedAt,
+} from '@/lib/portfolio-data/server';
 import {
   isSectionKey,
   sectionPayloadSchemaMap,
@@ -89,25 +93,46 @@ export async function PUT(
     }
 
     const supabase = await createServerSupabaseClient();
-    const { data, error } = await supabase.rpc('admin_replace_section', {
-      p_section_key: sectionKey,
-      p_payload: parsedPayload.data,
-    });
+    let updatedAt: string | null = null;
 
-    if (error) {
-      return NextResponse.json(
-        { error: `Failed to persist section: ${error.message}` },
-        { status: 500 },
-      );
+    if (RAW_JSON_SECTIONS.has(sectionKey)) {
+      const { data, error } = await supabase
+        .from('section_payloads')
+        .upsert(
+          { section_key: sectionKey, payload: parsedPayload.data },
+          { onConflict: 'section_key' },
+        )
+        .select('updated_at')
+        .single();
+
+      if (error) {
+        return NextResponse.json(
+          { error: `Failed to persist section: ${error.message}` },
+          { status: 500 },
+        );
+      }
+
+      updatedAt = typeof data?.updated_at === 'string' ? data.updated_at : null;
+    } else {
+      const { data, error } = await supabase.rpc('admin_replace_section', {
+        p_section_key: sectionKey,
+        p_payload: parsedPayload.data,
+      });
+
+      if (error) {
+        return NextResponse.json(
+          { error: `Failed to persist section: ${error.message}` },
+          { status: 500 },
+        );
+      }
+
+      updatedAt = typeof data === 'string' ? data : null;
     }
 
     revalidatePath('/');
     revalidatePath('/admin');
 
-    return NextResponse.json({
-      ok: true,
-      updatedAt: typeof data === 'string' ? data : null,
-    });
+    return NextResponse.json({ ok: true, updatedAt });
   } catch (caughtError) {
     const message =
       caughtError instanceof Error

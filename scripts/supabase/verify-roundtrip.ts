@@ -13,7 +13,11 @@ const sectionFileMap: Record<SectionKey, string> = {
   projects: 'projects.json',
   'project-portfolio-sync': 'project-portfolio-sync.json',
   'activity-heatmap': 'activity-heatmap.json',
+  'ai-workflow': 'ai-workflow.json',
 };
+
+/** Stored as raw jsonb; not served by export_section_payload. */
+const rawJsonSections = new Set<SectionKey>(['ai-workflow']);
 
 const sectionOrder: SectionKey[] = [
   'site',
@@ -24,6 +28,7 @@ const sectionOrder: SectionKey[] = [
   'projects',
   'project-portfolio-sync',
   'activity-heatmap',
+  'ai-workflow',
 ];
 
 if (!process.env.SUPABASE_DB_URL) {
@@ -111,9 +116,15 @@ const run = async () => {
       const expected = JSON.parse(expectedRaw);
       expectedBySection[sectionKey] = expected;
 
-      const query = await client.query<{
-        payload: unknown;
-      }>('select public.export_section_payload($1) as payload', [sectionKey]);
+      const query = rawJsonSections.has(sectionKey)
+        ? await client.query<{ payload: unknown }>(
+            'select payload from public.section_payloads where section_key = $1',
+            [sectionKey],
+          )
+        : await client.query<{ payload: unknown }>(
+            'select public.export_section_payload($1) as payload',
+            [sectionKey],
+          );
 
       const actual = query.rows[0]?.payload;
       const expectedCanonical = canonicalize(expected);

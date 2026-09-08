@@ -2,6 +2,7 @@ import 'server-only';
 
 import {
   ActivityHeatmap,
+  AiWorkflow,
   ArchiveItem,
   CareerEntry,
   PortfolioViewData,
@@ -17,6 +18,32 @@ import {
   sectionPayloadSchemaMap,
 } from '@/lib/types/payload';
 import { createServerSupabaseClient } from '@/utils/supabase/server';
+import aiWorkflowFallback from '@/data/ai-workflow.json';
+
+/**
+ * Sections stored as raw jsonb in section_payloads, bypassing the
+ * per-section normalization in export_section_payload / admin_replace_section.
+ */
+export const RAW_JSON_SECTIONS: ReadonlySet<SectionKey> = new Set(['ai-workflow']);
+
+const RAW_SECTION_FALLBACKS: Partial<Record<SectionKey, unknown>> = {
+  'ai-workflow': aiWorkflowFallback,
+};
+
+const getRawSectionPayload = async (sectionKey: SectionKey): Promise<unknown> => {
+  const supabase = await createServerSupabaseClient();
+  const { data, error } = await supabase
+    .from('section_payloads')
+    .select('payload')
+    .eq('section_key', sectionKey)
+    .maybeSingle();
+
+  if (error) {
+    throw new Error(`Failed to load section \"${sectionKey}\": ${error.message}`);
+  }
+
+  return data?.payload ?? RAW_SECTION_FALLBACKS[sectionKey];
+};
 
 const parseSectionPayload = <K extends SectionKey>(
   sectionKey: K,
@@ -29,6 +56,10 @@ const parseSectionPayload = <K extends SectionKey>(
 export const getSectionPayload = async <K extends SectionKey>(
   sectionKey: K,
 ): Promise<SectionPayloadMap[K]> => {
+  if (RAW_JSON_SECTIONS.has(sectionKey)) {
+    return parseSectionPayload(sectionKey, await getRawSectionPayload(sectionKey));
+  }
+
   const supabase = await createServerSupabaseClient();
   const { data, error } = await supabase.rpc('export_section_payload', {
     p_section_key: sectionKey,
@@ -64,8 +95,17 @@ export const getSiteData = async (): Promise<SiteViewData> => {
 };
 
 export const getPortfolioPageData = async (): Promise<PortfolioViewData> => {
-  const [site, about, skills, archiving, activityHeatmap, projects, projectPortfolioSync, career] =
-    await Promise.all([
+  const [
+    site,
+    about,
+    skills,
+    archiving,
+    activityHeatmap,
+    projects,
+    projectPortfolioSync,
+    career,
+    aiWorkflow,
+  ] = await Promise.all([
       getSectionPayload('site'),
       getSectionPayload('about'),
       getSectionPayload('skills'),
@@ -74,6 +114,7 @@ export const getPortfolioPageData = async (): Promise<PortfolioViewData> => {
       getSectionPayload('projects'),
       getSectionPayload('project-portfolio-sync'),
       getSectionPayload('career'),
+      getSectionPayload('ai-workflow'),
     ]);
 
   return {
@@ -85,5 +126,6 @@ export const getPortfolioPageData = async (): Promise<PortfolioViewData> => {
     projects: projects as Project[],
     projectPortfolioSync: projectPortfolioSync as ProjectPortfolioSync,
     career: career as CareerEntry[],
+    aiWorkflow: aiWorkflow as AiWorkflow,
   };
 };

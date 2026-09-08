@@ -166,6 +166,58 @@ export interface Project {
   portfolioSync?: ProjectPortfolioSyncEntry;
 }
 
+// AI workflow
+export type AiToolAccent = 'claude' | 'codex' | 'product';
+export type AiSkillClient = '공용' | 'Claude' | 'Codex';
+export type AiCommandKind = 'slash' | 'hook' | 'automation' | 'script';
+
+export interface AiStat {
+  label: string;
+  value: string;
+  note?: string;
+}
+
+export interface AiTool {
+  name: string;
+  kind: string;
+  model?: string;
+  summary: string;
+  points: string[];
+  accent: AiToolAccent;
+}
+
+export interface AiWorkflowStep {
+  step: string;
+  title: string;
+  description: string;
+  skills: string[];
+}
+
+export interface AiSkillGroup {
+  title: string;
+  client: AiSkillClient;
+  description: string;
+  skills: { name: string; summary: string }[];
+}
+
+export interface AiCommand {
+  name: string;
+  kind: AiCommandKind;
+  description: string;
+}
+
+export interface AiWorkflow {
+  eyebrow: string;
+  headline: string;
+  intro: string;
+  highlights: string[];
+  stats: AiStat[];
+  tools: AiTool[];
+  workflow: AiWorkflowStep[];
+  skillGroups: AiSkillGroup[];
+  commands: AiCommand[];
+}
+
 // Career
 export interface CareerEntry {
   company: string;
@@ -184,4 +236,5 @@ export interface PortfolioViewData {
   projects: Project[];
   projectPortfolioSync: ProjectPortfolioSync;
   career: CareerEntry[];
+  aiWorkflow: AiWorkflow;
 }

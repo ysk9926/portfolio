@@ -1,4 +1,5 @@
 import Hero from '@/components/sections/Hero';
+import AiWorkflow from '@/components/sections/AiWorkflow';
 import About from '@/components/sections/About';
 import Skills from '@/components/sections/Skills';
 import Archiving from '@/components/sections/Archiving';
@@ -13,7 +14,12 @@ export default async function Home() {
 
   return (
     <>
-      <Hero heroData={data.site.hero} publicEmail={publicEmail} />
+      <Hero
+        heroData={data.site.hero}
+        publicEmail={publicEmail}
+        aiHighlights={data.aiWorkflow.highlights}
+      />
+      <AiWorkflow data={data.aiWorkflow} />
       <About
         data={data.about}
         aboutSummary={data.site.aboutSummary}

@@ -21,6 +21,7 @@ export const sectionMeta: Record<SectionKey, SectionMeta> = {
   archiving: { label: '아카이빙', description: '외부 콘텐츠 링크', group: 'content' },
   career: { label: '경력', description: '회사 이력', group: 'content' },
   projects: { label: '프로젝트', description: '포트폴리오 상세', group: 'content' },
+  'ai-workflow': { label: 'AI Workflow', description: 'AI 도구 · 스킬 · 자동화', group: 'content' },
   'project-portfolio-sync': {
     label: 'Portfolio Sync',
     description: '자동 수집 · 읽기 전용',
