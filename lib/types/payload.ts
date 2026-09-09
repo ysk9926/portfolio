@@ -109,7 +109,6 @@ export const projectsPayloadSchema = z.array(
     techStack: z.array(requiredString),
     deployUrl: optionalString,
     githubUrl: optionalString,
-    isMain: z.boolean(),
     thumbnail: requiredString,
     screenshots: z.array(requiredString),
     shortDescription: optionalString,

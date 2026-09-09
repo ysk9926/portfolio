@@ -3,7 +3,7 @@
 import { ProjectsPayload } from '@/lib/types/payload';
 import { Card, CardBody, CardHeader } from '../ui/Card';
 import { ArrayField, StringArrayField } from '../ui/ArrayField';
-import { Checkbox, Field, NumberInput, TextArea, TextInput } from '../ui/Field';
+import { Field, NumberInput, TextArea, TextInput } from '../ui/Field';
 
 interface ProjectsEditorProps {
   value: ProjectsPayload;
@@ -41,7 +41,6 @@ export function ProjectsEditor({ value, onChange }: ProjectsEditorProps) {
             techStack: [],
             deployUrl: '',
             githubUrl: '',
-            isMain: false,
             thumbnail: '',
             screenshots: [],
             shortDescription: '',
@@ -65,13 +64,6 @@ export function ProjectsEditor({ value, onChange }: ProjectsEditorProps) {
                   </Field>
                   <Field label="기간" required className="md:col-span-2">
                     <TextInput value={item.period} onChange={(v) => update({ period: v })} />
-                  </Field>
-                  <Field label="메인 노출">
-                    <Checkbox
-                      checked={item.isMain}
-                      onChange={(v) => update({ isMain: v })}
-                      label="메인에 노출"
-                    />
                   </Field>
                 </div>
 

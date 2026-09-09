@@ -115,11 +115,7 @@ export default function ProjectTimelineView({
                       {/* Render bar segment */}
                       {isInSpan && i === startIndex && (
                         <div
-                          className={`absolute z-10 top-2 bottom-2 left-0.5 flex items-center overflow-hidden rounded-md text-xs font-medium transition-all hover:scale-[1.02] hover:shadow-md ${
-                            project.isMain
-                              ? 'bg-ai-ink text-white'
-                              : 'bg-ai-accent-soft text-[#8a3f22]'
-                          }`}
+                          className="absolute z-10 top-2 bottom-2 left-0.5 flex items-center overflow-hidden rounded-md bg-ai-ink text-xs font-medium text-white transition-all hover:scale-[1.02] hover:shadow-md"
                           style={{
                             width: `calc(${spanCount} * 100% + ${spanCount - 1} * 0px - 4px)`,
                           }}
@@ -129,20 +125,12 @@ export default function ProjectTimelineView({
                             type="button"
                             onClick={() => onDetailClick(project)}
                             aria-label={`${project.title} 프로젝트 열기`}
-                            className={`group/bar flex min-w-0 flex-1 items-center gap-1.5 self-stretch px-3 text-left transition-colors ${
-                              project.isMain
-                                ? 'hover:bg-ai-accent'
-                                : 'hover:bg-[#ecc9b6]'
-                            }`}
+                            className="group/bar flex min-w-0 flex-1 items-center gap-1.5 self-stretch px-3 text-left transition-colors hover:bg-ai-accent"
                           >
                             <span className="truncate">{project.title}</span>
                             {parsed.isOngoing && (
                               <span
-                                className={`shrink-0 w-2 h-2 rounded-full animate-pulse-dot ${
-                                  project.isMain
-                                    ? 'bg-ai-codex'
-                                    : 'bg-ai-codex'
-                                }`}
+                                className="shrink-0 w-2 h-2 rounded-full animate-pulse-dot bg-ai-codex"
                               />
                             )}
                             <ArrowUpRight
@@ -181,9 +169,7 @@ export default function ProjectTimelineView({
                         ? 'bg-ai-codex animate-pulse-dot'
                         : activeKey === String(project.id)
                           ? 'bg-ai-accent'
-                          : project.isMain
-                            ? 'bg-ai-ink'
-                            : 'bg-ai-ink/30'
+                          : 'bg-ai-ink'
                     }`}
                   />
 

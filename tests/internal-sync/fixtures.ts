@@ -10,7 +10,6 @@ export const makePortfolioSyncRequest = () => ({
         techStack: ['Next.js'],
         deployUrl: 'https://example.com',
         githubUrl: 'https://github.com/example/sample',
-        isMain: true,
         thumbnail: '/images/projects/generated/sample/01-item.png',
         screenshots: ['/images/projects/generated/sample/01-item.png'],
         shortDescription: 'Sample short description',

@@ -14,7 +14,6 @@ const ProjectVerticalTimelineView = dynamic(
   () => import('../ui/ProjectVerticalTimelineView'),
 );
 
-type FilterType = 'all' | 'main';
 type ViewType = 'card' | 'timeline' | 'vertical';
 
 const SCROLL_AMOUNT = 504; // card 480px + gap 24px
@@ -28,7 +27,6 @@ export default function Projects({
   projectsData,
   projectPortfolioSyncData,
 }: ProjectsProps) {
-  const [filter, setFilter] = useState<FilterType>('all');
   const [view, setView] = useState<ViewType>('vertical');
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
   const [canScrollLeft, setCanScrollLeft] = useState(false);
@@ -39,10 +37,6 @@ export default function Projects({
     return mergePortfolioProjects(projectsData, projectPortfolioSyncData);
   }, [projectsData, projectPortfolioSyncData]);
 
-  const filteredProjects =
-    filter === 'all'
-      ? mergedProjects
-      : mergedProjects.filter((project) => project.isMain);
 
   const updateScrollButtons = useCallback(() => {
     const el = scrollRef.current;
@@ -53,8 +47,8 @@ export default function Projects({
     const cardWidth = cardEl?.clientWidth ?? 327;
     const gap = 24;
     const index = Math.round(el.scrollLeft / (cardWidth + gap));
-    setActiveIndex(Math.min(index, filteredProjects.length - 1));
-  }, [filteredProjects.length]);
+    setActiveIndex(Math.min(index, mergedProjects.length - 1));
+  }, [mergedProjects.length]);
 
   useEffect(() => {
     const el = scrollRef.current;
@@ -67,14 +61,6 @@ export default function Projects({
       window.removeEventListener('resize', updateScrollButtons);
     };
   }, [updateScrollButtons]);
-
-  // Reset scroll position when filter changes
-  useEffect(() => {
-    const el = scrollRef.current;
-    if (!el) return;
-    el.scrollTo({ left: 0, behavior: 'instant' as ScrollBehavior });
-    requestAnimationFrame(updateScrollButtons);
-  }, [filter, updateScrollButtons]);
 
   const handleScrollLeft = useCallback(() => {
     scrollRef.current?.scrollBy({ left: -SCROLL_AMOUNT, behavior: 'smooth' });
@@ -100,32 +86,9 @@ export default function Projects({
       contentVisibility
       fullWidthContent
     >
-      {/* Filter buttons + view toggle — constrained to max-w-6xl */}
+      {/* View toggle — constrained to max-w-6xl */}
       <div className="max-w-6xl mx-auto px-4">
-        <div className="mb-8 flex items-center justify-between gap-3">
-          <div className="paper-card inline-flex rounded-full p-1">
-            <button
-              onClick={() => setFilter('all')}
-              className={`cursor-pointer rounded-full px-5 py-2 text-sm font-medium transition-colors ${
-                filter === 'all'
-                  ? 'bg-ai-ink text-white'
-                  : 'text-neutral-600 hover:text-ai-ink'
-              }`}
-            >
-              전체
-            </button>
-            <button
-              onClick={() => setFilter('main')}
-              className={`cursor-pointer rounded-full px-5 py-2 text-sm font-medium transition-colors ${
-                filter === 'main'
-                  ? 'bg-ai-ink text-white'
-                  : 'text-neutral-600 hover:text-ai-ink'
-              }`}
-            >
-              주요 프로젝트
-            </button>
-          </div>
-
+        <div className="mb-8 flex items-center justify-end gap-3">
           <div className="paper-card inline-flex rounded-full p-1">
             <button
               onClick={() => setView('vertical')}
@@ -182,7 +145,7 @@ export default function Projects({
             ref={scrollRef}
             className="flex gap-6 overflow-x-auto snap-x snap-mandatory carousel-scrollbar-hide px-4 md:px-[max(1rem,calc((100vw-72rem)/2+1rem))] pb-4"
           >
-            {filteredProjects.map((project) => (
+            {mergedProjects.map((project) => (
               <div
                 key={project.id}
                 className="shrink-0 w-[calc(100vw-3rem)] md:w-[480px] snap-center"
@@ -204,7 +167,7 @@ export default function Projects({
 
           {/* 모바일 페이지네이션 도트 */}
           <div className="flex md:hidden justify-center gap-2 mt-4">
-            {filteredProjects.map((_, i) => (
+            {mergedProjects.map((_, i) => (
               <button
                 key={i}
                 onClick={() => {
@@ -225,14 +188,14 @@ export default function Projects({
       ) : view === 'timeline' ? (
         <div className="max-w-6xl mx-auto px-4">
           <ProjectTimelineView
-            projects={filteredProjects}
+            projects={mergedProjects}
             onDetailClick={handleDetailClick}
           />
         </div>
       ) : (
         <div className="max-w-6xl mx-auto px-4">
           <ProjectVerticalTimelineView
-            projects={filteredProjects}
+            projects={mergedProjects}
             onDetailClick={handleDetailClick}
           />
         </div>

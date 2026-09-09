@@ -86,9 +86,7 @@ export default function ProjectVerticalTimelineView({
                               ? 'bg-ai-codex animate-pulse-dot'
                               : isActive
                                 ? 'bg-ai-accent'
-                                : project.isMain
-                                  ? 'bg-ai-ink'
-                                  : 'bg-ai-ink/30'
+                                : 'bg-ai-ink'
                           }`}
                         />
                       </div>

@@ -67,7 +67,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         url: `${getSiteUrl(siteConfig)}${projectPath(project)}`,
         lastModified: getProjectUpdatedDate(project) ?? projectFallbackDate,
         changeFrequency: 'monthly',
-        priority: project.isMain ? 0.75 : 0.6,
+        priority: 0.7,
       });
     }
   } catch {

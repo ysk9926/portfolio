@@ -129,7 +129,7 @@ function ProjectSplitModal({ project, onClose }: { project: Project; onClose: ()
   // Accent follows the site's heatmap legend: amber for company work, emerald for personal projects.
   const tone = present(project.portfolioSync?.company) ? 'company' : 'personal';
   const eyebrow =
-    present(project.portfolioSync?.status) ?? (project.isMain ? '주요 프로젝트' : '프로젝트');
+    present(project.portfolioSync?.status) ?? '프로젝트';
   // Thumbnail leads the gallery; skip it when it duplicates a screenshot.
   const images = useMemo(() => {
     const list = [project.thumbnail, ...(project.screenshots ?? [])].filter(Boolean);

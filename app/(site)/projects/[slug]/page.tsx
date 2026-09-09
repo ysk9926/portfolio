@@ -181,11 +181,6 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
                 {project.portfolioSync.status}
               </span>
             )}
-            {project.isMain && (
-              <span className="rounded-full border border-neutral-300 px-3 py-1 text-xs font-medium text-neutral-700">
-                주요 프로젝트
-              </span>
-            )}
             {project.portfolioSync?.track && (
               <span className="rounded-full bg-neutral-100 px-3 py-1 text-xs font-medium text-neutral-700">
                 {project.portfolioSync.track}

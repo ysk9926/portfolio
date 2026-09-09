@@ -27,7 +27,6 @@
       "MudBlazor"
     ],
     "githubUrl": "https://bitbucket.org/wonikpne/wonikpne-recipe-management",
-    "isMain": true,
     "thumbnail": "",
     "screenshots": [],
     "shortDescription": "배터리 테스트 공정의 레시피(공정 실행 지시서)를 시각적으로 편집·관리하는 엔터프라이즈 웹 애플리케이션. 자체 WebGL 렌더러를 구축하여 3만 개 이상 블록의 실시간 렌더링 및 인터랙션을 구현.",
@@ -65,7 +64,6 @@
       "WebSocket"
     ],
     "githubUrl": "https://github.com/Pooolingforest/bridgeui-client",
-    "isMain": true,
     "thumbnail": "/images/projects/generated/bridgeuiclient/01-item.png",
     "screenshots": [
       "/images/projects/generated/bridgeuiclient/01-item.png",
@@ -112,7 +110,6 @@
       "Vercel"
     ],
     "githubUrl": "https://github.com/ysk9926/calender-table-mono",
-    "isMain": true,
     "thumbnail": "/images/projects/generated/calendertablemono/01-item.png",
     "screenshots": [
       "/images/projects/generated/calendertablemono/01-item.png",
@@ -151,7 +148,6 @@
       "python-pptx"
     ],
     "githubUrl": "https://github.com/Pooolingforest/doc-creator",
-    "isMain": true,
     "thumbnail": "/images/projects/generated/doccreator/01-item.png",
     "screenshots": [
       "/images/projects/generated/doccreator/01-item.png",
@@ -195,7 +191,6 @@
       "PaddleOCR"
     ],
     "githubUrl": "https://github.com/Pooolingforest/iamfine-mono-repo",
-    "isMain": true,
     "thumbnail": "",
     "screenshots": [],
     "shortDescription": "문서 업로드부터 OCR, 임베딩, 하이브리드 검색, LLM 답변까지 전 과정을 처리하는 엔터프라이즈급 RAG 기반 고객 응대 챗봇 시스템",
@@ -234,7 +229,6 @@
       "Tailwind CSS"
     ],
     "githubUrl": "https://github.com/Pooolingforest/job-card-frontend",
-    "isMain": true,
     "thumbnail": "/images/projects/generated/jobcard/01-item.png",
     "screenshots": [
       "/images/projects/generated/jobcard/01-item.png",
@@ -281,7 +275,6 @@
       "OpenAI"
     ],
     "githubUrl": "https://github.com/poooling-internal/weave-pgrid-client",
-    "isMain": true,
     "thumbnail": "/images/projects/generated/pooolinginternaltools/01-item.png",
     "screenshots": [
       "/images/projects/generated/pooolinginternaltools/01-item.png",
@@ -321,7 +314,6 @@
       "Docker"
     ],
     "githubUrl": "https://github.com/Pooolingforest/vemontes-server",
-    "isMain": true,
     "thumbnail": "https://portfolio-project-images-167217328107.s3.ap-northeast-2.amazonaws.com/images/projects/generated/vemontes/01-item.png",
     "screenshots": [
       "https://portfolio-project-images-167217328107.s3.ap-northeast-2.amazonaws.com/images/projects/generated/vemontes/01-item.png",
@@ -351,7 +343,6 @@
       "results": "### R · 결과\n\n- 소개 → 프로젝트 상세 → 기술 블로그를 하나의 공개 사이트에서 탐색할 수 있는 결과물을 구축했습니다.\n- 2026년 9월 8일 공개 데이터 기준 기술 글 **9편**을 발행했으며, 이 중 **RAG 시리즈 4편**에서 파이프라인·청킹/임베딩·Tool Calling·운영 경험을 정리했습니다.\n- 프로젝트 경험은 STAR 상세와 스크린샷으로, 기술 지식은 태그와 목차를 갖춘 글로 전달할 수 있는 구조를 마련했습니다.\n- 홈·블로그 목록·글 상세 및 모바일 글 화면에서 공개 서비스의 동작을 확인했습니다."
     },
     "title": "개발자 포트폴리오 & 기술 블로그",
-    "isMain": true,
     "period": "2026.02 ~ 현재",
     "features": [
       "STAR 기반 프로젝트 상세와 스크린샷 갤러리",
