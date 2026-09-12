@@ -1,7 +1,7 @@
 # data/*.json 레이어 제거 — DB 단일 소스 전환 계획
 
 Date: 2026-09-12
-Status: Draft (검토 대기)
+Status: 실행 완료 (2026-09-12)
 
 ## 배경
 
@@ -137,3 +137,40 @@ Phase 5 이후 데이터 복구는 Phase 0 백업에 의존한다.
    Phase 1–2만 해도 사고 위험은 제거된다.
 2. `data/`를 삭제할지, `seed/legacy/`로 이동해 이력만 남길지?
 3. 진행 순서 — Phase 1만 먼저 하고 나머지는 나중에 해도 무방하다.
+
+
+---
+
+## 실행 결과 (2026-09-12)
+
+| Phase | 상태 | 비고 |
+|---|---|---|
+| 0 백업 | 완료 | `backup/db-snapshot-*.json` (9섹션, projects 23) — gitignore |
+| 1 파괴적 경로 제거 | 완료 | `seed-from-json.ts`, `verify-roundtrip.ts` + npm 스크립트 |
+| 2 ai-workflow 폴백 | 완료 | DB 행 확인 후 제거, 누락 시 명시적 예외 |
+| 3 Obsidian 스크립트 | 완료 | 아래 미검증 항목 참고 |
+| 4 테스트 픽스처화 | 완료 | `tests/fixtures/projects.ts` |
+| 5 파일 삭제 | 완료 | `data/*.json` 9개 + `add-project.md` 갱신 |
+
+검증: `tsc` 통과 · 테스트 37/37 · 프로덕션 빌드 통과 · DB 무변경(23/9 유지).
+
+### Phase 3 변경 요약
+
+`project_registry_sync.py`:
+- `load_local_bootstrap_payloads()` 삭제 (삭제된 JSON을 읽던 함수)
+- `PortfolioBootstrapError` 도입 — 자격정보 누락·REST 실패·불완전 응답 시
+  조용한 폴백 대신 **중단**한다
+- 근거: 기존 동작은 예외를 삼키고 빈 baseline으로 진행했다. 파일이 사라진 지금
+  그대로 두면 sync가 DB를 빈 값으로 덮어쓴다
+
+원본 백업: 세션 scratchpad `prs.bak.py`
+
+### 미검증 항목 (다음 실제 sync 때 확인 필요)
+
+`PORTFOLIO_SYNC_API_URL` / `PORTFOLIO_SYNC_API_TOKEN`이 이 저장소의 `.env.local`에
+없어 **정상 경로(REST 200)를 실측하지 못했다.** 실패 경로 2종(자격정보 누락,
+연결 불가)은 예외 발생을 확인했다.
+
+다음 sync 실행 시 확인할 것:
+1. `Portfolio bootstrap: ok` 출력
+2. 실행 후 DB projects가 23개 내외로 유지 (0개면 즉시 중단하고 Phase 0 백업으로 복구)
