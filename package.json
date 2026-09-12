@@ -13,8 +13,6 @@
     "activity:sync": "node --import tsx scripts/sync-git-activity.ts",
     "images:sync": "node --import tsx scripts/sync-project-images.ts",
     "activity:install": "zsh scripts/install-git-activity-launchagent.zsh",
-    "supabase:seed": "tsx scripts/supabase/seed-from-json.ts",
-    "supabase:verify": "tsx scripts/supabase/verify-roundtrip.ts",
     "test:analytics": "node --import tsx --test tests/analytics/*.test.ts",
     "test:analytics:db": "node --import tsx --test --test-concurrency=1 tests/analytics-db/*.test.ts",
     "test:e2e:analytics": "playwright test",

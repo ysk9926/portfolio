@@ -18,17 +18,12 @@ import {
   sectionPayloadSchemaMap,
 } from '@/lib/types/payload';
 import { createServerSupabaseClient } from '@/utils/supabase/server';
-import aiWorkflowFallback from '@/data/ai-workflow.json';
 
 /**
  * Sections stored as raw jsonb in section_payloads, bypassing the
  * per-section normalization in export_section_payload / admin_replace_section.
  */
 export const RAW_JSON_SECTIONS: ReadonlySet<SectionKey> = new Set(['ai-workflow']);
-
-const RAW_SECTION_FALLBACKS: Partial<Record<SectionKey, unknown>> = {
-  'ai-workflow': aiWorkflowFallback,
-};
 
 const getRawSectionPayload = async (sectionKey: SectionKey): Promise<unknown> => {
   const supabase = await createServerSupabaseClient();
@@ -42,7 +37,11 @@ const getRawSectionPayload = async (sectionKey: SectionKey): Promise<unknown> =>
     throw new Error(`Failed to load section \"${sectionKey}\": ${error.message}`);
   }
 
-  return data?.payload ?? RAW_SECTION_FALLBACKS[sectionKey];
+  if (!data?.payload) {
+    throw new Error(`Missing section payload in DB: "${sectionKey}"`);
+  }
+
+  return data.payload;
 };
 
 const parseSectionPayload = <K extends SectionKey>(

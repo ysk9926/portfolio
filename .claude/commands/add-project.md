@@ -6,7 +6,12 @@
 
 ## Purpose
 
-Analyze a project directory and automatically add it to the portfolio's `data/projects.json` and `data/skills.json`.
+Analyze a project directory and add it to the portfolio.
+
+> **데이터 소스는 Supabase DB다.** `data/*.json`은 2026-09-12에 제거되었다
+> (`docs/superpowers/plans/2026-09-12-remove-json-data-layer.md`).
+> 절대 `data/` 아래에 파일을 새로 만들지 마라 — 사이트는 그 파일을 읽지 않으며,
+> 되살아나면 stale 스냅샷 문제가 재발한다.
 
 ---
 
@@ -170,8 +175,8 @@ The Explore agent must return ALL gathered information in a structured format.
 ### Step 3: Load Current Portfolio Data
 
 Read the following files from the portfolio project:
-- `data/projects.json` → find the maximum `id` value, check for duplicate project titles
-- `data/skills.json` → get all existing skill names (for deduplication)
+- DB `projects` 섹션 → 현재 최대 `id`와 중복 제목을 확인한다
+- DB `skills` 섹션 → 기존 기술명을 가져온다 (중복 제거용)
 
 ### Step 4: Classify Skills into Categories
 
@@ -206,8 +211,8 @@ DevOps & Tools (color: #F59E0B):
 ```
 
 Identify:
-- **New skills**: Technologies detected in the project that are NOT in the current `data/skills.json` (case-insensitive comparison) → will be added with level 60
-- **Existing skills**: Technologies already in `data/skills.json` → **increase their level by +10** (cap at 100)
+- **New skills**: Technologies detected in the project that are NOT in the current `skills` section (case-insensitive comparison) → will be added with level 60
+- **Existing skills**: Technologies already in the `skills` section → **increase their level by +10** (cap at 100)
 - **Unmapped skills**: Technologies not found in any category above (will need user input)
 
 ### Step 5: Confirm with User (AskUserQuestion)
@@ -272,52 +277,34 @@ If the period is empty (no git), ask the user to provide the period in "YYYY.MM 
 
 If results is `null` (not found in README), ask the user to provide quantitative results.
 
-### Step 6: Update Data Files
+### Step 6: Write to the DB (not to files)
 
-#### 6a. Update `data/projects.json`
+프로젝트와 스킬은 Supabase `section_payloads`에 저장된다. 쓰기 경로는 두 가지다.
 
-- Calculate `id = max(existing ids) + 1`
-- Construct a new project object matching the `Project` interface:
-  ```json
-  {
-    "id": <new_id>,
-    "title": "<title>",
-    "period": "<period>",
-    "description": "<description>",
-    "features": ["<feature1>", "<feature2>", ...],
-    "techStack": ["<Tech1>", "<Tech2>", ...],
-    "deployUrl": "<url or omit if empty>",
-    "githubUrl": "<url or omit if empty>",
-    "isMain": <true|false>,
-    "thumbnail": "",
-    "screenshots": [],
-    "shortDescription": "<one-liner>",
-    "star": {
-      "summary": "<한 줄 요약>",
-      "role": "<역할>",
-      "background": "<마크다운 문자열>",
-      "solutions": "<마크다운 문자열>",
-      "results": "<마크다운 문자열>",
-      "troubleshooting": "<마크다운 문자열 or omit if null>"
-    }
-  }
-  ```
-  - If the user chose "Skip STAR, use plain description" in Step 5, **omit the `star` field entirely**
-  - The `star` field uses `\n` for line breaks within markdown strings
-- Append the new project to the end of the JSON array
-- Use `Read` then `Edit` to update the file (do NOT overwrite the whole file)
+#### 6a. 권장 — 관리자 UI
 
-#### 6b. Update `data/skills.json`
+1. `/admin`에 로그인한다.
+2. `projects` 섹션 편집기에서 항목을 추가한다.
+3. `skills` 섹션에서 신규 기술을 추가하고, 기존 기술은 레벨을 +10 한다 (상한 100).
 
-- For each **new skill** (not already in skills.json, case-insensitive):
-  - Find the matching category from the mapping above
-  - If the category does not exist yet in skills.json, create it with the correct color
-  - Add `{ "name": "<Skill>", "level": 60 }` to that category's `skills` array
-- For each **existing skill** (already in skills.json, case-insensitive):
-  - Find the skill entry and increase its `level` by **+10**
-  - Cap the level at **100** (never exceed 100)
-  - Example: skill was level 60 → becomes 70; skill was level 95 → becomes 100
-- Use `Read` then `Edit` to update the file (do NOT overwrite the whole file)
+저장은 `POST /api/admin/sections/[sectionKey]` → `admin_replace_section()`으로
+전체 섹션을 교체한다. **부분 병합이 아니므로** 기존 항목을 포함한
+전체 배열을 보내야 한다.
+
+#### 6b. 자동화 — 내부 REST
+
+Obsidian 자동화(`project_registry_sync.py`)는
+`POST /api/internal/sync/portfolio`로 `projects`,
+`project-portfolio-sync`, `activity-heatmap`을 한 트랜잭션으로 쓴다.
+현재 값은 같은 경로의 `GET`으로 읽는다.
+
+#### 주의
+
+- `id`는 기존 최대값 +1이 아니라 **DB의 현재 값**을 기준으로 계산한다.
+- `projects`와 `project-portfolio-sync`는 **정규화된 title로 조인**된다
+  (`lib/projects/portfolio.ts`의 `mergePortfolioProjects`).
+  제목을 바꾸면 양쪽을 함께 바꿔야 썸네일·스크린샷·기간이 유지된다.
+- 이미지는 계속 파일 기반이다 (`public/images/projects/generated/**`).
 
 ### Step 7: Report Completion
 
@@ -338,7 +325,7 @@ Output a summary:
 ### Next Steps
 - Run `npm run build` to verify the portfolio builds correctly
 - Check the portfolio site to see the new project
-- Edit `data/projects.json` to add a thumbnail image path if needed
+- Set the thumbnail path via the admin `projects` editor if needed
 ```
 
 ---

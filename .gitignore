@@ -66,3 +66,7 @@ tests/e2e/.auth/
 
 # playwright-cli session logs
 .playwright-cli/
+
+# Local DB snapshots (never commit)
+backup/
+tmp/
