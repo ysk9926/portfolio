@@ -174,3 +174,56 @@ Phase 5 이후 데이터 복구는 Phase 0 백업에 의존한다.
 다음 sync 실행 시 확인할 것:
 1. `Portfolio bootstrap: ok` 출력
 2. 실행 후 DB projects가 23개 내외로 유지 (0개면 즉시 중단하고 Phase 0 백업으로 복구)
+
+
+---
+
+## 후속: 자사 프로젝트 실명화 (2026-09-12)
+
+### 배경
+
+`project_registry_sync.py`는 공개 포트폴리오에서 회사 프로젝트를 익명화한다
+(2026-05-29 anonymization 스펙). 그런데 게이트가 `track == "회사"` 하나로 판단해
+**고객사 SI와 자사 제품을 구분하지 못했다.** 익명화의 목적은 고객사 보호인데,
+외부 고객사가 없는 자사 프로젝트까지 제네릭한 제목으로 감춰지고 있었다.
+
+### 변경
+
+1. `IN_HOUSE_PROJECTS` allowlist 추가 (자사 3건)
+   - Poooling 내부 도구 & 프로젝트 관리 시스템
+   - Doc Creator (KIPO 문서 자동 생성 도구)
+   - Poooling Connection (풀링커넥트)
+2. `should_anonymize_public_project()`에 `project_name` 인자 추가 —
+   allowlist에 있으면 익명화하지 않는다
+3. `should_anonymize_portfolio_doc()`가 `portfolio_doc.path.stem`을 전달
+4. 위 3건의 `PUBLIC_PROJECT_OVERRIDES` 항목 제거 (36 → 30 키)
+
+**게이트를 고친 것이 핵심이다.** 오버라이드만 지웠다면 line 2405의
+키워드 분류기(`poooling`/`p-grid`/`internal-tools`)가 여전히
+"사내 개발 생산성 플랫폼"으로 익명화했을 것이다.
+
+### 범위 — 고객사는 익명 유지
+
+풀링포레스트의 **고객사명은 공개하지 않는다.** 계약상 비밀유지 의무를
+확인할 수 없고, 공개 시 검색엔진에 색인되어 되돌리기 어렵기 때문이다.
+법무법인 마중, 인트로스, 제스프로, 메가프레스, 아이엠파인, 더맛있는하루,
+아울 소사이어티, 티엔에스트레이딩, 아티잔, Wonik PNE, 한수, G3 등
+14건은 기존 익명 제목을 유지한다.
+
+향후 공개 권한이 확인되면 해당 키를 `IN_HOUSE_PROJECTS`로 옮기면 된다.
+
+### 검증
+
+실제 Obsidian 문서 20건으로 확인:
+- 자사 3건 → 실명
+- 고객사 14건 → 익명 유지
+- 개인 프로젝트(calender-table-mono, shopping, dashboard) → 원래 익명화 대상 아님
+- 구문 검사 · CLI 기동 확인
+
+원본 백업: `backup/project_registry_sync.py.2026-09-12.bak`
+(Obsidian vault는 git 저장소가 아니라 파일로 보관한다)
+
+### 반영 시점
+
+이 변경은 **다음 sync 실행 시** DB에 반영된다. 지금 DB에는 아직
+익명 제목이 들어 있다.
