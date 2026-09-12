@@ -1,7 +1,7 @@
 'use client';
 
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
-import { AlertCircle, Check, Code2, FormInput, RefreshCw, Save } from 'lucide-react';
+import { AlertCircle, Check, RefreshCw, Save } from 'lucide-react';
 import {
   SectionKey,
   isSectionKey,
@@ -16,6 +16,7 @@ import { ArchivingEditor } from './editors/ArchivingEditor';
 import { CareerEditor } from './editors/CareerEditor';
 import { ProjectsEditor } from './editors/ProjectsEditor';
 import { ReadOnlyViewer } from './editors/ReadOnlyViewer';
+import AiWorkflowEditor from './editors/AiWorkflowEditor';
 
 interface AdminSectionEditorProps {
   initialSection?: SectionKey;
@@ -28,8 +29,6 @@ interface SectionResponse {
   updatedAt: string | null;
 }
 
-type Mode = 'form' | 'json';
-
 type ValidationState =
   | { ok: true }
   | { ok: false; message: string };
@@ -39,17 +38,12 @@ const READ_ONLY_SECTIONS: ReadonlySet<SectionKey> = new Set([
   'activity-heatmap',
 ]);
 
-/** Sections without a form editor; edited as JSON only. */
-const JSON_ONLY_SECTIONS: ReadonlySet<SectionKey> = new Set(['ai-workflow']);
-
 export default function AdminSectionEditor({
   initialSection = 'site',
   adminEmail,
 }: AdminSectionEditorProps) {
   const [sectionKey, setSectionKey] = useState<SectionKey>(initialSection);
   const [payload, setPayload] = useState<unknown>(null);
-  const [jsonText, setJsonText] = useState('');
-  const [preferredMode, setPreferredMode] = useState<Mode>('form');
   const [updatedAt, setUpdatedAt] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
   const [isSaving, setIsSaving] = useState(false);
@@ -59,8 +53,6 @@ export default function AdminSectionEditor({
   const loadedForSectionRef = useRef<SectionKey | null>(null);
 
   const isReadOnly = READ_ONLY_SECTIONS.has(sectionKey);
-  const isJsonOnly = JSON_ONLY_SECTIONS.has(sectionKey);
-  const mode: Mode = isJsonOnly ? 'json' : preferredMode;
 
   const prettyUpdatedAt = useMemo(() => {
     if (!updatedAt) return '—';
@@ -73,22 +65,12 @@ export default function AdminSectionEditor({
   const validation: ValidationState = useMemo(() => {
     if (isReadOnly) return { ok: true };
     const schema = sectionPayloadSchemaMap[sectionKey];
-    let target: unknown;
-    if (mode === 'json') {
-      const parsedJson = safeParseJson(jsonText);
-      if (parsedJson.error) {
-        return { ok: false, message: parsedJson.error };
-      }
-      target = parsedJson.value;
-    } else {
-      target = payload;
-    }
-    const parsed = schema.safeParse(target);
+    const parsed = schema.safeParse(payload);
     if (parsed.success) return { ok: true };
     const firstIssue = parsed.error.issues[0];
     const path = firstIssue?.path?.join('.') || '(root)';
     return { ok: false, message: `${path}: ${firstIssue?.message ?? 'invalid'}` };
-  }, [sectionKey, mode, jsonText, payload, isReadOnly]);
+  }, [sectionKey, payload, isReadOnly]);
 
   const loadSection = useCallback(
     async (nextSectionKey: SectionKey) => {
@@ -96,7 +78,6 @@ export default function AdminSectionEditor({
       setError(null);
       setSuccessMessage(null);
       setPayload(null);
-      setJsonText('');
       setUpdatedAt(null);
 
       try {
@@ -112,7 +93,6 @@ export default function AdminSectionEditor({
 
         const parsed = body as SectionResponse;
         setPayload(parsed.payload);
-        setJsonText(JSON.stringify(parsed.payload, null, 2));
         setUpdatedAt(parsed.updatedAt);
         setIsDirty(false);
         loadedForSectionRef.current = nextSectionKey;
@@ -150,36 +130,8 @@ export default function AdminSectionEditor({
 
   const handleFormChange = (next: unknown) => {
     setPayload(next);
-    setJsonText(JSON.stringify(next, null, 2));
     setIsDirty(true);
     setSuccessMessage(null);
-  };
-
-  const handleJsonChange = (next: string) => {
-    setJsonText(next);
-    setIsDirty(true);
-    setSuccessMessage(null);
-    const parsed = safeParseJson(next);
-    if (!parsed.error) {
-      setPayload(parsed.value);
-    }
-  };
-
-  const handleModeSwitch = (nextMode: Mode) => {
-    if (nextMode === mode) return;
-    if (nextMode === 'form') {
-      const parsed = safeParseJson(jsonText);
-      if (parsed.error) {
-        setError(`JSON이 유효하지 않아 폼 모드로 전환할 수 없습니다: ${parsed.error}`);
-        return;
-      }
-      setPayload(parsed.value);
-      setError(null);
-    } else {
-      setJsonText(JSON.stringify(payload, null, 2));
-      setError(null);
-    }
-    setPreferredMode(nextMode);
   };
 
   const handleReset = async () => {
@@ -200,13 +152,11 @@ export default function AdminSectionEditor({
     setError(null);
     setSuccessMessage(null);
 
-    const targetPayload = mode === 'json' ? safeParseJson(jsonText).value : payload;
-
     try {
       const response = await fetch(`/api/admin/sections/${sectionKey}`, {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ payload: targetPayload }),
+        body: JSON.stringify({ payload }),
       });
 
       const body = (await response.json()) as
@@ -246,32 +196,6 @@ export default function AdminSectionEditor({
           </div>
 
           <div className="flex items-center gap-2">
-            {!isReadOnly && !isJsonOnly && (
-              <div className="inline-flex overflow-hidden rounded-md border border-neutral-300 bg-white">
-                <button
-                  type="button"
-                  onClick={() => handleModeSwitch('form')}
-                  className={`inline-flex cursor-pointer items-center gap-1.5 px-3 py-1.5 text-xs font-medium transition-colors ${
-                    mode === 'form'
-                      ? 'bg-neutral-900 text-white'
-                      : 'text-neutral-600 hover:bg-neutral-50'
-                  }`}
-                >
-                  <FormInput className="h-3.5 w-3.5" />폼
-                </button>
-                <button
-                  type="button"
-                  onClick={() => handleModeSwitch('json')}
-                  className={`inline-flex cursor-pointer items-center gap-1.5 border-l border-neutral-300 px-3 py-1.5 text-xs font-medium transition-colors ${
-                    mode === 'json'
-                      ? 'bg-neutral-900 text-white'
-                      : 'text-neutral-600 hover:bg-neutral-50'
-                  }`}
-                >
-                  <Code2 className="h-3.5 w-3.5" />JSON
-                </button>
-              </div>
-            )}
             <Button
               variant="secondary"
               size="sm"
@@ -316,23 +240,8 @@ export default function AdminSectionEditor({
                   : 'activity-heatmap 스크립트 실행 시 갱신됩니다.'
               }
             />
-          ) : mode === 'form' ? (
-            renderFormEditor(sectionKey, payload, handleFormChange)
           ) : (
-            <div className="rounded-xl border border-neutral-200 bg-white">
-              <div className="flex items-center justify-between border-b border-neutral-200 px-4 py-2">
-                <p className="text-xs font-medium text-neutral-600">
-                  {isJsonOnly ? 'JSON 편집 · 이 섹션은 폼 편집을 지원하지 않습니다' : 'JSON 편집 (고급)'}
-                </p>
-                <p className="text-[11px] text-neutral-400">{jsonText.length} chars</p>
-              </div>
-              <textarea
-                value={jsonText}
-                onChange={(event) => handleJsonChange(event.target.value)}
-                spellCheck={false}
-                className="h-[560px] w-full resize-y rounded-b-xl bg-neutral-950 p-4 font-mono text-[12px] leading-relaxed text-neutral-100 outline-none"
-              />
-            </div>
+            renderFormEditor(sectionKey, payload, handleFormChange)
           )}
         </div>
 
@@ -383,7 +292,7 @@ function renderFormEditor(
     sectionKey === 'archiving' ||
     sectionKey === 'career' ||
     sectionKey === 'projects';
-  const expectsObject = sectionKey === 'site';
+  const expectsObject = sectionKey === 'site' || sectionKey === 'ai-workflow';
 
   if (expectsArray && !Array.isArray(payload)) return null;
   if (expectsObject && (typeof payload !== 'object' || Array.isArray(payload))) return null;
@@ -431,6 +340,13 @@ function renderFormEditor(
           onChange={onChange}
         />
       );
+    case 'ai-workflow':
+      return (
+        <AiWorkflowEditor
+          value={payload as Parameters<typeof AiWorkflowEditor>[0]['value']}
+          onChange={onChange}
+        />
+      );
     default:
       return null;
   }
@@ -461,13 +377,3 @@ function StatusPill({
   );
 }
 
-function safeParseJson(text: string): { value: unknown; error?: string } {
-  try {
-    return { value: JSON.parse(text) };
-  } catch (caughtError) {
-    return {
-      value: null,
-      error: caughtError instanceof Error ? caughtError.message : 'JSON parse error',
-    };
-  }
-}

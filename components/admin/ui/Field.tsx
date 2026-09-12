@@ -139,3 +139,36 @@ export function Checkbox({ checked, onChange, label, disabled }: CheckboxProps) 
     </label>
   );
 }
+
+interface SelectProps<T extends string> {
+  value: T;
+  onChange: (value: T) => void;
+  options: readonly T[];
+  disabled?: boolean;
+  className?: string;
+}
+
+export function Select<T extends string>({
+  value,
+  onChange,
+  options,
+  disabled,
+  className,
+}: SelectProps<T>) {
+  return (
+    <select
+      value={value}
+      disabled={disabled}
+      onChange={(event) => onChange(event.target.value as T)}
+      className={`w-full rounded-md border border-neutral-300 bg-white px-3 py-2 text-sm text-neutral-900 outline-none transition focus:border-neutral-900 focus:ring-2 focus:ring-neutral-900/10 disabled:bg-neutral-50 disabled:text-neutral-400 ${
+        className ?? ''
+      }`}
+    >
+      {options.map((option) => (
+        <option key={option} value={option}>
+          {option}
+        </option>
+      ))}
+    </select>
+  );
+}
