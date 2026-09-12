@@ -10,7 +10,7 @@ updated: "2026-09-08"
 repo: portfolio
 ---
 
-# ysk9926 Portfolio
+# 개발자 포트폴리오 & 기술 블로그
 
 > 프로젝트의 문제 해결 과정과 개발 지식을 한곳에서 보여주는 포트폴리오·기술 블로그. Next.js와 Supabase로 프로젝트 상세, Markdown 발행, 문서 동기화를 구현했습니다.
 
