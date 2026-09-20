@@ -2,6 +2,8 @@
 
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
+import rehypeRaw from 'rehype-raw';
+import rehypeSanitize, { defaultSchema } from 'rehype-sanitize';
 import type { Components } from 'react-markdown';
 import { slugifyHeading } from '@/lib/blog/toc';
 import CodeBlock from './CodeBlock';
@@ -10,6 +12,36 @@ import MermaidBlock from './MermaidBlock';
 interface BlogMarkdownProps {
   content: string;
 }
+
+// 본문 SVG 도식을 허용하기 위한 스키마. raw HTML을 통과시키되 script/style 계열과
+// 이벤트 핸들러 속성은 기본 스키마 그대로 차단한다.
+const svgTags = [
+  'svg', 'g', 'defs', 'title', 'desc', 'clipPath', 'mask',
+  'linearGradient', 'radialGradient', 'stop', 'pattern', 'marker',
+  'path', 'rect', 'circle', 'ellipse', 'line', 'polyline', 'polygon',
+  'text', 'tspan', 'textPath', 'use', 'symbol', 'image',
+];
+
+const svgAttrs = [
+  'viewBox', 'width', 'height', 'x', 'y', 'x1', 'y1', 'x2', 'y2',
+  'cx', 'cy', 'r', 'rx', 'ry', 'd', 'points', 'transform',
+  'fill', 'fillOpacity', 'fillRule', 'stroke', 'strokeWidth',
+  'strokeLinecap', 'strokeLinejoin', 'strokeDasharray', 'strokeOpacity',
+  'opacity', 'offset', 'stopColor', 'stopOpacity', 'gradientUnits',
+  'textAnchor', 'dominantBaseline', 'fontSize', 'fontFamily', 'fontWeight',
+  'letterSpacing', 'dy', 'dx', 'xmlns', 'preserveAspectRatio',
+  'clipPath', 'mask', 'markerEnd', 'markerStart', 'role', 'ariaLabel',
+  'class', 'className', 'id', 'href',
+];
+
+const schema = {
+  ...defaultSchema,
+  tagNames: [...(defaultSchema.tagNames ?? []), ...svgTags, 'figure', 'figcaption'],
+  attributes: {
+    ...defaultSchema.attributes,
+    ...Object.fromEntries(svgTags.map((tag) => [tag, svgAttrs])),
+  },
+};
 
 const used = new Map<string, number>();
 
@@ -100,6 +132,14 @@ const components: Components = {
       className="my-6 mx-auto max-w-full rounded-lg"
     />
   ),
+  figure: ({ children }) => (
+    <figure className="my-7 overflow-x-auto">{children}</figure>
+  ),
+  figcaption: ({ children }) => (
+    <figcaption className="mt-2 text-center text-xs text-neutral-500">
+      {children}
+    </figcaption>
+  ),
   table: ({ children }) => (
     <div className="my-5 overflow-x-auto">
       <table className="w-full border-collapse text-sm">{children}</table>
@@ -123,7 +163,11 @@ export default function BlogMarkdown({ content }: BlogMarkdownProps) {
   used.clear();
   return (
     <div className="text-base leading-7">
-      <ReactMarkdown remarkPlugins={[remarkGfm]} components={components}>
+      <ReactMarkdown
+        remarkPlugins={[remarkGfm]}
+        rehypePlugins={[rehypeRaw, [rehypeSanitize, schema]]}
+        components={components}
+      >
         {content}
       </ReactMarkdown>
     </div>
