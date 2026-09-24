@@ -13,28 +13,11 @@ import {
 } from '@/lib/projects/portfolio';
 import type { SiteConfig } from '@/lib/types/view';
 import { getSiteUrl } from '@/lib/seo/url';
-
-const toValidDate = (value: Date | string | null | undefined): Date | null => {
-  if (!value) return null;
-  const date = value instanceof Date ? value : new Date(value);
-  return Number.isNaN(date.getTime()) ? null : date;
-};
-
-const latestDate = (
-  values: Array<Date | string | null | undefined>,
-): Date | null => {
-  return values.reduce<Date | null>((latest, value) => {
-    const date = toValidDate(value);
-    if (!date) return latest;
-    if (!latest || date > latest) return date;
-    return latest;
-  }, null);
-};
+import { isIndexableTagPage, latestKnownDate } from '@/lib/seo/sitemap-policy';
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   let siteConfig: SiteConfig | undefined;
-  const fallbackDate = new Date();
-  let homeLastModified: Date = fallbackDate;
+  let homeLastModified: Date | undefined;
   const projectEntries: MetadataRoute.Sitemap = [];
 
   try {
@@ -48,15 +31,15 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
     siteConfig = portfolioData.site.config;
     homeLastModified =
-      latestDate([
+      latestKnownDate([
         siteUpdatedAt,
         projectsUpdatedAt,
         syncUpdatedAt,
         portfolioData.activityHeatmap.generatedAt,
-      ]) ?? fallbackDate;
+      ]);
 
     const projectFallbackDate =
-      latestDate([projectsUpdatedAt, syncUpdatedAt]) ?? homeLastModified;
+      latestKnownDate([projectsUpdatedAt, syncUpdatedAt]) ?? homeLastModified;
     const projects = mergePortfolioProjects(
       portfolioData.projects,
       portfolioData.projectPortfolioSync,
@@ -93,9 +76,9 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   try {
     const [posts, tags] = await Promise.all([listPublishedPosts(), listAllTags()]);
-    const latestPostDate =
-      latestDate(posts.flatMap((post) => [post.updatedAt, post.publishedAt])) ??
-      fallbackDate;
+    const latestPostDate = latestKnownDate(
+      posts.flatMap((post) => [post.updatedAt, post.publishedAt]),
+    );
 
     entries.push({
       url: `${siteUrl}/blog`,
@@ -107,9 +90,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     for (const post of posts) {
       entries.push({
         url: `${siteUrl}/blog/${post.slug}`,
-        lastModified: post.publishedAt
-          ? new Date(post.publishedAt)
-          : new Date(post.updatedAt),
+        lastModified: latestKnownDate([post.updatedAt, post.publishedAt]),
         changeFrequency: 'monthly',
         priority: 0.6,
       });
@@ -117,7 +98,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
     for (const tag of tags) {
       const tagPosts = posts.filter((post) => post.tags.includes(tag));
-      if (tagPosts.length === 0) continue;
+      if (!isIndexableTagPage(tagPosts.length)) continue;
 
       const latestUpdatedAt = tagPosts
         .map((post) => post.updatedAt)
@@ -126,7 +107,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
       entries.push({
         url: `${siteUrl}${tagPath(tag)}`,
-        lastModified: toValidDate(latestUpdatedAt) ?? latestPostDate,
+        lastModified: latestKnownDate([latestUpdatedAt]) ?? latestPostDate,
         changeFrequency: 'weekly',
         priority: 0.5,
       });

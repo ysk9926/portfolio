@@ -9,6 +9,7 @@ import { listAllTags, listPublishedPosts } from '@/lib/blog/server';
 import { describeTag, findTagBySlug, tagPath } from '@/lib/blog/tags';
 import { getSiteData } from '@/lib/portfolio-data/server';
 import { absoluteImageUrl, absoluteUrl } from '@/lib/seo/url';
+import { isIndexableTagPage } from '@/lib/seo/sitemap-policy';
 
 export const revalidate = 60;
 
@@ -47,6 +48,9 @@ export async function generateMetadata({
     title: `${tag} 태그 글 | ${site.config.name}`,
     description,
     keywords: [tag, `${tag} 개발`, `${tag} 블로그`, site.hero.name],
+    robots: isIndexableTagPage(posts.length)
+      ? { index: true, follow: true }
+      : { index: false, follow: true },
     alternates: { canonical: canonicalPath },
     openGraph: {
       title: `${tag} 태그 글`,

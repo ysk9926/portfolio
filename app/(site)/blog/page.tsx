@@ -6,14 +6,15 @@ import { listAllTags, listPublishedPosts } from '@/lib/blog/server';
 import { tagPath } from '@/lib/blog/tags';
 import { getSiteData } from '@/lib/portfolio-data/server';
 import { absoluteImageUrl, absoluteUrl } from '@/lib/seo/url';
+import { PROFILE_HANDLE } from '@/lib/seo/profile';
 
 export const revalidate = 60;
 
 export async function generateMetadata(): Promise<Metadata> {
   const site = await getSiteData();
-  const title = `개발 블로그 | ${site.config.name}`;
+  const title = `${site.hero.name} 개발 블로그 | ${PROFILE_HANDLE}`;
   const description =
-    'Next.js, React, TypeScript, AWS, 백엔드, 운영 경험을 실제 프로젝트 중심으로 정리한 개발 블로그입니다.';
+    `${site.hero.name}(${PROFILE_HANDLE})가 Next.js, React, TypeScript, AWS, 백엔드, 운영 경험을 실제 프로젝트 중심으로 정리한 개발 블로그입니다.`;
   const imageUrl = absoluteImageUrl(null, site.config);
 
   return {
@@ -26,6 +27,7 @@ export async function generateMetadata(): Promise<Metadata> {
       'TypeScript',
       'AWS',
       site.hero.name,
+      PROFILE_HANDLE,
     ],
     alternates: {
       canonical: '/blog',
@@ -62,13 +64,19 @@ export default async function BlogIndexPage({ searchParams }: BlogIndexProps) {
     redirect(tagPath(legacyTag));
   }
 
-  const [posts, tags] = await Promise.all([listPublishedPosts(), listAllTags()]);
+  const [posts, tags, site] = await Promise.all([
+    listPublishedPosts(),
+    listAllTags(),
+    getSiteData(),
+  ]);
 
   return (
     <div className="min-h-screen bg-white pt-24 pb-20">
       <div className="mx-auto max-w-4xl px-4">
         <header className="mb-10">
-          <h1 className="text-4xl font-bold text-gray-900">Blog</h1>
+          <h1 className="text-4xl font-bold text-gray-900">
+            {site.hero.name}의 개발 블로그
+          </h1>
           <p className="mt-2 text-gray-600">
             개발하면서 배우거나 정리한 내용을 기록합니다.
           </p>

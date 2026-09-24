@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="ko" style="background:#edebe6">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>윤승규 이력서·경력기술서 — 토스 FE Platform Engineer</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&family=IBM+Plex+Mono:wght@400;600&display=swap">
+<style>
+:root{
+  --bg:#fcfbf8; --ink:#1d1c1a; --sub:#55524c; --faint:#93908a; --hair:#e7e4de; --tint:#f5f2ec;
+  --acc:#7c3aed; --acc-dp:#6529d1; --acc-bg:#f0e8fc;
+  --green:#1f7a53; --green-bg:#e7f2ec; --gold:#c99114; --gold-bg:#faf3e0; --blue:#2c5c8f; --blue-bg:#e9f0f7;
+  --sans:"Noto Sans KR","Apple SD Gothic Neo",sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
+}
+@page{ size:A4; margin:16mm 15mm 16mm 15mm; }
+*{ box-sizing:border-box; margin:0; padding:0; }
+html{ -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+body{
+  background:#edebe6; color:var(--ink); font-family:var(--sans);
+  font-size:9.8pt; line-height:1.74; letter-spacing:0.01em; word-break:keep-all;
+  font-variant-numeric:tabular-nums; -webkit-font-smoothing:antialiased;
+}
+/* paged.js 미로드 시(오프라인) 단일 시트 폴백 */
+.page{ max-width:210mm; margin:24px auto; background:var(--bg); padding:16mm 15mm; box-shadow:0 10px 44px rgba(29,28,26,.14); }
+@media print{ body{background:var(--bg)} .page{max-width:none;margin:0;padding:0;box-shadow:none} }
+/* paged.js 로드 시: 화면에서도 A4 페이지 단위로 렌더 */
+html{ background:#edebe6; }
+.pagedjs_pages{ display:flex !important; flex-direction:column !important; flex-wrap:nowrap !important; align-items:center; gap:28px; width:auto !important; margin:0 !important; padding:28px 16px 48px; }
+.pagedjs_page{ background:var(--bg); box-shadow:0 10px 44px rgba(29,28,26,.16); margin:0 auto 28px !important; }
+.lead-keep{ break-inside:avoid; }
+.pagedjs_page .page{ max-width:none; margin:0; padding:0; background:transparent; box-shadow:none; }
+.pagedjs_margin-bottom-right{ font-family:var(--mono); font-size:7.6pt; color:var(--faint); letter-spacing:.06em; }
+@media print{ html{background:var(--bg)} .pagedjs_pages{ display:block !important; padding:0; gap:0; } .pagedjs_page{ box-shadow:none; } }
+@page{ @bottom-right{ content:counter(page) " / " counter(pages); } }
+b{ font-weight:700; color:var(--ink); }
+code{ font-family:var(--mono); font-size:.88em; background:var(--tint); border:1px solid var(--hair); padding:0 5px; border-radius:4px; color:var(--ink); }
+a{ color:inherit; text-decoration:none; }
+
+/* ---------- Header ---------- */
+.hd{ border-bottom:2px solid var(--ink); padding-bottom:15px; margin-bottom:22px; }
+.hd .ov{ font-family:var(--mono); font-size:8.5pt; font-weight:600; letter-spacing:.14em; color:var(--acc); margin-bottom:8px; }
+.hd .row{ display:flex; align-items:flex-end; justify-content:space-between; gap:12px; flex-wrap:wrap; }
+.hd .name{ font-size:24pt; font-weight:900; letter-spacing:-.015em; line-height:1.15; }
+.hd .name small{ font-size:10.5pt; font-weight:500; color:var(--sub); margin-left:12px; letter-spacing:0; }
+.hd .tag{ font-size:9pt; color:var(--sub); margin-top:7px; }
+.hd .contact{ margin-top:13px; display:flex; flex-wrap:wrap; gap:5px 22px; font-size:8.8pt; color:var(--sub); }
+.hd .contact span{ white-space:nowrap; }
+.hd .contact .k{ font-family:var(--mono); font-size:7.8pt; color:var(--faint); letter-spacing:.06em; margin-right:6px; }
+
+/* ---------- Section ---------- */
+section{ margin-bottom:22px; }
+.sec{ display:flex; align-items:baseline; gap:10px; border-bottom:1px solid var(--hair); padding-bottom:7px; margin-bottom:13px; }
+.sec .n{ font-family:var(--mono); font-size:8.5pt; font-weight:600; color:var(--acc); letter-spacing:.12em; }
+.sec h2{ font-size:11.5pt; font-weight:900; letter-spacing:-.005em; }
+.sec .en{ margin-left:auto; font-family:var(--mono); font-size:7.8pt; color:var(--faint); letter-spacing:.1em; }
+p.lead{ color:var(--sub); line-height:1.86; }
+p.lead b{ box-shadow:inset 0 -6px var(--acc-bg); }
+
+/* ---------- Fit grid ---------- */
+.fit{ display:grid; grid-template-columns:1fr 1fr; gap:12px 22px; }
+.fit .f{ border-top:1px solid var(--hair); padding-top:9px; break-inside:avoid; }
+.fit .fh{ font-size:9.6pt; font-weight:700; display:flex; align-items:center; gap:6px; }
+.fit .fh .chip{ font-family:var(--mono); font-size:7.5pt; font-weight:600; color:var(--acc-dp); background:var(--acc-bg); padding:1px 6px; border-radius:3px; letter-spacing:.04em; }
+.fit p{ font-size:9pt; color:var(--sub); line-height:1.74; margin-top:5px; }
+
+/* ---------- Experience ---------- */
+.exp{ display:flex; justify-content:space-between; align-items:baseline; gap:10px; }
+.exp .co{ font-size:12pt; font-weight:900; letter-spacing:-.005em; }
+.exp .co small{ font-size:9pt; font-weight:500; color:var(--sub); margin-left:8px; }
+.exp .pd{ font-family:var(--mono); font-size:8.5pt; color:var(--faint); white-space:nowrap; }
+.role{ font-size:9.4pt; font-weight:700; color:var(--acc-dp); margin:4px 0 8px; }
+ul.dot{ list-style:none; }
+ul.dot>li{ position:relative; padding-left:14px; margin-bottom:6px; color:var(--sub); line-height:1.72; }
+ul.dot>li::before{ content:""; position:absolute; left:1px; top:9px; width:5px; height:5px; border-radius:50%; background:var(--acc); }
+
+/* ---------- Project (career description) ---------- */
+.pj{ margin-bottom:18px; padding-bottom:16px; border-bottom:1px dashed var(--hair); }
+.pj .ph,.pj .rl,.pj .stack{ break-after:avoid; }
+.pj ul.dot>li{ break-inside:avoid; }
+.pj .imp{ break-inside:avoid; }
+.pj .stack,.pj .grid{ break-inside:avoid; }
+.hd,.pj .ph{ break-inside:avoid; }
+.pj:last-child{ border-bottom:none; }
+.pj .ph{ display:flex; align-items:baseline; gap:10px; flex-wrap:wrap; }
+.pj .no{ font-family:var(--mono); font-size:8pt; font-weight:600; color:var(--acc); letter-spacing:.1em; }
+.pj h3{ font-size:11pt; font-weight:900; letter-spacing:-.005em; }
+.pj .meta{ margin-left:auto; font-family:var(--mono); font-size:8pt; color:var(--faint); white-space:nowrap; }
+.pj .rl{ font-size:8.8pt; color:var(--sub); margin:5px 0 9px; }
+.pj .rl b{ color:var(--ink); font-weight:700; }
+.pj .stack{ display:flex; flex-wrap:wrap; gap:4px; margin:0 0 10px; }
+.pj .stack span{ font-family:var(--mono); font-size:7.6pt; color:var(--sub); border:1px solid var(--hair); background:#fff; padding:2px 8px; border-radius:100px; letter-spacing:0; }
+.pj .grid{ display:grid; grid-template-columns:1fr 1fr; gap:8px 20px; }
+.pj .blk{ break-inside:avoid; }
+.pj .bt{ font-family:var(--mono); font-size:7.8pt; font-weight:600; letter-spacing:.1em; color:var(--faint); margin-bottom:3px; }
+.pj .blk p{ font-size:9pt; color:var(--sub); line-height:1.74; }
+.pj ul.dot>li{ font-size:9pt; margin-bottom:5px; }
+.pj .imp{ margin-top:10px; display:grid; grid-template-columns:1fr 1fr; gap:10px; }
+.pj .box{ border-radius:8px; padding:10px 13px; font-size:8.9pt; line-height:1.72; color:var(--sub); }
+.pj .box .bt{ margin-bottom:2px; }
+.pj .box.i{ background:var(--acc-bg); } .pj .box.i .bt{ color:var(--acc-dp); }
+.pj .box.l{ background:var(--tint); } .pj .box.l .bt{ color:var(--gold); }
+
+/* ---------- Brief list ---------- */
+table.mx{ border-collapse:separate; border-spacing:0; width:100%; background:#fff; border:1px solid var(--hair); border-radius:8px; overflow:hidden; font-size:8.8pt; }
+table.mx th{ background:var(--tint); font-weight:700; text-align:left; padding:8px 11px; border-bottom:1px solid var(--hair); font-size:8.6pt; }
+table.mx td{ border-top:1px solid var(--hair); padding:8px 11px; vertical-align:top; color:var(--sub); line-height:1.7; }
+table.mx td.pat{ background:var(--tint); font-weight:700; color:var(--ink); white-space:nowrap; }
+table.mx td .co{ display:block; font-family:var(--mono); font-size:7.4pt; color:var(--faint); margin-top:2px; }
+table.mx tr{ break-inside:avoid; }
+
+/* ---------- Skills ---------- */
+.sk{ display:grid; grid-template-columns:1fr 1fr; gap:6px 26px; }
+.sk .r{ display:flex; gap:12px; padding:6px 0; border-bottom:1px dotted var(--hair); break-inside:avoid; }
+.sk .c{ flex:0 0 90px; font-weight:700; font-size:8.8pt; }
+.sk .l{ font-size:8.8pt; color:var(--sub); line-height:1.7; }
+
+/* ---------- Footer ---------- */
+.ft{ margin-top:14px; padding-top:8px; border-top:1px solid var(--hair); display:flex; justify-content:space-between; font-family:var(--mono); font-size:7.6pt; color:var(--faint); letter-spacing:.06em; }
+.keep{ break-inside:avoid; }
+.pb{ break-before:page; }
+</style>
+<script>
+  window.PagedConfig = { auto: false };
+  window.addEventListener('load', function(){
+    var run = function(){ if (window.PagedPolyfill) window.PagedPolyfill.preview().then(function(){ document.documentElement.style.background='#edebe6'; document.body.style.background='transparent'; var w=document.querySelector('.pagedjs_pages'); if(w){ w.style.display='block'; w.style.width='auto'; w.style.padding='28px 16px 20px'; } document.querySelectorAll('.pagedjs_page').forEach(function(pg){ pg.style.margin='0 auto 28px'; }); }); };
+    (document.fonts && document.fonts.ready ? document.fonts.ready : Promise.resolve()).then(run, run);
+  });
+</script>
+<script src="https://unpkg.com/pagedjs@0.4.3/dist/paged.polyfill.js"></script>
+</head>
+<body>
+<div class="page">
+
+  <!-- ============ HEADER ============ -->
+  <div class="hd">
+    <div class="ov">RESUME · CAREER DESCRIPTION — TOSS FE PLATFORM ENGINEER</div>
+    <div class="row">
+      <div>
+        <div class="name">윤승규<small>Enterprise 1팀 리더 · 풀스택 / AI 플랫폼 엔지니어</small></div>
+        <div class="tag">개발자가 반복 설정에 쓰는 시간을 줄이는 AI 활용 인프라와 개발 도구를 만듭니다.</div>
+      </div>
+    </div>
+    <div class="contact">
+      <span><span class="k">EMAIL</span>ysk9926@gmail.com</span>
+      <span><span class="k">MOBILE</span>010-3549-9926</span>
+      <span><span class="k">GITHUB</span>github.com/ysk9926</span>
+      <span><span class="k">PORTFOLIO</span>portfolio-pink-two-vymvu56oaw.vercel.app</span>
+      <span><span class="k">LOCATION</span>경기도 안양시</span>
+      <span><span class="k">EDUCATION</span>상지대학교 정보통신소프트웨어공학과 (2024 졸업)</span>
+    </div>
+  </div>
+
+  <!-- ============ SUMMARY ============ -->
+  <section>
+    <div class="sec"><span class="n">01</span><h2>요약</h2><span class="en">SUMMARY</span></div>
+    <p class="lead">
+      풀링포레스트에서 여러 ERP와 사내 도구를 기획·개발하며, 반복되는 개발 절차를 <b>커스텀 스킬</b>로 정리하고 이를 배포·갱신하는 <b>AI 활용 인프라</b>를 구축했습니다.
+      Device Agent로 로컬 기기와 서버를 연결하고, S3 기반 스킬 저장소와 중앙 카탈로그로 승인된 버전을 Claude Code·Codex 환경에 설치하도록 구성했습니다.
+      CLI는 인증된 업무 API를 호출하고, 스킬은 그 도구를 어떤 순서와 기준으로 쓸지 안내합니다.
+      좋은 스킬을 작성해도 기기마다 다른 버전을 읽거나 권한을 잘못 다루면 결과를 신뢰할 수 없다는 점을 배웠고, 그래서 스킬 내용뿐 아니라 <b>발행 기준·설치 상태·실패 처리·접근 권한</b>까지 같은 작업 범위로 다뤘습니다.
+    </p>
+  </section>
+
+  <!-- ============ FIT ============ -->
+  <section>
+    <div class="sec"><span class="n">02</span><h2>지원 직무와 연결되는 경험</h2><span class="en">FIT · FE PLATFORM ENGINEER</span></div>
+    <div class="fit">
+      <div class="f">
+        <div class="fh"><span class="chip">공고</span>AI를 더 쉽게 설정하고 사내 시스템을 AI로 활용하는 인프라</div>
+        <p>Device Agent 설치 한 번으로 CLI·공통 스킬을 자동 설치·동기화하고, Claude Code·Codex가 인증된 CLI로 ERP 도구 17개를 호출하는 구조를 구현했습니다.</p>
+      </div>
+      <div class="f">
+        <div class="fh"><span class="chip">공고</span>자동화·툴링으로 개발 환경을 개선한 경험</div>
+        <p>빌드·배포 스크립트, Next.js 매뉴얼 구성, ERD·테스트케이스 등록, 자료 작성 등 반복 작업을 스킬로 정리하고 실행·검증 도구와 연결했습니다.</p>
+      </div>
+      <div class="f">
+        <div class="fh"><span class="chip">공고</span>CI/CD·배포 인프라 구축</div>
+        <p>GitHub Actions 단일 워크플로에서 SSM 기반 불변 릴리스, 헬스체크·심볼릭 링크 롤백, 서명·공증된 Agent 릴리스의 DRAFT→ACTIVE 승인 흐름을 구성했습니다.</p>
+      </div>
+      <div class="f">
+        <div class="fh"><span class="chip">공고</span>조직 생산성을 높이는 시스템·문화</div>
+        <p>전직원 10명이 쓰는 프로젝트 관리 플랫폼(P-Grid)과 개발환경 런처, 팀 공용 스킬 저장소를 만들어 프로젝트 관리와 AI 활용 절차를 표준화했습니다.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ EXPERIENCE ============ -->
+  <section class="keep">
+    <div class="sec"><span class="n">03</span><h2>경력</h2><span class="en">WORK EXPERIENCE</span></div>
+    <div class="exp">
+      <div class="co">(주)풀링포레스트<small>Poooling Forest · SI / 자사 AI 서비스</small></div>
+      <div class="pd">2025.05 — 현재 (1년 5개월)</div>
+    </div>
+    <div class="role">Enterprise 1팀 리더 (2026.04 —) · 풀스택 개발자 (2025.05 —)</div>
+    <ul class="dot">
+      <li>4인 팀의 업무 배분·코드 리뷰, 프로젝트 일정과 고객 커뮤니케이션을 담당하며 요구사항 정의부터 아키텍처·구현·배포까지 주도</li>
+      <li>ERP·커머스·RAG 챗봇·문서 AI 등 외부 프로젝트와 함께 회사 공용 모듈(Poooling AI Agent, CLI·Device Agent, 스킬 배포 체계)을 개발</li>
+      <li>팀 체계 이전에는 2인 파트너 구조에서 일정 조율·고객 소통·구현·배포 전 과정을 수행</li>
+    </ul>
+  </section>
+
+  <!-- ============ CAREER DESCRIPTION ============ -->
+  <section>
+    <div class="sec"><span class="n">04</span><h2>경력기술서</h2><span class="en">CAREER DESCRIPTION · 임팩트와 러닝 포인트 중심</span></div>
+
+    <!-- P1 -->
+    <div class="pj">
+      <div class="lead-keep"><div class="ph"><span class="no">PROJECT 01</span><h3>AI 활용 인프라 — Device Agent · CLI · 공통 스킬 배포 체계</h3><span class="meta">2026.08 — 09 · 더맛있는하루 ERP / 개인 ERP 뷰어 / 이터널 EDW</span></div>
+      <div class="rl"><b>역할</b> 설계·구현 주도 (제어면·Agent·CLI·스킬 저장소) · <b>대상</b> Claude Code·Codex를 쓰는 개발자 PC (Windows · macOS) · 세 프로젝트는 각자의 인증·릴리스 체계를 가진 개별 구현</div>
+      <div class="stack"><span>TypeScript</span><span>Node.js</span><span>Next.js</span><span>Prisma · PostgreSQL</span><span>AWS S3 · KMS · DynamoDB</span><span>Windows Task Scheduler · DPAPI</span><span>macOS LaunchAgent · Keychain</span><span>MCP</span></div>
+      <div class="grid">
+        <div class="blk">
+          <div class="bt">문제</div>
+          <p>AI 코딩 도구가 업무에 들어왔지만 도구 세팅이 PC마다 다르고, 팀이 만든 스킬의 버전·설치 경로를 관리할 방법이 없었으며, AI가 ERP 데이터를 쓰려면 권한을 어디서 판정할지 정리돼 있지 않았습니다.</p>
+        </div>
+        <div class="blk">
+          <div class="bt">접근</div>
+          <p>사용자가 명령할 때 실행되는 <b>CLI</b>와 백그라운드에서 상태를 맞추는 <b>Device Agent</b>의 역할을 분리하고, 스킬은 <b>S3 버전 패키지 + 중앙 카탈로그</b>로 관리해 "업로드"와 "적용 버전 선택"을 구분했습니다.</p>
+        </div>
+      </div>
+      </div><ul class="dot" style="margin-top:10px">
+        <li><b>Agent-first 설치 흐름 (TMH)</b> — 기기 등록 → CLI 설치 → 로그인 연계 → 공통 스킬 동기화 → 검증까지 하나의 도입 흐름으로 묶고, 전용 런타임을 동봉해 시스템 Node·PATH를 건드리지 않고 사용자 권한으로 동작</li>
+        <li><b>스킬 발행 검증·상태 관리 (개인 ERP 뷰어)</b> — <code>SKILL.md</code>·패키지 구조·SHA-256을 검사해 불변 버전으로 발행하고, 서버의 목표 버전과 기기의 실제 설치 버전을 분리해 반영 여부를 추적. 개인 스킬·회사 관리 스킬·플러그인 경계를 구분해 관리 밖 파일은 덮어쓰지 않음</li>
+        <li><b>인증된 실행 경로 (TMH)</b> — 기기 코드 로그인, OS 키체인 토큰 보관, 웹 화면과 동일한 권한 판정(<code>canAccessMenu</code>)을 거쳐 ERP 도구 17개(주문 9 · 시세 8)를 CLI·AI Agent가 공통 레지스트리로 호출. 변경 도구는 requestId 멱등 원장으로 재시도 금지</li>
+        <li><b>안전한 배포·복구 (TMH · 개인 ERP)</b> — KMS 서명 매니페스트 검증, 업데이트 후 30초 health 검사 실패 시 자동 롤백, 결과 ACK 유실 시 동일 결과 재전송, 불확실한 작업은 성공으로 처리하지 않는 recovery-only 절차</li>
+        <li><b>MCP 조회 분리 (이터널 EDW · 개인 ERP)</b> — 읽기 전용 권한만 가진 별도 자격 증명으로 스킬 목록·상태·사용량을 MCP로 노출, 등록·동기화·삭제 권한은 부여하지 않음</li>
+      </ul>
+      <div class="imp">
+        <div class="box i"><div class="bt">IMPACT</div>스킬 내용이 바뀔 때 CLI 실행파일을 재배포하지 않고 중앙 활성 버전만 갱신하면 각 기기에 반영되는 흐름을 확보. 관리자는 장치·정책·사용량·스킬·릴리스·감사를 한 화면에서 보고, 직원은 설치와 승인 코드 대조까지만 수행</div>
+        <div class="box l"><div class="bt">LEARNING</div>AI 활용 인프라는 스킬 작성만으로 완성되지 않고 발행 기준·설치 상태·실패 처리·권한을 함께 다뤄야 결과를 신뢰할 수 있음. "발행 성공"과 "기기 설치 성공"을 분리해서 관리해야 오프라인·충돌 상황이 정직하게 드러남</div>
+      </div>
+    </div>
+
+    <!-- P2 -->
+    <div class="pj">
+      <div class="lead-keep"><div class="ph"><span class="no">PROJECT 02</span><h3>직접 만든 커스텀 스킬 — 반복 개발 절차의 자산화</h3><span class="meta">2026.02 — 현재 · Claude Code · Codex</span></div>
+      <div class="rl"><b>역할</b> 단독 제작 · 팀 공용 저장소(poooling-skills) 운영 · <b>구성</b> 작업 지침 + 참조 문서 + 템플릿 + 실행 도우미 + 검증 절차</div>
+      <table class="mx">
+        <thead><tr><th style="width:24%">작업 영역</th><th style="width:30%">스킬</th><th>담은 절차</th></tr></thead>
+        <tbody>
+          <tr><td class="pat">빌드·배포</td><td><code>build-script</code> <code>deploy-script-generator</code></td><td>스택(Flutter·네이티브·Docker/ECS·Tauri)별 빌드·배포 스크립트 scaffold와 검사, GitHub Actions 워크플로를 분석해 로컬 대화형 배포 스크립트 생성</td></tr>
+          <tr><td class="pat">프론트엔드 매뉴얼</td><td><code>docs-init</code> <code>docs-update</code></td><td>Next.js 라우트·사이드바·데이터 모델을 읽어 사용자 매뉴얼을 구성하고, 화면 변경에 따라 문서를 동기화</td></tr>
+          <tr><td class="pat">프로젝트 테스트·설계</td><td><code>pgrid-testcase</code> <code>pgrid-test-logger</code> <code>pgrid-erd</code> <code>distribution-erp-erd</code></td><td>코드에서 테스트케이스 추출·P-Grid 등록, 브라우저 로그 수집, ERD API 연동, 유통 ERP 마스터데이터 설계 기준 적용</td></tr>
+          <tr><td class="pat">ERP 자료 작성</td><td><code>erp-project-manage</code> <code>erp-chart</code> <code>erp-html</code> <code>erp-deck</code> <code>erp-slide-deck</code></td><td>공통 API 도우미를 포함해 소스 저장소·Prisma·AWS CLI 없이 흐름도·ERD·보고서·발표 덱을 작성·검증·등록. 수정 전 revision 조회, 저장 후 hash 재대조</td></tr>
+          <tr><td class="pat">경험 기록·발행</td><td><code>portfolio-generator</code> <code>portfolio-blog-post</code></td><td>코드·Git·문서를 읽어 포트폴리오 노트를 정리하고 블로그 발행 파이프라인과 연결</td></tr>
+        </tbody>
+      </table></div>
+      <div class="imp">
+        <div class="box i"><div class="bt">IMPACT</div>스킬에 시작 조건·먼저 읽을 소스·실행 순서·결과물 형식·검증 방법을 함께 담아, 프로젝트마다 작업 절차를 다시 설명하지 않고 같은 기준으로 반복 작업을 수행</div>
+        <div class="box l"><div class="bt">LEARNING</div>스킬은 "지침"이 아니라 "지침 + 실행 도구 + 검증"이어야 재사용됨. 도구 없이 지침만 있으면 환경마다 결과가 달라지고, 검증이 없으면 성공을 확인할 수 없었음</div>
+      </div>
+    </div>
+
+    <!-- P3 -->
+    <div class="pj">
+      <div class="lead-keep"><div class="ph"><span class="no">PROJECT 03</span><h3>공통 CLI·Device Agent 플랫폼 — 구현 플레이북</h3><span class="meta">2026.08 — 09 · ERP Flow Viewer</span></div>
+      <div class="rl"><b>역할</b> 단독 설계·구현 · <b>산출</b> 10장 플레이북 · 28개 다운로드 템플릿 · 50개 자동 테스트 (2026-09-04 전체 통과)</div>
+      <div class="stack"><span>Next.js · React 19</span><span>React Flow · Dagre</span><span>JSON Schema 2020-12</span><span>OpenAPI</span><span>OIDC · PKCE</span><span>plist · XML</span></div>
+      <ul class="dot">
+        <li>고객사별로 따로 만들던 CLI·Device Agent·Control Plane 구현을 분석해, 인증·업무 API·수집 원천·인프라처럼 프로젝트마다 바뀌는 부분을 <b>Profile과 Adapter</b>로 분리</li>
+        <li>CLI와 Device Agent의 실행 프로세스·배포물·버전·복구 단위를 나누고, 인증·정책·릴리스·기기 상태 보고와 OS별 설치·제거 절차를 <b>공통 계약</b>으로 고정</li>
+        <li>canonical identity, fail-closed 정책, SHA-256 배포물 검증, 원격 임의 실행 금지를 보안 기준으로 정하고 schema 검증·인증 경계·멱등성·경로 안전성을 자동 테스트로 확인</li>
+      </ul></div>
+      <div class="imp">
+        <div class="box i"><div class="bt">IMPACT</div>새 프로젝트가 고객사 원본 저장소를 다시 분석하지 않고 Profile 작성 → Adapter 선택 → 계약 검증 → 독립 배포물 발급 → 종단 검증 순서로 도입을 시작할 수 있는 출발점 확보</div>
+        <div class="box l"><div class="bt">LEARNING</div>공통화 대상을 실행 파일이 아닌 계약으로 정의해야 인증·인프라가 다른 프로젝트에서도 핵심 정책이 재사용됨. 문서 계약은 자동 테스트로 묶어야 구현과 어긋나지 않음</div>
+      </div>
+    </div>
+
+    <!-- P4 -->
+    <div class="pj">
+      <div class="lead-keep"><div class="ph"><span class="no">PROJECT 04</span><h3>배포 파이프라인 — GitHub Actions · 불변 릴리스 · 서명 배포</h3><span class="meta">2026 · 더맛있는하루 ERP</span></div>
+      <div class="rl"><b>역할</b> 파이프라인 설계·구현 · <b>범위</b> 웹 dev/prod 배포 · 크롤러 ECR/ECS · CLI·Agent 서명 릴리스</div>
+      <div class="stack"><span>GitHub Actions</span><span>AWS SSM · EC2 · RDS</span><span>PM2</span><span>ECR · ECS Fargate</span><span>CloudFormation</span><span>Azure Trusted Signing · Apple notarize</span></div>
+      <ul class="dot">
+        <li><b>dev</b> — 커밋 아카이브를 SHA-256 내용 주소로 업로드하고(<code>.env</code> 혼입 시 거부, SSH·PEM 미사용) SSM RunCommand로 불변 릴리스 디렉터리를 빌드, 마이그레이션 → 심볼릭 링크 교체 → PM2 재시작 → 헬스체크 실패 시 링크 롤백</li>
+        <li><b>prod</b> — clean tree·origin 일치 확인 후 <code>DEPLOY</code> 직접 입력, 원격 빌드 후 5개 앱 재기동과 healthz 12회 폴링</li>
+        <li><b>Agent 릴리스</b> — 셀프호스트 빌드·서명(.exe / codesign+notarize) → S3 불변 업로드 + KMS 서명 + DRAFT 등록 → 관리자 활성화(prod는 4타겟 매트릭스·lifecycle 검증 필수) → 5분 presigned URL로 배포</li>
+      </ul></div>
+      <div class="imp">
+        <div class="box i"><div class="bt">IMPACT</div>배포 상태 전이를 코드와 승인 단계로 관리해 "빌드됨 · 등록됨 · 활성화됨"을 분리, 실패 시 이전 상태로 되돌리는 경로를 파이프라인 안에 포함</div>
+        <div class="box l"><div class="bt">LEARNING</div>배포 파이프라인의 핵심은 성공 경로보다 실패 경로. 검증되지 않은 배포물이 활성화될 수 없도록 상태 전이 조건을 명시하는 것이 자동화보다 먼저였음</div>
+      </div>
+    </div>
+
+    <!-- P5 -->
+    <div class="pj">
+      <div class="lead-keep"><div class="ph"><span class="no">PROJECT 05</span><h3>Poooling AI Agent — 다중 ERP 공용 AI 런타임</h3><span class="meta">2026.06 — 현재 · 제스프로 적용 완료 · 타 프로젝트 확장 중</span></div>
+      <div class="rl"><b>역할</b> 단독 기획·아키텍처 설계·핵심 런타임 구현 · <b>규모</b> TypeScript 59파일 4,395줄 (테스트 36%) · 의존성 0</div>
+      <div class="stack"><span>TypeScript 5.8</span><span>Node.js 20 ESM</span><span>node:http · SSE</span><span>HMAC 서명</span><span>OpenAI-compatible</span><span>node:test</span></div>
+      <ul class="dot">
+        <li>ERP마다 AI 코드를 복제하던 구조를 중앙 런타임(대화·에이전트 루프·메모리·관측성) + ERP별 <b>Tool Gateway</b>(<code>/catalog</code>·<code>/execute</code>) 계약으로 분리. 중앙 모듈에 raw SQL·DB 직접 접근 경로를 두지 않음</li>
+        <li>중앙이 만든 scope를 ERP가 실행 시점에 HMAC 서명·만료·RBAC·row limit·마스킹으로 <b>재검증</b>하는 이중 검증 구조, 모호한 요청은 <code>clarify</code> 가상 도구로 되묻기</li>
+        <li>LLM SDK 없이 native fetch로 OpenAI-compatible provider를 추상화해 환경변수만으로 로컬 GPU LLM ↔ 상용 API 전환</li>
+      </ul></div>
+      <div class="imp">
+        <div class="box i"><div class="bt">IMPACT</div>새 ERP 연동 시 중앙 모듈 수정 없이 ERP 쪽 endpoint 2개만 구현하면 되는 구조. 이후 CLI·Device Agent 작업에서 같은 권한 경계 관점을 로컬 도구의 인증·설치·배포까지 확장</div>
+        <div class="box l"><div class="bt">LEARNING</div>재사용성과 보안은 명확한 계약과 책임 분리에서 나옴. "중앙 모듈은 업무 데이터의 최종 권한자가 아니다"를 전제로 두자 설계 선택이 단순해졌음</div>
+      </div>
+    </div>
+
+    <!-- P6 -->
+    <div class="pj">
+      <div class="lead-keep"><div class="ph"><span class="no">PROJECT 06</span><h3>Poooling 사내 도구 — 프로젝트 관리 플랫폼과 개발환경 도구 4종</h3><span class="meta">2026.02 — 05 · 전직원 10명 사용</span></div>
+      <div class="rl"><b>역할</b> 4개 저장소 기획·설계·개발·배포·유지보수 총괄 · <b>규모</b> 합산 약 63,000 LOC</div>
+      <div class="stack"><span>Next.js 16 · React 19</span><span>Prisma · PostgreSQL</span><span>Swift · SwiftUI</span><span>Firebase</span><span>XyFlow · Dagre</span></div>
+      <ul class="dot">
+        <li><b>P-Grid</b> — WBS·테스트케이스·결함 추적·ERD·고객 포털을 갖춘 프로젝트 관리 플랫폼(99개 API, ~50,000 LOC). 내부(Google OAuth)와 고객(JWT) 인증을 한 Next.js 앱에서 미들웨어 라우팅으로 분리</li>
+        <li><b>multi-dev-ctrl</b> — 프로젝트별 명령 시퀀스·iTerm 자동화·포트 할당·의존성 자동 설치를 메뉴바 앱 클릭 한 번으로 실행하는 macOS 개발환경 런처</li>
+        <li><b>poooling-skills</b> — ERD·테스트케이스·테스트 로거·문서 작성 등 팀이 함께 쓰는 Claude Code 스킬 저장소 (이후 중앙 배포 체계의 출발점)</li>
+        <li><b>DoneDone</b> — 루틴 자동 리셋·팀 공유·월별 아카이브를 갖춘 macOS 메뉴바 TODO 앱</li>
+      </ul></div>
+      <div class="imp">
+        <div class="box i"><div class="bt">IMPACT</div>프로젝트 관리 프로세스(WBS·테스트·결함 워크플로) 표준화, 개발 시작 전 고정 오버헤드 축소, 팀 AI 활용 절차 공유</div>
+        <div class="box l"><div class="bt">LEARNING</div>실제 쓰면서 느낀 불편을 즉시 고치는 dogfooding이 채택률을 만들었음. 반면 초기에 테스트 체계를 갖추지 못한 점은 이후 프로젝트에서 자동 테스트를 먼저 두는 계기가 됨</div>
+      </div>
+    </div>
+
+    <!-- P7 -->
+    <div class="pj">
+      <div class="lead-keep"><div class="ph"><span class="no">PROJECT 07</span><h3>원익 PNE 레시피 매니저 — 대규모 블록 편집기 성능 최적화</h3><span class="meta">2025.07 — 2026.02 · 시범 운영</span></div>
+      <div class="rl"><b>역할</b> 기본 아키텍처 · 블록 모드 직접 구현 (2인 풀스택) · <b>실측</b> 1,000+ 블록 10–15초 → 30,000+ 블록 60fps</div>
+      <div class="stack"><span>Blazor WebAssembly · .NET 9</span><span>WebGL (PixiJS)</span><span>Blockly</span><span>MediatR CQRS</span><span>MongoDB</span></div>
+      <ul class="dot">
+        <li>DOM 기반 렌더링이 1,000개 이상 블록에서 프레임 드롭·메모리 급증을 일으키는 원인을 분석하고, GPU 가속 Canvas 렌더러와 뷰포트 가상화 스케줄러로 교체</li>
+        <li>블록 탐색·정렬을 O(n²) → O(n log n)으로 개선하고 드래그 레이어를 분리해 드래그·결합·분리 인터랙션을 끊김 없이 유지</li>
+        <li>25개 컨트롤러·51개 CQRS 핸들러로 도메인을 분리해 기능 추가 시 기존 코드 수정을 최소화하고 4차 QA까지 아키텍처 일관성 유지</li>
+      </ul></div>
+      <div class="imp">
+        <div class="box i"><div class="bt">IMPACT</div>1,000개 이상 블록에서 10–15초 걸리던 작업을 30,000개 이상 블록에서도 60fps로 동작하도록 개선(실측). 렌더링 병목을 프레임워크 교체가 아닌 렌더 경로 재설계로 해결</div>
+        <div class="box l"><div class="bt">LEARNING</div>성능 문제는 "느리다"가 아니라 어느 경로에서 얼마나 걸리는지 측정한 뒤 구조를 바꿔야 함. 측정 기준을 함께 기록해 두어야 이후 회귀를 잡을 수 있었음</div>
+      </div>
+    </div>
+
+    <!-- Brief -->
+    <div class="pj">
+      <div class="lead-keep"><div class="ph"><span class="no">OTHER PROJECTS</span><h3>그 외 수행 프로젝트</h3></div>
+      <table class="mx" style="margin-top:6px">
+        <thead><tr><th style="width:26%">프로젝트</th><th style="width:22%">역할 · 기간</th><th>수행 내용</th></tr></thead>
+        <tbody>
+          <tr><td class="pat">더맛있는하루 ERP<span class="co">운영 중</span></td><td>요구사항부터 배포까지 · 2025—현재</td><td>노트북 전용 EXE 업무를 모바일 반응형 웹 ERP로 재구축. 운영 SQL Server 구조 분석, 매출 마감·미수금·세금계산서·문서 발송 자동화</td></tr>
+          <tr><td class="pat">g3global ERP<span class="co">운영 중</span></td><td>팀 리더 · 2025—현재</td><td>재고·전표·정산과 수기 업무를 통합한 운영 ERP. 요구사항·DB·아키텍처·업무 배분·배포</td></tr>
+          <tr><td class="pat">마중 · 한수 도메인 RAG<span class="co">운영 중 · 한수 MAU 500 · 인용 정확도 85% 실측</span></td><td>AI/RAG 아키텍처·풀스택 · 2026—현재</td><td>법률·노무 문서용 3계층 환각 가드(Pregate·Retrieval Gate·Verifier), Tool Calling 다중 경로 검색, HWP 문서 파이프라인</td></tr>
+          <tr><td class="pat">iamfine RAG 챗봇<span class="co">운영 중</span></td><td>1인 풀스택 · 2026.01—02</td><td>Gemma 3 12B + BM25·Vector·RRF·Cross-encoder 하이브리드 검색, 의도 분류, 비동기 인덱싱 파이프라인</td></tr>
+          <tr><td class="pat">TNS AI 가격표 파이프라인<span class="co">고객 데모 · 실험 단계</span></td><td>파이프라인·모델 비교 주도 · 2026.06—현재</td><td>bbox 우선 레이아웃 복원 → OCR → VLM 의미 분류로 브랜드 가격표에서 SKU 추출</td></tr>
+          <tr><td class="pat">VEMONTES 구독 커머스<span class="co">운영 중</span></td><td>풀스택 메인 · 2025.05—11</td><td>카페24 위에 구독 엔진·등급·추천인·ERP 연동을 자체 구현, Flutter WebView 앱 70+ 결제 앱 딥링크 처리</td></tr>
+          <tr><td class="pat">기계설비 ERP · Bestimate · hooh-chat</td><td>중간 투입 · 2025.12—2026.05</td><td>XLSX·DOCX·PDF·OCR 문서 파서와 검수 UI, 지역 기반 중고 거래 게시판, 기존 챗봇의 AI SDK·SSE·검색 파이프라인 집중 개선</td></tr>
+        </tbody>
+      </table></div>
+    </div>
+  </section>
+
+  <!-- ============ SKILLS ============ -->
+  <section class="keep">
+    <div class="sec"><span class="n">05</span><h2>기술</h2><span class="en">TECHNICAL SKILLS</span></div>
+    <div class="sk">
+      <div class="r"><div class="c">Frontend</div><div class="l">React 19, Next.js (App Router · RSC), TypeScript, TanStack Query, Zustand, Tailwind CSS, Vite, React Flow, Blazor WebAssembly</div></div>
+      <div class="r"><div class="c">Backend</div><div class="l">Node.js (ESM), Python/FastAPI, Kotlin/Spring Boot, .NET/ASP.NET Core, Prisma, Better Auth, HMAC·OIDC/PKCE</div></div>
+      <div class="r"><div class="c">Dev Tooling</div><div class="l">Claude Code·Codex 스킬 설계, MCP 서버, CLI·Device Agent(Windows Task Scheduler·DPAPI, macOS LaunchAgent·Keychain), 코드 서명·공증</div></div>
+      <div class="r"><div class="c">CI/CD · Infra</div><div class="l">GitHub Actions, pnpm, AWS (EC2·RDS·S3·SSM·KMS·DynamoDB·ECS Fargate·CloudFormation·Athena), PM2, Docker, Vercel</div></div>
+      <div class="r"><div class="c">AI</div><div class="l">LLM Agent 런타임·Tool Gateway 설계, RAG(Qdrant·BM25·Reranker), OCR·VLM 문서 파이프라인, OpenAI-compatible provider</div></div>
+      <div class="r"><div class="c">Database · Test</div><div class="l">PostgreSQL, MySQL, SQL Server, MongoDB · node:test, Playwright, 격리 DB 통합 테스트</div></div>
+    </div>
+  </section>
+
+  <!-- ============ EDUCATION ============ -->
+  <section class="keep">
+    <div class="sec"><span class="n">06</span><h2>학력</h2><span class="en">EDUCATION</span></div>
+    <div class="exp">
+      <div class="co" style="font-size:10.5pt">상지대학교<small>정보통신소프트웨어공학과 학사</small></div>
+      <div class="pd">2024 졸업</div>
+    </div>
+  </section>
+
+  <div class="ft"><span>윤승규 · ysk9926 · 토스 FE Platform Engineer 지원</span><span>2026. 09. 14</span></div>
+</div>
+</body>
+</html>
