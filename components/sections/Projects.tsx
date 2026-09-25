@@ -5,6 +5,7 @@ import { ChevronLeft, ChevronRight, LayoutGrid, GanttChart, AlignLeft } from 'lu
 import dynamic from 'next/dynamic';
 import { Project, ProjectPortfolioSync } from '@/lib/types';
 import { mergePortfolioProjects } from '@/lib/projects/portfolio';
+import { selectFeaturedProjects } from '@/lib/projects/featured';
 import SectionWrapper from '../ui/SectionWrapper';
 import ProjectCard from '../ui/ProjectCard';
 
@@ -21,11 +22,13 @@ const SCROLL_AMOUNT = 504; // card 480px + gap 24px
 interface ProjectsProps {
   projectsData: Project[];
   projectPortfolioSyncData: ProjectPortfolioSync;
+  featuredIds: number[];
 }
 
 export default function Projects({
   projectsData,
   projectPortfolioSyncData,
+  featuredIds,
 }: ProjectsProps) {
   const [view, setView] = useState<ViewType>('vertical');
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
@@ -36,6 +39,10 @@ export default function Projects({
   const mergedProjects = useMemo<Project[]>(() => {
     return mergePortfolioProjects(projectsData, projectPortfolioSyncData);
   }, [projectsData, projectPortfolioSyncData]);
+  const featuredProjects = useMemo(
+    () => selectFeaturedProjects(mergedProjects, featuredIds),
+    [mergedProjects, featuredIds],
+  );
 
 
   const updateScrollButtons = useCallback(() => {
@@ -83,9 +90,30 @@ export default function Projects({
       id="projects"
       title="Projects"
       className="ai-paper text-ai-ink"
-      contentVisibility
       fullWidthContent
     >
+      {featuredProjects.length > 0 && (
+        <div className="mx-auto mb-16 max-w-6xl px-4">
+          <div className="mb-6 flex flex-wrap items-end justify-between gap-3 border-b border-ai-ink/10 pb-4">
+            <div>
+              <p className="font-mono text-xs uppercase tracking-[0.18em] text-ai-accent">selected work / 01—0{featuredProjects.length}</p>
+              <h3 className="mt-2 text-2xl font-bold tracking-tight md:text-3xl">대표 프로젝트</h3>
+            </div>
+            <p className="max-w-md text-sm text-neutral-600">기업용 시스템과 AI 프로젝트에서 맡은 문제와 해결 과정을 확인할 수 있습니다.</p>
+          </div>
+          <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
+            {featuredProjects.map((project, index) => (
+              <div key={project.id}>
+                <p className="mb-2 font-mono text-xs text-neutral-500">0{index + 1} / {project.title}</p>
+                <ProjectCard project={project} onDetailClick={handleDetailClick} />
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+      <div className="mx-auto mb-4 max-w-6xl px-4">
+        <h3 className="text-xl font-bold tracking-tight md:text-2xl">전체 프로젝트</h3>
+      </div>
       {/* View toggle — constrained to max-w-6xl */}
       <div className="max-w-6xl mx-auto px-4">
         <div className="mb-8 flex items-center justify-end gap-3">

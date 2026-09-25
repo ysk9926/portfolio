@@ -12,6 +12,9 @@ import { formatPostDate } from '@/lib/blog/format';
 import { tagPath } from '@/lib/blog/tags';
 import { estimateReadingMinutes, extractToc } from '@/lib/blog/toc';
 import { getSiteData } from '@/lib/portfolio-data/server';
+import { getSectionPayload } from '@/lib/portfolio-data/server';
+import { mergePortfolioProjects, projectPath } from '@/lib/projects/portfolio';
+import { relatedProjectsForPost } from '@/lib/projects/related-content';
 import { absoluteImageUrl, absoluteUrl } from '@/lib/seo/url';
 
 export const revalidate = 60;
@@ -62,10 +65,13 @@ export default async function BlogDetailPage({ params }: BlogDetailPageProps) {
   const post = await getPostBySlug(slug);
   if (!post) notFound();
 
-  const [comments, site] = await Promise.all([
+  const [comments, site, projects, projectSync] = await Promise.all([
     listCommentsForPost(post.id),
     getSiteData(),
+    getSectionPayload('projects'),
+    getSectionPayload('project-portfolio-sync'),
   ]);
+  const relatedProjects = relatedProjectsForPost(post.slug, mergePortfolioProjects(projects, projectSync));
 
   const toc = extractToc(post.body);
   const readingMinutes = estimateReadingMinutes(post.body);
@@ -191,6 +197,22 @@ export default async function BlogDetailPage({ params }: BlogDetailPageProps) {
           <div className="mt-10">
             <BlogMarkdown content={post.body} />
           </div>
+
+          {relatedProjects.length > 0 && (
+            <section className="mt-12 border-t border-neutral-200 pt-8">
+              <h2 className="text-xl font-bold text-gray-900">관련 프로젝트</h2>
+              <ul className="mt-4 space-y-3">
+                {relatedProjects.map((project) => (
+                  <li key={project.id}>
+                    <Link href={projectPath(project)} className="block rounded-xl border border-neutral-200 bg-white p-4 transition hover:border-neutral-400 hover:shadow-sm">
+                      <span className="font-semibold text-gray-900">{project.title}</span>
+                      <span className="mt-1 block text-sm text-gray-600">{project.shortDescription || project.description}</span>
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </section>
+          )}
 
           <div className="mt-12 flex justify-center">
             <PostLikeButton slug={post.slug} initialCount={post.likeCount} />

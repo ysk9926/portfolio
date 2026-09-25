@@ -7,6 +7,7 @@ export const sectionKeys = [
   'archiving',
   'career',
   'projects',
+  'featured-projects',
   'project-portfolio-sync',
   'activity-heatmap',
   'ai-workflow',
@@ -115,6 +116,13 @@ export const projectsPayloadSchema = z.array(
     star: projectStarSchema.optional(),
   }),
 );
+
+export const featuredProjectsPayloadSchema = z.object({
+  ids: z.array(z.number().int().positive()).refine(
+    (ids) => (ids.length === 0 || ids.length === 3) && new Set(ids).size === ids.length,
+    'Select exactly three different projects, or clear the selection',
+  ),
+});
 
 export const projectPortfolioSyncEntrySchema = z.object({
   projectKey: requiredString,
@@ -273,6 +281,7 @@ export const sectionPayloadSchemaMap = {
   archiving: archivingPayloadSchema,
   career: careerPayloadSchema,
   projects: projectsPayloadSchema,
+  'featured-projects': featuredProjectsPayloadSchema,
   'project-portfolio-sync': projectPortfolioSyncPayloadSchema,
   'activity-heatmap': activityHeatmapPayloadSchema,
   'ai-workflow': aiWorkflowPayloadSchema,
@@ -284,6 +293,7 @@ export type SkillsPayload = z.infer<typeof skillsPayloadSchema>;
 export type ArchivingPayload = z.infer<typeof archivingPayloadSchema>;
 export type CareerPayload = z.infer<typeof careerPayloadSchema>;
 export type ProjectsPayload = z.infer<typeof projectsPayloadSchema>;
+export type FeaturedProjectsPayload = z.infer<typeof featuredProjectsPayloadSchema>;
 export type ProjectPortfolioSyncPayload = z.infer<
   typeof projectPortfolioSyncPayloadSchema
 >;
@@ -297,6 +307,7 @@ export interface SectionPayloadMap {
   archiving: ArchivingPayload;
   career: CareerPayload;
   projects: ProjectsPayload;
+  'featured-projects': FeaturedProjectsPayload;
   'project-portfolio-sync': ProjectPortfolioSyncPayload;
   'activity-heatmap': ActivityHeatmapPayload;
   'ai-workflow': AiWorkflowPayload;

@@ -23,7 +23,7 @@ import { createServerSupabaseClient } from '@/utils/supabase/server';
  * Sections stored as raw jsonb in section_payloads, bypassing the
  * per-section normalization in export_section_payload / admin_replace_section.
  */
-export const RAW_JSON_SECTIONS: ReadonlySet<SectionKey> = new Set(['ai-workflow']);
+export const RAW_JSON_SECTIONS: ReadonlySet<SectionKey> = new Set(['ai-workflow', 'featured-projects']);
 
 const getRawSectionPayload = async (sectionKey: SectionKey): Promise<unknown> => {
   const supabase = await createServerSupabaseClient();
@@ -101,6 +101,7 @@ export const getPortfolioPageData = async (): Promise<PortfolioViewData> => {
     archiving,
     activityHeatmap,
     projects,
+    featuredProjects,
     projectPortfolioSync,
     career,
     aiWorkflow,
@@ -111,6 +112,7 @@ export const getPortfolioPageData = async (): Promise<PortfolioViewData> => {
       getSectionPayload('archiving'),
       getSectionPayload('activity-heatmap'),
       getSectionPayload('projects'),
+      getSectionPayload('featured-projects'),
       getSectionPayload('project-portfolio-sync'),
       getSectionPayload('career'),
       getSectionPayload('ai-workflow'),
@@ -123,6 +125,7 @@ export const getPortfolioPageData = async (): Promise<PortfolioViewData> => {
     archiving: archiving as ArchiveItem[],
     activityHeatmap: activityHeatmap as ActivityHeatmap,
     projects: projects as Project[],
+    featuredProjects: featuredProjects as { ids: number[] },
     projectPortfolioSync: projectPortfolioSync as ProjectPortfolioSync,
     career: career as CareerEntry[],
     aiWorkflow: aiWorkflow as AiWorkflow,

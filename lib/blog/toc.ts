@@ -2,6 +2,7 @@ export interface TocEntry {
   id: string;
   text: string;
   level: 2 | 3;
+  sourceLine: number;
 }
 
 export const slugifyHeading = (raw: string): string => {
@@ -19,7 +20,7 @@ export const extractToc = (markdown: string): TocEntry[] => {
   const used = new Map<string, number>();
   let inFence = false;
 
-  for (const line of lines) {
+  for (const [lineIndex, line] of lines.entries()) {
     if (line.startsWith('```')) {
       inFence = !inFence;
       continue;
@@ -34,7 +35,7 @@ export const extractToc = (markdown: string): TocEntry[] => {
     const count = used.get(id) ?? 0;
     if (count > 0) id = `${id}-${count}`;
     used.set(slugifyHeading(text), count + 1);
-    entries.push({ id, text, level: level as 2 | 3 });
+    entries.push({ id, text, level: level as 2 | 3, sourceLine: lineIndex + 1 });
   }
   return entries;
 };

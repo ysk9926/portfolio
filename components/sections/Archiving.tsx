@@ -1,19 +1,20 @@
-import { ArchiveItem } from '@/lib/types/view';
+import { ActivityHeatmap as ActivityHeatmapType, ArchiveItem } from '@/lib/types/view';
 import SectionWrapper from '../ui/SectionWrapper';
 import ArchiveCard from '../ui/ArchiveCard';
 import AnimateOnScroll from '../ui/AnimateOnScroll';
+import ActivityHeatmap from './ActivityHeatmap';
 
 interface ArchivingProps {
   data: ArchiveItem[];
+  heatmap: ActivityHeatmapType;
 }
 
-export default function Archiving({ data }: ArchivingProps) {
+export default function Archiving({ data, heatmap }: ArchivingProps) {
   return (
     <SectionWrapper
       id="archiving"
-      title="Archiving"
+      title="Archive"
       className="ai-ink text-white"
-      contentVisibility
     >
       <div className="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-6 lg:grid-cols-3">
         {data.map((item) => (
@@ -27,6 +28,7 @@ export default function Archiving({ data }: ArchivingProps) {
           </AnimateOnScroll>
         ))}
       </div>
+      <ActivityHeatmap heatmap={heatmap} embedded />
     </SectionWrapper>
   );
 }

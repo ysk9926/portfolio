@@ -15,6 +15,8 @@ import {
 } from 'lucide-react';
 import MarkdownRenderer from '@/components/ui/MarkdownRenderer';
 import { getPortfolioPageData } from '@/lib/portfolio-data/server';
+import { listPublishedPosts } from '@/lib/blog/server';
+import { relatedPostsForProject } from '@/lib/projects/related-content';
 import {
   findProjectBySlug,
   getProjectSummary,
@@ -95,7 +97,10 @@ export async function generateMetadata({
 
 export default async function ProjectDetailPage({ params }: ProjectPageProps) {
   const { slug } = await params;
-  const { site, project } = await getProjectPageData(slug);
+  const [{ site, project }, posts] = await Promise.all([
+    getProjectPageData(slug),
+    listPublishedPosts(),
+  ]);
 
   if (!project) notFound();
 
@@ -104,6 +109,7 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
   const imageUrl = absoluteImageUrl(project.thumbnail, site.config);
   const summary = getProjectSummary(project);
   const updatedDate = getProjectUpdatedDate(project);
+  const relatedPosts = relatedPostsForProject(project.id, posts);
   const structuredData = [
     {
       '@context': 'https://schema.org',
@@ -345,6 +351,22 @@ export default async function ProjectDetailPage({ params }: ProjectPageProps) {
             </div>
           </aside>
         </section>
+        {relatedPosts.length > 0 && (
+          <section className="mt-14 border-t border-ai-ink/10 pt-8">
+            <h2 className="text-2xl font-bold text-gray-950">관련 기술 글</h2>
+            <ul className="mt-5 grid gap-3 md:grid-cols-2">
+              {relatedPosts.map((post) => (
+                <li key={post.slug}>
+                  <Link href={`/blog/${post.slug}`} className="block rounded-xl border border-ai-ink/10 bg-white p-5 transition-colors hover:border-ai-accent">
+                    <span className="font-mono text-xs text-neutral-500">BLOG</span>
+                    <span className="mt-2 block font-semibold text-ai-ink">{post.title}</span>
+                    <span className="mt-2 block text-sm text-neutral-600">{post.summary}</span>
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </section>
+        )}
       </div>
     </article>
   );

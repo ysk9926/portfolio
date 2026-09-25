@@ -5,11 +5,9 @@ import { PROFILE_HANDLE } from '@/lib/seo/profile';
 interface HeroProps {
   heroData: HeroData;
   publicEmail?: string;
-  /** Short AI-workflow facts shown under the tagline, e.g. tools and skill counts. */
-  aiHighlights?: string[];
 }
 
-export default function Hero({ heroData, publicEmail, aiHighlights = [] }: HeroProps) {
+export default function Hero({ heroData, publicEmail }: HeroProps) {
   return (
     <section
       id="hero"
@@ -28,41 +26,27 @@ export default function Hero({ heroData, publicEmail, aiHighlights = [] }: HeroP
         <p className="font-mono text-sm text-ai-accent md:text-base">
           @{PROFILE_HANDLE}
         </p>
-        <p className="text-2xl md:text-3xl text-neutral-200 font-semibold">
+        <p className="mx-auto max-w-4xl break-keep text-xl font-semibold leading-snug text-neutral-200 sm:text-2xl md:text-3xl">
           {heroData.role}
         </p>
         <p className="text-base md:text-lg text-neutral-400 max-w-2xl mx-auto whitespace-pre-line">
           {heroData.tagline}
         </p>
-        {aiHighlights.length > 0 && (
-          <a
-            href="#ai-workflow"
-            data-analytics-target="ai-workflow"
-            aria-label="AI Workflow 섹션으로 이동"
-            className="group mx-auto inline-flex max-w-full flex-wrap items-center justify-center gap-x-3 gap-y-1.5 rounded-full border border-white/10 bg-white/[0.04] px-4 py-2 font-mono text-[11px] text-neutral-300 transition-colors hover:border-ai-accent/60 hover:text-white focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white md:text-xs"
-          >
-            <span aria-hidden className="text-ai-accent">$</span>
-            {aiHighlights.map((item, index) => (
-              <span key={item} className="inline-flex items-center gap-3">
-                {index > 0 && <span aria-hidden className="text-neutral-600">·</span>}
-                {item}
-              </span>
-            ))}
-            <span
-              aria-hidden
-              className="ml-0.5 inline-block h-3 w-[6px] animate-caret-blink bg-ai-accent/80"
-            />
-          </a>
-        )}
         <div className="flex flex-col items-center justify-center gap-3 pt-8 sm:flex-row">
+          <a
+            href="#projects"
+            className="inline-flex min-h-11 items-center justify-center gap-2 rounded-full bg-white px-7 py-3 font-semibold text-ai-ink transition-colors hover:bg-ai-accent-soft focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white"
+          >
+            {heroData.cta}
+          </a>
           <a
             href="/resume/portfolio.pdf"
             data-analytics-target="resume"
             download="윤승규-포트폴리오.pdf"
-            className="inline-flex min-h-11 items-center justify-center gap-2 rounded-full bg-white px-7 py-3 font-semibold text-ai-ink transition-colors hover:bg-ai-accent-soft focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white"
+            className="inline-flex min-h-11 items-center justify-center gap-2 rounded-full border border-white/20 bg-white/5 px-7 py-3 font-semibold text-white transition-colors hover:border-ai-accent hover:bg-white/10 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white"
           >
             <Download aria-hidden size={18} />
-            포트폴리오 PDF 다운로드
+            포트폴리오 PDF
           </a>
           {publicEmail && (
             <a
@@ -90,7 +74,7 @@ export default function Hero({ heroData, publicEmail, aiHighlights = [] }: HeroP
             href="#about"
             className="inline-flex min-h-11 items-center underline decoration-white/30 underline-offset-4 transition-colors hover:text-white focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-white"
           >
-            {heroData.cta}
+            About
           </a>
         </div>
       </div>

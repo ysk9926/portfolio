@@ -15,6 +15,7 @@ import { SkillsEditor } from './editors/SkillsEditor';
 import { ArchivingEditor } from './editors/ArchivingEditor';
 import { CareerEditor } from './editors/CareerEditor';
 import { ProjectsEditor } from './editors/ProjectsEditor';
+import { FeaturedProjectsEditor } from './editors/FeaturedProjectsEditor';
 import { ReadOnlyViewer } from './editors/ReadOnlyViewer';
 import AiWorkflowEditor from './editors/AiWorkflowEditor';
 
@@ -292,7 +293,7 @@ function renderFormEditor(
     sectionKey === 'archiving' ||
     sectionKey === 'career' ||
     sectionKey === 'projects';
-  const expectsObject = sectionKey === 'site' || sectionKey === 'ai-workflow';
+  const expectsObject = sectionKey === 'site' || sectionKey === 'ai-workflow' || sectionKey === 'featured-projects';
 
   if (expectsArray && !Array.isArray(payload)) return null;
   if (expectsObject && (typeof payload !== 'object' || Array.isArray(payload))) return null;
@@ -340,6 +341,13 @@ function renderFormEditor(
           onChange={onChange}
         />
       );
+    case 'featured-projects':
+      return (
+        <FeaturedProjectsEditor
+          value={payload as Parameters<typeof FeaturedProjectsEditor>[0]['value']}
+          onChange={onChange}
+        />
+      );
     case 'ai-workflow':
       return (
         <AiWorkflowEditor
@@ -376,4 +384,3 @@ function StatusPill({
     </span>
   );
 }
-

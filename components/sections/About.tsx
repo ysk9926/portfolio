@@ -38,13 +38,14 @@ export default function About({ data, aboutSummary, profileImage }: AboutProps) 
                 whoami
               </p>
               <p className="mt-2 text-2xl font-bold tracking-tight md:text-3xl">
-                기획부터 배포까지, 끝까지 맡습니다
+                문제를 정의하고, 운영까지 책임집니다
               </p>
             </div>
           </div>
           <p className="mt-6 max-w-xl text-base leading-relaxed text-neutral-700 md:text-lg">
             {aboutSummary}
           </p>
+          <a href="#career" className="mt-5 inline-flex text-sm font-semibold text-ai-ink underline decoration-ai-accent underline-offset-4 hover:text-ai-accent">경력과 역할 보기 →</a>
         </AnimateOnScroll>
 
         <AnimateOnScroll>

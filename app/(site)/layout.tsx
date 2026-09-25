@@ -9,35 +9,11 @@ import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import ScrollToTop from '@/components/layout/ScrollToTop';
 import { getSiteData } from '@/lib/portfolio-data/server';
-import type { NavItem } from '@/lib/types/view';
 import { absoluteImageUrl, getSiteUrl } from '@/lib/seo/url';
 import {
   PROFILE_HANDLE,
   withProfileHandle,
 } from '@/lib/seo/profile';
-
-const insertBefore = (
-  navItems: NavItem[],
-  item: NavItem,
-  anchorHref: string,
-): NavItem[] => {
-  if (navItems.some((existing) => existing.href === item.href)) {
-    return navItems;
-  }
-
-  const anchorIndex = navItems.findIndex((existing) => existing.href === anchorHref);
-  if (anchorIndex === -1) {
-    return [...navItems, item];
-  }
-
-  return [...navItems.slice(0, anchorIndex), item, ...navItems.slice(anchorIndex)];
-};
-
-/** Guarantees the AI and Blog entries even when the stored nav predates them. */
-const withDefaultNav = (navItems: NavItem[]): NavItem[] => {
-  const withAi = insertBefore(navItems, { label: 'AI', href: '#ai-workflow' }, '#about');
-  return insertBefore(withAi, { label: 'Blog', href: '/blog' }, '#career');
-};
 
 export async function generateMetadata(): Promise<Metadata> {
   const site = await getSiteData();
@@ -46,7 +22,7 @@ export async function generateMetadata(): Promise<Metadata> {
   const ogImage = absoluteImageUrl(null, siteConfig);
   const metadataBase = new URL(siteUrl);
   const title = withProfileHandle(siteConfig.title);
-  const description = `${site.hero.role} ${site.hero.name}(${PROFILE_HANDLE})의 포트폴리오입니다. Claude Code·Codex 기반 AI 워크플로우와 직접 만든 스킬, ERP·커머스·RAG AI 프로젝트를 기획부터 배포까지 주도한 경험을 소개합니다.`;
+  const description = `${site.hero.name}(${PROFILE_HANDLE})의 포트폴리오입니다. ${site.hero.role}. 기업용 업무 시스템·금융/세무 연동·RAG AI 프로젝트의 설계와 운영 경험을 소개합니다.`;
   const googleSiteVerification = process.env.GOOGLE_SITE_VERIFICATION;
 
   return {
@@ -108,7 +84,7 @@ export default async function SiteLayout({
       >
         본문으로 건너뛰기
       </a>
-      <Header navItems={withDefaultNav(site.nav)} heroName={site.hero.name} />
+      <Header navItems={site.nav} heroName={site.hero.name} />
       <main id="main-content" tabIndex={-1}>{children}</main>
       <Footer footerData={site.footer} />
       <ScrollToTop />

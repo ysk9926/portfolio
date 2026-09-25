@@ -13,7 +13,6 @@ export default function Career({ data }: CareerProps) {
       id="career"
       title="Career"
       className="ai-cream text-ai-ink"
-      contentVisibility
     >
       <div className="mx-auto max-w-3xl space-y-6">
         {data.map((entry) => (
