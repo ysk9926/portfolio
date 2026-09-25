@@ -7,6 +7,7 @@ import {
   isSectionKey,
   sectionPayloadSchemaMap,
 } from '@/lib/types/payload';
+import { currentSectionPayload } from '@/lib/admin/section-payload';
 import { AdminShell, sectionMeta } from './AdminShell';
 import { Button } from './ui/Button';
 import { SiteEditor } from './editors/SiteEditor';
@@ -52,6 +53,7 @@ export default function AdminSectionEditor({
   const [error, setError] = useState<string | null>(null);
   const [successMessage, setSuccessMessage] = useState<string | null>(null);
   const loadedForSectionRef = useRef<SectionKey | null>(null);
+  const loadRequestRef = useRef(0);
 
   const isReadOnly = READ_ONLY_SECTIONS.has(sectionKey);
 
@@ -75,11 +77,13 @@ export default function AdminSectionEditor({
 
   const loadSection = useCallback(
     async (nextSectionKey: SectionKey) => {
+      const requestId = ++loadRequestRef.current;
       setIsLoading(true);
       setError(null);
       setSuccessMessage(null);
       setPayload(null);
       setUpdatedAt(null);
+      loadedForSectionRef.current = null;
 
       try {
         const response = await fetch(`/api/admin/sections/${nextSectionKey}`, {
@@ -93,14 +97,16 @@ export default function AdminSectionEditor({
         }
 
         const parsed = body as SectionResponse;
+        if (requestId !== loadRequestRef.current) return;
         setPayload(parsed.payload);
         setUpdatedAt(parsed.updatedAt);
         setIsDirty(false);
         loadedForSectionRef.current = nextSectionKey;
       } catch (caughtError) {
+        if (requestId !== loadRequestRef.current) return;
         setError(caughtError instanceof Error ? caughtError.message : '섹션 로딩 실패');
       } finally {
-        setIsLoading(false);
+        if (requestId === loadRequestRef.current) setIsLoading(false);
       }
     },
     [],
@@ -242,7 +248,11 @@ export default function AdminSectionEditor({
               }
             />
           ) : (
-            renderFormEditor(sectionKey, payload, handleFormChange)
+            renderFormEditor(
+              sectionKey,
+              currentSectionPayload(sectionKey, loadedForSectionRef.current, payload),
+              handleFormChange,
+            )
           )}
         </div>
 
