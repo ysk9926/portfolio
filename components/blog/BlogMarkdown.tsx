@@ -5,7 +5,7 @@ import remarkGfm from 'remark-gfm';
 import rehypeRaw from 'rehype-raw';
 import rehypeSanitize, { defaultSchema } from 'rehype-sanitize';
 import type { Components } from 'react-markdown';
-import { slugifyHeading } from '@/lib/blog/toc';
+import { extractToc, slugifyHeading } from '@/lib/blog/toc';
 import CodeBlock from './CodeBlock';
 import MermaidBlock from './MermaidBlock';
 
@@ -43,16 +43,6 @@ const schema = {
   },
 };
 
-const used = new Map<string, number>();
-
-const headingId = (rawText: unknown): string => {
-  const raw = typeof rawText === 'string' ? rawText : Array.isArray(rawText) ? rawText.join(' ') : '';
-  const base = slugifyHeading(raw);
-  const count = used.get(base) ?? 0;
-  used.set(base, count + 1);
-  return count === 0 ? base : `${base}-${count}`;
-};
-
 const flattenChildren = (children: React.ReactNode): string => {
   if (typeof children === 'string') return children;
   if (typeof children === 'number') return String(children);
@@ -63,9 +53,14 @@ const flattenChildren = (children: React.ReactNode): string => {
   return '';
 };
 
-const components: Components = {
-  h2: ({ children }) => {
-    const id = headingId(flattenChildren(children));
+const createComponents = (content: string): Components => {
+  const idsByLine = new Map(extractToc(content).map(({ sourceLine, id }) => [sourceLine, id]));
+  const headingId = (rawText: string, sourceLine?: number): string =>
+    (sourceLine === undefined ? undefined : idsByLine.get(sourceLine)) ?? slugifyHeading(rawText);
+
+  return {
+  h2: ({ children, node }) => {
+    const id = headingId(flattenChildren(children), node?.position?.start.line);
     return (
       <h2
         id={id}
@@ -75,8 +70,8 @@ const components: Components = {
       </h2>
     );
   },
-  h3: ({ children }) => {
-    const id = headingId(flattenChildren(children));
+  h3: ({ children, node }) => {
+    const id = headingId(flattenChildren(children), node?.position?.start.line);
     return (
       <h3 id={id} className="scroll-mt-24 text-xl font-semibold text-gray-900 mt-8 mb-3">
         {children}
@@ -157,16 +152,16 @@ const components: Components = {
   strong: ({ children }) => (
     <strong className="font-semibold text-gray-900">{children}</strong>
   ),
+  };
 };
 
 export default function BlogMarkdown({ content }: BlogMarkdownProps) {
-  used.clear();
   return (
     <div className="text-base leading-7">
       <ReactMarkdown
         remarkPlugins={[remarkGfm]}
         rehypePlugins={[rehypeRaw, [rehypeSanitize, schema]]}
-        components={components}
+        components={createComponents(content)}
       >
         {content}
       </ReactMarkdown>

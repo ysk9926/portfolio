@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <title>포트폴리오 사이트 구조 개선 계획</title>
+  <style>
+    :root{--accent:#1b2a4a;--muted:#666;--border:#eaeaea;--soft:#fafafa;--blue:#edf2f8;--ink:#0a0a0a;--width:220px}
+    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:#fff;color:var(--ink);font:14px/1.65 Pretendard,-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Noto Sans KR","Malgun Gothic",sans-serif;font-variant-numeric:tabular-nums}
+    a{color:var(--accent);text-underline-offset:3px}a:focus-visible{outline:2px solid var(--accent);outline-offset:3px}.skip{position:absolute;left:-9999px}.skip:focus{left:12px;top:12px;padding:8px;background:#fff;z-index:3}
+    .shell{display:flex;height:100vh;overflow:hidden}nav{flex:0 0 var(--width);overflow:auto;background:var(--soft);border-right:1px solid var(--border)}.nav-head{padding:24px 20px;border-bottom:1px solid var(--border)}.brand{font-weight:700;letter-spacing:.06em;color:var(--accent)}.caption{margin-top:4px;font-size:12px;color:var(--muted)}nav a{display:block;padding:12px 20px;border-bottom:1px solid var(--border);text-decoration:none}nav a:hover{background:#e8e8e8}
+    main{flex:1;min-width:0;overflow:auto}header,section,footer{padding:24px;border-bottom:1px solid var(--border)}.content{max-width:1100px}.eyebrow{margin:0 0 8px;font-size:11px;font-weight:700;letter-spacing:.08em;color:var(--muted)}h1{margin:0 0 12px;font-size:24px;line-height:1.4;letter-spacing:-.02em;color:var(--accent)}h2{margin:0 0 16px;font-size:18px;line-height:1.4;color:var(--accent)}h3{margin:18px 0 8px;font-size:15px;color:var(--accent)}p{margin:0 0 12px}p:last-child{margin-bottom:0}.lead{max-width:78ch;font-size:15px}.meta{display:flex;flex-wrap:wrap;gap:8px 20px;margin-top:16px;font-size:12px;color:var(--muted)}.note{margin-top:16px;padding:14px 18px;border-left:3px solid var(--accent);background:var(--soft)}.note p{margin:0}
+    .statement{border:1px solid var(--border);padding:18px 20px;margin:16px 0}.statement strong{display:block;color:var(--accent);font-size:16px;line-height:1.5}.statement span{display:block;margin-top:8px;color:var(--muted)}.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border:1px solid var(--border);margin:16px 0}.cell{padding:20px;min-width:0;border-right:1px solid var(--border)}.cell:last-child{border-right:0}.cell .num{display:block;margin-bottom:8px;color:var(--accent);font-size:22px;font-weight:700;line-height:1}.cell h3{margin:0 0 6px}.cell p{color:#444}.tag{display:inline-block;border:1px solid var(--border);border-radius:3px;padding:2px 7px;color:var(--accent);font-size:12px}
+    .table-scroll{max-width:100%;overflow-x:auto;border:1px solid var(--border);margin:16px 0}.table{width:100%;min-width:680px;border-collapse:collapse;font-size:13px;line-height:1.6}.table th,.table td{padding:12px 16px;text-align:left;vertical-align:top;border-right:1px solid var(--border);border-bottom:1px solid var(--border)}.table th:last-child,.table td:last-child{border-right:0}.table tr:last-child td{border-bottom:0}.table th{background:var(--soft);color:var(--accent);font-weight:700}.table td:first-child{font-weight:600}.table ul{margin:0;padding-left:18px}
+    .flow{list-style:none;display:grid;grid-template-columns:repeat(7,minmax(0,1fr));padding:0;margin:16px 0;border:1px solid var(--border)}.flow li{padding:14px 10px;border-right:1px solid var(--border);text-align:center;font-size:12px;font-weight:600;color:var(--accent)}.flow li:last-child{border:0}.flow li:first-child{background:var(--blue)}.flow small{display:block;color:var(--muted);font-weight:400}.steps{margin:16px 0;padding:0;list-style:none;border-top:1px solid var(--border)}.steps li{display:grid;grid-template-columns:120px minmax(0,1fr);gap:12px;padding:16px 0;border-bottom:1px solid var(--border)}.steps b{color:var(--accent)}.steps p{margin:0}.steps small{display:block;margin-top:5px;color:var(--muted);font-size:12px}.bullets{margin:8px 0 16px;padding-left:20px}.bullets li{padding:3px 0}.source{font-size:12px;color:var(--muted)}code{font:12px/1.6 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;overflow-wrap:anywhere;color:var(--accent)}
+    @media(max-width:900px){nav{flex-basis:170px}.grid{grid-template-columns:1fr}.cell{border-right:0;border-bottom:1px solid var(--border)}.cell:last-child{border-bottom:0}.flow{grid-template-columns:repeat(4,minmax(0,1fr))}.flow li{border-bottom:1px solid var(--border)}}
+    @media(max-width:620px){.shell{display:block;height:auto;overflow:visible}nav{display:none}main{overflow:visible}header,section,footer{padding:20px}.flow{grid-template-columns:repeat(2,minmax(0,1fr))}.steps li{grid-template-columns:1fr;gap:4px}}
+    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+    @media print{@page{size:A4;margin:15mm}.shell{display:block;height:auto;overflow:visible}nav,.skip{display:none}main{overflow:visible}header,section,footer{padding:16px 0}h2,h3{break-after:avoid}.grid,.cell,.steps li,.table tr,.statement{break-inside:avoid}.table{min-width:0}.table th,.table td{padding:8px 10px}.flow{grid-template-columns:repeat(4,minmax(0,1fr))}}
+  </style>
+</head>
+<body>
+<a class="skip" href="#intro">본문으로 이동</a>
+<div class="shell">
+  <nav aria-label="문서 목차">
+    <div class="nav-head"><div class="brand">PORTFOLIO</div><div class="caption">사이트 구조 개선 · 실행 계획</div></div>
+    <a href="#intro">문서 안내</a>
+    <a href="#problems">01 · 기존 페이지의 문제점</a>
+    <a href="#direction">02 · 개선 방향</a>
+    <a href="#plan">03 · 개선 계획</a>
+    <a href="#after">04 · 개선 후 구조</a>
+    <a href="#basis">근거와 확인 사항</a>
+  </nav>
+  <main>
+    <header id="intro">
+      <div class="content">
+        <p class="eyebrow">PORTFOLIO · INFORMATION ARCHITECTURE</p>
+        <h1>포트폴리오 사이트 구조 개선 계획</h1>
+        <p class="lead">콘텐츠를 줄이는 대신, 첫 방문자가 개발자의 정체성과 대표 근거를 먼저 이해하도록 노출 순서를 바꿉니다. 아래 내용은 현재 구조에 대한 진단과 앞으로 적용할 설계입니다.</p>
+        <div class="meta"><span>대상 · 윤승규 포트폴리오 사이트</span><span>기준일 · 2026-09-25</span><span>상태 · 구현 전 계획</span></div>
+        <div class="note"><p>메뉴 중복과 메시지 분산은 사용자 진단을 기준으로 정리했습니다. 홈의 섹션 순서, 프로젝트 날짜순 기본 뷰, 관리자 저장 방식, canonical·sitemap 구현 여부는 저장소 코드를 확인했습니다.</p></div>
+      </div>
+    </header>
+
+    <section id="problems">
+      <div class="content">
+        <p class="eyebrow">01 · CURRENT STATE</p>
+        <h2>기존 페이지의 문제점</h2>
+        <div class="grid">
+          <article class="cell"><span class="num">01</span><h3>메시지 분산</h3><p>첫 화면에서 ERP·AI·WebGL 등 여러 주제를 함께 강조해 지원 직무와 대표 강점을 파악하는 데 시간이 걸립니다.</p></article>
+          <article class="cell"><span class="num">02</span><h3>메뉴 역할 중복</h3><p>AI·About·Skills·Projects·Blog·Career·Archiving의 역할이 일부 겹칩니다. 첫 방문자가 탐색 순서를 스스로 정해야 합니다.</p></article>
+          <article class="cell"><span class="num">03</span><h3>정보 우선순위 부재</h3><p>도구·스킬 수와 활동량이 대표 프로젝트·문제 해결 근거보다 앞서 보여 핵심 경험이 뒤로 밀립니다.</p></article>
+        </div>
+        <div class="table-scroll"><table class="table"><thead><tr><th>겹치는 영역</th><th>현재 읽히는 문제</th><th>정리 기준</th></tr></thead><tbody>
+          <tr><td>About ↔ Career</td><td>경력 설명이 두 곳에 분산됩니다.</td><td>About은 일하는 방식, Career는 회사별 이력과 성과.</td></tr>
+          <tr><td>AI ↔ Skills</td><td>도구와 기술 스택이 강점보다 먼저 나열됩니다.</td><td>Skills는 제품 개발 스택, AI Workflow는 업무 절차와 검증.</td></tr>
+          <tr><td>Archiving ↔ Activity</td><td>GitHub 링크와 활동량이 중복 강조됩니다.</td><td>Archive는 자료 입구, Activity는 하위 근거.</td></tr>
+          <tr><td>Blog ↔ Archiving</td><td>기록 성격의 콘텐츠가 분리 노출됩니다.</td><td>자체 Blog URL은 유지하고 Archive에서 연결.</td></tr>
+        </tbody></table></div>
+        <div class="note"><p>현재 홈 렌더 순서는 <code>Hero → AI Workflow → About → Skills → Archiving → Activity → Projects → Career</code>입니다. Projects의 기본 세로 타임라인은 시작일 기준으로 다시 정렬되므로 데이터 목록의 순서만 바꿔서는 대표 3건을 먼저 보여줄 수 없습니다.</p></div>
+      </div>
+    </section>
+
+    <section id="direction">
+      <div class="content">
+        <p class="eyebrow">02 · DIRECTION</p>
+        <h2>개선 방향</h2>
+        <div class="statement"><strong>Enterprise 시스템을 설계하고, AI로 개발 프로세스를 개선하는 풀스택 개발자</strong><span>보조 근거 문구: “2025년 5월부터 기업용 업무 시스템과 AI 프로젝트를 기획부터 운영까지 이끌고 있습니다.” 기존의 “11개월·14개” 문구는 현재 운영 데이터와 맞지 않아 제외합니다.</span></div>
+        <div class="table-scroll"><table class="table"><thead><tr><th>원칙</th><th>첫 노출</th><th>상세로 이동</th></tr></thead><tbody>
+          <tr><td>정체성 → 근거</td><td>직무 한 문장과 검증된 성과</td><td>프로젝트 상세·경력 기록</td></tr>
+          <tr><td>대표 → 전체</td><td>직무 관련 대표 프로젝트 3건</td><td>전체 카드·타임라인·상세 URL</td></tr>
+          <tr><td>요약 → 상세</td><td>Core Stack, AI 작업 절차와 사례</td><td>전체 기술 근거, 도구·스킬·커맨드</td></tr>
+          <tr><td>기록의 한 입구</td><td>Archive에 Blog·GitHub·App Store 등 연결</td><td>자체 블로그 원문, Git 활동 히트맵</td></tr>
+        </tbody></table></div>
+        <p>대표 프로젝트의 첫 선택 권장 순서는 B2B 수출입 커머스 운영 플랫폼 → 금융·세무 연동 API 플랫폼 → RAG 기반 AI 프로젝트입니다. 실제 공개 프로젝트의 제목과 ID를 확인한 뒤 관리자가 전체 목록에서 고르며, 세 항목은 코드에 고정하지 않습니다.</p>
+      </div>
+    </section>
+
+    <section id="plan">
+      <div class="content">
+        <p class="eyebrow">03 · IMPLEMENTATION PLAN</p>
+        <h2>개선 계획</h2>
+        <ol class="steps">
+          <li><b>1단계 · 메시지와 메뉴</b><div><p>히어로를 정체성·검증된 근거·대표 프로젝트 보기 순으로 편집합니다. 상단 메뉴를 About · Projects · Career · Skills · AI Workflow · Archive로 정리하고 홈 섹션도 같은 읽기 순서로 배치합니다.</p><small>확인: 모바일·데스크톱 메뉴 6개와 각 앵커, 상세 페이지에서 홈으로 돌아오는 이동.</small></div></li>
+          <li><b>2단계 · 대표 프로젝트</b><div><p>관리자 페이지에 “대표 프로젝트” 편집기를 추가합니다. 전체 프로젝트에서 서로 다른 3건을 선택하고 1~3순위를 변경해 저장합니다. 선택한 ID와 순서는 독립 설정으로 관리해 프로젝트 자동 동기화 후에도 유지합니다.</p><small>확인: 저장·새로고침·순서 변경·중복 방지, 삭제된 프로젝트 경고. 설정 전에는 전체 목록부터 표시.</small></div></li>
+          <li><b>3단계 · 요약 계층</b><div><p>Projects는 대표 3건 뒤에 전체 목록과 기존 뷰를 둡니다. Skills는 Core Stack을 먼저, 추가 사용 경험과 근거는 아래에 둡니다. AI Workflow는 핵심 문장·5단계 작업 방식·대표 자동화 3건을 먼저 보이고 전체 도구·스킬 목록은 하단에 둡니다.</p><small>확인: 기존 프로젝트 모달·상세 URL과 기술·AI 세부 정보에 계속 접근 가능.</small></div></li>
+          <li><b>4단계 · 연결 정리</b><div><p>Archive 아래에 Blog·GitHub·실제 운영 채널과 Activity를 모읍니다. 프로젝트와 게시된 관련 글을 명시적으로 연결하고 양쪽 상세 화면에서 왕복할 수 있게 합니다. About과 Career의 중복 문장을 정리합니다.</p><small>확인: 관련 링크의 공개 상태와 404 여부, 기존 <code>#activity</code> 앵커.</small></div></li>
+          <li><b>5단계 · 검색·운영 검증</b><div><p>새 대표 메시지에 맞춰 홈 메타·OG 문구를 조정합니다. 이미 구현된 canonical과 sitemap의 실제 출력을 점검합니다. 기존 분석 이벤트를 유지해 변경 전후의 프로젝트 상세 진입·블로그 이동·이력서 다운로드를 비교합니다.</p><small>확인: lint·test·build와 주요 경로 수동 점검. Velog 요약본 병행은 별도 운영 선택.</small></div></li>
+        </ol>
+        <div class="note"><p>대표 설정은 <code>featured-projects: {"ids":[1,2,3]}</code> 형태의 별도 저장 영역으로 계획합니다. 현재 프로젝트 저장·동기화가 프로젝트 행을 삭제하고 재삽입하므로 프로젝트 행의 단순 플래그는 설정을 잃을 수 있습니다. 예시 ID는 실제 ID가 아닙니다.</p></div>
+      </div>
+    </section>
+
+    <section id="after">
+      <div class="content">
+        <p class="eyebrow">04 · TARGET STRUCTURE</p>
+        <h2>개선 후 구조</h2>
+        <p><span class="tag">상단 메뉴 · 6개</span> About · Projects · Career · Skills · AI Workflow · Archive</p>
+        <ol class="flow" aria-label="개선 후 홈 섹션 순서">
+          <li>Hero<small>정체성·근거</small></li><li>About<small>일하는 방식</small></li><li>Projects<small>대표 3건 → 전체</small></li><li>Career<small>역할·성과</small></li><li>Skills<small>Core → 경험</small></li><li>AI Workflow<small>요약 → 상세</small></li><li>Archive<small>기록·Activity</small></li>
+        </ol>
+        <div class="table-scroll"><table class="table"><thead><tr><th>영역</th><th>첫 화면의 핵심</th><th>더 깊이 볼 경로</th></tr></thead><tbody>
+          <tr><td>Projects</td><td>관리자가 고른 대표 3건과 선택 순서</td><td>전체 카드·시간순 타임라인·모달·개별 프로젝트 URL</td></tr>
+          <tr><td>Skills</td><td>실제 주력 Core Stack</td><td>Also Worked With와 프로젝트 사용 근거</td></tr>
+          <tr><td>AI Workflow</td><td>5단계 작업 방식과 자동화 사례 3건</td><td>도구·스킬 그룹·커맨드 전체 기록</td></tr>
+          <tr><td>Archive</td><td>Blog·GitHub·App Store 등 운영 채널</td><td>자체 블로그의 원문, Git 활동 히트맵</td></tr>
+        </tbody></table></div>
+        <h3>유지할 주소와 콘텐츠</h3>
+        <ul class="bullets"><li><code>/blog</code>와 글 상세, <code>/projects/[slug]</code>는 유지합니다.</li><li>프로젝트 상세 모달, 기술 사용 근거, AI 워크플로 기록, 기존 전체 프로젝트 뷰를 보존합니다.</li><li>자체 블로그를 원문으로 유지합니다. Velog는 운영을 선택한 경우에만 요약·유입 채널로 사용합니다.</li></ul>
+      </div>
+    </section>
+
+    <footer id="basis">
+      <div class="content"><p class="eyebrow">SOURCE · 근거와 확인 사항</p><p class="source">원문: <code>docs/superpowers/plans/2026-09-25-portfolio-site-structure-improvement.md</code> (2026-09-25). 코드 확인: <code>app/(site)/page.tsx</code>, <code>components/sections/Projects.tsx</code>, <code>components/ui/ProjectVerticalTimelineView.tsx</code>, <code>components/admin/editors/ProjectsEditor.tsx</code>, <code>lib/internal-sync/db.ts</code>, <code>app/sitemap.ts</code>, 홈·프로젝트·블로그 metadata. 프로젝트 ID, 기술 근거, 성과 수치는 게시 전 운영 데이터와 대조할 항목입니다.</p></div>
+    </footer>
+  </main>
+</div>
+</body>
+</html>

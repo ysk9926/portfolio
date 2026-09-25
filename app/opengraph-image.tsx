@@ -83,7 +83,7 @@ export default async function Image() {
               color: '#a3a3a3',
             }}
           >
-            풀스택 개발자
+            기업용 시스템을 설계하는 풀스택 개발자
           </div>
           <div
             style={{
@@ -94,7 +94,7 @@ export default async function Image() {
               maxWidth: '500px',
             }}
           >
-            11개월간 14개 프로젝트를 기획부터 배포까지 주도
+            AI로 개발 프로세스를 개선하고, 기획부터 운영까지 책임집니다
           </div>
           <div
             style={{

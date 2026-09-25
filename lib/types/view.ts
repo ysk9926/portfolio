@@ -235,6 +235,7 @@ export interface PortfolioViewData {
   archiving: ArchiveItem[];
   activityHeatmap: ActivityHeatmap;
   projects: Project[];
+  featuredProjects: { ids: number[] };
   projectPortfolioSync: ProjectPortfolioSync;
   career: CareerEntry[];
   aiWorkflow: AiWorkflow;

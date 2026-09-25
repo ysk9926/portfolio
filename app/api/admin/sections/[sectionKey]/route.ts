@@ -11,6 +11,7 @@ import {
   sectionPayloadSchemaMap,
 } from '@/lib/types/payload';
 import { createServerSupabaseClient } from '@/utils/supabase/server';
+import { missingFeaturedProjectIds } from '@/lib/projects/featured';
 
 const buildSectionKey = async (
   params: Promise<{ sectionKey: string }> | { sectionKey: string },
@@ -90,6 +91,18 @@ export async function PUT(
         },
         { status: 400 },
       );
+    }
+
+    if (sectionKey === 'featured-projects') {
+      const projects = await getSectionPayload('projects');
+      const featured = parsedPayload.data as { ids: number[] };
+      const missingIds = missingFeaturedProjectIds(projects, featured.ids);
+      if (missingIds.length > 0) {
+        return NextResponse.json(
+          { error: `존재하지 않는 프로젝트 ID: ${missingIds.join(', ')}` },
+          { status: 400 },
+        );
+      }
     }
 
     const supabase = await createServerSupabaseClient();

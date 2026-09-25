@@ -17,6 +17,20 @@ const MOBILE_WEEKS_PER_PAGE = 12;
 
 interface ActivityHeatmapProps {
   heatmap: ActivityHeatmapType;
+  embedded?: boolean;
+}
+
+function ActivityShell({ embedded, children }: { embedded: boolean; children: React.ReactNode }) {
+  if (embedded) {
+    return (
+      <div id="activity" data-analytics-section="activity" className="mx-auto mt-16 max-w-6xl border-t border-white/15 pt-12 text-white">
+        <p className="font-mono text-xs uppercase tracking-[0.18em] text-ai-accent">~/activity</p>
+        <h3 className="mb-8 mt-2 text-2xl font-bold">개발 활동 기록</h3>
+        {children}
+      </div>
+    );
+  }
+  return <SectionWrapper id="activity" title="Activity" className="ai-cream text-ai-ink" contentVisibility>{children}</SectionWrapper>;
 }
 
 function buildAriaLabel(day: ActivityDay) {
@@ -261,7 +275,7 @@ function ActivityList({
   );
 }
 
-export default function ActivityHeatmap({ heatmap }: ActivityHeatmapProps) {
+export default function ActivityHeatmap({ heatmap, embedded = false }: ActivityHeatmapProps) {
   const flatDays = useMemo(
     () => heatmap.weeks.flatMap((week) => week.days).filter((day) => day.inRange),
     [heatmap.weeks],
@@ -304,12 +318,7 @@ export default function ActivityHeatmap({ heatmap }: ActivityHeatmapProps) {
   };
 
   return (
-    <SectionWrapper
-      id="activity"
-      title="Activity"
-      className="ai-cream text-ai-ink"
-      contentVisibility
-    >
+    <ActivityShell embedded={embedded}>
       <div className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_320px] lg:gap-8">
         <AnimateOnScroll className="space-y-6">
           <div className="grid gap-4 md:grid-cols-3">
@@ -458,6 +467,6 @@ export default function ActivityHeatmap({ heatmap }: ActivityHeatmapProps) {
           </div>
         </AnimateOnScroll>
       </div>
-    </SectionWrapper>
+    </ActivityShell>
   );
 }
